@@ -5,7 +5,9 @@
 //  Created by Roberto Arreaza on 27/10/2020.
 //
 
-import Foundation
+import UIKit
+import MobileWorkflowCore
+import ResearchKit
 
 class MWVideoGridViewController: ORKStepViewController {
     

@@ -5,6 +5,7 @@
 //  Created by Roberto Arreaza on 11/11/2020.
 //
 import MobileWorkflowCore
+import ResearchKit
 
 private let kSelected = "selected"
 

@@ -11,12 +11,13 @@
 		62003DD325629A5A003BC820 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = 62003DD225629A5A003BC820 /* app.json */; };
 		62BA5608255EA00C0089B034 /* MWVideoGridPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */; };
 		62BA5609255EA00C0089B034 /* MWVideoGridPlugin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		846D7E390C3099F86F58C345 /* Pods_MWVideoGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E7B680D19C65F72CF16C87 /* Pods_MWVideoGrid.framework */; };
+		7820CCE54766F9B0A190033E /* Pods_MWVideoGridTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CC0B8747154ED5E545F4DC /* Pods_MWVideoGridTests.framework */; };
 		B75028B51C5A3F94000EB3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75028B41C5A3F94000EB3CF /* AppDelegate.swift */; };
 		B75028BA1C5A3F94000EB3CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75028B81C5A3F94000EB3CF /* Main.storyboard */; };
 		B75028BC1C5A3F94000EB3CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75028BB1C5A3F94000EB3CF /* Assets.xcassets */; };
 		B75028BF1C5A3F94000EB3CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75028BD1C5A3F94000EB3CF /* LaunchScreen.storyboard */; };
 		B75028CA1C5A3F94000EB3CF /* MWVideoGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75028C91C5A3F94000EB3CF /* MWVideoGridTests.swift */; };
+		F899EABF6506EC8AB579000B /* Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CDBB5F7974F49F23B106751 /* Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,12 +45,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04E7B680D19C65F72CF16C87 /* Pods_MWVideoGrid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWVideoGrid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CDBB5F7974F49F23B106751 /* Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4427DC894E2CF4D7A2D48830 /* Pods-MobileWorkflowVideoGrid-MWVideoGrid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGrid.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGrid/Pods-MobileWorkflowVideoGrid-MWVideoGrid.release.xcconfig"; sourceTree = "<group>"; };
+		4C1784DD42867B61A6B5A981 /* Pods-MWVideoGridTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridTests.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGridTests/Pods-MWVideoGridTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B86E6DD5C15B25BFB6DA6E1 /* Pods-MobileWorkflowVideoGrid-MWVideoGrid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGrid.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGrid/Pods-MobileWorkflowVideoGrid-MWVideoGrid.debug.xcconfig"; sourceTree = "<group>"; };
 		62003DCE25629A41003BC820 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		62003DD225629A5A003BC820 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app.json; sourceTree = "<group>"; };
 		62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MWVideoGridPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7079EBE28CCCBD12B83494F3 /* Pods-MWVideoGrid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGrid.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGrid/Pods-MWVideoGrid.debug.xcconfig"; sourceTree = "<group>"; };
 		78C0E9BB20BC315100255055 /* MWVideoGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MWVideoGrid.entitlements; sourceTree = "<group>"; };
+		92CC0B8747154ED5E545F4DC /* Pods_MWVideoGridTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWVideoGridTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97EAD4BA1955CC68FC068F92 /* Pods-MWVideoGrid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGrid.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGrid/Pods-MWVideoGrid.release.xcconfig"; sourceTree = "<group>"; };
 		B75028B11C5A3F94000EB3CF /* MWVideoGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MWVideoGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75028B41C5A3F94000EB3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +66,7 @@
 		B75028C91C5A3F94000EB3CF /* MWVideoGridTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVideoGridTests.swift; sourceTree = "<group>"; };
 		B75028CB1C5A3F94000EB3CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B75028D71C5A4093000EB3CF /* fw-shared.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "fw-shared.xcconfig"; sourceTree = "<group>"; };
+		FF04357A1A38E4397585350F /* Pods-MWVideoGridTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridTests.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGridTests/Pods-MWVideoGridTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				846D7E390C3099F86F58C345 /* Pods_MWVideoGrid.framework in Frameworks */,
 				62BA5608255EA00C0089B034 /* MWVideoGridPlugin.framework in Frameworks */,
+				F899EABF6506EC8AB579000B /* Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7820CCE54766F9B0A190033E /* Pods_MWVideoGridTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */,
-				04E7B680D19C65F72CF16C87 /* Pods_MWVideoGrid.framework */,
+				92CC0B8747154ED5E545F4DC /* Pods_MWVideoGridTests.framework */,
+				3CDBB5F7974F49F23B106751 /* Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,6 +182,10 @@
 			children = (
 				7079EBE28CCCBD12B83494F3 /* Pods-MWVideoGrid.debug.xcconfig */,
 				97EAD4BA1955CC68FC068F92 /* Pods-MWVideoGrid.release.xcconfig */,
+				4C1784DD42867B61A6B5A981 /* Pods-MWVideoGridTests.debug.xcconfig */,
+				FF04357A1A38E4397585350F /* Pods-MWVideoGridTests.release.xcconfig */,
+				5B86E6DD5C15B25BFB6DA6E1 /* Pods-MobileWorkflowVideoGrid-MWVideoGrid.debug.xcconfig */,
+				4427DC894E2CF4D7A2D48830 /* Pods-MobileWorkflowVideoGrid-MWVideoGrid.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -191,6 +203,7 @@
 				B75028AE1C5A3F94000EB3CF /* Frameworks */,
 				B75028AF1C5A3F94000EB3CF /* Resources */,
 				62BA560A255EA00C0089B034 /* Embed Frameworks */,
+				2DDFFF13E52D3B8C05FDF171 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,6 +218,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B75028D11C5A3F94000EB3CF /* Build configuration list for PBXNativeTarget "MWVideoGridTests" */;
 			buildPhases = (
+				D77BBFE3817CFDEBF8232CEF /* [CP] Check Pods Manifest.lock */,
 				B75028C11C5A3F94000EB3CF /* Sources */,
 				B75028C21C5A3F94000EB3CF /* Frameworks */,
 				B75028C31C5A3F94000EB3CF /* Resources */,
@@ -304,7 +318,49 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MWVideoGrid-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MobileWorkflowVideoGrid-MWVideoGrid-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2DDFFF13E52D3B8C05FDF171 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGrid/Pods-MobileWorkflowVideoGrid-MWVideoGrid-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/MobileWorkflowCore/MobileWorkflowCore.framework/MobileWorkflowCore",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ResearchKit/ResearchKit.framework/ResearchKit",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MobileWorkflowCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ResearchKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGrid/Pods-MobileWorkflowVideoGrid-MWVideoGrid-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D77BBFE3817CFDEBF8232CEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MWVideoGridTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -467,7 +523,7 @@
 		};
 		B75028CF1C5A3F94000EB3CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7079EBE28CCCBD12B83494F3 /* Pods-MWVideoGrid.debug.xcconfig */;
+			baseConfigurationReference = 5B86E6DD5C15B25BFB6DA6E1 /* Pods-MobileWorkflowVideoGrid-MWVideoGrid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MWVideoGrid/Supporting Files/MWVideoGrid.entitlements";
@@ -485,7 +541,7 @@
 		};
 		B75028D01C5A3F94000EB3CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97EAD4BA1955CC68FC068F92 /* Pods-MWVideoGrid.release.xcconfig */;
+			baseConfigurationReference = 4427DC894E2CF4D7A2D48830 /* Pods-MobileWorkflowVideoGrid-MWVideoGrid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MWVideoGrid/Supporting Files/MWVideoGrid.entitlements";
@@ -503,6 +559,7 @@
 		};
 		B75028D21C5A3F94000EB3CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C1784DD42867B61A6B5A981 /* Pods-MWVideoGridTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;
@@ -519,6 +576,7 @@
 		};
 		B75028D31C5A3F94000EB3CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF04357A1A38E4397585350F /* Pods-MWVideoGridTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Manual;

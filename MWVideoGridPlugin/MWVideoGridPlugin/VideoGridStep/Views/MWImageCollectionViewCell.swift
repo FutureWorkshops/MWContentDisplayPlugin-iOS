@@ -5,7 +5,8 @@
 //  Created by Roberto Arreaza on 29/10/2020.
 //
 
-import Foundation
+import UIKit
+import MobileWorkflowCore
 import Combine
 
 class MWImageCollectionViewCell: UICollectionViewCell {

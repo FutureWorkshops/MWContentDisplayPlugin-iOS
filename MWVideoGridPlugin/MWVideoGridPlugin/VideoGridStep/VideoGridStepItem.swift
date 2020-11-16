@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MobileWorkflowCore
 
 private let kId = "id"
 private let kTitle = "title"

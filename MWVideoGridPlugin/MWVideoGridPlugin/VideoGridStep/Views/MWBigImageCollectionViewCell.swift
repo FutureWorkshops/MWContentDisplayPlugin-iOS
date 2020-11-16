@@ -5,7 +5,8 @@
 //  Created by Roberto Arreaza on 28/10/2020.
 //
 
-import Foundation
+import UIKit
+import MobileWorkflowCore
 import Combine
 
 protocol MWBigImageCollectionViewCellDelegate: class {}
