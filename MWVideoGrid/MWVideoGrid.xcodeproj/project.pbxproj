@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		62003DCF25629A41003BC820 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DCE25629A41003BC820 /* SceneDelegate.swift */; };
+		62003DD325629A5A003BC820 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = 62003DD225629A5A003BC820 /* app.json */; };
 		62BA5608255EA00C0089B034 /* MWVideoGridPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */; };
 		62BA5609255EA00C0089B034 /* MWVideoGridPlugin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		846D7E390C3099F86F58C345 /* Pods_MWVideoGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E7B680D19C65F72CF16C87 /* Pods_MWVideoGrid.framework */; };
 		B75028B51C5A3F94000EB3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75028B41C5A3F94000EB3CF /* AppDelegate.swift */; };
-		B75028B71C5A3F94000EB3CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75028B61C5A3F94000EB3CF /* ViewController.swift */; };
 		B75028BA1C5A3F94000EB3CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75028B81C5A3F94000EB3CF /* Main.storyboard */; };
 		B75028BC1C5A3F94000EB3CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75028BB1C5A3F94000EB3CF /* Assets.xcassets */; };
 		B75028BF1C5A3F94000EB3CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75028BD1C5A3F94000EB3CF /* LaunchScreen.storyboard */; };
@@ -44,13 +45,14 @@
 
 /* Begin PBXFileReference section */
 		04E7B680D19C65F72CF16C87 /* Pods_MWVideoGrid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWVideoGrid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62003DCE25629A41003BC820 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		62003DD225629A5A003BC820 /* app.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = app.json; sourceTree = "<group>"; };
 		62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MWVideoGridPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7079EBE28CCCBD12B83494F3 /* Pods-MWVideoGrid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGrid.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGrid/Pods-MWVideoGrid.debug.xcconfig"; sourceTree = "<group>"; };
 		78C0E9BB20BC315100255055 /* MWVideoGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MWVideoGrid.entitlements; sourceTree = "<group>"; };
 		97EAD4BA1955CC68FC068F92 /* Pods-MWVideoGrid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGrid.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGrid/Pods-MWVideoGrid.release.xcconfig"; sourceTree = "<group>"; };
 		B75028B11C5A3F94000EB3CF /* MWVideoGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MWVideoGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75028B41C5A3F94000EB3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B75028B61C5A3F94000EB3CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B75028B91C5A3F94000EB3CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B75028BB1C5A3F94000EB3CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B75028BE1C5A3F94000EB3CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		62003DD125629A5A003BC820 /* App Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				62003DD225629A5A003BC820 /* app.json */,
+			);
+			path = "App Configuration";
+			sourceTree = "<group>";
+		};
 		B75028A81C5A3F94000EB3CF = {
 			isa = PBXGroup;
 			children = (
@@ -113,10 +123,11 @@
 		B75028B31C5A3F94000EB3CF /* MWVideoGrid */ = {
 			isa = PBXGroup;
 			children = (
+				62003DD125629A5A003BC820 /* App Configuration */,
 				B75028D51C5A404A000EB3CF /* Resources */,
 				B75028D41C5A4045000EB3CF /* Supporting Files */,
+				62003DCE25629A41003BC820 /* SceneDelegate.swift */,
 				B75028B41C5A3F94000EB3CF /* AppDelegate.swift */,
-				B75028B61C5A3F94000EB3CF /* ViewController.swift */,
 			);
 			path = MWVideoGrid;
 			sourceTree = "<group>";
@@ -220,6 +231,7 @@
 				TargetAttributes = {
 					B75028B01C5A3F94000EB3CF = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = BQHMJ2C6RL;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
@@ -261,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B75028BF1C5A3F94000EB3CF /* LaunchScreen.storyboard in Resources */,
+				62003DD325629A5A003BC820 /* app.json in Resources */,
 				B75028BC1C5A3F94000EB3CF /* Assets.xcassets in Resources */,
 				B75028BA1C5A3F94000EB3CF /* Main.storyboard in Resources */,
 			);
@@ -305,8 +318,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B75028B71C5A3F94000EB3CF /* ViewController.swift in Sources */,
 				B75028B51C5A3F94000EB3CF /* AppDelegate.swift in Sources */,
+				62003DCF25629A41003BC820 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,12 +472,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MWVideoGrid/Supporting Files/MWVideoGrid.entitlements";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BQHMJ2C6RL;
 				INFOPLIST_FILE = "MWVideoGrid/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureworkshops.MWVideoGrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "FW-Ent-All-Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -477,12 +490,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "MWVideoGrid/Supporting Files/MWVideoGrid.entitlements";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BQHMJ2C6RL;
 				INFOPLIST_FILE = "MWVideoGrid/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.futureworkshops.MWVideoGrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "FW-Ent-All-Development";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
