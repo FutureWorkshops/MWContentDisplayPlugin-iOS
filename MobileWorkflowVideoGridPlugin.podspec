@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = 'MobileWorkflowVideoGridPlugin'
-    s.version               = '0.0.1'
+    s.version               = '0.0.2'
     s.summary               = 'Video Grid plugin for MobileWorkflow on iOS.'
     s.description           = <<-DESC
     Video Grid plugin for MobileWorkflow on iOS, using UICollectionView compositional layout.
