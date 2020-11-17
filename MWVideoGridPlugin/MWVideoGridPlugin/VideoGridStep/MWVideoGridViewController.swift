@@ -5,9 +5,8 @@
 //  Created by Roberto Arreaza on 27/10/2020.
 //
 
-import UIKit
+import Foundation
 import MobileWorkflowCore
-import ResearchKit
 
 class MWVideoGridViewController: ORKStepViewController {
     
@@ -41,7 +40,7 @@ class MWVideoGridViewController: ORKStepViewController {
     private var imageLoader: ImageLoader {
         return self.castedStep.imageLoader
     }
-
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +55,7 @@ class MWVideoGridViewController: ORKStepViewController {
     }
     
     // MARK: Configuration
-
+    
     private func setupCollectionView() {
         self.setupCollectionLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
@@ -80,96 +79,100 @@ class MWVideoGridViewController: ORKStepViewController {
     
     func generateLayout() -> UICollectionViewLayout {
         let sections = self.stepSections
-      let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
-        layoutEnvironment: NSCollectionLayoutEnvironment)
-          -> NSCollectionLayoutSection? in
-        
-        let isWideView = layoutEnvironment.container.effectiveContentSize.width > 500
-        
-        let sectionKind = sections[sectionIndex].kind
-        switch sectionKind {
-        case .carouselLarge: return self.generateBigImageLayout(isWide: isWideView)
-        case .carouselSmall: return self.generateSmallImageLayout(isWide: isWideView)
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
+                                                            layoutEnvironment: NSCollectionLayoutEnvironment)
+            -> NSCollectionLayoutSection? in
+            
+            let isWideView = layoutEnvironment.container.effectiveContentSize.width > 500
+            
+            let sectionKind = sections[sectionIndex].kind
+            switch sectionKind {
+            case .carouselLarge: return self.generateBigImageLayout(isWide: isWideView)
+            case .carouselSmall: return self.generateSmallImageLayout(isWide: isWideView)
+            }
         }
-      }
         
-      return layout
+        return layout
     }
     
     private func generateBigImageLayout(isWide: Bool) -> NSCollectionLayoutSection {
-      let itemSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(1.0),
-        heightDimension: .fractionalWidth(2/3))
-      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-      // Show one item plus peek on narrow screens,
-      // two items plus peek on wider screens
-        let groupFractionalWidth = isWide ? 0.475 : 0.95
-      let groupFractionalHeight: Float = isWide ? 1/3 : 2/3
-      let groupSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-        heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
-      let group = NSCollectionLayoutGroup.horizontal(
-        layoutSize: groupSize,
-        subitem: item,
-        count: 1)
-      group.contentInsets = NSDirectionalEdgeInsets(
-        top: 5,
-        leading: 5,
-        bottom: 5,
-        trailing: 5)
-
-      let headerSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(1.0),
-        heightDimension: .estimated(44))
-      let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-        layoutSize: headerSize,
-        elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier,
-        alignment: .top)
-
-      let section = NSCollectionLayoutSection(group: group)
-      section.boundarySupplementaryItems = [sectionHeader]
-      section.orthogonalScrollingBehavior = .groupPaging
-
-      return section
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(2/3))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        // Show one item plus peek on narrow screens,
+        // two items plus peek on wider screens
+        let groupFractionalWidth = isWide ? 0.45 : 0.9
+        let groupFractionalHeight: Float = isWide ? 1/3 : 2/3
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
+            heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitem: item,
+            count: 1)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier,
+            alignment: .top)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 15
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 15,
+            bottom: 5,
+            trailing: 15
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .groupPaging
+        
+        return section
     }
     
     private func generateSmallImageLayout(isWide: Bool) -> NSCollectionLayoutSection {
-      let itemSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(1.0),
-        heightDimension: .fractionalWidth(1.0))
-      let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
         // Show 2 item plus peek on narrow screens,
         // 3 items plus peek on wider screens
-        let groupFractionalWidth = isWide ? 0.32 : 0.48
+        let groupFractionalWidth = isWide ? 0.28 : 0.425
         let groupFractionalHeight: Float = 1/2.5
         let groupSize = NSCollectionLayoutSize(
-          widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
-          heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
-      let group = NSCollectionLayoutGroup.vertical(
-        layoutSize: groupSize,
-        subitem: item,
-        count: 1)
-      group.contentInsets = NSDirectionalEdgeInsets(
-        top: 5,
-        leading: 5,
-        bottom: 5,
-        trailing: 5)
-
-      let headerSize = NSCollectionLayoutSize(
-        widthDimension: .fractionalWidth(1.0),
-        heightDimension: .estimated(44))
-      let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-        layoutSize: headerSize,
-        elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier,
-        alignment: .top)
-
-      let section = NSCollectionLayoutSection(group: group)
-      section.boundarySupplementaryItems = [sectionHeader]
-      section.orthogonalScrollingBehavior = .groupPaging
-
-      return section
+            widthDimension: .fractionalWidth(CGFloat(groupFractionalWidth)),
+            heightDimension: .fractionalWidth(CGFloat(groupFractionalHeight)))
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: groupSize,
+            subitem: item,
+            count: 1)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier,
+            alignment: .top)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 15
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 5,
+            leading: 15,
+            bottom: 5,
+            trailing: 15
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        return section
     }
     
     private func setupConstraints() {

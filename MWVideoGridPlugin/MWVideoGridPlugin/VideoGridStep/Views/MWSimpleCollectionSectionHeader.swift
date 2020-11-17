@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MobileWorkflowCore
 
 class MWSimpleCollectionSectionHeader: UICollectionReusableView, ReusableView {
     
@@ -23,7 +24,7 @@ class MWSimpleCollectionSectionHeader: UICollectionReusableView, ReusableView {
         
         super.init(frame: frame)
         
-        self.addPinnedSubview(titleLabel, order: .top, insets: .init(top: 8, leading: 30, bottom: 8, trailing: 30))
+        self.addPinnedSubview(titleLabel, order: .top, insets: .init(top: 8, leading: 15, bottom: 8, trailing: 15))
     }
     
     required init?(coder: NSCoder) {

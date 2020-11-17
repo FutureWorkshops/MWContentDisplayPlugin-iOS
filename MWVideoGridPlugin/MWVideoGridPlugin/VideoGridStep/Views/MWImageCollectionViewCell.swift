@@ -5,9 +5,9 @@
 //  Created by Roberto Arreaza on 29/10/2020.
 //
 
-import UIKit
-import MobileWorkflowCore
+import Foundation
 import Combine
+import MobileWorkflowCore
 
 class MWImageCollectionViewCell: UICollectionViewCell {
     
@@ -52,6 +52,8 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         infoStack.distribution = .fill
         infoStack.alignment = .fill
         infoStack.spacing = 0
+        infoStack.isLayoutMarginsRelativeArrangement = true
+        infoStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         let mainStack = UIStackView(arrangedSubviews: [imageView, infoStack])
         mainStack.axis = .vertical

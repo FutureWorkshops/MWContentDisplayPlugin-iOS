@@ -5,8 +5,8 @@
 //  Created by Roberto Arreaza on 27/10/2020.
 //
 
+import Foundation
 import MobileWorkflowCore
-import ResearchKit
 
 public struct MWVideoGridPlugin: MobileWorkflowPlugin {
     
