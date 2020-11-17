@@ -83,9 +83,9 @@
 		62003DD825629BDD003BC820 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */,
 				62003DDA25629BDD003BC820 /* MWBigImageCollectionViewCell.swift */,
 				62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */,
+				62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -142,11 +142,11 @@
 		62BA560B255EA0530089B034 /* VideoGridStep */ = {
 			isa = PBXGroup;
 			children = (
-				62003DDD25629BDD003BC820 /* MWVideoGridStep.swift */,
-				62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */,
-				62003DDE25629BDE003BC820 /* VideoGridStepItem.swift */,
 				62003DD725629BDD003BC820 /* VideoGridStepResult.swift */,
 				62003DDC25629BDD003BC820 /* VideoGridStepSection.swift */,
+				62003DDE25629BDE003BC820 /* VideoGridStepItem.swift */,
+				62003DDD25629BDD003BC820 /* MWVideoGridStep.swift */,
+				62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */,
 				62003DD825629BDD003BC820 /* Views */,
 			);
 			path = VideoGridStep;
