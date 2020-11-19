@@ -1,0 +1,133 @@
+{
+  "id": 2,
+  "name": "Videos",
+  "appleSystemTintColor": "blue",
+  "systemTintColor": "blue",
+  "navigationStyle": "list",
+  "gatherAnalytics": false,
+  "workflows": [
+    {
+      "steps": [
+        {
+          "optional": false,
+          "identifier": "videos",
+          "title": "Videos",
+          "items": [
+            {
+              "type": "largeSection",
+              "listItemId": 1,
+              "text": "Featured",
+              "imageURL": "",
+              "id": "b230668f-e22d-465a-b123-84b0f4102962"
+            },
+            {
+              "type": "item",
+              "listItemId": 2,
+              "text": "Abs Beach Workout",
+              "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/abs-beach-1/preview.jpg",
+              "id": "ab2ab1b6-22e3-4ef7-8d9e-50e122c1e3ba",
+              "detailText": "6 mins"
+            },
+            {
+              "type": "item",
+              "listItemId": 3,
+              "text": "Abs Home Workout",
+              "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/kwznuYTVZFE/preview.jpg",
+              "id": "e32f76b4-e6fd-4df0-a0e8-c54ff57f94ea",
+              "detailText": "6 mins"
+            },
+            {
+              "type": "smallSection",
+              "listItemId": 4,
+              "text": "All Videos",
+              "detailText": "",
+              "imageURL": "",
+              "id": "873a125a-1828-438b-84fd-43005bf47472"
+            },
+            {
+              "type": "item",
+              "listItemId": 5,
+              "text": "HIIT Workout",
+              "detailText": "25 minutes",
+              "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/LwluSU2YPas/preview.jpg",
+              "id": "19087838-11a1-4fdb-9f19-4a613d451d64"
+            },
+            {
+              "type": "item",
+              "listItemId": 6,
+              "text": "Legs and Abs Workout",
+              "detailText": "30 minutes",
+              "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/X5ML_2PSxRo/preview.jpg",
+              "id": "321c11e0-cc10-48b8-adcd-36c5f92856eb"
+            }
+          ],
+          "uuid": "4a0d49d5-0418-4438-920b-415f606f1bb6",
+          "type": "videoGrid"
+        },
+        {
+          "optional": false,
+          "_class": "ORKInstructionStep",
+          "identifier": "video",
+          "title": "Video",
+          "imageContentMode": 2,
+          "uuid": "fda519e4-2c03-4651-9396-28606e691fdc",
+          "type": "instructions"
+        },
+        {
+          "optional": false,
+          "_class": "MobileWorkflowDisplayStep",
+          "identifier": "abs_beach_workout",
+          "title": "Abs Beach Workout",
+          "items": [
+            {
+              "previewURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/abs-beach-1/preview.jpg",
+              "url": "http://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/abs-beach-1/beach.m3u8",
+              "type": "video"
+            }
+          ],
+          "uuid": "0cc56e04-1eb6-4ca7-aa38-dd4940104a95",
+          "type": "display"
+        }
+      ],
+      "navigationRules": [
+        {
+          "from": "videos",
+          "rules": [
+            {
+              "to": "abs_beach_workout",
+              "propertyKeyPath": "videos.selected.title",
+              "operand": "==",
+              "value": "Abs Beach Workout"
+            },
+            {
+              "to": "video"
+            }
+          ]
+        },
+        {
+          "from": "video",
+          "rules": [
+            {
+              "to": "ORKNullStepIdentifier"
+            }
+          ]
+        },
+        {
+          "from": "abs_beach_workout",
+          "rules": [
+            {
+              "to": "ORKNullStepIdentifier"
+            }
+          ]
+        }
+      ],
+      "id": 1,
+      "identifier": "Video Grid",
+      "name": "Video Grid",
+      "sfSymbolName": "",
+      "materialIconName": ""
+    }
+  ],
+  "servers": [],
+  "locales": []
+}
