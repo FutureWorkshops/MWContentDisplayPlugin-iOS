@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
-    s.name                  = 'MobileWorkflowVideoGridPlugin'
-    s.version               = '0.0.2'
+    s.name                  = 'MWVideoGridPlugin'
+    s.version               = '0.0.3'
     s.summary               = 'Video Grid plugin for MobileWorkflow on iOS.'
     s.description           = <<-DESC
     Video Grid plugin for MobileWorkflow on iOS, using UICollectionView compositional layout.
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
     s.homepage              = 'https://www.mobileworkflow.io'
     s.license               = { :type => 'Copyright', :file => 'LICENSE' }
     s.author                = { 'Future Workshops' => 'info@futureworkshops.com' }
-    s.source                = { :git => 'https://github.com/FutureWorkshops/MobileWorkflowVideoGridPlugin-iOS.git', :tag => "#{s.version}" }
+    s.source                = { :git => 'https://github.com/FutureWorkshops/MWVideoGridPlugin-iOS.git', :tag => "#{s.version}" }
     s.platform              = :ios
     s.swift_version         = '5'
     s.ios.deployment_target = '13.0'
