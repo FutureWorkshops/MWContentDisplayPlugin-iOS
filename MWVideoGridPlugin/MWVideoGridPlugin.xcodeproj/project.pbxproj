@@ -10,7 +10,6 @@
 		62003DDF25629BDE003BC820 /* MWVideoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */; };
 		62003DE025629BDE003BC820 /* VideoGridStepResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD725629BDD003BC820 /* VideoGridStepResult.swift */; };
 		62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */; };
-		62003DE225629BDE003BC820 /* MWBigImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDA25629BDD003BC820 /* MWBigImageCollectionViewCell.swift */; };
 		62003DE325629BDE003BC820 /* MWImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */; };
 		62003DE425629BDE003BC820 /* VideoGridStepSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDC25629BDD003BC820 /* VideoGridStepSection.swift */; };
 		62003DE525629BDE003BC820 /* MWVideoGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDD25629BDD003BC820 /* MWVideoGridStep.swift */; };
@@ -40,7 +39,6 @@
 		62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWVideoGridViewController.swift; sourceTree = "<group>"; };
 		62003DD725629BDD003BC820 /* VideoGridStepResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGridStepResult.swift; sourceTree = "<group>"; };
 		62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
-		62003DDA25629BDD003BC820 /* MWBigImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWBigImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		62003DDC25629BDD003BC820 /* VideoGridStepSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGridStepSection.swift; sourceTree = "<group>"; };
 		62003DDD25629BDD003BC820 /* MWVideoGridStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWVideoGridStep.swift; sourceTree = "<group>"; };
@@ -83,7 +81,6 @@
 		62003DD825629BDD003BC820 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				62003DDA25629BDD003BC820 /* MWBigImageCollectionViewCell.swift */,
 				62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */,
 				62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */,
 			);
@@ -336,7 +333,6 @@
 				62003DE625629BDE003BC820 /* VideoGridStepItem.swift in Sources */,
 				62003E0B25629C81003BC820 /* NibLoadable.swift in Sources */,
 				62003DE525629BDE003BC820 /* MWVideoGridStep.swift in Sources */,
-				62003DE225629BDE003BC820 /* MWBigImageCollectionViewCell.swift in Sources */,
 				62003DE425629BDE003BC820 /* VideoGridStepSection.swift in Sources */,
 				62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */,
 				62003E0A25629C81003BC820 /* ReusableCells.swift in Sources */,
