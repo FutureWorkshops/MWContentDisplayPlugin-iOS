@@ -78,6 +78,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36C18240256BDA1A0044A74B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				62003DDE25629BDE003BC820 /* VideoGridStepItem.swift */,
+				62003DDC25629BDD003BC820 /* VideoGridStepSection.swift */,
+				62003DD725629BDD003BC820 /* VideoGridStepResult.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		62003DD825629BDD003BC820 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,9 +148,7 @@
 		62BA560B255EA0530089B034 /* VideoGridStep */ = {
 			isa = PBXGroup;
 			children = (
-				62003DD725629BDD003BC820 /* VideoGridStepResult.swift */,
-				62003DDC25629BDD003BC820 /* VideoGridStepSection.swift */,
-				62003DDE25629BDE003BC820 /* VideoGridStepItem.swift */,
+				36C18240256BDA1A0044A74B /* Model */,
 				62003DDD25629BDD003BC820 /* MWVideoGridStep.swift */,
 				62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */,
 				62003DD825629BDD003BC820 /* Views */,
