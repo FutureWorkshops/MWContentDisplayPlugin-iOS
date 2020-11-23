@@ -27,7 +27,7 @@ enum MWVideoGridStepType: String, MobileWorkflowStepType, CaseIterable {
     }
 }
 
-public class MWVideoGridStep: ORKStep, MobileWorkflowStep {
+public class MWVideoGridStep: ORKStep {
     
     private enum ListItemType: String {
         case largeSection = "largeSection"
@@ -53,9 +53,12 @@ public class MWVideoGridStep: ORKStep, MobileWorkflowStep {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public static var stepClassName: String {
-        return String(describing: self)
+    public override func stepViewControllerClass() -> AnyClass {
+        return MWVideoGridViewController.self
     }
+}
+
+extension MWVideoGridStep: MobileWorkflowStep {
     
     public static func build(data: StepData, context: StepContext, networkManager: NetworkManager, imageLoader: ImageLoader, localizationManager: Localization) throws -> ORKStep {
         
@@ -117,9 +120,5 @@ public class MWVideoGridStep: ORKStep, MobileWorkflowStep {
                                                     secondaryWorkflowIDs: secondaryWorkflowIDs,
                                                     sections: sections)
         return listStep
-    }
-    
-    public override func stepViewControllerClass() -> AnyClass {
-        return MWVideoGridViewController.self
     }
 }
