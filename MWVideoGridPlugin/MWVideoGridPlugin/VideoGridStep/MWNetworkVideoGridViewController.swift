@@ -31,8 +31,9 @@ class MWNetworkVideoGridViewController: MWVideoGridViewController, RemoteContent
         self.update(content: [])
     }
     
-    func update(content: [VideoGridStepSection]) {
-        self.update(sections: content)
+    func update(content: [VideoGridStepItem]) {
+        self.remoteContentStep.items = content
+        self.update(items: content)
         
         if content.isEmpty {
             let messageStateView = MessageStateView(frame: .zero, message: self.remoteContentStep.emptyText ?? MWNetworkVideoGridStep.defaultEmptyText)

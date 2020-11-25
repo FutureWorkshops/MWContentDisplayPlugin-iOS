@@ -8,43 +8,18 @@
 import Foundation
 import MobileWorkflowCore
 
-public struct MWVideoGridPlugin: MobileWorkflowPlugin {
-    
-    public static var allStepsTypes: [MobileWorkflowStepType] {
-        return MWVideoGridStepType.allCases
-    }
-}
-
-enum MWVideoGridStepType: String, MobileWorkflowStepType, CaseIterable {
-    case videoGrid = "videoGrid"
-    
-    var typeName: String {
-        return self.rawValue
-    }
-    
-    var stepClass: MobileWorkflowStep.Type {
-        return MWVideoGridStep.self
-    }
-}
-
-public class MWVideoGridStep: ORKStep {
-    
-    private enum ListItemType: String {
-        case largeSection = "largeSection"
-        case smallSection = "smallSection"
-        case item = "item"
-    }
+public class MWVideoGridStep: ORKStep, VideoGridStep {
     
     let networkManager: NetworkManager
     let imageLoader: ImageLoader
     let secondaryWorkflowIDs: [Int]
-    let sections: [VideoGridStepSection]
+    let items: [VideoGridStepItem]
     
-    init(identifier: String, networkManager: NetworkManager, imageLoader: ImageLoader, secondaryWorkflowIDs: [Int], sections: [VideoGridStepSection]) {
+    init(identifier: String, networkManager: NetworkManager, imageLoader: ImageLoader, secondaryWorkflowIDs: [Int], items: [VideoGridStepItem]) {
         self.networkManager = networkManager
         self.imageLoader = imageLoader
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
-        self.sections = sections
+        self.items = items
         
         super.init(identifier: identifier)
     }
@@ -61,64 +36,83 @@ public class MWVideoGridStep: ORKStep {
 extension MWVideoGridStep: MobileWorkflowStep {
     
     public static func build(data: StepData, context: StepContext, networkManager: NetworkManager, imageLoader: ImageLoader, localizationManager: Localization) throws -> ORKStep {
-        
         let secondaryWorkflowIDs: [Int] = (data.content["workflows"] as? [[String: Any]])?.compactMap({ $0["id"] as? Int }) ?? []
-        let listItems = data.content["items"] as? [[String: Any]] ?? []
-        var sections = [VideoGridStepSection]()
+        let contentItems = data.content["items"] as? [[String: Any]] ?? []
+        let items: [VideoGridStepItem] = contentItems.compactMap {
+            let text = localizationManager.translate($0["text"] as? String)
+            let detailText = localizationManager.translate($0["detailText"] as? String)
+
+            guard
+                let id = $0["id"] as? Int,
+                let strongText = text
+                else { return nil }
+            return VideoGridStepItem(
+                id: id,
+                type: $0["type"] as? String,
+                text: strongText,
+                detailText: detailText,
+                imageURL: $0["imageURL"] as? String
+            )
+        }
+        let listStep = MWVideoGridStep(
+            identifier: data.identifier,
+            networkManager: networkManager,
+            imageLoader: imageLoader,
+            secondaryWorkflowIDs: secondaryWorkflowIDs,
+            items: items
+        )
+        return listStep
+    }
+}
+
+extension Array where Element: VideoGridStepItem {
+    func asViewControllerSections() -> [MWVideoGridViewController.Section] {
         
-        listItems.forEach { (listItem) in
-            
-            guard let listItemTypeRaw = listItem["type"] as? String,
-                  let listItemType = ListItemType(rawValue: listItemTypeRaw) else {
-                return
-            }
-            
-            let parseSection = { (jsonSection: [String : Any]) -> VideoGridStepSection? in
-                guard let kindRaw = jsonSection["type"] as? String,
-                      let kind = VideoGridStepSection.Kind(rawValue: kindRaw),
-                      let id = jsonSection["listItemId"] as? Int,
-                      let title = jsonSection["text"] as? String else {
-                    return nil
+        var vcSections = [MWVideoGridViewController.Section]()
+        
+        var currentSection: VideoGridStepItem?
+        var currentItems = [VideoGridStepItem]()
+        
+        self.forEach { item in
+            switch item.itemType {
+            case .carouselLarge, .carouselSmall:
+                if let currentSection = currentSection {
+                    // complete current section before starting new one
+                    vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
+                    currentItems.removeAll()
                 }
-                
-                //since the JSON format does not provide items embedded inside the section, we initialize with empty items, and the rest of the parser should append items as needed.
-                return VideoGridStepSection(id: id, kind: kind, title: title, items: [])
-            }
-            
-            let parseItem = { (jsonSection: [String : Any]) -> VideoGridStepItem? in
-                guard let id = jsonSection["listItemId"] as? Int,
-                      let title = jsonSection["text"] as? String else {
-                    return nil
-                }
-                let subtitle = jsonSection["detailText"] as? String
-                let imageUrlRaw = jsonSection["imageURL"] as? String
-                let imageUrl = imageUrlRaw.flatMap({ URL(string: $0) })
-                
-                return VideoGridStepItem(id: id, title: title, subtitle: subtitle, imageURL: imageUrl)
-            }
-            
-            switch listItemType {
-            case .largeSection:
-                guard let section = parseSection(listItem) else { return }
-                sections.append(section)
-            case .smallSection:
-                guard let section = parseSection(listItem) else { return }
-                sections.append(section)
+                currentSection = item
             case .item:
-                //the section an item belongs to, is assumed to be the last parsed section
-                guard let item = parseItem(listItem),
-                      let currentSection = sections.last else {
-                    return
-                }
-                currentSection.items.append(item)
+                currentItems.append(item)
             }
         }
         
-        let listStep = MWVideoGridStep(identifier: data.identifier,
-                                                    networkManager: networkManager,
-                                                    imageLoader: imageLoader,
-                                                    secondaryWorkflowIDs: secondaryWorkflowIDs,
-                                                    sections: sections)
-        return listStep
+        if let currentSection = currentSection {
+            // complete final section
+            vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
+        }
+        
+        return vcSections
+    }
+    
+    private func viewControllerSectionFromSection(_ section: VideoGridStepItem, items: [VideoGridStepItem]) -> MWVideoGridViewController.Section {
+        
+        let vcItems = items.map {
+            MWVideoGridViewController.Item(
+                id: $0.id,
+                title: $0.text,
+                subtitle: $0.detailText,
+                imageUrl: $0.imageURL.flatMap { URL(string: $0) }
+            )
+        }
+        
+        let vcSection = MWVideoGridViewController.Section(
+            id: section.id,
+            type: section.itemType,
+            title: section.text,
+            items: vcItems
+        )
+        
+        return vcSection
     }
 }

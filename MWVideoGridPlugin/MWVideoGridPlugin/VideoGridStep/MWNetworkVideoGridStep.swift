@@ -8,11 +8,11 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWNetworkVideoGridStep: ORKStep, RemoteContentStep, SyncableContentSource {
+class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, SyncableContentSource {
     
     static let defaultEmptyText = "No Content"
     
-    typealias ResponseType = [VideoGridStepSection]
+    typealias ResponseType = [VideoGridStepItem]
     
     let url: String?
     let emptyText: String?
@@ -21,6 +21,7 @@ class MWNetworkVideoGridStep: ORKStep, RemoteContentStep, SyncableContentSource 
     let secondaryWorkflowIDs: [Int]
     var contentURL: String? { self.url }
     var resolvedURL: URL?
+    var items: [VideoGridStepItem] = []
     
     init(identifier: String, networkManager: NetworkManager, imageLoader: ImageLoader, secondaryWorkflowIDs: [Int], url: String? = nil, emptyText: String? = nil) {
         self.networkManager = networkManager
