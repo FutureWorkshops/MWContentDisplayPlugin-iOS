@@ -34,7 +34,7 @@ class VideoGridStepResult: ORKResult, Codable {
 
 extension VideoGridStepResult: NavigationTriggerResult {
     var navigationDestinationKey: String? {
-        return self.selected?.title
+        return self.selected?.text
     }
 }
 

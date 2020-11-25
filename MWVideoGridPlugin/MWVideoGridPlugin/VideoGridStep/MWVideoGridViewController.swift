@@ -10,35 +10,30 @@ import MobileWorkflowCore
 
 class MWVideoGridViewController: ORKStepViewController {
     
-    typealias SectionKind = VideoGridStepSection.Kind
-    
     struct Item {
-        let title: String?
+        let id: Int
+        let title: String
         let subtitle: String?
         let imageUrl: URL?
     }
     
     struct Section {
-        let kind: SectionKind
+        let id: Int
+        let type: VideoGridItemType
         let title: String
         let items: [Item]
     }
     
-    private var collectionView: UICollectionView!
-    private var collectionViewLayout: UICollectionViewLayout!
-    private var sections: [Section] = []
-    private var stepSections: [Section] {
-        return self.castedStep.sections.map({
-            let items = $0.items.map({ Item(title: $0.title, subtitle: $0.subtitle, imageUrl: $0.imageURL) })
-            return Section(kind: $0.kind, title: $0.title, items: items)
-        })
-    }
-    private var castedStep: MWVideoGridStep! {
-        return (self.step as! MWVideoGridStep)
+    private (set) var collectionView: UICollectionView!
+    private (set) var collectionViewLayout: UICollectionViewLayout!
+    private (set) var sections: [Section] = []
+    
+    var videoGridStep: VideoGridStep! {
+        return (self.step as? VideoGridStep)
     }
     
     private var imageLoader: ImageLoader {
-        return self.castedStep.imageLoader
+        return self.videoGridStep.imageLoader
     }
     
     public override func viewDidLoad() {
@@ -51,7 +46,12 @@ class MWVideoGridViewController: ORKStepViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.update(sections: self.stepSections)
+        self.update(items: self.videoGridStep.items)
+    }
+    
+    func update(items: [VideoGridStepItem]) {
+        self.sections = items.asViewControllerSections()
+        self.collectionView.reloadData()
     }
     
     // MARK: Configuration
@@ -77,17 +77,18 @@ class MWVideoGridViewController: ORKStepViewController {
     //MARK: - Layout generation
     
     func generateLayout() -> UICollectionViewLayout {
-        let sections = self.stepSections
+ 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int,
                                                             layoutEnvironment: NSCollectionLayoutEnvironment)
             -> NSCollectionLayoutSection? in
             
             let contentWidth = layoutEnvironment.container.effectiveContentSize.width
 
-            let sectionKind = sections[sectionIndex].kind
-            switch sectionKind {
+            let sectionType = self.sections[sectionIndex].type
+            switch sectionType {
             case .carouselLarge: return self.generateBigImageLayout(contentWidth: contentWidth)
             case .carouselSmall: return self.generateSmallImageLayout(contentWidth: contentWidth)
+            case .item: preconditionFailure("Not a section")
             }
         }
         
@@ -165,17 +166,6 @@ class MWVideoGridViewController: ORKStepViewController {
         ]
         NSLayoutConstraint.activate(constraints)
     }
-    
-    private func update(sections: [Section]) {
-        self.sections = sections
-        self.reloadData()
-    }
-    
-    //MARK: - Utils
-    
-    private func reloadData() {
-        self.collectionView.reloadData()
-    }
 }
 
 extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -194,7 +184,7 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
         let section = self.sections[indexPath.section]
         let item = section.items[indexPath.item]
         
-        switch section.kind {
+        switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.imageLoader)
@@ -204,6 +194,8 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.imageLoader)
             result = cell
+            
+        case .item: preconditionFailure("Not a section")
         }
         
         return result
@@ -228,10 +220,12 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
         guard let identifier = self.step?.identifier else {
             fatalError("Unable to get the identifier from the step. Something went really wrong")
         }
-        let selected = self.castedStep.sections[indexPath.section].items[indexPath.item]
-        let result = VideoGridStepResult(identifier: identifier, selected: selected)
-        self.addResult(result)
-        self.goForward()
+        let item = self.sections[indexPath.section].items[indexPath.item]
+        if let selected = self.videoGridStep.items.first(where: { item.id == $0.id }) {
+            let result = VideoGridStepResult(identifier: identifier, selected: selected)
+            self.addResult(result)
+            self.goForward()
+        }
     }
 }
 

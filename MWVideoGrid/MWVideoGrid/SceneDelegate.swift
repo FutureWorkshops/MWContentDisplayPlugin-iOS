@@ -49,7 +49,7 @@ extension SceneDelegate {
         var preferredConfigurations = [AppConfigurationContext]()
         
         if let appPath = Bundle.main.path(forResource: "app", ofType: "json") {
-            preferredConfigurations.append(.file(path: appPath, serverId: nil, workflowId: nil, sessionValues: nil))
+            preferredConfigurations.append(.file(path: appPath, serverId: 128, workflowId: nil, sessionValues: nil))
         }
         
         return preferredConfigurations
