@@ -44,7 +44,7 @@
                     "items": [
                         {
                             "type": "largeSection",
-                            "listItemId": 1,
+                            "id": 1,
                             "text": "",
                             "detailText": "",
                             "imageURL": "",
@@ -52,7 +52,7 @@
                         },
                         {
                             "type": "item",
-                            "listItemId": 2,
+                            "id": 2,
                             "text": "Abs Beach Workout",
                             "detailText": "6 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/abs-beach-1/preview.jpg",
@@ -60,7 +60,7 @@
                         },
                         {
                             "type": "smallSection",
-                            "listItemId": 3,
+                            "id": 3,
                             "text": "",
                             "detailText": "",
                             "imageURL": "",
@@ -68,7 +68,7 @@
                         },
                         {
                             "type": "item",
-                            "listItemId": 4,
+                            "id": 4,
                             "text": "Abs Home Workout",
                             "detailText": "6 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/kwznuYTVZFE/preview.jpg",
@@ -76,7 +76,7 @@
                         },
                         {
                             "type": "item",
-                            "listItemId": 5,
+                            "id": 5,
                             "text": "HIIT Workout",
                             "detailText": "25 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/LwluSU2YPas/preview.jpg",
@@ -84,7 +84,7 @@
                         },
                         {
                             "type": "item",
-                            "listItemId": 6,
+                            "id": 6,
                             "text": "Legs and Abs Workout",
                             "detailText": "30 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/X5ML_2PSxRo/preview.jpg",
