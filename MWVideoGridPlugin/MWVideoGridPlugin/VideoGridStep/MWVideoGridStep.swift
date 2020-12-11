@@ -10,17 +10,14 @@ import MobileWorkflowCore
 
 public class MWVideoGridStep: ORKStep, VideoGridStep {
     
-    let networkManager: NetworkManager
-    let imageLoader: ImageLoader
+    let services: MobileWorkflowServices
     let secondaryWorkflowIDs: [Int]
     let items: [VideoGridStepItem]
     
-    init(identifier: String, networkManager: NetworkManager, imageLoader: ImageLoader, secondaryWorkflowIDs: [Int], items: [VideoGridStepItem]) {
-        self.networkManager = networkManager
-        self.imageLoader = imageLoader
+    init(identifier: String, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], items: [VideoGridStepItem]) {
+        self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
         self.items = items
-        
         super.init(identifier: identifier)
     }
     
@@ -35,12 +32,13 @@ public class MWVideoGridStep: ORKStep, VideoGridStep {
 
 extension MWVideoGridStep: MobileWorkflowStep {
     
-    public static func build(data: StepData, context: StepContext, networkManager: NetworkManager, imageLoader: ImageLoader, localizationManager: Localization) throws -> ORKStep {
-        let secondaryWorkflowIDs: [Int] = (data.content["workflows"] as? [[String: Any]])?.compactMap({ $0["id"] as? Int }) ?? []
-        let contentItems = data.content["items"] as? [[String: Any]] ?? []
+    public static func build(step: StepInfo, services: MobileWorkflowServices) throws -> ORKStep {
+        
+        let secondaryWorkflowIDs: [Int] = (step.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0["id"] as? Int }) ?? []
+        let contentItems = step.data.content["items"] as? [[String: Any]] ?? []
         let items: [VideoGridStepItem] = contentItems.compactMap {
-            let text = localizationManager.translate($0["text"] as? String)
-            let detailText = localizationManager.translate($0["detailText"] as? String)
+            let text = services.localizationService.translate($0["text"] as? String)
+            let detailText = services.localizationService.translate($0["detailText"] as? String)
 
             guard
                 let id = $0["id"] as? Int,
@@ -55,9 +53,8 @@ extension MWVideoGridStep: MobileWorkflowStep {
             )
         }
         let listStep = MWVideoGridStep(
-            identifier: data.identifier,
-            networkManager: networkManager,
-            imageLoader: imageLoader,
+            identifier: step.data.identifier,
+            services: services,
             secondaryWorkflowIDs: secondaryWorkflowIDs,
             items: items
         )

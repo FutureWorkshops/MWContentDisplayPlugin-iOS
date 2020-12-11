@@ -32,8 +32,8 @@ class MWVideoGridViewController: ORKStepViewController {
         return (self.step as? VideoGridStep)
     }
     
-    private var imageLoader: ImageLoader {
-        return self.videoGridStep.imageLoader
+    private var imageLoader: ImageLoadingService {
+        return self.videoGridStep.services.imageLoadingService
     }
     
     public override func viewDidLoad() {
