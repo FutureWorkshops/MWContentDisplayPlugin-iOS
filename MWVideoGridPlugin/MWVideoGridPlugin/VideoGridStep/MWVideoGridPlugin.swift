@@ -32,7 +32,6 @@ enum MWVideoGridStepType: String, MobileWorkflowStepType, CaseIterable {
 }
 
 protocol VideoGridStep {
-    var networkManager: NetworkManager { get }
-    var imageLoader: ImageLoader { get }
+    var services: MobileWorkflowServices { get }
     var items: [VideoGridStepItem] { get }
 }

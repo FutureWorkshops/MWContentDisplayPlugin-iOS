@@ -10,6 +10,8 @@ import MobileWorkflowCore
 
 class MWNetworkVideoGridViewController: MWVideoGridViewController, RemoteContentStepViewController, ContentClearable {
     
+    weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
+    
     var remoteContentStep: MWNetworkVideoGridStep! { self.step as? MWNetworkVideoGridStep }
     
     private lazy var refreshControl: UIRefreshControl = {

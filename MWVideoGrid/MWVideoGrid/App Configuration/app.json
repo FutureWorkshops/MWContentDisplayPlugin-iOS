@@ -13,9 +13,10 @@
                     "_class": "ORKInstructionStep",
                     "identifier": "about",
                     "title": "About",
-                    "text": "Some info about Wern Fitness",
+                    "text": "Based in Welwyn Hertfordshire, we provide a complete package that is designed to empower you to achieve your goals. Using nutrition and lifestyle analysis, Biosignature Testing (Hormone Profiling), EMS Training and 121 Personal Training sessions - we can assure you that no stone is left unturned when it comes to your success.",
+                    "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/FvvuFtJnBic/preview.jpg",
                     "imageContentMode": 2,
-                    "uuid": "4f2e2203-19d9-405b-a045-9acad0beee2b",
+                    "uuid": "6f410659-1e7b-49a1-8cb5-e25fd4c0cef7",
                     "type": "instructions"
                 }
             ],
@@ -44,51 +45,45 @@
                     "items": [
                         {
                             "type": "largeSection",
-                            "id": 1,
                             "text": "",
                             "detailText": "",
                             "imageURL": "",
-                            "id": "a2ee2115-38e1-4810-9a64-69713044ce96"
+                            "id": 1
                         },
                         {
                             "type": "item",
-                            "id": 2,
                             "text": "Abs Beach Workout",
                             "detailText": "6 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/abs-beach-1/preview.jpg",
-                            "id": "5b553e89-5ce0-457d-ba4d-ea9e8e9d2a93"
+                            "id": 2
                         },
                         {
                             "type": "smallSection",
-                            "id": 3,
                             "text": "",
                             "detailText": "",
                             "imageURL": "",
-                            "id": "b347850a-993f-4b0a-86d3-6130793d4659"
+                            "id": 3
                         },
                         {
                             "type": "item",
-                            "id": 4,
                             "text": "Abs Home Workout",
                             "detailText": "6 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/kwznuYTVZFE/preview.jpg",
-                            "id": "5ea181fa-598a-45fb-8a40-727c19d1b428"
+                            "id": 4
                         },
                         {
                             "type": "item",
-                            "id": 5,
                             "text": "HIIT Workout",
                             "detailText": "25 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/LwluSU2YPas/preview.jpg",
-                            "id": "e23a286d-c4e7-4311-9701-e8504966388f"
+                            "id": 5
                         },
                         {
                             "type": "item",
-                            "id": 6,
                             "text": "Legs and Abs Workout",
                             "detailText": "30 minutes",
                             "imageURL": "https://mw-wern-fitness-video.s3.eu-west-2.amazonaws.com/X5ML_2PSxRo/preview.jpg",
-                            "id": "982c52fd-6384-4b2e-a0d2-1f7bb86a9110"
+                            "id": 6
                         }
                     ],
                     "uuid": "e58fe147-3b4d-4c3c-90a1-57b935b5c71b",
@@ -106,8 +101,8 @@
                 }
             ],
             "id": 713,
-            "identifier": "Grid",
-            "name": "Grid",
+            "identifier": "Static Grid",
+            "name": "Static Grid",
             "sfSymbolName": "square.grid.2x2",
             "materialIconName": ""
         },
@@ -154,9 +149,9 @@
                 }
             ],
             "id": 728,
-            "identifier": "Grid2",
-            "name": "Grid2",
-            "sfSymbolName": "grid.circle",
+            "identifier": "Workouts",
+            "name": "Workouts",
+            "sfSymbolName": "play.circle",
             "materialIconName": ""
         },
         {
@@ -203,8 +198,8 @@
                 }
             ],
             "id": 696,
-            "identifier": "Workouts",
-            "name": "Workouts",
+            "identifier": "Workouts List",
+            "name": "Workouts List",
             "sfSymbolName": "play",
             "materialIconName": ""
         }
@@ -218,8 +213,6 @@
     "locales": [
 
     ],
-    "navigationWorkflow1Id": 696,
-    "navigationWorkflow2Id": 522,
-    "navigationWorkflow3Id": 713,
-    "navigationWorkflow4Id": 728
+    "navigationWorkflow1Id": 728,
+    "navigationWorkflow2Id": 522
 }

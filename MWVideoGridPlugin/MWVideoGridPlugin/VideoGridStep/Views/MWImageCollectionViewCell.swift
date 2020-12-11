@@ -83,7 +83,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Configuration
     
-    func configure(viewData: ViewData, imageLoader: ImageLoader) {
+    func configure(viewData: ViewData, imageLoader: ImageLoadingService) {
         self.imageLoadTask?.cancel()
         
         if let imageUrl = viewData.imageUrl {
