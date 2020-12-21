@@ -23,10 +23,6 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
     var resolvedURL: URL?
     var items: [VideoGridStepItem] = []
     
-    var networkService: NetworkService {
-        self.services.networkService
-    }
-    
     init(identifier: String, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], url: String? = nil, authenticationWorkflowId: Int?, emptyText: String? = nil) {
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
@@ -42,6 +38,13 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
     
     override func stepViewControllerClass() -> AnyClass {
         return MWNetworkVideoGridViewController.self
+    }
+    
+    func loadContent(completion: @escaping (Result<[VideoGridStepItem], Error>) -> Void) {
+        guard let url = self.url else {
+            return completion(.failure(URLError(.badURL)))
+        }
+        self.perform(url: url, method: .GET, completion: completion)
     }
 }
 
