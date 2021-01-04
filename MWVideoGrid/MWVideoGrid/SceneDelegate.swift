@@ -19,13 +19,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private var urlSchemeManagers: [URLSchemeManager] = []
     private var rootViewController: MobileWorkflowRootViewController!
     
+    private var appDelegate: AppDelegate? { UIApplication.shared.delegate as? AppDelegate }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
+        
+        let eventService = EventServiceImplementation()
+        self.appDelegate?.eventDelegate = eventService
+        
+        let networkService = NetworkAsyncTaskService()
+        let credentialsStore = CredentialsStore()
+        let authenticationService = AuthenticationService(credentialsStore: credentialsStore, authRedirectHandler: eventService.authRedirectHandler())
         
         let manager = AppConfigurationManager(
             withPlugins: [MWVideoGridPlugin.self],
             fileManager: .default,
-            authRedirectHandler: session.userInfo?[SessionUserInfoKey.authRedirectHandler] as? AuthRedirectHandler
+            credentialsStore: credentialsStore,
+            networkService: networkService,
+            eventService: eventService,
+            asyncServices: [authenticationService]
         )
         let preferredConfigurations = self.preferredConfigurations(urlContexts: connectionOptions.urlContexts)
         self.rootViewController = MobileWorkflowRootViewController(manager: manager, preferredConfigurations: preferredConfigurations)

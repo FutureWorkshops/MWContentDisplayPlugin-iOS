@@ -16,18 +16,18 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
     
     let url: String?
     let emptyText: String?
+    let stepContext: StepContext
     let services: MobileWorkflowServices
     let secondaryWorkflowIDs: [Int]
     var contentURL: String? { self.url }
-    var authenticationWorkflowId: Int?
     var resolvedURL: URL?
     var items: [VideoGridStepItem] = []
     
-    init(identifier: String, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], url: String? = nil, authenticationWorkflowId: Int?, emptyText: String? = nil) {
+    init(identifier: String, stepContext: StepContext, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], url: String? = nil, emptyText: String? = nil) {
+        self.stepContext = stepContext
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
         self.url = url
-        self.authenticationWorkflowId = authenticationWorkflowId
         self.emptyText = emptyText
         super.init(identifier: identifier)
     }
@@ -58,10 +58,10 @@ extension MWNetworkVideoGridStep: MobileWorkflowStep {
         
         let step = MWNetworkVideoGridStep(
             identifier: step.data.identifier,
+            stepContext: step.context,
             services: services,
             secondaryWorkflowIDs: secondaryWorkflowIDs,
             url: url,
-            authenticationWorkflowId: step.data.content["authenticationWorkflowId"] as? Int,
             emptyText: emptyText
         )
         return step
