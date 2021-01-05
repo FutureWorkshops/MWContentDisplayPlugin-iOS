@@ -41,10 +41,19 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
     }
     
     func loadContent(completion: @escaping (Result<[VideoGridStepItem], Error>) -> Void) {
-        guard let url = self.url else {
+        guard let contentURL = self.url else {
             return completion(.failure(URLError(.badURL)))
         }
-        self.perform(url: url, method: .GET, completion: completion)
+        guard let url = self.services.session.resolve(url: contentURL) else {
+            return completion(.failure(URLError(.badURL)))
+        }
+        do {
+            let credential = try self.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
+            let task = NetworkVideoGridItemTask(input: url, credential: credential)
+            self.services.perform(task: task, completion: completion)
+        } catch (let error) {
+            completion(.failure(error))
+        }
     }
 }
 
