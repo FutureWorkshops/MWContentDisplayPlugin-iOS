@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		364F82A025A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */; };
 		36C18243256BDE0D0044A74B /* MWNetworkVideoGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */; };
 		36C18249256BDE280044A74B /* MWNetworkVideoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */; };
 		36C182FC256D5DE50044A74B /* MWVideoGridPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C182FB256D5DE50044A74B /* MWVideoGridPlugin.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		1710B2583A10CA57A39C5900 /* Pods_MWVideoGridPluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWVideoGridPluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		185C23C35E70FFCF2AD272BF /* Pods-MWVideoGridPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.release.xcconfig"; sourceTree = "<group>"; };
+		364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideoGridItemTask.swift; sourceTree = "<group>"; };
 		36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkVideoGridStep.swift; sourceTree = "<group>"; };
 		36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkVideoGridViewController.swift; sourceTree = "<group>"; };
 		36C182FB256D5DE50044A74B /* MWVideoGridPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVideoGridPlugin.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */,
 				36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */,
 				36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */,
+				364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */,
 			);
 			path = VideoGridStep;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			files = (
 				62003DE325629BDE003BC820 /* MWImageCollectionViewCell.swift in Sources */,
 				62003DE025629BDE003BC820 /* VideoGridStepResult.swift in Sources */,
+				364F82A025A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift in Sources */,
 				62003DE625629BDE003BC820 /* VideoGridStepItem.swift in Sources */,
 				36C18249256BDE280044A74B /* MWNetworkVideoGridViewController.swift in Sources */,
 				62003E0B25629C81003BC820 /* NibLoadable.swift in Sources */,

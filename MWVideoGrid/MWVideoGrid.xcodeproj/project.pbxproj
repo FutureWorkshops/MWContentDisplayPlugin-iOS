@@ -134,8 +134,8 @@
 				62003DD125629A5A003BC820 /* App Configuration */,
 				B75028D51C5A404A000EB3CF /* Resources */,
 				B75028D41C5A4045000EB3CF /* Supporting Files */,
-				62003DCE25629A41003BC820 /* SceneDelegate.swift */,
 				B75028B41C5A3F94000EB3CF /* AppDelegate.swift */,
+				62003DCE25629A41003BC820 /* SceneDelegate.swift */,
 			);
 			path = MWVideoGrid;
 			sourceTree = "<group>";
