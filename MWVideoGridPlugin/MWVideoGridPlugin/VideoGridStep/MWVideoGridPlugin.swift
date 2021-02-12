@@ -31,7 +31,7 @@ enum MWVideoGridStepType: String, MobileWorkflowStepType, CaseIterable {
     }
 }
 
-protocol VideoGridStep {
+protocol VideoGridStep: HasSecondaryWorkflows {
     var services: MobileWorkflowServices { get }
     var items: [VideoGridStepItem] { get }
 }

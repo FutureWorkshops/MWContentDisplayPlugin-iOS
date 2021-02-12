@@ -11,7 +11,7 @@ import MobileWorkflowCore
 public class MWVideoGridStep: ORKStep, VideoGridStep {
     
     let services: MobileWorkflowServices
-    let secondaryWorkflowIDs: [Int]
+    public let secondaryWorkflowIDs: [Int]
     let items: [VideoGridStepItem]
     
     init(identifier: String, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], items: [VideoGridStepItem]) {
