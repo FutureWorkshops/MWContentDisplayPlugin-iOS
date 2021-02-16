@@ -14,8 +14,10 @@ class MWNetworkVideoGridViewController: MWVideoGridViewController, RemoteContent
     
     var remoteContentStep: MWNetworkVideoGridStep! { self.step as? MWNetworkVideoGridStep }
     
-    private lazy var stateView = {
-        StateView(frame: .zero)
+    private lazy var stateView: StateView = {
+        let stateView = StateView(frame: .zero)
+        stateView.translatesAutoresizingMaskIntoConstraints = true // needs to be true when used as collectionView backgroundView
+        return stateView
     }()
     
     private lazy var refreshControl: UIRefreshControl = {
