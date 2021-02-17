@@ -14,6 +14,12 @@ class MWNetworkVideoGridViewController: MWVideoGridViewController, RemoteContent
     
     var remoteContentStep: MWNetworkVideoGridStep! { self.step as? MWNetworkVideoGridStep }
     
+    private lazy var stateView: StateView = {
+        let stateView = StateView(frame: .zero)
+        stateView.translatesAutoresizingMaskIntoConstraints = true // needs to be true when used as collectionView backgroundView
+        return stateView
+    }()
+    
     private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.reloadContent), for: .valueChanged)
@@ -38,15 +44,16 @@ class MWNetworkVideoGridViewController: MWVideoGridViewController, RemoteContent
         self.update(items: content)
         
         if content.isEmpty {
-            let messageStateView = MessageStateView(frame: .zero, message: self.remoteContentStep.emptyText ?? MWNetworkVideoGridStep.defaultEmptyText)
-            self.collectionView.backgroundView = messageStateView
+            self.stateView.configure(isLoading: false, title: self.remoteContentStep.emptyText ?? MWNetworkVideoGridStep.defaultEmptyText, subtitle: nil, buttonConfig: nil)
+            self.collectionView.backgroundView = self.stateView
         }
     }
     
     func showLoading() {
         if self.refreshControl.isRefreshing == false,
             self.sections.isEmpty {
-            self.collectionView.backgroundView = LoadingStateView(frame: .zero)
+            self.stateView.configure(isLoading: true, title: nil, subtitle: nil, buttonConfig: nil)
+            self.collectionView.backgroundView = self.stateView
             self.collectionView.refreshControl = nil // don't allow pull-to-refresh when loading from empty
         }
     }

@@ -17,14 +17,16 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
     let url: String?
     let emptyText: String?
     let stepContext: StepContext
+    let session: Session
     let services: MobileWorkflowServices
     let secondaryWorkflowIDs: [Int]
     var contentURL: String? { self.url }
     var resolvedURL: URL?
     var items: [VideoGridStepItem] = []
     
-    init(identifier: String, stepContext: StepContext, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], url: String? = nil, emptyText: String? = nil) {
-        self.stepContext = stepContext
+    init(identifier: String, stepInfo: StepInfo, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], url: String? = nil, emptyText: String? = nil) {
+        self.stepContext = stepInfo.context
+        self.session = stepInfo.session
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
         self.url = url
@@ -44,13 +46,13 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
         guard let contentURL = self.url else {
             return completion(.failure(URLError(.badURL)))
         }
-        guard let url = self.services.session.resolve(url: contentURL) else {
+        guard let url = self.session.resolve(url: contentURL) else {
             return completion(.failure(URLError(.badURL)))
         }
         do {
             let credential = try self.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
             let task = NetworkVideoGridItemTask(input: url, credential: credential)
-            self.services.perform(task: task, completion: completion)
+            self.services.perform(task: task, session: self.session, completion: completion)
         } catch (let error) {
             completion(.failure(error))
         }
@@ -67,7 +69,7 @@ extension MWNetworkVideoGridStep: MobileWorkflowStep {
         
         let step = MWNetworkVideoGridStep(
             identifier: step.data.identifier,
-            stepContext: step.context,
+            stepInfo: step,
             services: services,
             secondaryWorkflowIDs: secondaryWorkflowIDs,
             url: url,
