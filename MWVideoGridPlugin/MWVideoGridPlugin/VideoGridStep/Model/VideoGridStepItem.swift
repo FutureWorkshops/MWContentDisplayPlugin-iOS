@@ -32,14 +32,20 @@ public enum VideoGridItemType: String, Codable {
 public class VideoGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecureCoding {
     public static var supportsSecureCoding: Bool { true }
     
-    public let id: Int
+    public let id: String
     public let type: String?
     public let text: String
     public let detailText: String?
     public let imageURL: String?
     
     public required convenience init?(coder: NSCoder) {
-        guard let id = coder.decodeObject(forKey: kId) as? Int else {
+        let id: String
+        if let asInt = coder.decodeObject(forKey: kId) as? Int {
+            // legacy
+            id = String(asInt)
+        } else if let asString = coder.decodeObject(of: NSString.self, forKey: kText) {
+            id = asString as String
+        } else {
             return nil
         }
         guard let text = coder.decodeObject(of: NSString.self, forKey: kText) else {
@@ -52,7 +58,21 @@ public class VideoGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecure
         self.init(id: id, type: type as String?, text: text as String, detailText: detailText as String?, imageURL: imageURL as String?)
     }
     
-    public init(id: Int, type: String?, text: String, detailText: String?, imageURL: String?) {
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Self.CodingKeys.self)
+        if let asInt = try? container.decode(Int.self, forKey: .id) {
+            // legacy
+            self.id = String(asInt)
+        } else {
+            self.id = try container.decode(String.self, forKey: .id)
+        }
+        self.text = try container.decode(String.self, forKey: .text)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.detailText = try container.decodeIfPresent(String.self, forKey: .detailText)
+        self.imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL)
+    }
+    
+    public init(id: String, type: String?, text: String, detailText: String?, imageURL: String?) {
         self.id = id
         self.type = type
         self.text = text
@@ -62,7 +82,7 @@ public class VideoGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecure
     }
     
     public func encode(with coder: NSCoder) {
-        coder.encode(self.id as Int, forKey: kId)
+        coder.encode(self.id as NSString, forKey: kId)
         coder.encode(self.type as NSString?, forKey: kType)
         coder.encode(self.text as NSString, forKey: kText)
         coder.encode(self.detailText as NSString?, forKey: kDetailText)
@@ -87,7 +107,7 @@ extension VideoGridStepItem {
 
 extension VideoGridStepItem: ValueProvider {
     public func fetchValue(for path: String) -> Any? {
-        if path == "id" { return self.id }
+        if path == kId { return self.id }
         if path == kType { return self.type }
         if path == kText { return self.text }
         if path == kDetailText { return self.detailText }

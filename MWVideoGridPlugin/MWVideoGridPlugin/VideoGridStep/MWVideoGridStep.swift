@@ -36,18 +36,22 @@ extension MWVideoGridStep: MobileWorkflowStep {
         
         let secondaryWorkflowIDs: [Int] = (step.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0["id"] as? Int }) ?? []
         let contentItems = step.data.content["items"] as? [[String: Any]] ?? []
-        let items: [VideoGridStepItem] = contentItems.compactMap {
-            let text = services.localizationService.translate($0["text"] as? String)
+        let items: [VideoGridStepItem] = try contentItems.compactMap {
+            guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
             let detailText = services.localizationService.translate($0["detailText"] as? String)
-
-            guard
-                let id = $0["id"] as? Int,
-                let strongText = text
-                else { return nil }
+            let id: String
+            if let asInt = $0["id"] as? Int {
+                // legacy
+                id = String(asInt)
+            } else if let asString = $0["id"] as? String {
+                id = asString
+            } else {
+                throw ParseError.invalidStepData(cause: "Video grid item has invalid id")
+            }
             return VideoGridStepItem(
                 id: id,
                 type: $0["type"] as? String,
-                text: strongText,
+                text: text,
                 detailText: detailText,
                 imageURL: $0["imageURL"] as? String
             )
@@ -59,57 +63,5 @@ extension MWVideoGridStep: MobileWorkflowStep {
             items: items
         )
         return listStep
-    }
-}
-
-extension Array where Element: VideoGridStepItem {
-    func asViewControllerSections() -> [MWVideoGridViewController.Section] {
-        
-        var vcSections = [MWVideoGridViewController.Section]()
-        
-        var currentSection: VideoGridStepItem?
-        var currentItems = [VideoGridStepItem]()
-        
-        self.forEach { item in
-            switch item.itemType {
-            case .carouselLarge, .carouselSmall:
-                if let currentSection = currentSection {
-                    // complete current section before starting new one
-                    vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
-                    currentItems.removeAll()
-                }
-                currentSection = item
-            case .item:
-                currentItems.append(item)
-            }
-        }
-        
-        if let currentSection = currentSection {
-            // complete final section
-            vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
-        }
-        
-        return vcSections
-    }
-    
-    private func viewControllerSectionFromSection(_ section: VideoGridStepItem, items: [VideoGridStepItem]) -> MWVideoGridViewController.Section {
-        
-        let vcItems = items.map {
-            MWVideoGridViewController.Item(
-                id: $0.id,
-                title: $0.text,
-                subtitle: $0.detailText,
-                imageUrl: $0.imageURL.flatMap { URL(string: $0) }
-            )
-        }
-        
-        let vcSection = MWVideoGridViewController.Section(
-            id: section.id,
-            type: section.itemType,
-            title: section.text,
-            items: vcItems
-        )
-        
-        return vcSection
     }
 }

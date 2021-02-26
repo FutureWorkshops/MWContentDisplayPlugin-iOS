@@ -11,14 +11,14 @@ import MobileWorkflowCore
 class MWVideoGridViewController: ORKStepViewController {
     
     struct Item {
-        let id: Int
+        let id: String
         let title: String
         let subtitle: String?
         let imageUrl: URL?
     }
     
     struct Section {
-        let id: Int
+        let id: String
         let type: VideoGridItemType
         let title: String
         let items: [Item]
@@ -50,7 +50,7 @@ class MWVideoGridViewController: ORKStepViewController {
     }
     
     func update(items: [VideoGridStepItem]) {
-        self.sections = items.asViewControllerSections()
+        self.sections = self.videoGridStep.viewControllerSections()
         self.collectionView.reloadData()
     }
     
