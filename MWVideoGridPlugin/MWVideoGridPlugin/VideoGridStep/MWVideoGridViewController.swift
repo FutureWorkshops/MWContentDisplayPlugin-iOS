@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWVideoGridViewController: ORKStepViewController {
+class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     
     struct Item {
         let id: String
@@ -30,6 +30,10 @@ class MWVideoGridViewController: ORKStepViewController {
     
     var videoGridStep: VideoGridStep! {
         return (self.step as? VideoGridStep)
+    }
+    
+    var secondaryWorkflowIDs: [Int] {
+        return self.videoGridStep.secondaryWorkflowIDs
     }
     
     private var imageLoader: ImageLoadingService {
