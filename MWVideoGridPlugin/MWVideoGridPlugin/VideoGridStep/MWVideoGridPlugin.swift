@@ -32,6 +32,7 @@ enum MWVideoGridStepType: String, MobileWorkflowStepType, CaseIterable {
 }
 
 protocol VideoGridStep: HasSecondaryWorkflows {
+    var session: Session { get }
     var services: MobileWorkflowServices { get }
     var items: [VideoGridStepItem] { get }
     func viewControllerSections() -> [MWVideoGridViewController.Section]

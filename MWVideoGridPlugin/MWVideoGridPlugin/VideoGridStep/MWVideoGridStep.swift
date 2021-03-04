@@ -10,11 +10,13 @@ import MobileWorkflowCore
 
 public class MWVideoGridStep: ORKStep, VideoGridStep {
     
+    let session: Session
     let services: MobileWorkflowServices
     public let secondaryWorkflowIDs: [Int]
     let items: [VideoGridStepItem]
     
-    init(identifier: String, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], items: [VideoGridStepItem]) {
+    init(identifier: String, session: Session, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], items: [VideoGridStepItem]) {
+        self.session = session
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
         self.items = items
@@ -58,6 +60,7 @@ extension MWVideoGridStep: MobileWorkflowStep {
         }
         let listStep = MWVideoGridStep(
             identifier: step.data.identifier,
+            session: step.session,
             services: services,
             secondaryWorkflowIDs: secondaryWorkflowIDs,
             items: items

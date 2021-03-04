@@ -83,12 +83,12 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Configuration
     
-    func configure(viewData: ViewData, imageLoader: ImageLoadingService) {
+    func configure(viewData: ViewData, imageLoader: ImageLoadingService, session: Session) {
         self.imageLoadTask?.cancel()
         
         if let imageUrl = viewData.imageUrl {
 //            self.imageView.tag = imageUrl.hashValue
-            self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString) { [weak self] (image) in
+            self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString, session: session) { [weak self] (image) in
                 guard let strongSelf = self/*,
                       strongSelf.imageView.tag == imageUrl.hashValue */ else { return }
                 strongSelf.imageView.image = image

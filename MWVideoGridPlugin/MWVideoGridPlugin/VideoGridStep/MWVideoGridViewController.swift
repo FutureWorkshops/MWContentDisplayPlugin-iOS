@@ -36,10 +36,6 @@ class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
         return self.videoGridStep.secondaryWorkflowIDs
     }
     
-    private var imageLoader: ImageLoadingService {
-        return self.videoGridStep.services.imageLoadingService
-    }
-    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -191,12 +187,12 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.imageLoader)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.videoGridStep.services.imageLoadingService, session: self.videoGridStep.session)
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.imageLoader)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.videoGridStep.services.imageLoadingService, session: self.videoGridStep.session)
             result = cell
             
         case .item: preconditionFailure("Not a section")
