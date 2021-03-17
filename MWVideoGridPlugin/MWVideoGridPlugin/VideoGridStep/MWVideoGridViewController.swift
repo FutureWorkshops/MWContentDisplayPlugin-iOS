@@ -32,7 +32,7 @@ class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
         return (self.step as? VideoGridStep)
     }
     
-    var secondaryWorkflowIDs: [Int] {
+    var secondaryWorkflowIDs: [String] {
         return self.videoGridStep.secondaryWorkflowIDs
     }
     

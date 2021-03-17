@@ -12,10 +12,10 @@ public class MWVideoGridStep: ORKStep, VideoGridStep {
     
     let session: Session
     let services: MobileWorkflowServices
-    public let secondaryWorkflowIDs: [Int]
+    public let secondaryWorkflowIDs: [String]
     let items: [VideoGridStepItem]
     
-    init(identifier: String, session: Session, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], items: [VideoGridStepItem]) {
+    init(identifier: String, session: Session, services: MobileWorkflowServices, secondaryWorkflowIDs: [String], items: [VideoGridStepItem]) {
         self.session = session
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
@@ -36,7 +36,7 @@ extension MWVideoGridStep: MobileWorkflowStep {
     
     public static func build(step: StepInfo, services: MobileWorkflowServices) throws -> ORKStep {
         
-        let secondaryWorkflowIDs: [Int] = (step.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0["id"] as? Int }) ?? []
+        let secondaryWorkflowIDs: [String] = (step.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
         let contentItems = step.data.content["items"] as? [[String: Any]] ?? []
         let items: [VideoGridStepItem] = try contentItems.compactMap {
             guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }

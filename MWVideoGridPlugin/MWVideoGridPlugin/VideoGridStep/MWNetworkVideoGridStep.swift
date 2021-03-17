@@ -19,12 +19,12 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
     let stepContext: StepContext
     let session: Session
     let services: MobileWorkflowServices
-    let secondaryWorkflowIDs: [Int]
+    let secondaryWorkflowIDs: [String]
     var contentURL: String? { self.url }
     var resolvedURL: URL?
     var items: [VideoGridStepItem] = []
     
-    init(identifier: String, stepInfo: StepInfo, services: MobileWorkflowServices, secondaryWorkflowIDs: [Int], url: String? = nil, emptyText: String? = nil) {
+    init(identifier: String, stepInfo: StepInfo, services: MobileWorkflowServices, secondaryWorkflowIDs: [String], url: String? = nil, emptyText: String? = nil) {
         self.stepContext = stepInfo.context
         self.session = stepInfo.session
         self.services = services
@@ -65,7 +65,7 @@ extension MWNetworkVideoGridStep: MobileWorkflowStep {
         
         let url = step.data.content["url"] as? String
         let emptyText = services.localizationService.translate(step.data.content["emptyText"] as? String)
-        let secondaryWorkflowIDs: [Int] = (step.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0["id"] as? Int }) ?? []
+        let secondaryWorkflowIDs: [String] = (step.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
         
         let step = MWNetworkVideoGridStep(
             identifier: step.data.identifier,
