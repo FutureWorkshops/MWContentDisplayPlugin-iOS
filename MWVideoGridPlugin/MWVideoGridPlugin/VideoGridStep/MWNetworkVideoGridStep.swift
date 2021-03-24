@@ -61,15 +61,15 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
 
 extension MWNetworkVideoGridStep: MobileWorkflowStep {
     
-    static func build(step: StepInfo, services: MobileWorkflowServices) throws -> ORKStep {
+    static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
         
-        let url = step.data.content["url"] as? String
-        let emptyText = services.localizationService.translate(step.data.content["emptyText"] as? String)
-        let secondaryWorkflowIDs: [String] = (step.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
+        let url = stepInfo.data.content["url"] as? String
+        let emptyText = services.localizationService.translate(stepInfo.data.content["emptyText"] as? String)
+        let secondaryWorkflowIDs: [String] = (stepInfo.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
         
         let step = MWNetworkVideoGridStep(
-            identifier: step.data.identifier,
-            stepInfo: step,
+            identifier: stepInfo.data.identifier,
+            stepInfo: stepInfo,
             services: services,
             secondaryWorkflowIDs: secondaryWorkflowIDs,
             url: url,
