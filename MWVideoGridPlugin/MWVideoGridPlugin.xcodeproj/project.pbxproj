@@ -126,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				62BA560B255EA0530089B034 /* VideoGridStep */,
+				B10A69BE261CA27E0096AE0D /* ContentStackStep */,
 				628EC39F255E9F7A00CD1992 /* MWVideoGridPlugin.h */,
 				628EC3A0255E9F7A00CD1992 /* Info.plist */,
 			);
@@ -152,8 +153,6 @@
 				36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */,
 				36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */,
 				364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */,
-				B10669EE261C5E21005878DB /* MWContentStackStep.swift */,
-				B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */,
 			);
 			path = VideoGridStep;
 			sourceTree = "<group>";
@@ -168,6 +167,15 @@
 			);
 			name = Pods;
 			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		B10A69BE261CA27E0096AE0D /* ContentStackStep */ = {
+			isa = PBXGroup;
+			children = (
+				B10669EE261C5E21005878DB /* MWContentStackStep.swift */,
+				B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */,
+			);
+			path = ContentStackStep;
 			sourceTree = "<group>";
 		};
 		B952388A181F1A0DD0FFD4BF /* Frameworks */ = {
