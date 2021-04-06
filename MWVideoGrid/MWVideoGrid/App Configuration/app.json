@@ -207,10 +207,26 @@
             "id": "385b47c3-736c-48d7-b17a-4ed7beef862f",
             "identifier": "Stack",
             "materialIconName": "",
-            "name": "ContentStack",
+            "name": "Stack",
             "navigationRules": [
                 {
+                    "from": "testing_nav_bar",
+                    "rules": [
+                        {
+                            "to": "the_weeknd"
+                        }
+                    ]
+                },
+                {
                     "from": "the_weeknd",
+                    "rules": [
+                        {
+                            "to": "completion"
+                        }
+                    ]
+                },
+                {
+                    "from": "completion",
                     "rules": [
                         {
                             "to": "ORKNullStepIdentifier"
@@ -218,8 +234,19 @@
                     ]
                 }
             ],
-            "sfSymbolName": "opticaldisc",
+            "sfSymbolName": "",
             "steps": [
+                {
+                    "_class": "ORKInstructionStep",
+                    "identifier": "testing_nav_bar",
+                    "imageContentMode": 2,
+                    "imageURL": "https://source.unsplash.com/IahKTlr7c7I/800x600",
+                    "optional": false,
+                    "text": "Hope that it works!\n",
+                    "title": "Testing nav bar",
+                    "type": "instructions",
+                    "uuid": "82a6fbd0-be7b-4d33-9798-2c1aed2075f3"
+                },
                 {
                     "identifier": "the_weeknd",
                     "imageURL": "https://source.unsplash.com/nd7Br7M_KJk/800x600",
@@ -257,12 +284,40 @@
                             "imageURL": "https://source.unsplash.com/nd7Br7M_KJk/800x600",
                             "text": "Title Album 2",
                             "type": "listItem"
+                        },
+                        {
+                            "id": "27dfd010-0915-4954-afca-38688d0dc0ba",
+                            "title": "Playlists",
+                            "type": "title"
+                        },
+                        {
+                            "detailText": "10,000,000 followers",
+                            "id": "65fdee90-da02-4314-ba8f-ac4a1c57a594",
+                            "text": "Playlist 1",
+                            "type": "listItem"
+                        },
+                        {
+                            "detailText": "250,000 followers",
+                            "id": "1527d690-b4cf-4cee-90f8-2dacf812a011",
+                            "text": "Playlist 2",
+                            "type": "listItem"
                         }
                     ],
                     "optional": false,
                     "title": "The Weeknd",
                     "type": "io.mobileworkflow.ContentStack",
                     "uuid": "966b5fe2-5938-4f22-82f4-386348b244fd"
+                },
+                {
+                    "_class": "ORKCompletionStep",
+                    "identifier": "completion",
+                    "imageContentMode": 2,
+                    "imageURL": "https://source.unsplash.com/IahKTlr7c7I/800x600",
+                    "optional": false,
+                    "text": "Just testing if the nav bar is correctly handled\n",
+                    "title": "Completion",
+                    "type": "completion",
+                    "uuid": "2b8be68f-74bd-4208-b652-42c376829cf0"
                 }
             ]
         }
