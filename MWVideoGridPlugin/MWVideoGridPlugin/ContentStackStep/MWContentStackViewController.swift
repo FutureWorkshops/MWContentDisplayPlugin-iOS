@@ -94,13 +94,15 @@ private struct MWListItemView: View {
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 44, height: 44, alignment: .center)
                     .cornerRadius(4.0)
-            } else {
-                makeImagePlaceholder()
             }
             VStack(alignment: .leading) {
-                Text(stepTypeListItem.title ?? "MISSING_TITLE")
-                    .fontWeight(.semibold)
-                Text(stepTypeListItem.detailText ?? "MISSING_DETAIL_TEXT")
+                if let title = stepTypeListItem.title {
+                    Text(title)
+                        .fontWeight(.semibold)
+                }
+                if let detailText = stepTypeListItem.detailText {
+                    Text(detailText)
+                }
             }
         }
     }
