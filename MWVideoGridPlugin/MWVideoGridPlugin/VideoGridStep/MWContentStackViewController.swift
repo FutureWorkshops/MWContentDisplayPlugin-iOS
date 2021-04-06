@@ -7,6 +7,8 @@
 
 import UIKit
 import SwiftUI
+import Kingfisher
+import FancyScrollView
 import MobileWorkflowCore
 
 final class MWContentStackViewController: ORKStepViewController {
@@ -25,7 +27,11 @@ private struct MWContentView: View {
     @State var step: MWContentStackStep
     
     var body: some View {
-        ScrollView {
+        FancyScrollView(title: self.step.title ?? "", headerHeight: 350.0, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
+            KFImage(self.step.headerImageURL)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+        }, content: {
             VStack(alignment: .leading, spacing: 8) {
                 ForEach(self.step.items) { item in
                     switch item {
@@ -37,7 +43,7 @@ private struct MWContentView: View {
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
             .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-        }
+        })
     }
 }
 
@@ -66,11 +72,17 @@ private struct MWListItemView: View {
     
     var body: some View {
         HStack {
-            #warning("Ignoring the image until we can load it correctly")
-            if let _ = stepTypeListItem.imageURL {
-                Image(systemName: "opticaldisc")
+            if let imageURL = stepTypeListItem.imageURL {
+                KFImage(imageURL)
+                    .placeholder {
+                        makeImagePlaceholder()
+                    }
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 44, height: 44, alignment: .center)
+                    .cornerRadius(4.0)
+            } else {
+                makeImagePlaceholder()
             }
             VStack(alignment: .leading) {
                 Text(stepTypeListItem.title ?? "MISSING_TITLE")
@@ -78,5 +90,11 @@ private struct MWListItemView: View {
                 Text(stepTypeListItem.detailText ?? "MISSING_DETAIL_TEXT")
             }
         }
+    }
+    
+    func makeImagePlaceholder() -> some View {
+        RoundedRectangle(cornerRadius: 4.0)
+            .fill(Color.gray)
+            .frame(width: 44, height: 44, alignment: .center)
     }
 }

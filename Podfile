@@ -12,6 +12,8 @@ project 'MWVideoGridPlugin/MWVideoGridPlugin.xcodeproj'
 
 abstract_target 'MobileWorkflowVideoGrid' do
   pod 'MobileWorkflow'
+  pod 'Kingfisher', '~> 6.0'
+  pod 'FancyScrollView', path: '/Users/xmollv/Developer/FutureWorkshops/FancyScrollView/FancyScrollView.podspec'
 
   target 'MWVideoGrid' do
     project 'MWVideoGrid/MWVideoGrid.xcodeproj'

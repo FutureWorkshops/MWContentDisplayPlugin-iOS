@@ -10,10 +10,12 @@ import MobileWorkflowCore
 
 public class MWContentStackStep: ORKStep {
     
+    let headerImageURL: URL?
     let items: [StepItem]
     
-    init(identifier: String, items: [StepItem]) {
+    init(identifier: String, headerImageURL: URL?, items: [StepItem]) {
         self.items = items
+        self.headerImageURL = headerImageURL
         super.init(identifier: identifier)
     }
     
@@ -29,7 +31,12 @@ public class MWContentStackStep: ORKStep {
 extension MWContentStackStep: MobileWorkflowStep {
     public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
         let jsonItems = (stepInfo.data.content["items"] as? Array<[String:Any]>) ?? []
+        var headerImageURL: URL?
+        if let headerImageURLString = stepInfo.data.content["imageURL"] as? String {
+            headerImageURL = URL(string: headerImageURLString)
+        }
         return MWContentStackStep(identifier: stepInfo.data.identifier,
+                                  headerImageURL: headerImageURL,
                                   items: jsonItems.compactMap { StepItem(json: $0) })
     }
 }
