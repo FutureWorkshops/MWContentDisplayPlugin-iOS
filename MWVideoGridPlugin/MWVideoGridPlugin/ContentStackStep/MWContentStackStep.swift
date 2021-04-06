@@ -37,7 +37,7 @@ extension MWContentStackStep: MobileWorkflowStep {
         }
         return MWContentStackStep(identifier: stepInfo.data.identifier,
                                   headerImageURL: headerImageURL,
-                                  items: jsonItems.compactMap { StepItem(json: $0) })
+                                  items: jsonItems.compactMap { StepItem(json: $0, localizationService: services.localizationService) })
     }
 }
 
@@ -58,12 +58,12 @@ enum StepItem: Identifiable {
         }
     }
     
-    init?(json: [String:Any]) {
-        if let stepTypeTitle = StepItemTitle(json: json) {
+    init?(json: [String:Any], localizationService: LocalizationService) {
+        if let stepTypeTitle = StepItemTitle(json: json, localizationService: localizationService) {
             self = .title(stepTypeTitle)
-        } else if let stepTypeText = StepItemText(json: json) {
+        } else if let stepTypeText = StepItemText(json: json, localizationService: localizationService) {
             self = .text(stepTypeText)
-        } else if let stepTypeListItem = StepItemListItem(json: json) {
+        } else if let stepTypeListItem = StepItemListItem(json: json, localizationService: localizationService) {
             self = .listItem(stepTypeListItem)
         } else {
             return nil
@@ -75,7 +75,7 @@ struct StepItemTitle: Identifiable {
     let id: String
     let title: String?
     
-    init?(json: [String:Any]) {
+    init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("title") else {
             return nil
         }
@@ -84,7 +84,7 @@ struct StepItemTitle: Identifiable {
             return nil
         }
         self.id = id
-        self.title = json["title"] as? String
+        self.title = localizationService.translate(json["title"] as? String)
     }
 }
 
@@ -92,7 +92,7 @@ struct StepItemText: Identifiable {
     let id: String
     let text: String?
     
-    init?(json: [String:Any]) {
+    init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("text") else {
             return nil
         }
@@ -101,7 +101,7 @@ struct StepItemText: Identifiable {
             return nil
         }
         self.id = id
-        self.text = json["text"] as? String
+        self.text = localizationService.translate(json["text"] as? String)
     }
 }
 
@@ -111,7 +111,7 @@ struct StepItemListItem: Identifiable {
     let detailText: String?
     let imageURL: URL?
     
-    init?(json: [String:Any]) {
+    init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("listItem") else {
             return nil
         }
@@ -120,8 +120,8 @@ struct StepItemListItem: Identifiable {
             return nil
         }
         self.id = id
-        self.title = json["text"] as? String
-        self.detailText = json["detailText"] as? String
+        self.title = localizationService.translate(json["text"] as? String)
+        self.detailText = localizationService.translate(json["detailText"] as? String)
         if let imageURLString = json["imageURL"] as? String {
             self.imageURL = URL(string: imageURLString)
         } else {
