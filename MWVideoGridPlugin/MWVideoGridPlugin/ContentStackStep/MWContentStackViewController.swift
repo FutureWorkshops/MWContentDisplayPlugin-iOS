@@ -37,26 +37,43 @@ private struct MWContentView: View {
     @State var step: MWContentStackStep
     
     var body: some View {
-        FancyScrollView(title: self.step.title ?? "", headerHeight: 350.0, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
-            KFImage(self.step.headerImageURL)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-        }, content: {
-            VStack(alignment: .leading, spacing: 8) {
-                ForEach(self.step.items) { item in
-                    switch item {
-                    case .title(let innerItem): MWTitleView(stepTypeTitle: innerItem)
-                    case .text(let innerItem): MWTextView(stepTypeText: innerItem)
-                    case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
-                    }
+        self.makeBody()
+            // The FancyScrollView sets this to true but that breaks the swipe back gesture
+            // To fix it, we just set the alpha of the navBar to 0 or 1
+            .navigationBarHidden(false)
+    }
+    
+    private func makeBody() -> some View {
+        // You'd think that setting the `headerHeight` to 0.0 and return nil on the header if there's no `headerImageURL` would
+        // work, but it doesn't. If you don't use the correct init (the one that doesn't expect a header), the offset
+        // of the ScrollView is completely broken.
+        if let headerImageURL = self.step.headerImageURL {
+            return FancyScrollView(title: self.step.title ?? "", headerHeight: 350.0, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
+                KFImage(headerImageURL)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+            }, content: {
+                self.makeContentScrollView()
+            })
+        } else {
+            return FancyScrollView {
+                self.makeContentScrollView()
+            }
+        }
+    }
+    
+    private func makeContentScrollView() -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            ForEach(self.step.items) { item in
+                switch item {
+                case .title(let innerItem): MWTitleView(stepTypeTitle: innerItem)
+                case .text(let innerItem): MWTextView(stepTypeText: innerItem)
+                case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
                 }
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-        })
-        // The FancyScrollView sets this to true but that breaks the swipe back gesture
-        // To fix it, we just set the alpha of the navBar to 0 or 1
-        .navigationBarHidden(false)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
+        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
     }
 }
 
