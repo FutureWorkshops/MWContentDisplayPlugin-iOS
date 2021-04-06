@@ -20,6 +20,16 @@ final class MWContentStackViewController: ORKStepViewController {
         self.addCovering(childViewController: UIHostingController(rootView: MWContentView(step: self.contentStackStep)))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.alpha = 0.0
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.navigationBar.alpha = 1.0
+    }
+    
 }
 
 private struct MWContentView: View {
@@ -44,6 +54,9 @@ private struct MWContentView: View {
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
             .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
         })
+        // The FancyScrollView sets this to true but that breaks the swipe back gesture
+        // To fix it, we just set the alpha of the navBar to 0 or 1
+        .navigationBarHidden(false)
     }
 }
 
