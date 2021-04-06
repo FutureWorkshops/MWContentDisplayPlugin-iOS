@@ -258,7 +258,7 @@
                         {
                             "detailText": "Artist + Date Album 1",
                             "id": "1a4e7056-652b-47bd-96cf-a9d69af9381c",
-                            "imageURL": "https://unsplash.com/photos/nd7Br7M_KJk",
+                            "imageURL": "https://source.unsplash.com/nd7Br7M_KJk/800x600",
                             "listItemId": null,
                             "text": "Title Album 1",
                             "title": "",
@@ -267,7 +267,7 @@
                         {
                             "detailText": "Artist + Date Album 2",
                             "id": "fb3c48d8-ee80-4d1f-84ce-f43c398894e8",
-                            "imageURL": "https://unsplash.com/photos/nd7Br7M_KJk",
+                            "imageURL": "https://source.unsplash.com/nd7Br7M_KJk/800x600",
                             "listItemId": null,
                             "text": "Title Album 2",
                             "title": "",
