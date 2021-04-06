@@ -65,8 +65,10 @@ private struct MWTitleView: View {
     let stepTypeTitle: StepItemTitle
         
     var body: some View {
-        Text(stepTypeTitle.title ?? "MISSING_TITLE")
-            .font(.largeTitle)
+        if let title = stepTypeTitle.title {
+            Text(title)
+                .font(.largeTitle)
+        }
     }
 }
 
@@ -75,7 +77,9 @@ private struct MWTextView: View {
     let stepTypeText: StepItemText
         
     var body: some View {
-        Text(stepTypeText.text ?? "MISSING_TEXT")
+        if let text = stepTypeText.text {
+            Text(text)
+        }
     }
 }
 
