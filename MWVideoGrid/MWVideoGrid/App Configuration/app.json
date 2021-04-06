@@ -226,51 +226,36 @@
                     "items": [
                         {
                             "id": "7554ef53-dabf-4b43-89a4-176179f8dd76",
-                            "text": "",
                             "title": "About",
                             "type": "title"
                         },
                         {
                             "id": "ad1d680a-b8e3-4953-b594-c90b2fa8d5b0",
-                            "listItemId": null,
                             "text": "Abel Makkonen Tesfaye, known professionally as the Weeknd, is a Canadian singer, songwriter, and record producer. Noted for his versatility in vocal style, music production, and eccentric presentation, the Weeknd is often cited as an influence to contemporary music, as well as by other artists.",
-                            "title": "",
                             "type": "text"
                         },
                         {
-                            "detailText": "",
                             "id": "0d8b15a7-dd48-48a8-a684-9871a3e9d06b",
-                            "imageURL": "",
-                            "listItemId": null,
-                            "text": "",
                             "title": "Albums",
                             "type": "title"
                         },
                         {
-                            "detailText": "",
                             "id": "cbd9a18f-3d36-489b-a953-606adf0f2c20",
-                            "imageURL": "",
-                            "listItemId": null,
                             "text": "This are the top albums from The Weeknd!",
-                            "title": "",
                             "type": "text"
                         },
                         {
                             "detailText": "Artist + Date Album 1",
                             "id": "1a4e7056-652b-47bd-96cf-a9d69af9381c",
                             "imageURL": "https://source.unsplash.com/nd7Br7M_KJk/800x600",
-                            "listItemId": null,
                             "text": "Title Album 1",
-                            "title": "",
                             "type": "listItem"
                         },
                         {
                             "detailText": "Artist + Date Album 2",
                             "id": "fb3c48d8-ee80-4d1f-84ce-f43c398894e8",
                             "imageURL": "https://source.unsplash.com/nd7Br7M_KJk/800x600",
-                            "listItemId": null,
                             "text": "Title Album 2",
-                            "title": "",
                             "type": "listItem"
                         }
                     ],
