@@ -25,7 +25,7 @@ public class MWContentStackStep: ORKStep {
 
 extension MWContentStackStep: MobileWorkflowStep {
     public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
-        throw ParseError.invalidServerData(cause: "NOT HANDLED YET")
+        return MWContentStackStep(identifier: stepInfo.data.identifier)
     }
 }
 
