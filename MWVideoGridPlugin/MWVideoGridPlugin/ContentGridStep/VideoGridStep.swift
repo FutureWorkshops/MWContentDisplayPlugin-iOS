@@ -1,5 +1,5 @@
 //
-//  MWVideoGridPlugin.swift
+//  VideoGridStep.swift
 //  MWVideoGridPlugin
 //
 //  Created by Jonathan Flintham on 24/11/2020.
@@ -68,11 +68,5 @@ extension VideoGridStep {
         )
         
         return vcSection
-    }
-}
-
-enum L10n {
-    enum VideoGrid {
-        static let defaultSectionTitle = "Items"
     }
 }

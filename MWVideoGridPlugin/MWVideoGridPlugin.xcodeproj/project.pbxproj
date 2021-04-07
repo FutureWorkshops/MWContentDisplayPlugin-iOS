@@ -10,7 +10,7 @@
 		364F82A025A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */; };
 		36C18243256BDE0D0044A74B /* MWNetworkVideoGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */; };
 		36C18249256BDE280044A74B /* MWNetworkVideoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */; };
-		36C182FC256D5DE50044A74B /* MWVideoGridPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C182FB256D5DE50044A74B /* MWVideoGridPlugin.swift */; };
+		36C182FC256D5DE50044A74B /* VideoGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C182FB256D5DE50044A74B /* VideoGridStep.swift */; };
 		62003DDF25629BDE003BC820 /* MWVideoGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */; };
 		62003DE025629BDE003BC820 /* VideoGridStepResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD725629BDD003BC820 /* VideoGridStepResult.swift */; };
 		62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */; };
@@ -43,7 +43,7 @@
 		364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideoGridItemTask.swift; sourceTree = "<group>"; };
 		36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkVideoGridStep.swift; sourceTree = "<group>"; };
 		36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkVideoGridViewController.swift; sourceTree = "<group>"; };
-		36C182FB256D5DE50044A74B /* MWVideoGridPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVideoGridPlugin.swift; sourceTree = "<group>"; };
+		36C182FB256D5DE50044A74B /* VideoGridStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGridStep.swift; sourceTree = "<group>"; };
 		62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWVideoGridViewController.swift; sourceTree = "<group>"; };
 		62003DD725629BDD003BC820 /* VideoGridStepResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoGridStepResult.swift; sourceTree = "<group>"; };
 		62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
@@ -86,15 +86,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		36C18240256BDA1A0044A74B /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				62003DDE25629BDE003BC820 /* VideoGridStepItem.swift */,
-				62003DD725629BDD003BC820 /* VideoGridStepResult.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		62003DD825629BDD003BC820 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,7 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */,
-				62BA560B255EA0530089B034 /* VideoGridStep */,
+				62BA560B255EA0530089B034 /* ContentGridStep */,
 				B10A69BE261CA27E0096AE0D /* ContentStackStep */,
 				628EC39F255E9F7A00CD1992 /* MWVideoGridPlugin.h */,
 				628EC3A0255E9F7A00CD1992 /* Info.plist */,
@@ -145,19 +136,17 @@
 			path = MWVideoGridPluginTests;
 			sourceTree = "<group>";
 		};
-		62BA560B255EA0530089B034 /* VideoGridStep */ = {
+		62BA560B255EA0530089B034 /* ContentGridStep */ = {
 			isa = PBXGroup;
 			children = (
-				36C18240256BDA1A0044A74B /* Model */,
+				36C182FB256D5DE50044A74B /* VideoGridStep.swift */,
+				62003DDE25629BDE003BC820 /* VideoGridStepItem.swift */,
+				62003DD725629BDD003BC820 /* VideoGridStepResult.swift */,
+				B123DC07261DF3020017FC5C /* Local */,
+				B123DC08261DF3070017FC5C /* Network */,
 				62003DD825629BDD003BC820 /* Views */,
-				36C182FB256D5DE50044A74B /* MWVideoGridPlugin.swift */,
-				62003DDD25629BDD003BC820 /* MWVideoGridStep.swift */,
-				62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */,
-				36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */,
-				36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */,
-				364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */,
 			);
-			path = VideoGridStep;
+			path = ContentGridStep;
 			sourceTree = "<group>";
 		};
 		85F22C63F811567087D74381 /* Pods */ = {
@@ -179,6 +168,25 @@
 				B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */,
 			);
 			path = ContentStackStep;
+			sourceTree = "<group>";
+		};
+		B123DC07261DF3020017FC5C /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				62003DDD25629BDD003BC820 /* MWVideoGridStep.swift */,
+				62003DD625629BDD003BC820 /* MWVideoGridViewController.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		B123DC08261DF3070017FC5C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				36C18242256BDE0D0044A74B /* MWNetworkVideoGridStep.swift */,
+				36C18248256BDE280044A74B /* MWNetworkVideoGridViewController.swift */,
+				364F829F25A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		B952388A181F1A0DD0FFD4BF /* Frameworks */ = {
@@ -357,7 +365,7 @@
 				62003DE525629BDE003BC820 /* MWVideoGridStep.swift in Sources */,
 				B1C850C2261DEA5D00899738 /* MWContentDisplayPlugin.swift in Sources */,
 				B10669EF261C5E21005878DB /* MWContentStackStep.swift in Sources */,
-				36C182FC256D5DE50044A74B /* MWVideoGridPlugin.swift in Sources */,
+				36C182FC256D5DE50044A74B /* VideoGridStep.swift in Sources */,
 				36C18243256BDE0D0044A74B /* MWNetworkVideoGridStep.swift in Sources */,
 				62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */,
 				62003DDF25629BDE003BC820 /* MWVideoGridViewController.swift in Sources */,

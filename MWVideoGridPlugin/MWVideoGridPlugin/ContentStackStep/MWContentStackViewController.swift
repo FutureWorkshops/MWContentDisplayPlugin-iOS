@@ -11,10 +11,6 @@ import Kingfisher
 import FancyScrollView
 import MobileWorkflowCore
 
-extension L10n {
-    static let `continue` = "Continue"
-}
-
 final class MWContentStackViewController: ORKStepViewController {
     
     var contentStackStep: MWContentStackStep { self.step as! MWContentStackStep }
