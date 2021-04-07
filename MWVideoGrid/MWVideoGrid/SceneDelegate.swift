@@ -15,7 +15,7 @@ class SceneDelegate: MobileWorkflowSceneDelegate {
     override func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         self.dependencies.plugins = [
-            MWVideoGridPlugin.self
+            MWContentDisplayPlugin.self
         ]
         
         super.scene(scene, willConnectTo: session, options: connectionOptions)

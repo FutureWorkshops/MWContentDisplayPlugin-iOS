@@ -8,31 +8,6 @@
 import Foundation
 import MobileWorkflowCore
 
-public struct MWVideoGridPlugin: MobileWorkflowPlugin {
-    
-    public static var allStepsTypes: [MobileWorkflowStepType] {
-        return MWVideoGridStepType.allCases
-    }
-}
-
-enum MWVideoGridStepType: String, MobileWorkflowStepType, CaseIterable {
-    case videoGrid = "videoGrid"
-    case networkVideoGrid = "networkVideoGrid"
-    case contentStack = "io.mobileworkflow.ContentStack"
-    
-    var typeName: String {
-        return self.rawValue
-    }
-    
-    var stepClass: MobileWorkflowStep.Type {
-        switch self {
-        case .videoGrid: return MWVideoGridStep.self
-        case .networkVideoGrid: return MWNetworkVideoGridStep.self
-        case .contentStack: return MWContentStackStep.self
-        }
-    }
-}
-
 protocol VideoGridStep: HasSecondaryWorkflows {
     var session: Session { get }
     var services: MobileWorkflowServices { get }
