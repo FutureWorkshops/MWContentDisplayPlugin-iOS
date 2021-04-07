@@ -115,7 +115,7 @@
                     "url": "/workouts/grid",
                     "emptyText": "No Workouts",
                     "workflows": [
-
+                        
                     ],
                     "uuid": "78db70d0-97a6-4a25-a2d1-c2a42a483bc9",
                     "type": "networkVideoGrid"
@@ -164,7 +164,7 @@
                     "url": "/workouts",
                     "emptyText": "No Workouts",
                     "workflows": [
-
+                        
                     ],
                     "uuid": "e504a421-3c46-4147-8695-dee43c97de41",
                     "type": "networkList"
@@ -202,6 +202,140 @@
             "name": "Workouts List",
             "sfSymbolName": "play",
             "materialIconName": ""
+        },
+        {
+            "id": "385b47c3-736c-48d7-b17a-4ed7beef862f",
+            "identifier": "Stack",
+            "materialIconName": "",
+            "name": "ContentStack",
+            "navigationRules": [
+                {
+                    "from": "testing_nav_bar",
+                    "rules": [
+                        {
+                            "to": "the_weeknd"
+                        }
+                    ]
+                },
+                {
+                    "from": "the_weeknd",
+                    "rules": [
+                        {
+                            "to": "completion"
+                        }
+                    ]
+                },
+                {
+                    "from": "completion",
+                    "rules": [
+                        {
+                            "to": "ORKNullStepIdentifier"
+                        }
+                    ]
+                }
+            ],
+            "sfSymbolName": "opticaldisc",
+            "steps": [
+                {
+                    "_class": "ORKInstructionStep",
+                    "identifier": "testing_nav_bar",
+                    "imageContentMode": 2,
+                    "imageURL": "https://source.unsplash.com/IahKTlr7c7I/800x600",
+                    "optional": false,
+                    "text": "Hope that it works!\n",
+                    "title": "Testing nav bar",
+                    "type": "instructions",
+                    "uuid": "82a6fbd0-be7b-4d33-9798-2c1aed2075f3"
+                },
+                {
+                    "identifier": "the_weeknd",
+                    "imageURL": "https://source.unsplash.com/nd7Br7M_KJk/800x600",
+                    "items": [
+                        {
+                            "id": "7554ef53-dabf-4b43-89a4-176179f8dd76",
+                            "title": "About",
+                            "type": "title"
+                        },
+                        {
+                            "id": "ad1d680a-b8e3-4953-b594-c90b2fa8d5b0",
+                            "text": "Abel Makkonen Tesfaye, known professionally as the Weeknd, is a Canadian singer, songwriter, and record producer. Noted for his versatility in vocal style, music production, and eccentric presentation, the Weeknd is often cited as an influence to contemporary music, as well as by other artists.",
+                            "type": "text"
+                        },
+                        {
+                            "id": "0d8b15a7-dd48-48a8-a684-9871a3e9d06b",
+                            "title": "Albums",
+                            "type": "title"
+                        },
+                        {
+                            "id": "cbd9a18f-3d36-489b-a953-606adf0f2c20",
+                            "text": "This are the latest albums from The Weeknd!",
+                            "type": "text"
+                        },
+                        {
+                            "detailText": "2021",
+                            "id": "1a4e7056-652b-47bd-96cf-a9d69af9381c",
+                            "imageURL": "https://i.scdn.co/image/ab67616d0000b273274b406a7e18acebcf743079",
+                            "text": "House Of Balloons",
+                            "type": "listItem"
+                        },
+                        {
+                            "detailText": "2020",
+                            "id": "fb3c48d8-ee80-4d1f-84ce-f43c398894e8",
+                            "imageURL": "https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36",
+                            "text": "After Hours",
+                            "type": "listItem"
+                        },
+                        {
+                            "detailText": "2018",
+                            "id": "e48e5aa7-a2d0-498a-bf79-ae4d6b9f3f89",
+                            "imageURL": "https://i.scdn.co/image/ab67616d0000b2731f6a2a40bb692936879db730",
+                            "text": "My Dear Melancholy",
+                            "type": "listItem"
+                        },
+                        {
+                            "detailText": "2016",
+                            "id": "210e6a85-5695-419a-9289-d6d8d2e9e578",
+                            "imageURL": "https://i.scdn.co/image/ab67616d0000b2734718e2b124f79258be7bc452",
+                            "text": "Starboy",
+                            "type": "listItem"
+                        },
+                        {
+                            "id": "27dfd010-0915-4954-afca-38688d0dc0ba",
+                            "title": "Featured On:",
+                            "type": "title"
+                        },
+                        {
+                            "detailText": "This is the essential The Weeknd.",
+                            "id": "65fdee90-da02-4314-ba8f-ac4a1c57a594",
+                            "imageURL": "https://i.scdn.co/image/ab67706f0000000290636a2178bcabda879b93e4",
+                            "text": "This Is The Weeknd",
+                            "type": "listItem"
+                        },
+                        {
+                            "detailText": "156,263 likes",
+                            "id": "1527d690-b4cf-4cee-90f8-2dacf812a011",
+                            "imageURL": "https://i.scdn.co/image/ab67706f000000023dea43365eb16182a263326e",
+                            "text": "Today's Top Hits",
+                            "type": "listItem"
+                        }
+                    ],
+                    "optional": false,
+                    "title": "The Weeknd",
+                    "type": "io.mobileworkflow.ContentStack",
+                    "uuid": "966b5fe2-5938-4f22-82f4-386348b244fd"
+                },
+                {
+                    "_class": "ORKCompletionStep",
+                    "identifier": "completion",
+                    "imageContentMode": 2,
+                    "imageURL": "https://source.unsplash.com/IahKTlr7c7I/800x600",
+                    "optional": false,
+                    "text": "Just testing if the nav bar is correctly handled\n",
+                    "title": "Completion",
+                    "type": "completion",
+                    "uuid": "2b8be68f-74bd-4208-b652-42c376829cf0"
+                }
+            ]
         }
     ],
     "servers": [
@@ -211,8 +345,9 @@
         }
     ],
     "locales": [
-
+        
     ],
     "navigationWorkflow1Id": 728,
-    "navigationWorkflow2Id": 522
+    "navigationWorkflow2Id": 522,
+    "navigationWorkflow3Id": "385b47c3-736c-48d7-b17a-4ed7beef862f",
 }

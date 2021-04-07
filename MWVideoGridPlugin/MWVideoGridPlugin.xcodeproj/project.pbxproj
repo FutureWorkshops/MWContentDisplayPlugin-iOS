@@ -20,6 +20,8 @@
 		628EC3A6255E9F7B00CD1992 /* MWVideoGridPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628EC39C255E9F7A00CD1992 /* MWVideoGridPlugin.framework */; };
 		628EC3AB255E9F7B00CD1992 /* MWVideoGridPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */; };
 		628EC3AD255E9F7B00CD1992 /* MWVideoGridPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 628EC39F255E9F7A00CD1992 /* MWVideoGridPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B10669EF261C5E21005878DB /* MWContentStackStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669EE261C5E21005878DB /* MWContentStackStep.swift */; };
+		B10669F3261C5EBA005878DB /* MWContentStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */; };
 		F8576557AB60F442D897D877 /* Pods_MWVideoGridPluginTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1710B2583A10CA57A39C5900 /* Pods_MWVideoGridPluginTests.framework */; };
 		F8F67A5CAFA095402227537E /* Pods_MobileWorkflowVideoGrid_MWVideoGridPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B2F64664047D09CA0B951A /* Pods_MobileWorkflowVideoGrid_MWVideoGridPlugin.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		628EC3AC255E9F7B00CD1992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95B2F64664047D09CA0B951A /* Pods_MobileWorkflowVideoGrid_MWVideoGridPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileWorkflowVideoGrid_MWVideoGridPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		980A44E52379947BB8387DB1 /* Pods-MWVideoGridPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B10669EE261C5E21005878DB /* MWContentStackStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentStackStep.swift; sourceTree = "<group>"; };
+		B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentStackViewController.swift; sourceTree = "<group>"; };
 		C71D10543438C1AACD23646C /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; sourceTree = "<group>"; };
 		D8BAE530258F7B52290CD8FE /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				62BA560B255EA0530089B034 /* VideoGridStep */,
+				B10A69BE261CA27E0096AE0D /* ContentStackStep */,
 				628EC39F255E9F7A00CD1992 /* MWVideoGridPlugin.h */,
 				628EC3A0255E9F7A00CD1992 /* Info.plist */,
 			);
@@ -162,6 +167,15 @@
 			);
 			name = Pods;
 			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		B10A69BE261CA27E0096AE0D /* ContentStackStep */ = {
+			isa = PBXGroup;
+			children = (
+				B10669EE261C5E21005878DB /* MWContentStackStep.swift */,
+				B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */,
+			);
+			path = ContentStackStep;
 			sourceTree = "<group>";
 		};
 		B952388A181F1A0DD0FFD4BF /* Frameworks */ = {
@@ -336,7 +350,9 @@
 				364F82A025A4CB0C00D8B8FE /* NetworkVideoGridItemTask.swift in Sources */,
 				62003DE625629BDE003BC820 /* VideoGridStepItem.swift in Sources */,
 				36C18249256BDE280044A74B /* MWNetworkVideoGridViewController.swift in Sources */,
+				B10669F3261C5EBA005878DB /* MWContentStackViewController.swift in Sources */,
 				62003DE525629BDE003BC820 /* MWVideoGridStep.swift in Sources */,
+				B10669EF261C5E21005878DB /* MWContentStackStep.swift in Sources */,
 				36C182FC256D5DE50044A74B /* MWVideoGridPlugin.swift in Sources */,
 				36C18243256BDE0D0044A74B /* MWNetworkVideoGridStep.swift in Sources */,
 				62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */,

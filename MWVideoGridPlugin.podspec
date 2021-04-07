@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = 'MWVideoGridPlugin'
-    s.version               = '0.0.14'
+    s.version               = '0.0.15'
     s.summary               = 'Video Grid plugin for MobileWorkflow on iOS.'
     s.description           = <<-DESC
     Video Grid plugin for MobileWorkflow on iOS, using UICollectionView compositional layout.
@@ -16,6 +16,8 @@ Pod::Spec.new do |s|
 	
     s.subspec 'Core' do |cs|
 	    cs.dependency            'MobileWorkflow'
+        cs.dependency            'Kingfisher', '~> 6.0'
+        cs.dependency            'FancyScrollView', '0.1.3'
         cs.source_files          = 'MWVideoGridPlugin/MWVideoGridPlugin/**/*.swift'
     end
 end
