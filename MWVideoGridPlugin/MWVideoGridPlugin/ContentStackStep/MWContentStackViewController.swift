@@ -48,7 +48,7 @@ private struct MWContentView: View {
     var body: some View {
         ZStack {
             self.makeScrollView()
-                .offset(y: -70)
+                .padding(.bottom, 70)
             self.makeContinueButton()
         }
         // The FancyScrollView sets this to true but that breaks the swipe back gesture
