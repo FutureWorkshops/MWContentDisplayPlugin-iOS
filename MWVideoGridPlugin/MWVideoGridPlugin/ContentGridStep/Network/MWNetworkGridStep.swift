@@ -16,8 +16,6 @@ public struct MWNetworkGridItemTask: CredentializedAsyncTask, URLAsyncTaskConver
 
 public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSource {
     
-    static let defaultEmptyText = "No Content"
-    
     public typealias ResponseType = [MWGridStepItem]
     
     let url: String?

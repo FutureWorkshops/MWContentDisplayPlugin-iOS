@@ -91,7 +91,7 @@ extension MWGridStep {
             vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
         } else if !currentItems.isEmpty {
             // no sections found, add all to single section
-            let section = MWGridStepItem(id: "DEFAULT_SECTION", type: MWGridItemType.carouselSmall.rawValue, text: L10n.VideoGrid.defaultSectionTitle, detailText: "", imageURL: "")
+            let section = MWGridStepItem(id: "DEFAULT_SECTION", type: MWGridItemType.carouselSmall.rawValue, text: L10n.defaultSectionTitle, detailText: "", imageURL: "")
             vcSections.append(self.viewControllerSectionFromSection(section, items: currentItems))
         }
         

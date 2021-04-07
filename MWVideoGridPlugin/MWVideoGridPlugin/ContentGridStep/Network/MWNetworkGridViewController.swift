@@ -44,7 +44,7 @@ class MWNetworkGridViewController: MWGridViewController, RemoteContentStepViewCo
         self.update(items: content)
         
         if content.isEmpty {
-            self.stateView.configure(isLoading: false, title: self.remoteContentStep.emptyText ?? MWNetworkGridStep.defaultEmptyText, subtitle: nil, buttonConfig: nil)
+            self.stateView.configure(isLoading: false, title: self.remoteContentStep.emptyText ?? L10n.noContent, subtitle: nil, buttonConfig: nil)
             self.collectionView.backgroundView = self.stateView
         }
     }

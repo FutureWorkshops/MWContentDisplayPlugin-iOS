@@ -33,9 +33,7 @@ enum MWContentDisplayStepType: String, MobileWorkflowStepType, CaseIterable {
 }
 
 enum L10n {
-    enum VideoGrid {
-        static let defaultSectionTitle = "Items"
-    }
-    
+    static let defaultSectionTitle = "Items"
+    static let noContent = "No Content"
     static let `continue` = "Continue"
 }
