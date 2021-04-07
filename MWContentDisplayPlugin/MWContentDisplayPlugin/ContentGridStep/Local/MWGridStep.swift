@@ -1,6 +1,6 @@
 //
 //  MWGridStep.swift
-//  MobileWorkflowCore
+//  MWContentDisplayPlugin
 //
 //  Created by Roberto Arreaza on 27/10/2020.
 //
