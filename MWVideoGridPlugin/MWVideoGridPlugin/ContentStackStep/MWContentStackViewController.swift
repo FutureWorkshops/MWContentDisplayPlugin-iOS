@@ -17,7 +17,11 @@ final class MWContentStackViewController: ORKStepViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addCovering(childViewController: UIHostingController(rootView: MWContentView(step: self.contentStackStep)))
+        var contentView = MWContentView(step: self.contentStackStep)
+        contentView.nextTapped = { [weak self] in
+            self?.goForward()
+        }
+        self.addCovering(childViewController: UIHostingController(rootView: contentView))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,16 +38,21 @@ final class MWContentStackViewController: ORKStepViewController {
 
 private struct MWContentView: View {
     
-    @State var step: MWContentStackStep
+    var step: MWContentStackStep
+    var nextTapped: (() -> Void)?
     
     var body: some View {
-        self.makeBody()
-            // The FancyScrollView sets this to true but that breaks the swipe back gesture
-            // To fix it, we just set the alpha of the navBar to 0 or 1
-            .navigationBarHidden(false)
+        ZStack {
+            self.makeScrollView()
+                .offset(y: -70)
+            self.makeContinueButton()
+        }
+        // The FancyScrollView sets this to true but that breaks the swipe back gesture
+        // To fix it, we just set the alpha of the navBar to 0 or 1
+        .navigationBarHidden(false)
     }
     
-    private func makeBody() -> some View {
+    private func makeScrollView() -> some View {
         // You'd think that setting the `headerHeight` to 0.0 and return nil on the header if there's no `headerImageURL` would
         // work, but it doesn't. If you don't use the correct init (the one that doesn't expect a header), the offset
         // of the ScrollView is completely broken.
@@ -74,6 +83,24 @@ private struct MWContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+    }
+    
+    private func makeContinueButton() -> some View {
+        VStack {
+            Spacer()
+            Button {
+                self.nextTapped?()
+            } label: {
+                Text("Continue")
+                    .font(Font.system(size: 18, weight: .semibold, design: .default))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 50)
+                    .background(Color.blue)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(12)
+            }
+        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+         .padding()
     }
 }
 
