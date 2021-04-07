@@ -1,14 +1,14 @@
 //
-//  MWVideoGridTests.swift
-//  MWVideoGridTests
+//  MWContentDisplayTests.swift
+//  MWContentDisplayTests
 //
 //  Copyright © Future Workshops. All rights reserved.
 //
 
 import XCTest
-@testable import MWVideoGrid
+@testable import MWContentDisplay
 
-class MWVideoGridTests: XCTestCase {
+class MWContentDisplayTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

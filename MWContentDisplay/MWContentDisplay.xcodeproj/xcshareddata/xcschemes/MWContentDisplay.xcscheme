@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B75028B01C5A3F94000EB3CF"
-               BuildableName = "MWVideoGrid.app"
-               BlueprintName = "MWVideoGrid"
-               ReferencedContainer = "container:MWVideoGrid.xcodeproj">
+               BuildableName = "MWContentDisplay.app"
+               BlueprintName = "MWContentDisplay"
+               ReferencedContainer = "container:MWContentDisplay.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B75028B01C5A3F94000EB3CF"
-            BuildableName = "MWVideoGrid.app"
-            BlueprintName = "MWVideoGrid"
-            ReferencedContainer = "container:MWVideoGrid.xcodeproj">
+            BuildableName = "MWContentDisplay.app"
+            BlueprintName = "MWContentDisplay"
+            ReferencedContainer = "container:MWContentDisplay.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -42,9 +42,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "B75028C41C5A3F94000EB3CF"
-               BuildableName = "MWVideoGridTests.xctest"
-               BlueprintName = "MWVideoGridTests"
-               ReferencedContainer = "container:MWVideoGrid.xcodeproj">
+               BuildableName = "MWContentDisplayTests.xctest"
+               BlueprintName = "MWContentDisplayTests"
+               ReferencedContainer = "container:MWContentDisplay.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B75028B01C5A3F94000EB3CF"
-            BuildableName = "MWVideoGrid.app"
-            BlueprintName = "MWVideoGrid"
-            ReferencedContainer = "container:MWVideoGrid.xcodeproj">
+            BuildableName = "MWContentDisplay.app"
+            BlueprintName = "MWContentDisplay"
+            ReferencedContainer = "container:MWContentDisplay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -81,9 +81,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B75028B01C5A3F94000EB3CF"
-            BuildableName = "MWVideoGrid.app"
-            BlueprintName = "MWVideoGrid"
-            ReferencedContainer = "container:MWVideoGrid.xcodeproj">
+            BuildableName = "MWContentDisplay.app"
+            BlueprintName = "MWContentDisplay"
+            ReferencedContainer = "container:MWContentDisplay.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  MWVideoGrid
+//  MWContentDisplay
 //
 //  Created by Igor Ferreira on 11/05/2020.
 //  Copyright © 2020 Future Workshops. All rights reserved.

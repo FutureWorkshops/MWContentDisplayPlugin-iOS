@@ -17,11 +17,11 @@
 		62003DE625629BDE003BC820 /* MWGridStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDE25629BDE003BC820 /* MWGridStepItem.swift */; };
 		628EC3A6255E9F7B00CD1992 /* MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */; };
 		628EC3AB255E9F7B00CD1992 /* MWVideoGridPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */; };
-		628EC3AD255E9F7B00CD1992 /* MWVideoGridPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 628EC39F255E9F7A00CD1992 /* MWVideoGridPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6C42896952A3BA653B273906 /* Pods_MobileWorkflowVideoGrid_MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D68D85E84AB21EBD9029371B /* Pods_MobileWorkflowVideoGrid_MWContentDisplayPlugin.framework */; };
+		628EC3AD255E9F7B00CD1992 /* MWContentDisplayPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B10669EF261C5E21005878DB /* MWContentStackStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669EE261C5E21005878DB /* MWContentStackStep.swift */; };
 		B10669F3261C5EBA005878DB /* MWContentStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */; };
 		B1C850C2261DEA5D00899738 /* MWContentDisplayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */; };
+		C819277BF5CA3BC1E734F9E1 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */; };
 		CBD85AE42EEDF7025A9AD978 /* Pods_MWContentDisplayPluginTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,7 +47,7 @@
 		62003DDD25629BDD003BC820 /* MWGridStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStep.swift; sourceTree = "<group>"; };
 		62003DDE25629BDE003BC820 /* MWGridStepItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStepItem.swift; sourceTree = "<group>"; };
 		628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		628EC39F255E9F7A00CD1992 /* MWVideoGridPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWVideoGridPlugin.h; sourceTree = "<group>"; };
+		628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWContentDisplayPlugin.h; sourceTree = "<group>"; };
 		628EC3A0255E9F7A00CD1992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		628EC3A5255E9F7B00CD1992 /* MWContentDisplayPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWContentDisplayPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVideoGridPluginTests.swift; sourceTree = "<group>"; };
@@ -57,9 +57,11 @@
 		B10669EE261C5E21005878DB /* MWContentStackStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentStackStep.swift; sourceTree = "<group>"; };
 		B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentStackViewController.swift; sourceTree = "<group>"; };
 		B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentDisplayPlugin.swift; sourceTree = "<group>"; };
+		BE3145F6D0AF87E7D3564C64 /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig"; sourceTree = "<group>"; };
+		BF9C2C094C9B53F55607259D /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C04248BFBE06A3F50C905A5E /* Pods-MWContentDisplayPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWContentDisplayPluginTests.debug.xcconfig"; path = "Target Support Files/Pods-MWContentDisplayPluginTests/Pods-MWContentDisplayPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C71D10543438C1AACD23646C /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; sourceTree = "<group>"; };
-		D68D85E84AB21EBD9029371B /* Pods_MobileWorkflowVideoGrid_MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileWorkflowVideoGrid_MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8BAE530258F7B52290CD8FE /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; sourceTree = "<group>"; };
 		EBA1C3F9D7D53984AB360748 /* Pods-MWContentDisplayPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWContentDisplayPluginTests.release.xcconfig"; path = "Target Support Files/Pods-MWContentDisplayPluginTests/Pods-MWContentDisplayPluginTests.release.xcconfig"; sourceTree = "<group>"; };
 		FCFFEC54A5B514A4CCC6455B /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig"; sourceTree = "<group>"; };
@@ -70,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C42896952A3BA653B273906 /* Pods_MobileWorkflowVideoGrid_MWContentDisplayPlugin.framework in Frameworks */,
+				C819277BF5CA3BC1E734F9E1 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,7 +123,7 @@
 				B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */,
 				62BA560B255EA0530089B034 /* ContentGridStep */,
 				B10A69BE261CA27E0096AE0D /* ContentStackStep */,
-				628EC39F255E9F7A00CD1992 /* MWVideoGridPlugin.h */,
+				628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */,
 				628EC3A0255E9F7A00CD1992 /* Info.plist */,
 			);
 			path = MWContentDisplayPlugin;
@@ -158,6 +160,8 @@
 				EBA1C3F9D7D53984AB360748 /* Pods-MWContentDisplayPluginTests.release.xcconfig */,
 				FCFFEC54A5B514A4CCC6455B /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig */,
 				40D7DC85E1FBA0F6EB98F438 /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig */,
+				BE3145F6D0AF87E7D3564C64 /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig */,
+				BF9C2C094C9B53F55607259D /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig */,
 			);
 			name = Pods;
 			path = ../Pods;
@@ -203,7 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */,
-				D68D85E84AB21EBD9029371B /* Pods_MobileWorkflowVideoGrid_MWContentDisplayPlugin.framework */,
+				BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -215,7 +219,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				628EC3AD255E9F7B00CD1992 /* MWVideoGridPlugin.h in Headers */,
+				628EC3AD255E9F7B00CD1992 /* MWContentDisplayPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +356,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -523,7 +527,7 @@
 		};
 		628EC3B1255E9F7B00CD1992 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FCFFEC54A5B514A4CCC6455B /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig */;
+			baseConfigurationReference = BE3145F6D0AF87E7D3564C64 /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -550,7 +554,7 @@
 		};
 		628EC3B2255E9F7B00CD1992 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40D7DC85E1FBA0F6EB98F438 /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig */;
+			baseConfigurationReference = BF9C2C094C9B53F55607259D /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
