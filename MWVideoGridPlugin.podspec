@@ -1,9 +1,10 @@
 Pod::Spec.new do |s|
-    s.name                  = 'MWVideoGridPlugin'
-    s.version               = '0.0.15'
-    s.summary               = 'Video Grid plugin for MobileWorkflow on iOS.'
+    s.name                  = 'MWContentDisplayPlugin'
+    s.version               = '0.0.16'
+    s.summary               = 'A content display plugin for MobileWorkflow on iOS.'
     s.description           = <<-DESC
-    Video Grid plugin for MobileWorkflow on iOS, using UICollectionView compositional layout.
+    Grid step for MobileWorkflow on iOS, using UICollectionView compositional layout.
+    Stack step for MobileWorkflow on iOS, using SwiftUI for the content layout.
     DESC
     s.homepage              = 'https://www.mobileworkflow.io'
     s.license               = { :type => 'Copyright', :file => 'LICENSE' }
@@ -18,6 +19,6 @@ Pod::Spec.new do |s|
 	    cs.dependency            'MobileWorkflow'
         cs.dependency            'Kingfisher', '~> 6.0'
         cs.dependency            'FancyScrollView', '0.1.3'
-        cs.source_files          = 'MWVideoGridPlugin/MWVideoGridPlugin/**/*.swift'
+        cs.source_files          = 'MWContentDisplayPlugin/MWContentDisplayPlugin/**/*.swift'
     end
 end
