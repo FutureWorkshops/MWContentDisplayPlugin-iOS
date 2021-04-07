@@ -220,6 +220,11 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
         guard let identifier = self.step?.identifier else {
             fatalError("Unable to get the identifier from the step. Something went really wrong")
         }
+        
+        guard self.hasNextStep() else {
+            return
+        }
+        
         let item = self.sections[indexPath.section].items[indexPath.item]
         if let selected = self.videoGridStep.items.first(where: { item.id == $0.id }) {
             let result = VideoGridStepResult(identifier: identifier, selected: selected)
