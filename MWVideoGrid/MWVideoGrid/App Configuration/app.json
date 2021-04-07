@@ -112,7 +112,7 @@
                     "optional": false,
                     "identifier": "videos",
                     "title": "Videos",
-                    "url": "/workouts/grid",
+                    "url": "workouts/grid",
                     "emptyText": "No Workouts",
                     "workflows": [
                         
@@ -125,7 +125,7 @@
                     "_class": "MobileWorkflowNetworkDisplayStep",
                     "identifier": "workout",
                     "title": "Workout",
-                    "url": "/workouts/{videos.selected.id}",
+                    "url": "workouts/{videos.selected.id}",
                     "uuid": "f85e91c1-8cbd-4a6a-b298-ebb0a963cbf4",
                     "type": "networkDisplay"
                 }
@@ -161,7 +161,7 @@
                     "_class": "MobileWorkflowNetworkListStep",
                     "identifier": "workouts",
                     "title": "Workouts",
-                    "url": "/workouts",
+                    "url": "workouts",
                     "emptyText": "No Workouts",
                     "workflows": [
                         
@@ -174,7 +174,7 @@
                     "_class": "MobileWorkflowNetworkDisplayStep",
                     "identifier": "workout",
                     "title": "Workout",
-                    "url": "/workouts/{workouts.selected.id}",
+                    "url": "workouts/{workouts.selected.id}",
                     "uuid": "774f8069-c66d-41d1-8859-7df17ecb2625",
                     "type": "networkDisplay"
                 }
