@@ -5,7 +5,7 @@
       location = "group:MWVideoGrid/MWVideoGrid.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:MWVideoGridPlugin/MWVideoGridPlugin.xcodeproj">
+      location = "group:MWVideoGridPlugin/MWContentDisplayPlugin.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		62003DCF25629A41003BC820 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DCE25629A41003BC820 /* SceneDelegate.swift */; };
 		62003DD325629A5A003BC820 /* app.json in Resources */ = {isa = PBXBuildFile; fileRef = 62003DD225629A5A003BC820 /* app.json */; };
-		62BA5608255EA00C0089B034 /* MWVideoGridPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */; };
-		62BA5609255EA00C0089B034 /* MWVideoGridPlugin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7820CCE54766F9B0A190033E /* Pods_MWVideoGridTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CC0B8747154ED5E545F4DC /* Pods_MWVideoGridTests.framework */; };
+		B18C262B261E042300181731 /* MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B18C262A261E042300181731 /* MWContentDisplayPlugin.framework */; };
+		B18C262C261E042300181731 /* MWContentDisplayPlugin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B18C262A261E042300181731 /* MWContentDisplayPlugin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B75028B51C5A3F94000EB3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75028B41C5A3F94000EB3CF /* AppDelegate.swift */; };
 		B75028BA1C5A3F94000EB3CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75028B81C5A3F94000EB3CF /* Main.storyboard */; };
 		B75028BC1C5A3F94000EB3CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75028BB1C5A3F94000EB3CF /* Assets.xcassets */; };
@@ -31,13 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		62BA560A255EA00C0089B034 /* Embed Frameworks */ = {
+		B18C262D261E042300181731 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				62BA5609255EA00C0089B034 /* MWVideoGridPlugin.framework in Embed Frameworks */,
+				B18C262C261E042300181731 /* MWContentDisplayPlugin.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +56,7 @@
 		78C0E9BB20BC315100255055 /* MWVideoGrid.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MWVideoGrid.entitlements; sourceTree = "<group>"; };
 		92CC0B8747154ED5E545F4DC /* Pods_MWVideoGridTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWVideoGridTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97EAD4BA1955CC68FC068F92 /* Pods-MWVideoGrid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGrid.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGrid/Pods-MWVideoGrid.release.xcconfig"; sourceTree = "<group>"; };
+		B18C262A261E042300181731 /* MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75028B11C5A3F94000EB3CF /* MWVideoGrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MWVideoGrid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75028B41C5A3F94000EB3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B75028B91C5A3F94000EB3CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62BA5608255EA00C0089B034 /* MWVideoGridPlugin.framework in Frameworks */,
+				B18C262B261E042300181731 /* MWContentDisplayPlugin.framework in Frameworks */,
 				F899EABF6506EC8AB579000B /* Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +94,7 @@
 		21ED9AA49C25B4F74CCD4387 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B18C262A261E042300181731 /* MWContentDisplayPlugin.framework */,
 				62BA5607255EA00C0089B034 /* MWVideoGridPlugin.framework */,
 				92CC0B8747154ED5E545F4DC /* Pods_MWVideoGridTests.framework */,
 				3CDBB5F7974F49F23B106751 /* Pods_MobileWorkflowVideoGrid_MWVideoGrid.framework */,
@@ -202,8 +204,8 @@
 				B75028AD1C5A3F94000EB3CF /* Sources */,
 				B75028AE1C5A3F94000EB3CF /* Frameworks */,
 				B75028AF1C5A3F94000EB3CF /* Resources */,
-				62BA560A255EA00C0089B034 /* Embed Frameworks */,
 				2DDFFF13E52D3B8C05FDF171 /* [CP] Embed Pods Frameworks */,
+				B18C262D261E042300181731 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

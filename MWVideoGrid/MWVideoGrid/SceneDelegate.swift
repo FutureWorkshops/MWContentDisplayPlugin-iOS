@@ -8,7 +8,7 @@
 
 import UIKit
 import MobileWorkflowCore
-import MWVideoGridPlugin
+import MWContentDisplayPlugin
 
 class SceneDelegate: MobileWorkflowSceneDelegate {
     
