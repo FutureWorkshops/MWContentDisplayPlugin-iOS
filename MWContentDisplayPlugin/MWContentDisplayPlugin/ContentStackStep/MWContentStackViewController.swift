@@ -1,6 +1,6 @@
 //
 //  MWContentStackViewController.swift
-//  MWVideoGridPlugin
+//  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 6/4/21.
 //

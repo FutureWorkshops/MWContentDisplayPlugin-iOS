@@ -1,6 +1,6 @@
 //
 //  MWContentGridPlugin.swift
-//  MWVideoGridPlugin
+//  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 7/4/21.
 //

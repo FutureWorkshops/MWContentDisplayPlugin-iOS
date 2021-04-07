@@ -1,6 +1,6 @@
 //
 //  MWNetworkGridStep.swift
-//  MWVideoGridPlugin
+//  MWContentDisplayPlugin
 //
 //  Created by Jonathan Flintham on 23/11/2020.
 //

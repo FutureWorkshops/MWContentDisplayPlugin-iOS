@@ -8,7 +8,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 project 'MWVideoGrid/MWVideoGrid.xcodeproj'
-project 'MWVideoGridPlugin/MWVideoGridPlugin.xcodeproj'
+project 'MWContentDisplayPlugin/MWContentDisplayPlugin.xcodeproj'
 
 abstract_target 'MobileWorkflowVideoGrid' do
   pod 'MobileWorkflow'
@@ -23,10 +23,10 @@ abstract_target 'MobileWorkflowVideoGrid' do
     end
   end
 
-  target 'MWVideoGridPlugin' do
-    project 'MWVideoGridPlugin/MWVideoGridPlugin.xcodeproj'
+  target 'MWContentDisplayPlugin' do
+    project 'MWContentDisplayPlugin/MWContentDisplayPlugin.xcodeproj'
 
-    target 'MWVideoGridPluginTests' do
+    target 'MWContentDisplayPluginTests' do
       inherit! :search_paths
     end
   end
