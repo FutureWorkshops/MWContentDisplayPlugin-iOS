@@ -28,13 +28,8 @@ class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     private (set) var collectionViewLayout: UICollectionViewLayout!
     private (set) var sections: [Section] = []
     
-    var videoGridStep: VideoGridStep! {
-        return (self.step as? VideoGridStep)
-    }
-    
-    var secondaryWorkflowIDs: [String] {
-        return self.videoGridStep.secondaryWorkflowIDs
-    }
+    var videoGridStep: MWVideoGridStep { self.step as! MWVideoGridStep }
+    var secondaryWorkflowIDs: [String] { self.videoGridStep.secondaryWorkflowIDs }
     
     public override func viewDidLoad() {
         super.viewDidLoad()

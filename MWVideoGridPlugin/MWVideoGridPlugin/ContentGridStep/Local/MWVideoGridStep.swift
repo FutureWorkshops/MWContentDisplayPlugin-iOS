@@ -8,12 +8,12 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWVideoGridStep: ORKStep, VideoGridStep {
+public class MWVideoGridStep: ORKStep, HasSecondaryWorkflows, MobileWorkflowStep {
     
-    let session: Session
-    let services: MobileWorkflowServices
+    public let session: Session
+    public let services: MobileWorkflowServices
     public let secondaryWorkflowIDs: [String]
-    let items: [VideoGridStepItem]
+    public var items: [VideoGridStepItem] = []
     
     init(identifier: String, session: Session, services: MobileWorkflowServices, secondaryWorkflowIDs: [String], items: [VideoGridStepItem]) {
         self.session = session
@@ -30,41 +30,81 @@ public class MWVideoGridStep: ORKStep, VideoGridStep {
     public override func stepViewControllerClass() -> AnyClass {
         return MWVideoGridViewController.self
     }
-}
-
-extension MWVideoGridStep: MobileWorkflowStep {
     
     public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
         
         let secondaryWorkflowIDs: [String] = (stepInfo.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
-        let contentItems = stepInfo.data.content["items"] as? [[String: Any]] ?? []
-        let items: [VideoGridStepItem] = try contentItems.compactMap {
-            guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
-            let detailText = services.localizationService.translate($0["detailText"] as? String)
-            let id: String
-            if let asInt = $0["id"] as? Int {
-                // legacy
-                id = String(asInt)
-            } else if let asString = $0["id"] as? String {
-                id = asString
-            } else {
-                throw ParseError.invalidStepData(cause: "Video grid item has invalid id")
+        
+        if stepInfo.data.type == MWContentDisplayStepType.grid.typeName {
+            // Local grid (coming from the app.json)
+            let contentItems = stepInfo.data.content["items"] as? [[String: Any]] ?? []
+            let items: [VideoGridStepItem] = try contentItems.compactMap {
+                guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
+                let detailText = services.localizationService.translate($0["detailText"] as? String)
+                let id: String
+                if let asInt = $0["id"] as? Int {
+                    // legacy
+                    id = String(asInt)
+                } else if let asString = $0["id"] as? String {
+                    id = asString
+                } else {
+                    throw ParseError.invalidStepData(cause: "Video grid item has invalid id")
+                }
+                return VideoGridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)
             }
-            return VideoGridStepItem(
-                id: id,
-                type: $0["type"] as? String,
-                text: text,
-                detailText: detailText,
-                imageURL: $0["imageURL"] as? String
-            )
+            return MWVideoGridStep(identifier: stepInfo.data.identifier, session: stepInfo.session, services: services, secondaryWorkflowIDs: secondaryWorkflowIDs, items: items)
+        } else if stepInfo.data.type == MWContentDisplayStepType.networkGrid.typeName {
+            // Remote grid (coming from a network call)
+            let emptyText = services.localizationService.translate(stepInfo.data.content["emptyText"] as? String)
+            let remoteURLString = stepInfo.data.content["url"] as? String
+            return MWNetworkVideoGridStep(identifier: stepInfo.data.identifier, stepInfo: stepInfo, services: services, secondaryWorkflowIDs: secondaryWorkflowIDs, url: remoteURLString, emptyText: emptyText)
+        } else {
+            throw ParseError.invalidStepData(cause: "Tried to create a grid that's not local nor remote.")
         }
-        let listStep = MWVideoGridStep(
-            identifier: stepInfo.data.identifier,
-            session: stepInfo.session,
-            services: services,
-            secondaryWorkflowIDs: secondaryWorkflowIDs,
-            items: items
-        )
-        return listStep
     }
+}
+
+extension MWVideoGridStep {
+    func viewControllerSections() -> [MWVideoGridViewController.Section] {
+        
+        var vcSections = [MWVideoGridViewController.Section]()
+        
+        var currentSection: VideoGridStepItem?
+        var currentItems = [VideoGridStepItem]()
+        
+        self.items.forEach { item in
+            switch item.itemType {
+            case .carouselLarge, .carouselSmall:
+                if let currentSection = currentSection {
+                    // complete current section before starting new one
+                    vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
+                    currentItems.removeAll()
+                }
+                currentSection = item
+            case .item:
+                currentItems.append(item)
+            }
+        }
+        
+        if let currentSection = currentSection {
+            // complete final section
+            vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
+        } else if !currentItems.isEmpty {
+            // no sections found, add all to single section
+            let section = VideoGridStepItem(id: "DEFAULT_SECTION", type: VideoGridItemType.carouselSmall.rawValue, text: L10n.VideoGrid.defaultSectionTitle, detailText: "", imageURL: "")
+            vcSections.append(self.viewControllerSectionFromSection(section, items: currentItems))
+        }
+        
+        return vcSections
+    }
+    
+    private func viewControllerSectionFromSection(_ section: VideoGridStepItem, items: [VideoGridStepItem]) -> MWVideoGridViewController.Section {
+        
+        let vcItems = items.map { MWVideoGridViewController.Item(id: $0.id, title: $0.text, subtitle: $0.detailText, imageUrl: $0.imageURL.flatMap { URL(string: $0) }) }
+        
+        let vcSection = MWVideoGridViewController.Section(id: section.id, type: section.itemType, title: section.text, items: vcItems)
+        
+        return vcSection
+    }
+    
 }

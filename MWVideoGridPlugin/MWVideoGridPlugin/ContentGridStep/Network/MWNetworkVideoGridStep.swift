@@ -8,41 +8,34 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, SyncableContentSource {
+public class MWNetworkVideoGridStep: MWVideoGridStep, RemoteContentStep, SyncableContentSource {
     
     static let defaultEmptyText = "No Content"
     
-    typealias ResponseType = [VideoGridStepItem]
+    public typealias ResponseType = [VideoGridStepItem]
     
     let url: String?
     let emptyText: String?
-    let stepContext: StepContext
-    let session: Session
-    let services: MobileWorkflowServices
-    let secondaryWorkflowIDs: [String]
-    var contentURL: String? { self.url }
-    var resolvedURL: URL?
-    var items: [VideoGridStepItem] = []
+    public let stepContext: StepContext
+    public var contentURL: String? { self.url }
+    public var resolvedURL: URL?
     
     init(identifier: String, stepInfo: StepInfo, services: MobileWorkflowServices, secondaryWorkflowIDs: [String], url: String? = nil, emptyText: String? = nil) {
         self.stepContext = stepInfo.context
-        self.session = stepInfo.session
-        self.services = services
-        self.secondaryWorkflowIDs = secondaryWorkflowIDs
         self.url = url
         self.emptyText = emptyText
-        super.init(identifier: identifier)
+        super.init(identifier: identifier, session: stepInfo.session, services: services, secondaryWorkflowIDs: secondaryWorkflowIDs, items: [])
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func stepViewControllerClass() -> AnyClass {
+    public override func stepViewControllerClass() -> AnyClass {
         return MWNetworkVideoGridViewController.self
     }
     
-    func loadContent(completion: @escaping (Result<[VideoGridStepItem], Error>) -> Void) {
+    public func loadContent(completion: @escaping (Result<[VideoGridStepItem], Error>) -> Void) {
         guard let contentURL = self.url else {
             return completion(.failure(URLError(.badURL)))
         }
@@ -56,25 +49,5 @@ class MWNetworkVideoGridStep: ORKStep, VideoGridStep, RemoteContentStep, Syncabl
         } catch (let error) {
             completion(.failure(error))
         }
-    }
-}
-
-extension MWNetworkVideoGridStep: MobileWorkflowStep {
-    
-    static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
-        
-        let url = stepInfo.data.content["url"] as? String
-        let emptyText = services.localizationService.translate(stepInfo.data.content["emptyText"] as? String)
-        let secondaryWorkflowIDs: [String] = (stepInfo.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
-        
-        let step = MWNetworkVideoGridStep(
-            identifier: stepInfo.data.identifier,
-            stepInfo: stepInfo,
-            services: services,
-            secondaryWorkflowIDs: secondaryWorkflowIDs,
-            url: url,
-            emptyText: emptyText
-        )
-        return step
     }
 }
