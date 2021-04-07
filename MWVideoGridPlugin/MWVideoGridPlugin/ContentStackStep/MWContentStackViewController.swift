@@ -11,6 +11,10 @@ import Kingfisher
 import FancyScrollView
 import MobileWorkflowCore
 
+extension L10n {
+    static let `continue` = "Continue"
+}
+
 final class MWContentStackViewController: ORKStepViewController {
     
     var contentStackStep: MWContentStackStep { self.step as! MWContentStackStep }
@@ -91,7 +95,7 @@ private struct MWContentView: View {
             Button {
                 self.nextTapped?()
             } label: {
-                Text("Continue")
+                Text(L10n.continue)
                     .font(Font.system(size: 18, weight: .semibold, design: .default))
                     .frame(maxWidth: .infinity)
                     .frame(height: 50)
