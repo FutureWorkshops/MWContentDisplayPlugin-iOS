@@ -1,5 +1,5 @@
 //
-//  VideoGridStepResult.swift
+//  MWGridStepResult.swift
 //  MobileWorkflowCore
 //
 //  Created by Roberto Arreaza on 11/11/2020.
@@ -9,20 +9,20 @@ import MobileWorkflowCore
 
 private let kSelected = "selected"
 
-class VideoGridStepResult: ORKResult, Codable {
-    let selected: VideoGridStepItem?
+class MWGridStepResult: ORKResult, Codable {
+    let selected: MWGridStepItem?
     
-    init(identifier: String, selected: VideoGridStepItem?) {
+    init(identifier: String, selected: MWGridStepItem?) {
         self.selected = selected
         super.init(identifier: identifier)
     }
     
     override func copy() -> Any {
-        return VideoGridStepResult(identifier: self.identifier, selected: self.selected)
+        return MWGridStepResult(identifier: self.identifier, selected: self.selected)
     }
     
     required init?(coder: NSCoder) {
-        self.selected = coder.decodeObject(of: VideoGridStepItem.self, forKey: kSelected)
+        self.selected = coder.decodeObject(of: MWGridStepItem.self, forKey: kSelected)
         super.init(coder: coder)
     }
     
@@ -32,13 +32,13 @@ class VideoGridStepResult: ORKResult, Codable {
     }
 }
 
-extension VideoGridStepResult: NavigationTriggerResult {
+extension MWGridStepResult: NavigationTriggerResult {
     var navigationDestinationKey: String? {
         return self.selected?.text
     }
 }
 
-extension VideoGridStepResult: JSONRepresentable {
+extension MWGridStepResult: JSONRepresentable {
     var jsonContent: String? {
         guard let _ = self.selected else { return nil }
         guard let data = try? JSONEncoder().encode(self) else { return nil }
@@ -46,7 +46,7 @@ extension VideoGridStepResult: JSONRepresentable {
     }
 }
 
-extension VideoGridStepResult: ValueProvider {
+extension MWGridStepResult: ValueProvider {
     var content: [AnyHashable : Codable] {
         if let selected = self.selected {
             return [self.identifier: [kSelected: selected]]

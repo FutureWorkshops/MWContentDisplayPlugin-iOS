@@ -1,5 +1,5 @@
 //
-//  MWNetworkVideoGridViewController.swift
+//  MWNetworkGridViewController.swift
 //  MWVideoGridPlugin
 //
 //  Created by Jonathan Flintham on 23/11/2020.
@@ -8,11 +8,11 @@
 import UIKit
 import MobileWorkflowCore
 
-class MWNetworkVideoGridViewController: MWVideoGridViewController, RemoteContentStepViewController, ContentClearable {
+class MWNetworkGridViewController: MWGridViewController, RemoteContentStepViewController, ContentClearable {
     
     weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
     
-    var remoteContentStep: MWNetworkVideoGridStep! { self.step as? MWNetworkVideoGridStep }
+    var remoteContentStep: MWNetworkGridStep! { self.step as? MWNetworkGridStep }
     
     private lazy var stateView: StateView = {
         let stateView = StateView(frame: .zero)
@@ -39,12 +39,12 @@ class MWNetworkVideoGridViewController: MWVideoGridViewController, RemoteContent
         self.update(content: [])
     }
     
-    func update(content: [VideoGridStepItem]) {
+    func update(content: [MWGridStepItem]) {
         self.remoteContentStep.items = content
         self.update(items: content)
         
         if content.isEmpty {
-            self.stateView.configure(isLoading: false, title: self.remoteContentStep.emptyText ?? MWNetworkVideoGridStep.defaultEmptyText, subtitle: nil, buttonConfig: nil)
+            self.stateView.configure(isLoading: false, title: self.remoteContentStep.emptyText ?? MWNetworkGridStep.defaultEmptyText, subtitle: nil, buttonConfig: nil)
             self.collectionView.backgroundView = self.stateView
         }
     }

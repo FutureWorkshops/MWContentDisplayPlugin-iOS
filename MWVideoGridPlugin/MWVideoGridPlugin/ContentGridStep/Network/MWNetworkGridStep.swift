@@ -1,5 +1,5 @@
 //
-//  MWNetworkVideoGridStep.swift
+//  MWNetworkGridStep.swift
 //  MWVideoGridPlugin
 //
 //  Created by Jonathan Flintham on 23/11/2020.
@@ -8,11 +8,11 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWNetworkVideoGridStep: MWVideoGridStep, RemoteContentStep, SyncableContentSource {
+public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSource {
     
     static let defaultEmptyText = "No Content"
     
-    public typealias ResponseType = [VideoGridStepItem]
+    public typealias ResponseType = [MWGridStepItem]
     
     let url: String?
     let emptyText: String?
@@ -32,10 +32,10 @@ public class MWNetworkVideoGridStep: MWVideoGridStep, RemoteContentStep, Syncabl
     }
     
     public override func stepViewControllerClass() -> AnyClass {
-        return MWNetworkVideoGridViewController.self
+        return MWNetworkGridViewController.self
     }
     
-    public func loadContent(completion: @escaping (Result<[VideoGridStepItem], Error>) -> Void) {
+    public func loadContent(completion: @escaping (Result<[MWGridStepItem], Error>) -> Void) {
         guard let contentURL = self.url else {
             return completion(.failure(URLError(.badURL)))
         }
@@ -44,7 +44,7 @@ public class MWNetworkVideoGridStep: MWVideoGridStep, RemoteContentStep, Syncabl
         }
         do {
             let credential = try self.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
-            let task = NetworkVideoGridItemTask(input: url, credential: credential)
+            let task = NetworkGridItemTask(input: url, credential: credential)
             self.services.perform(task: task, session: self.session, completion: completion)
         } catch (let error) {
             completion(.failure(error))

@@ -1,5 +1,5 @@
 //
-//  MWVideoGridViewController.swift
+//  MWGridViewController.swift
 //  MobileWorkflowCore
 //
 //  Created by Roberto Arreaza on 27/10/2020.
@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
+class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     
     struct Item {
         let id: String
@@ -19,7 +19,7 @@ class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     
     struct Section {
         let id: String
-        let type: VideoGridItemType
+        let type: MWGridItemType
         let title: String
         let items: [Item]
     }
@@ -28,8 +28,8 @@ class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     private (set) var collectionViewLayout: UICollectionViewLayout!
     private (set) var sections: [Section] = []
     
-    var videoGridStep: MWVideoGridStep { self.step as! MWVideoGridStep }
-    var secondaryWorkflowIDs: [String] { self.videoGridStep.secondaryWorkflowIDs }
+    var gridStep: MWGridStep { self.step as! MWGridStep }
+    var secondaryWorkflowIDs: [String] { self.gridStep.secondaryWorkflowIDs }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,11 +41,11 @@ class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.update(items: self.videoGridStep.items)
+        self.update(items: self.gridStep.items)
     }
     
-    func update(items: [VideoGridStepItem]) {
-        self.sections = self.videoGridStep.viewControllerSections()
+    func update(items: [MWGridStepItem]) {
+        self.sections = self.gridStep.viewControllerSections()
         self.collectionView.reloadData()
     }
     
@@ -163,7 +163,7 @@ class MWVideoGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     }
 }
 
-extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.sections.count
@@ -182,12 +182,12 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.videoGridStep.services.imageLoadingService, session: self.videoGridStep.session)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.videoGridStep.services.imageLoadingService, session: self.videoGridStep.session)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
             result = cell
             
         case .item: preconditionFailure("Not a section")
@@ -221,8 +221,8 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
         }
         
         let item = self.sections[indexPath.section].items[indexPath.item]
-        if let selected = self.videoGridStep.items.first(where: { item.id == $0.id }) {
-            let result = VideoGridStepResult(identifier: identifier, selected: selected)
+        if let selected = self.gridStep.items.first(where: { item.id == $0.id }) {
+            let result = MWGridStepResult(identifier: identifier, selected: selected)
             self.addResult(result)
             self.goForward()
         }
@@ -231,7 +231,7 @@ extension MWVideoGridViewController: UICollectionViewDataSource, UICollectionVie
 
 private extension MWImageCollectionViewCell.ViewData {
     
-    init(item: MWVideoGridViewController.Item) {
+    init(item: MWGridViewController.Item) {
         self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl)
     }
 }

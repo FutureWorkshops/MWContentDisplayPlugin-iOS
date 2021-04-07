@@ -1,5 +1,5 @@
 //
-//  VideoGridStepItem.swift
+//  MWGridStepItem.swift
 //  MobileWorkflowCore
 //
 //  Created by Roberto Arreaza on 29/10/2020.
@@ -14,7 +14,7 @@ private let kText = "text"
 private let kDetailText = "detailText"
 private let kImageURL = "imageURL"
 
-public enum VideoGridItemType: String, Codable {
+public enum MWGridItemType: String, Codable {
     case carouselLarge = "largeSection"
     case carouselSmall = "smallSection"
     case item = "item"
@@ -29,7 +29,7 @@ public enum VideoGridItemType: String, Codable {
     }
 }
 
-public class VideoGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecureCoding {
+public class MWGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecureCoding {
     public static var supportsSecureCoding: Bool { true }
     
     public let id: String
@@ -90,22 +90,22 @@ public class VideoGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecure
     }
     
     public func copy(with zone: NSZone? = nil) -> Any {
-        return VideoGridStepItem(id: self.id, type: self.type, text: self.text, detailText: self.detailText, imageURL: self.imageURL)
+        return MWGridStepItem(id: self.id, type: self.type, text: self.text, detailText: self.detailText, imageURL: self.imageURL)
     }
 }
 
-extension VideoGridStepItem {
+extension MWGridStepItem {
     public override var description: String {
         return "GridItem \(self.id): \(self.text)"
     }
     
-    public var itemType: VideoGridItemType {
+    public var itemType: MWGridItemType {
         // default to item if type not found
-        VideoGridItemType(rawValue: self.type ?? "item") ?? .item
+        MWGridItemType(rawValue: self.type ?? "item") ?? .item
     }
 }
 
-extension VideoGridStepItem: ValueProvider {
+extension MWGridStepItem: ValueProvider {
     public func fetchValue(for path: String) -> Any? {
         if path == kId { return self.id }
         if path == kType { return self.type }
