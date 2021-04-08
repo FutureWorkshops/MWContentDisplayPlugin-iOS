@@ -41,7 +41,7 @@ struct MWContentStackView: View {
         VStack(alignment: .leading, spacing: 8) {
             ForEach(self.step.items) { item in
                 switch item {
-                case .title(let innerItem): MWTitleView(stepTypeTitle: innerItem)
+                case .title(let innerItem): MWTitleView(item: innerItem)
                 case .text(let innerItem): MWTextView(stepTypeText: innerItem)
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
                 }
@@ -54,13 +54,10 @@ struct MWContentStackView: View {
 
 fileprivate struct MWTitleView: View {
     
-    let stepTypeTitle: StepItemTitle
+    let item: StepItemTitle
         
     var body: some View {
-        if let title = stepTypeTitle.title {
-            Text(title)
-                .font(.largeTitle)
-        }
+        Text(item.title).font(.largeTitle)
     }
 }
 

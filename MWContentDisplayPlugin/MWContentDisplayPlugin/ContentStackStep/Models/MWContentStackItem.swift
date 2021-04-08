@@ -40,7 +40,7 @@ enum MWContentStackItem: Identifiable {
 
 struct StepItemTitle: Identifiable {
     let id: String
-    let title: String?
+    let title: String
     
     init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("title") else {
@@ -50,8 +50,12 @@ struct StepItemTitle: Identifiable {
             assertionFailure("Missing id.")
             return nil
         }
+        guard let title = localizationService.translate(json["title"] as? String) else {
+            return nil
+        }
+        
         self.id = id
-        self.title = localizationService.translate(json["title"] as? String)
+        self.title = title
     }
 }
 
