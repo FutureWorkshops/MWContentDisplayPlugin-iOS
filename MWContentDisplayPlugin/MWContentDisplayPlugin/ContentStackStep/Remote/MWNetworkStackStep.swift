@@ -8,16 +8,6 @@
 import Foundation
 import MobileWorkflowCore
 
-public struct MWNetworkStackItemTask: CredentializedAsyncTask, URLAsyncTaskConvertible {
-    public typealias Response = [MWStackItem]
-    public let input: URL
-    public let credential: Credential?
-    
-    public func convertToURLAsyncTask<T>(using session: ContentProvider) -> T? where T : AsyncTask {
-        return nil
-    }
-}
-
 public class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
     
     // Syncable Content
@@ -53,12 +43,12 @@ public class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContent
         guard let url = self.session.resolve(url: contentURL) else {
             return completion(.failure(URLError(.badURL)))
         }
-        do {
-            let credential = try self.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
-            let task = MWNetworkStackItemTask(input: url, credential: credential)
-            self.services.perform(task: task, session: self.session, completion: completion)
-        } catch (let error) {
-            completion(.failure(error))
+        
+        let task = URLAsyncTask<[MWStackItem]>.build(url: url, method: .GET, session: self.session) { data -> [MWStackItem] in
+            #warning("parse the json here")
+            return []
         }
+        
+        self.services.perform(task: task, session: self.session, completion: completion)
     }
 }
