@@ -1,0 +1,652 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		36C18243256BDE0D0044A74B /* MWNetworkGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */; };
+		36C18249256BDE280044A74B /* MWNetworkGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18248256BDE280044A74B /* MWNetworkGridViewController.swift */; };
+		62003DDF25629BDE003BC820 /* MWGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD625629BDD003BC820 /* MWGridViewController.swift */; };
+		62003DE025629BDE003BC820 /* MWGridStepResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD725629BDD003BC820 /* MWGridStepResult.swift */; };
+		62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */; };
+		62003DE325629BDE003BC820 /* MWImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */; };
+		62003DE525629BDE003BC820 /* MWGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDD25629BDD003BC820 /* MWGridStep.swift */; };
+		62003DE625629BDE003BC820 /* MWGridStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDE25629BDE003BC820 /* MWGridStepItem.swift */; };
+		628EC3A6255E9F7B00CD1992 /* MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */; };
+		628EC3AB255E9F7B00CD1992 /* MWVideoGridPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */; };
+		628EC3AD255E9F7B00CD1992 /* MWContentDisplayPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B10669EF261C5E21005878DB /* MWContentStackStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669EE261C5E21005878DB /* MWContentStackStep.swift */; };
+		B10669F3261C5EBA005878DB /* MWContentStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */; };
+		B1C850C2261DEA5D00899738 /* MWContentDisplayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */; };
+		C819277BF5CA3BC1E734F9E1 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */; };
+		CBD85AE42EEDF7025A9AD978 /* Pods_MWContentDisplayPluginTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		628EC3A7255E9F7B00CD1992 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 628EC393255E9F7A00CD1992 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 628EC39B255E9F7A00CD1992;
+			remoteInfo = MWVideoGridPlugin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		185C23C35E70FFCF2AD272BF /* Pods-MWVideoGridPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.release.xcconfig"; sourceTree = "<group>"; };
+		36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStep.swift; sourceTree = "<group>"; };
+		36C18248256BDE280044A74B /* MWNetworkGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkGridViewController.swift; sourceTree = "<group>"; };
+		40D7DC85E1FBA0F6EB98F438 /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		62003DD625629BDD003BC820 /* MWGridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridViewController.swift; sourceTree = "<group>"; };
+		62003DD725629BDD003BC820 /* MWGridStepResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStepResult.swift; sourceTree = "<group>"; };
+		62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
+		62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		62003DDD25629BDD003BC820 /* MWGridStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStep.swift; sourceTree = "<group>"; };
+		62003DDE25629BDE003BC820 /* MWGridStepItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStepItem.swift; sourceTree = "<group>"; };
+		628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWContentDisplayPlugin.h; sourceTree = "<group>"; };
+		628EC3A0255E9F7A00CD1992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		628EC3A5255E9F7B00CD1992 /* MWContentDisplayPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWContentDisplayPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVideoGridPluginTests.swift; sourceTree = "<group>"; };
+		628EC3AC255E9F7B00CD1992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWContentDisplayPluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		980A44E52379947BB8387DB1 /* Pods-MWVideoGridPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B10669EE261C5E21005878DB /* MWContentStackStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentStackStep.swift; sourceTree = "<group>"; };
+		B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentStackViewController.swift; sourceTree = "<group>"; };
+		B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentDisplayPlugin.swift; sourceTree = "<group>"; };
+		BE3145F6D0AF87E7D3564C64 /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig"; sourceTree = "<group>"; };
+		BF9C2C094C9B53F55607259D /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C04248BFBE06A3F50C905A5E /* Pods-MWContentDisplayPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWContentDisplayPluginTests.debug.xcconfig"; path = "Target Support Files/Pods-MWContentDisplayPluginTests/Pods-MWContentDisplayPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C71D10543438C1AACD23646C /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; sourceTree = "<group>"; };
+		D8BAE530258F7B52290CD8FE /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		EBA1C3F9D7D53984AB360748 /* Pods-MWContentDisplayPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWContentDisplayPluginTests.release.xcconfig"; path = "Target Support Files/Pods-MWContentDisplayPluginTests/Pods-MWContentDisplayPluginTests.release.xcconfig"; sourceTree = "<group>"; };
+		FCFFEC54A5B514A4CCC6455B /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		628EC399255E9F7A00CD1992 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C819277BF5CA3BC1E734F9E1 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628EC3A2255E9F7B00CD1992 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628EC3A6255E9F7B00CD1992 /* MWContentDisplayPlugin.framework in Frameworks */,
+				CBD85AE42EEDF7025A9AD978 /* Pods_MWContentDisplayPluginTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		62003DD825629BDD003BC820 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */,
+				62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		628EC392255E9F7A00CD1992 = {
+			isa = PBXGroup;
+			children = (
+				628EC39E255E9F7A00CD1992 /* MWContentDisplayPlugin */,
+				628EC3A9255E9F7B00CD1992 /* MWContentDisplayPluginTests */,
+				628EC39D255E9F7A00CD1992 /* Products */,
+				85F22C63F811567087D74381 /* Pods */,
+				B952388A181F1A0DD0FFD4BF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		628EC39D255E9F7A00CD1992 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */,
+				628EC3A5255E9F7B00CD1992 /* MWContentDisplayPluginTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		628EC39E255E9F7A00CD1992 /* MWContentDisplayPlugin */ = {
+			isa = PBXGroup;
+			children = (
+				B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */,
+				62BA560B255EA0530089B034 /* ContentGridStep */,
+				B10A69BE261CA27E0096AE0D /* ContentStackStep */,
+				628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */,
+				628EC3A0255E9F7A00CD1992 /* Info.plist */,
+			);
+			path = MWContentDisplayPlugin;
+			sourceTree = "<group>";
+		};
+		628EC3A9255E9F7B00CD1992 /* MWContentDisplayPluginTests */ = {
+			isa = PBXGroup;
+			children = (
+				628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */,
+				628EC3AC255E9F7B00CD1992 /* Info.plist */,
+			);
+			path = MWContentDisplayPluginTests;
+			sourceTree = "<group>";
+		};
+		62BA560B255EA0530089B034 /* ContentGridStep */ = {
+			isa = PBXGroup;
+			children = (
+				B123DC07261DF3020017FC5C /* Local */,
+				B123DC08261DF3070017FC5C /* Network */,
+				B1ECCF5A261E01AD00D8F903 /* Models */,
+				62003DD825629BDD003BC820 /* Views */,
+			);
+			path = ContentGridStep;
+			sourceTree = "<group>";
+		};
+		85F22C63F811567087D74381 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				980A44E52379947BB8387DB1 /* Pods-MWVideoGridPluginTests.debug.xcconfig */,
+				185C23C35E70FFCF2AD272BF /* Pods-MWVideoGridPluginTests.release.xcconfig */,
+				C71D10543438C1AACD23646C /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig */,
+				D8BAE530258F7B52290CD8FE /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig */,
+				C04248BFBE06A3F50C905A5E /* Pods-MWContentDisplayPluginTests.debug.xcconfig */,
+				EBA1C3F9D7D53984AB360748 /* Pods-MWContentDisplayPluginTests.release.xcconfig */,
+				FCFFEC54A5B514A4CCC6455B /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig */,
+				40D7DC85E1FBA0F6EB98F438 /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig */,
+				BE3145F6D0AF87E7D3564C64 /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig */,
+				BF9C2C094C9B53F55607259D /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
+		B10A69BE261CA27E0096AE0D /* ContentStackStep */ = {
+			isa = PBXGroup;
+			children = (
+				B10669EE261C5E21005878DB /* MWContentStackStep.swift */,
+				B10669F2261C5EBA005878DB /* MWContentStackViewController.swift */,
+			);
+			path = ContentStackStep;
+			sourceTree = "<group>";
+		};
+		B123DC07261DF3020017FC5C /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				62003DDD25629BDD003BC820 /* MWGridStep.swift */,
+				62003DD625629BDD003BC820 /* MWGridViewController.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		B123DC08261DF3070017FC5C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */,
+				36C18248256BDE280044A74B /* MWNetworkGridViewController.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		B1ECCF5A261E01AD00D8F903 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				62003DDE25629BDE003BC820 /* MWGridStepItem.swift */,
+				62003DD725629BDD003BC820 /* MWGridStepResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B952388A181F1A0DD0FFD4BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */,
+				BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		628EC397255E9F7A00CD1992 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628EC3AD255E9F7B00CD1992 /* MWContentDisplayPlugin.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		628EC39B255E9F7A00CD1992 /* MWContentDisplayPlugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 628EC3B0255E9F7B00CD1992 /* Build configuration list for PBXNativeTarget "MWContentDisplayPlugin" */;
+			buildPhases = (
+				A6DB0550420E891FA449FE11 /* [CP] Check Pods Manifest.lock */,
+				628EC397255E9F7A00CD1992 /* Headers */,
+				628EC398255E9F7A00CD1992 /* Sources */,
+				628EC399255E9F7A00CD1992 /* Frameworks */,
+				628EC39A255E9F7A00CD1992 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MWContentDisplayPlugin;
+			productName = MWVideoGridPlugin;
+			productReference = 628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		628EC3A4255E9F7B00CD1992 /* MWContentDisplayPluginTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 628EC3B3255E9F7B00CD1992 /* Build configuration list for PBXNativeTarget "MWContentDisplayPluginTests" */;
+			buildPhases = (
+				602E499CAE04FE88EF0B61EC /* [CP] Check Pods Manifest.lock */,
+				628EC3A1255E9F7B00CD1992 /* Sources */,
+				628EC3A2255E9F7B00CD1992 /* Frameworks */,
+				628EC3A3255E9F7B00CD1992 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				628EC3A8255E9F7B00CD1992 /* PBXTargetDependency */,
+			);
+			name = MWContentDisplayPluginTests;
+			productName = MWVideoGridPluginTests;
+			productReference = 628EC3A5255E9F7B00CD1992 /* MWContentDisplayPluginTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		628EC393255E9F7A00CD1992 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1210;
+				LastUpgradeCheck = 1210;
+				TargetAttributes = {
+					628EC39B255E9F7A00CD1992 = {
+						CreatedOnToolsVersion = 12.1;
+						LastSwiftMigration = 1210;
+					};
+					628EC3A4255E9F7B00CD1992 = {
+						CreatedOnToolsVersion = 12.1;
+					};
+				};
+			};
+			buildConfigurationList = 628EC396255E9F7A00CD1992 /* Build configuration list for PBXProject "MWContentDisplayPlugin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 628EC392255E9F7A00CD1992;
+			productRefGroup = 628EC39D255E9F7A00CD1992 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				628EC39B255E9F7A00CD1992 /* MWContentDisplayPlugin */,
+				628EC3A4255E9F7B00CD1992 /* MWContentDisplayPluginTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		628EC39A255E9F7A00CD1992 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628EC3A3255E9F7B00CD1992 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		602E499CAE04FE88EF0B61EC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MWContentDisplayPluginTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6DB0550420E891FA449FE11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		628EC398255E9F7A00CD1992 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				62003DE325629BDE003BC820 /* MWImageCollectionViewCell.swift in Sources */,
+				62003DE025629BDE003BC820 /* MWGridStepResult.swift in Sources */,
+				62003DE625629BDE003BC820 /* MWGridStepItem.swift in Sources */,
+				36C18249256BDE280044A74B /* MWNetworkGridViewController.swift in Sources */,
+				B10669F3261C5EBA005878DB /* MWContentStackViewController.swift in Sources */,
+				62003DE525629BDE003BC820 /* MWGridStep.swift in Sources */,
+				B1C850C2261DEA5D00899738 /* MWContentDisplayPlugin.swift in Sources */,
+				B10669EF261C5E21005878DB /* MWContentStackStep.swift in Sources */,
+				36C18243256BDE0D0044A74B /* MWNetworkGridStep.swift in Sources */,
+				62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */,
+				62003DDF25629BDE003BC820 /* MWGridViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		628EC3A1255E9F7B00CD1992 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				628EC3AB255E9F7B00CD1992 /* MWVideoGridPluginTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		628EC3A8255E9F7B00CD1992 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 628EC39B255E9F7A00CD1992 /* MWContentDisplayPlugin */;
+			targetProxy = 628EC3A7255E9F7B00CD1992 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		628EC3AE255E9F7B00CD1992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		628EC3AF255E9F7B00CD1992 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		628EC3B1255E9F7B00CD1992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE3145F6D0AF87E7D3564C64 /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MWContentDisplayPlugin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.futureworkshops.MWContentDisplayPlugin;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		628EC3B2255E9F7B00CD1992 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF9C2C094C9B53F55607259D /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = MWContentDisplayPlugin/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.futureworkshops.MWContentDisplayPlugin;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		628EC3B4255E9F7B00CD1992 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C04248BFBE06A3F50C905A5E /* Pods-MWContentDisplayPluginTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MWContentDisplayPluginTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.futureworkshops.MWContentDisplayPluginTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		628EC3B5255E9F7B00CD1992 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBA1C3F9D7D53984AB360748 /* Pods-MWContentDisplayPluginTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MWContentDisplayPluginTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.futureworkshops.MWContentDisplayPluginTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		628EC396255E9F7A00CD1992 /* Build configuration list for PBXProject "MWContentDisplayPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				628EC3AE255E9F7B00CD1992 /* Debug */,
+				628EC3AF255E9F7B00CD1992 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		628EC3B0255E9F7B00CD1992 /* Build configuration list for PBXNativeTarget "MWContentDisplayPlugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				628EC3B1255E9F7B00CD1992 /* Debug */,
+				628EC3B2255E9F7B00CD1992 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		628EC3B3255E9F7B00CD1992 /* Build configuration list for PBXNativeTarget "MWContentDisplayPluginTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				628EC3B4255E9F7B00CD1992 /* Debug */,
+				628EC3B5255E9F7B00CD1992 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 628EC393255E9F7A00CD1992 /* Project object */;
+}

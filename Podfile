@@ -1,32 +1,32 @@
 source 'https://cdn.cocoapods.org/'
 source 'https://github.com/FutureWorkshops/MWPodspecs.git'
 
-workspace 'MWVideoGrid'
+workspace 'MWContentDisplay'
 platform :ios, '13.0'
 
 inhibit_all_warnings!
 use_frameworks!
 
-project 'MWVideoGrid/MWVideoGrid.xcodeproj'
-project 'MWVideoGridPlugin/MWVideoGridPlugin.xcodeproj'
+project 'MWContentDisplay/MWContentDisplay.xcodeproj'
+project 'MWContentDisplayPlugin/MWContentDisplayPlugin.xcodeproj'
 
-abstract_target 'MobileWorkflowVideoGrid' do
+abstract_target 'MobileWorkflowContentDisplay' do
   pod 'MobileWorkflow'
   pod 'Kingfisher', '~> 6.0'
   pod 'FancyScrollView', '0.1.3'
 
-  target 'MWVideoGrid' do
-    project 'MWVideoGrid/MWVideoGrid.xcodeproj'
+  target 'MWContentDisplay' do
+    project 'MWContentDisplay/MWContentDisplay.xcodeproj'
 
-    target 'MWVideoGridTests' do
+    target 'MWContentDisplayTests' do
       inherit! :search_paths
     end
   end
 
-  target 'MWVideoGridPlugin' do
-    project 'MWVideoGridPlugin/MWVideoGridPlugin.xcodeproj'
+  target 'MWContentDisplayPlugin' do
+    project 'MWContentDisplayPlugin/MWContentDisplayPlugin.xcodeproj'
 
-    target 'MWVideoGridPluginTests' do
+    target 'MWContentDisplayPluginTests' do
       inherit! :search_paths
     end
   end
