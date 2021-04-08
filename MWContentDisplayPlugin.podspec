@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
     s.homepage              = 'https://www.mobileworkflow.io'
     s.license               = { :type => 'Copyright', :file => 'LICENSE' }
     s.author                = { 'Future Workshops' => 'info@futureworkshops.com' }
-    s.source                = { :git => 'https://github.com/FutureWorkshops/MWVideoGridPlugin-iOS.git', :tag => "#{s.version}" }
+    s.source                = { :git => 'https://github.com/FutureWorkshops/MWContentDisplayPlugin-iOS.git', :tag => "#{s.version}" }
     s.platform              = :ios
     s.swift_version         = '5'
     s.ios.deployment_target = '13.0'
