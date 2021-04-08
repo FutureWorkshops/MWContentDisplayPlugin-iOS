@@ -42,7 +42,7 @@ struct MWContentStackView: View {
             ForEach(self.step.items) { item in
                 switch item {
                 case .title(let innerItem): MWTitleView(item: innerItem)
-                case .text(let innerItem): MWTextView(stepTypeText: innerItem)
+                case .text(let innerItem): MWTextView(item: innerItem)
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
                 }
             }
@@ -63,12 +63,10 @@ fileprivate struct MWTitleView: View {
 
 fileprivate struct MWTextView: View {
     
-    let stepTypeText: StepItemText
+    let item: StepItemText
         
     var body: some View {
-        if let text = stepTypeText.text {
-            Text(text)
-        }
+        Text(item.text)
     }
 }
 

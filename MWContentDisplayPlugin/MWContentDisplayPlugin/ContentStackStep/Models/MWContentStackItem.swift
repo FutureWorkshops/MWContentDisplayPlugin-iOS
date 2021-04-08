@@ -61,7 +61,7 @@ struct StepItemTitle: Identifiable {
 
 struct StepItemText: Identifiable {
     let id: String
-    let text: String?
+    let text: String
     
     init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("text") else {
@@ -71,8 +71,11 @@ struct StepItemText: Identifiable {
             assertionFailure("Missing id.")
             return nil
         }
+        guard let text = localizationService.translate(json["text"] as? String) else {
+            return nil
+        }
         self.id = id
-        self.text = localizationService.translate(json["text"] as? String)
+        self.text = text
     }
 }
 
