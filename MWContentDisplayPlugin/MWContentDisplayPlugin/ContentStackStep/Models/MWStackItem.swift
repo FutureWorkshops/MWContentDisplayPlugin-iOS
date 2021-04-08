@@ -1,5 +1,5 @@
 //
-//  MWContentStackItem.swift
+//  MWStackItem.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 8/4/21.
@@ -11,7 +11,7 @@ import MobileWorkflowCore
 // Describes all the supported types of item that can be shown vertically stacked.
 // For now, just title, text and listItem
 // Every case includes the model that defines the concrete implementation as an associated type
-public enum MWContentStackItem: Identifiable {
+public enum MWStackItem: Identifiable {
     
     case title(StepItemTitle)
     case text(StepItemText)

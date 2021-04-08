@@ -1,5 +1,5 @@
 //
-//  MWContentStackView.swift
+//  MWStackView.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 8/4/21.
@@ -10,9 +10,9 @@ import Kingfisher
 import Foundation
 import FancyScrollView
 
-struct MWContentStackView: View {
+struct MWStackView: View {
     
-    var step: MWContentStackStep
+    var step: MWStackStep
     
     var body: some View {
         self.makeScrollView()

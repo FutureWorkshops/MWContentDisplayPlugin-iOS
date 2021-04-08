@@ -1,5 +1,5 @@
 //
-//  MWContentStackStep.swift
+//  MWStackStep.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 6/4/21.
@@ -8,12 +8,12 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWContentStackStep: ORKStep {
+public class MWStackStep: ORKStep {
     
     let headerImageURL: URL?
-    let items: [MWContentStackItem]
+    let items: [MWStackItem]
     
-    init(identifier: String, headerImageURL: URL?, items: [MWContentStackItem]) {
+    init(identifier: String, headerImageURL: URL?, items: [MWStackItem]) {
         self.items = items
         self.headerImageURL = headerImageURL
         super.init(identifier: identifier)
@@ -24,20 +24,20 @@ public class MWContentStackStep: ORKStep {
     }
     
     public override func stepViewControllerClass() -> AnyClass {
-        return MWContentStackViewController.self
+        return MWStackViewController.self
     }
 }
 
-extension MWContentStackStep: MobileWorkflowStep {
+extension MWStackStep: MobileWorkflowStep {
     public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
         let jsonItems = (stepInfo.data.content["items"] as? Array<[String:Any]>) ?? []
         var headerImageURL: URL?
         if let headerImageURLString = stepInfo.data.content["imageURL"] as? String {
             headerImageURL = URL(string: headerImageURLString)
         }
-        return MWContentStackStep(identifier: stepInfo.data.identifier,
+        return MWStackStep(identifier: stepInfo.data.identifier,
                                   headerImageURL: headerImageURL,
-                                  items: jsonItems.compactMap { MWContentStackItem(json: $0, localizationService: services.localizationService) })
+                                  items: jsonItems.compactMap { MWStackItem(json: $0, localizationService: services.localizationService) })
     }
 }
 

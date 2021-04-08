@@ -1,5 +1,5 @@
 //
-//  MWRemoteContentStackStep.swift
+//  MWNetworkStackStep.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 8/4/21.
@@ -9,7 +9,7 @@ import Foundation
 import MobileWorkflowCore
 
 public struct MWNetworkStackItemTask: CredentializedAsyncTask, URLAsyncTaskConvertible {
-    public typealias Response = [MWContentStackItem]
+    public typealias Response = [MWStackItem]
     public let input: URL
     public let credential: Credential?
     
@@ -18,10 +18,10 @@ public struct MWNetworkStackItemTask: CredentializedAsyncTask, URLAsyncTaskConve
     }
 }
 
-public class MWRemoteContentStackStep: MWContentStackStep, RemoteContentStep, SyncableContentSource {
+public class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
     
     // Syncable Content
-    public typealias ResponseType = [MWContentStackItem]
+    public typealias ResponseType = [MWStackItem]
     public var resolvedURL: URL?
     
     // Remote Content
@@ -43,10 +43,10 @@ public class MWRemoteContentStackStep: MWContentStackStep, RemoteContentStep, Sy
     }
     
     public override func stepViewControllerClass() -> AnyClass {
-        return MWRemoteContentStackViewController.self
+        return MWNetworkStackViewController.self
     }
     
-    public func loadContent(completion: @escaping (Result<[MWContentStackItem], Error>) -> Void) {
+    public func loadContent(completion: @escaping (Result<[MWStackItem], Error>) -> Void) {
         guard let contentURL = self.contentURL else {
             return completion(.failure(URLError(.badURL)))
         }
