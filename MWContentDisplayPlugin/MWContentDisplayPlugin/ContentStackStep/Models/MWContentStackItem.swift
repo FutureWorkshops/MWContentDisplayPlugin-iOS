@@ -1,50 +1,17 @@
 //
-//  MWContentStackStep.swift
+//  MWContentStackItem.swift
 //  MWContentDisplayPlugin
 //
-//  Created by Xavi Moll on 6/4/21.
+//  Created by Xavi Moll on 8/4/21.
 //
 
 import Foundation
 import MobileWorkflowCore
 
-public class MWContentStackStep: ORKStep {
-    
-    let headerImageURL: URL?
-    let items: [StepItem]
-    
-    init(identifier: String, headerImageURL: URL?, items: [StepItem]) {
-        self.items = items
-        self.headerImageURL = headerImageURL
-        super.init(identifier: identifier)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func stepViewControllerClass() -> AnyClass {
-        return MWContentStackViewController.self
-    }
-}
-
-extension MWContentStackStep: MobileWorkflowStep {
-    public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
-        let jsonItems = (stepInfo.data.content["items"] as? Array<[String:Any]>) ?? []
-        var headerImageURL: URL?
-        if let headerImageURLString = stepInfo.data.content["imageURL"] as? String {
-            headerImageURL = URL(string: headerImageURLString)
-        }
-        return MWContentStackStep(identifier: stepInfo.data.identifier,
-                                  headerImageURL: headerImageURL,
-                                  items: jsonItems.compactMap { StepItem(json: $0, localizationService: services.localizationService) })
-    }
-}
-
 // Describes all the supported types of item that can be shown vertically stacked.
 // For now, just title, text and listItem
 // Every case includes the model that defines the concrete implementation as an associated type
-enum StepItem: Identifiable {
+enum MWContentStackItem: Identifiable {
     
     case title(StepItemTitle)
     case text(StepItemText)
@@ -129,5 +96,3 @@ struct StepItemListItem: Identifiable {
         }
     }
 }
-
-

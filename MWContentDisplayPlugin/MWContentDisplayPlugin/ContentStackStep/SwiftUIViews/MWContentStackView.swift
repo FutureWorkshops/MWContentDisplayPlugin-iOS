@@ -1,28 +1,16 @@
 //
-//  MWContentStackViewController.swift
+//  MWContentStackView.swift
 //  MWContentDisplayPlugin
 //
-//  Created by Xavi Moll on 6/4/21.
+//  Created by Xavi Moll on 8/4/21.
 //
 
-import UIKit
 import SwiftUI
 import Kingfisher
+import Foundation
 import FancyScrollView
-import MobileWorkflowCore
 
-final class MWContentStackViewController: ORKStepViewController {
-    
-    var contentStackStep: MWContentStackStep { self.step as! MWContentStackStep }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.addCovering(childViewController: UIHostingController(rootView: MWContentView(step: self.contentStackStep)))
-    }
-    
-}
-
-private struct MWContentView: View {
+struct MWContentStackView: View {
     
     var step: MWContentStackStep
     
@@ -64,7 +52,7 @@ private struct MWContentView: View {
     }
 }
 
-private struct MWTitleView: View {
+fileprivate struct MWTitleView: View {
     
     let stepTypeTitle: StepItemTitle
         
@@ -76,7 +64,7 @@ private struct MWTitleView: View {
     }
 }
 
-private struct MWTextView: View {
+fileprivate struct MWTextView: View {
     
     let stepTypeText: StepItemText
         
@@ -87,7 +75,7 @@ private struct MWTextView: View {
     }
 }
 
-private struct MWListItemView: View {
+fileprivate struct MWListItemView: View {
     
     let stepTypeListItem: StepItemListItem
     
