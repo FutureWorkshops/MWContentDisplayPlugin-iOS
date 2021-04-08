@@ -30,7 +30,7 @@ public class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContent
     public var services: MobileWorkflowServices
     public var contentURL: String?
     
-    init(identifier: String, headerImageURL: URL?, contentURLString: String, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
+    init(identifier: String, headerImageURL: URL?, contentURLString: String?, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
         self.stepContext = stepContext
         self.session = session
         self.services = services

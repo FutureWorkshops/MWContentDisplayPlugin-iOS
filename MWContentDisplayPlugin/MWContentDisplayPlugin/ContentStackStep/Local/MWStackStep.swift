@@ -30,14 +30,24 @@ public class MWStackStep: ORKStep {
 
 extension MWStackStep: MobileWorkflowStep {
     public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
-        let jsonItems = (stepInfo.data.content["items"] as? Array<[String:Any]>) ?? []
-        var headerImageURL: URL?
-        if let headerImageURLString = stepInfo.data.content["imageURL"] as? String {
-            headerImageURL = URL(string: headerImageURLString)
+        
+        let headerImageURL = (stepInfo.data.content["imageURL"] as? String).flatMap{ URL(string: $0) }
+        
+        if stepInfo.data.type == MWContentDisplayStepType.stack.typeName {
+            let jsonItems = (stepInfo.data.content["items"] as? Array<[String:Any]>) ?? []
+            return MWStackStep(identifier: stepInfo.data.identifier,
+                                      headerImageURL: headerImageURL,
+                                      items: jsonItems.compactMap { MWStackItem(json: $0, localizationService: services.localizationService) })
+        } else if stepInfo.data.type == MWContentDisplayStepType.networkStack.typeName {
+            return MWNetworkStackStep(identifier: stepInfo.data.identifier,
+                                      headerImageURL: headerImageURL,
+                                      contentURLString: stepInfo.data.content["url"] as? String,
+                                      stepContext: stepInfo.context,
+                                      session: stepInfo.session,
+                                      services: services)
+        } else {
+            throw ParseError.invalidStepData(cause: "Tried to create a stack that's not local nor remote.")
         }
-        return MWStackStep(identifier: stepInfo.data.identifier,
-                                  headerImageURL: headerImageURL,
-                                  items: jsonItems.compactMap { MWStackItem(json: $0, localizationService: services.localizationService) })
     }
 }
 
