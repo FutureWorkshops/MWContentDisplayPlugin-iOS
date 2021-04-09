@@ -18,16 +18,23 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     //MARK: Properties
     var remoteContentStep: MWNetworkStackStep! { self.step as? MWNetworkStackStep }
     weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
-    
+
     //MARK: Lifecycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.stateView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.stateView)
+        self.stateView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        self.stateView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        
         self.loadContent()
     }
     
     // MARK: RemoteContentStepViewController
     func loadContent() {
+        self.showLoading()
         self.remoteContentStep.loadContent { [weak self] result in
+            self?.hideLoading()
             switch result {
             case .success(let items): self?.update(content: items)
             case .failure(let error): self?.show(error)
