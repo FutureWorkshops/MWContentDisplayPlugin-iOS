@@ -8,17 +8,17 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
+class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
     
     // Syncable Content
-    public typealias ResponseType = [MWStackItem]
-    public var resolvedURL: URL?
+    typealias ResponseType = [MWStackItem]
+    var resolvedURL: URL?
     
     // Remote Content
-    public var stepContext: StepContext
-    public var session: Session
-    public var services: MobileWorkflowServices
-    public var contentURL: String?
+    var stepContext: StepContext
+    var session: Session
+    var services: MobileWorkflowServices
+    var contentURL: String?
     
     init(identifier: String, headerImageURL: URL?, contentURLString: String?, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
         self.stepContext = stepContext
@@ -32,11 +32,11 @@ public class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContent
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func stepViewControllerClass() -> AnyClass {
+    override func stepViewControllerClass() -> AnyClass {
         return MWNetworkStackViewController.self
     }
     
-    public func loadContent(completion: @escaping (Result<[MWStackItem], Error>) -> Void) {
+    func loadContent(completion: @escaping (Result<[MWStackItem], Error>) -> Void) {
         guard let contentURL = self.contentURL else {
             return completion(.failure(URLError(.badURL)))
         }

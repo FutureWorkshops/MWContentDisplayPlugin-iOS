@@ -11,7 +11,7 @@ import MobileWorkflowCore
 // Describes all the supported types of item that can be shown vertically stacked.
 // For now, just title, text and listItem
 // Every case includes the model that defines the concrete implementation as an associated type
-public enum MWStackItem: Identifiable {
+enum MWStackItem: Identifiable {
     
     case title(StepItemTitle)
     case text(StepItemText)
@@ -38,8 +38,8 @@ public enum MWStackItem: Identifiable {
     }
 }
 
-public struct StepItemTitle: Identifiable {
-    public let id: String
+struct StepItemTitle: Identifiable {
+    let id: String
     let title: String
     
     init?(json: [String:Any], localizationService: LocalizationService) {
@@ -59,8 +59,8 @@ public struct StepItemTitle: Identifiable {
     }
 }
 
-public struct StepItemText: Identifiable {
-    public let id: String
+struct StepItemText: Identifiable {
+    let id: String
     let text: String
     
     init?(json: [String:Any], localizationService: LocalizationService) {
@@ -79,8 +79,8 @@ public struct StepItemText: Identifiable {
     }
 }
 
-public struct StepItemListItem: Identifiable {
-    public let id: String
+struct StepItemListItem: Identifiable {
+    let id: String
     let title: String?
     let detailText: String?
     let imageURL: URL?
