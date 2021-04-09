@@ -11,7 +11,7 @@ import MobileWorkflowCore
 public class MWStackStep: ORKStep {
     
     let headerImageURL: URL?
-    let items: [MWStackItem]
+    var items: [MWStackItem]
     
     init(identifier: String, headerImageURL: URL?, items: [MWStackItem]) {
         self.items = items
