@@ -17,21 +17,7 @@ final class MWContentStackViewController: ORKStepViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var contentView = MWContentView(step: self.contentStackStep)
-        contentView.nextTapped = { [weak self] in
-            self?.goForward()
-        }
-        self.addCovering(childViewController: UIHostingController(rootView: contentView))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.alpha = 0.0
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.navigationBar.alpha = 1.0
+        self.addCovering(childViewController: UIHostingController(rootView: MWContentView(step: self.contentStackStep)))
     }
     
 }
@@ -39,17 +25,9 @@ final class MWContentStackViewController: ORKStepViewController {
 private struct MWContentView: View {
     
     var step: MWContentStackStep
-    var nextTapped: (() -> Void)?
     
     var body: some View {
-        ZStack {
-            self.makeScrollView()
-                .padding(.bottom, 70)
-            self.makeContinueButton()
-        }
-        // The FancyScrollView sets this to true but that breaks the swipe back gesture
-        // To fix it, we just set the alpha of the navBar to 0 or 1
-        .navigationBarHidden(false)
+        self.makeScrollView()
     }
     
     private func makeScrollView() -> some View {
@@ -81,26 +59,8 @@ private struct MWContentView: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-    }
-    
-    private func makeContinueButton() -> some View {
-        VStack {
-            Spacer()
-            Button {
-                self.nextTapped?()
-            } label: {
-                Text(L10n.continue)
-                    .font(Font.system(size: 18, weight: .semibold, design: .default))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color.blue)
-                    .foregroundColor(Color.white)
-                    .cornerRadius(12)
-            }
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-         .padding()
     }
 }
 
