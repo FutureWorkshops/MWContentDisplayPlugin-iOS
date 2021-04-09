@@ -59,7 +59,7 @@ private struct MWContentView: View {
                 }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
     }
 }
