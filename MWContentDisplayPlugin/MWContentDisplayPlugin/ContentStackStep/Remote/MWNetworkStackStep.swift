@@ -20,12 +20,12 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
     var services: MobileWorkflowServices
     var contentURL: String?
     
-    init(identifier: String, headerImageURL: URL?, contentURLString: String?, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
+    init(identifier: String, headerTitle: String?, headerImageURL: URL?, contentURLString: String?, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
         self.stepContext = stepContext
         self.session = session
         self.services = services
         self.contentURL = contentURLString
-        super.init(identifier: identifier, headerImageURL: headerImageURL, items: [])
+        super.init(identifier: identifier, headerTitle: headerTitle, headerImageURL: headerImageURL, items: [])
     }
     
     required init(coder aDecoder: NSCoder) {
