@@ -8,6 +8,21 @@
 import Foundation
 import MobileWorkflowCore
 
+/// Describes the data model for the vertical stack. It includes the header + items data
+struct MWStackContents {
+    let headerTitle: String?
+    let headerImageURL: URL?
+    let items: [MWStackItem]
+    
+    init(json: [String:Any], localizationService: LocalizationService) {
+        self.headerTitle = localizationService.translate(json["title"] as? String)
+        self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
+        
+        let jsonItems = (json["items"] as? Array<[String:Any]>) ?? []
+        self.items = jsonItems.compactMap { MWStackItem(json: $0, localizationService: localizationService) }
+    }
+}
+
 // Describes all the supported types of item that can be shown vertically stacked.
 // For now, just title, text and listItem
 // Every case includes the model that defines the concrete implementation as an associated type

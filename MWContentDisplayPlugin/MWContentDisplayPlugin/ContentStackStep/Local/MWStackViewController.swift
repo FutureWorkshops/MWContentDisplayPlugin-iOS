@@ -15,7 +15,7 @@ public class MWStackViewController: ORKStepViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.addCovering(childViewController: UIHostingController(rootView: MWStackView(step: self.contentStackStep)))
+        self.addCovering(childViewController: UIHostingController(rootView: MWStackView(contents: self.contentStackStep.contents)))
     }
     
 }

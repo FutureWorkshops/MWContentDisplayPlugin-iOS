@@ -11,7 +11,7 @@ import MobileWorkflowCore
 class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
     
     // Syncable Content
-    typealias ResponseType = [MWStackItem]
+    typealias ResponseType = MWStackContents
     var resolvedURL: URL?
     
     // Remote Content
@@ -20,12 +20,12 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
     var services: MobileWorkflowServices
     var contentURL: String?
     
-    init(identifier: String, headerTitle: String?, headerImageURL: URL?, contentURLString: String?, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
+    init(identifier: String, contentURLString: String?, contents: MWStackContents, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
         self.stepContext = stepContext
         self.session = session
         self.services = services
         self.contentURL = contentURLString
-        super.init(identifier: identifier, headerTitle: headerTitle, headerImageURL: headerImageURL, items: [])
+        super.init(identifier: identifier, contents: contents)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -36,7 +36,8 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
         return MWNetworkStackViewController.self
     }
     
-    func loadContent(completion: @escaping (Result<[MWStackItem], Error>) -> Void) {
+    func loadContent(completion: @escaping (Result<MWStackContents, Error>) -> Void) {
+        
         guard let contentURL = self.contentURL else {
             return completion(.failure(URLError(.badURL)))
         }
@@ -44,9 +45,17 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
             return completion(.failure(URLError(.badURL)))
         }
         
-        let task = URLAsyncTask<[MWStackItem]>.build(url: url, method: .GET, session: self.session) { data -> [MWStackItem] in
-            #warning("parse the json here")
-            return []
+        let task = URLAsyncTask<MWStackContents>.build(url: url, method: .GET, session: self.session) { data -> MWStackContents in
+            do {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] else {
+                    #warning("Returning what we have to be a `no-op` if the JSON decoding fails")
+                    return self.contents
+                }
+                return MWStackContents(json: json, localizationService: self.services.localizationService)
+            } catch {
+                #warning("Returning what we have to be a `no-op` if the JSON decoding fails")
+                return self.contents
+            }
         }
         
         self.services.perform(task: task, session: self.session, completion: completion)

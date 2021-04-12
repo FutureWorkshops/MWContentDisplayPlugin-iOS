@@ -10,14 +10,10 @@ import MobileWorkflowCore
 
 public class MWStackStep: ORKStep {
     
-    var headerTitle: String?
-    var headerImageURL: URL?
-    var items: [MWStackItem]
+    var contents: MWStackContents
     
-    init(identifier: String, headerTitle: String?, headerImageURL: URL?, items: [MWStackItem]) {
-        self.headerTitle = headerTitle
-        self.items = items
-        self.headerImageURL = headerImageURL
+    init(identifier: String, contents: MWStackContents) {
+        self.contents = contents
         super.init(identifier: identifier)
     }
     
@@ -33,20 +29,15 @@ public class MWStackStep: ORKStep {
 extension MWStackStep: MobileWorkflowStep {
     public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
         
-        let headerTitle = services.localizationService.translate(stepInfo.data.content["title"] as? String)
-        let headerImageURL = (stepInfo.data.content["imageURL"] as? String).flatMap{ URL(string: $0) }
+        let contents = MWStackContents(json: stepInfo.data.content, localizationService: services.localizationService)
         
         if stepInfo.data.type == MWContentDisplayStepType.stack.typeName {
-            let jsonItems = (stepInfo.data.content["items"] as? Array<[String:Any]>) ?? []
             return MWStackStep(identifier: stepInfo.data.identifier,
-                                      headerTitle: headerTitle,
-                                      headerImageURL: headerImageURL,
-                                      items: jsonItems.compactMap { MWStackItem(json: $0, localizationService: services.localizationService) })
+                               contents: contents)
         } else if stepInfo.data.type == MWContentDisplayStepType.networkStack.typeName {
             return MWNetworkStackStep(identifier: stepInfo.data.identifier,
-                                      headerTitle: headerTitle,
-                                      headerImageURL: headerImageURL,
                                       contentURLString: stepInfo.data.content["url"] as? String,
+                                      contents: contents,
                                       stepContext: stepInfo.context,
                                       session: stepInfo.session,
                                       services: services)
