@@ -46,16 +46,8 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
         }
         
         let task = URLAsyncTask<MWStackContents>.build(url: url, method: .GET, session: self.session) { data -> MWStackContents in
-            do {
-                guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] else {
-                    #warning("Returning what we have to be a `no-op` if the JSON decoding fails")
-                    return self.contents
-                }
-                return MWStackContents(json: json, localizationService: self.services.localizationService)
-            } catch {
-                #warning("Returning what we have to be a `no-op` if the JSON decoding fails")
-                return self.contents
-            }
+            let json = (try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]) ?? [:]
+            return MWStackContents(json: json, localizationService: self.services.localizationService)
         }
         
         self.services.perform(task: task, session: self.session, completion: completion)
