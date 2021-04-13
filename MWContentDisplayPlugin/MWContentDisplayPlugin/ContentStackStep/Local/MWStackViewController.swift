@@ -12,11 +12,13 @@ import MobileWorkflowCore
 public class MWStackViewController: ORKStepViewController {
     
     var contentStackStep: MWStackStep { self.step as! MWStackStep }
+    var hostingController: UIHostingController<MWStackView>? = nil
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.addCovering(childViewController: UIHostingController(rootView: MWStackView(contents: self.contentStackStep.contents)))
+        let swiftUIRootView = MWStackView(contents: self.contentStackStep.contents)
+        self.hostingController = UIHostingController(rootView: swiftUIRootView)
+        self.addCovering(childViewController: self.hostingController!)
     }
-    
 }
 
