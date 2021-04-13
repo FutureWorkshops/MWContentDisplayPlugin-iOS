@@ -1,30 +1,18 @@
 //
-//  MWContentStackViewController.swift
+//  MWStackView.swift
 //  MWContentDisplayPlugin
 //
-//  Created by Xavi Moll on 6/4/21.
+//  Created by Xavi Moll on 8/4/21.
 //
 
-import UIKit
 import SwiftUI
 import Kingfisher
+import Foundation
 import FancyScrollView
-import MobileWorkflowCore
 
-final class MWContentStackViewController: ORKStepViewController {
+struct MWStackView: View {
     
-    var contentStackStep: MWContentStackStep { self.step as! MWContentStackStep }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.addCovering(childViewController: UIHostingController(rootView: MWContentView(step: self.contentStackStep)))
-    }
-    
-}
-
-private struct MWContentView: View {
-    
-    var step: MWContentStackStep
+    var contents: MWStackStepContents
     
     var body: some View {
         self.makeScrollView()
@@ -34,8 +22,8 @@ private struct MWContentView: View {
         // You'd think that setting the `headerHeight` to 0.0 and return nil on the header if there's no `headerImageURL` would
         // work, but it doesn't. If you don't use the correct init (the one that doesn't expect a header), the offset
         // of the ScrollView is completely broken.
-        if let headerImageURL = self.step.headerImageURL {
-            return FancyScrollView(title: self.step.title ?? "", headerHeight: 350.0, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
+        if let headerImageURL = contents.headerImageURL {
+            return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 350.0, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
                 KFImage(headerImageURL)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -51,10 +39,10 @@ private struct MWContentView: View {
     
     private func makeContentScrollView() -> some View {
         VStack(alignment: .leading, spacing: 8) {
-            ForEach(self.step.items) { item in
+            ForEach(contents.items) { item in
                 switch item {
-                case .title(let innerItem): MWTitleView(stepTypeTitle: innerItem)
-                case .text(let innerItem): MWTextView(stepTypeText: innerItem)
+                case .title(let innerItem): MWTitleView(item: innerItem)
+                case .text(let innerItem): MWTextView(item: innerItem)
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
                 }
             }
@@ -64,32 +52,27 @@ private struct MWContentView: View {
     }
 }
 
-private struct MWTitleView: View {
+fileprivate struct MWTitleView: View {
     
-    let stepTypeTitle: StepItemTitle
+    let item: MWStackStepItemTitle
         
     var body: some View {
-        if let title = stepTypeTitle.title {
-            Text(title)
-                .font(.largeTitle)
-        }
+        Text(item.title).font(.largeTitle)
     }
 }
 
-private struct MWTextView: View {
+fileprivate struct MWTextView: View {
     
-    let stepTypeText: StepItemText
+    let item: MWStackStepItemText
         
     var body: some View {
-        if let text = stepTypeText.text {
-            Text(text)
-        }
+        Text(item.text)
     }
 }
 
-private struct MWListItemView: View {
+fileprivate struct MWListItemView: View {
     
-    let stepTypeListItem: StepItemListItem
+    let stepTypeListItem: MWStackStepStepItemListItem
     
     var body: some View {
         HStack {

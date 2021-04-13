@@ -17,7 +17,8 @@ public struct MWContentDisplayPlugin: MobileWorkflowPlugin {
 enum MWContentDisplayStepType: String, MobileWorkflowStepType, CaseIterable {
     case grid = "videoGrid"
     case networkGrid = "networkVideoGrid"
-    case contentStack = "io.mobileworkflow.ContentStack"
+    case stack = "io.mobileworkflow.ContentStack"
+    case networkStack = "io.mobileworkflow.NetworkStyledStack"
     
     var typeName: String {
         return self.rawValue
@@ -27,7 +28,8 @@ enum MWContentDisplayStepType: String, MobileWorkflowStepType, CaseIterable {
         switch self {
         case .grid: return MWGridStep.self
         case .networkGrid: return MWNetworkGridStep.self
-        case .contentStack: return MWContentStackStep.self
+        case .stack: return MWStackStep.self
+        case .networkStack: return MWNetworkStackStep.self
         }
     }
 }

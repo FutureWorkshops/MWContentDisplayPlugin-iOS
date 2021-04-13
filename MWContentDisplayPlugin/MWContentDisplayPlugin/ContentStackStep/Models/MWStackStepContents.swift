@@ -1,56 +1,38 @@
 //
-//  MWContentStackStep.swift
+//  MWStackStepContents.swift
 //  MWContentDisplayPlugin
 //
-//  Created by Xavi Moll on 6/4/21.
+//  Created by Xavi Moll on 8/4/21.
 //
 
 import Foundation
 import MobileWorkflowCore
 
-public class MWContentStackStep: ORKStep {
-    
+/// Describes the data model for the vertical stack. It includes the header + items data
+struct MWStackStepContents {
+    let headerTitle: String?
     let headerImageURL: URL?
-    let items: [StepItem]
+    let items: [MWStackStepItem]
     
-    init(identifier: String, headerImageURL: URL?, items: [StepItem]) {
-        self.items = items
-        self.headerImageURL = headerImageURL
-        super.init(identifier: identifier)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    public override func stepViewControllerClass() -> AnyClass {
-        return MWContentStackViewController.self
-    }
-}
-
-extension MWContentStackStep: MobileWorkflowStep {
-    public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
-        let jsonItems = (stepInfo.data.content["items"] as? Array<[String:Any]>) ?? []
-        var headerImageURL: URL?
-        if let headerImageURLString = stepInfo.data.content["imageURL"] as? String {
-            headerImageURL = URL(string: headerImageURLString)
-        }
-        return MWContentStackStep(identifier: stepInfo.data.identifier,
-                                  headerImageURL: headerImageURL,
-                                  items: jsonItems.compactMap { StepItem(json: $0, localizationService: services.localizationService) })
+    init(json: [String:Any], localizationService: LocalizationService) {
+        self.headerTitle = localizationService.translate(json["title"] as? String)
+        self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
+        
+        let jsonItems = (json["items"] as? Array<[String:Any]>) ?? []
+        self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }
     }
 }
 
 // Describes all the supported types of item that can be shown vertically stacked.
 // For now, just title, text and listItem
 // Every case includes the model that defines the concrete implementation as an associated type
-enum StepItem: Identifiable {
+enum MWStackStepItem: Identifiable {
     
-    case title(StepItemTitle)
-    case text(StepItemText)
-    case listItem(StepItemListItem)
+    case title(MWStackStepItemTitle)
+    case text(MWStackStepItemText)
+    case listItem(MWStackStepStepItemListItem)
     
-    var id: String {
+    public var id: String {
         switch self {
         case .title(let item): return item.id
         case .text(let item): return item.id
@@ -59,11 +41,11 @@ enum StepItem: Identifiable {
     }
     
     init?(json: [String:Any], localizationService: LocalizationService) {
-        if let stepTypeTitle = StepItemTitle(json: json, localizationService: localizationService) {
+        if let stepTypeTitle = MWStackStepItemTitle(json: json, localizationService: localizationService) {
             self = .title(stepTypeTitle)
-        } else if let stepTypeText = StepItemText(json: json, localizationService: localizationService) {
+        } else if let stepTypeText = MWStackStepItemText(json: json, localizationService: localizationService) {
             self = .text(stepTypeText)
-        } else if let stepTypeListItem = StepItemListItem(json: json, localizationService: localizationService) {
+        } else if let stepTypeListItem = MWStackStepStepItemListItem(json: json, localizationService: localizationService) {
             self = .listItem(stepTypeListItem)
         } else {
             return nil
@@ -71,9 +53,9 @@ enum StepItem: Identifiable {
     }
 }
 
-struct StepItemTitle: Identifiable {
+struct MWStackStepItemTitle: Identifiable {
     let id: String
-    let title: String?
+    let title: String
     
     init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("title") else {
@@ -83,14 +65,18 @@ struct StepItemTitle: Identifiable {
             assertionFailure("Missing id.")
             return nil
         }
+        guard let title = localizationService.translate(json["title"] as? String) else {
+            return nil
+        }
+        
         self.id = id
-        self.title = localizationService.translate(json["title"] as? String)
+        self.title = title
     }
 }
 
-struct StepItemText: Identifiable {
+struct MWStackStepItemText: Identifiable {
     let id: String
-    let text: String?
+    let text: String
     
     init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("text") else {
@@ -100,12 +86,15 @@ struct StepItemText: Identifiable {
             assertionFailure("Missing id.")
             return nil
         }
+        guard let text = localizationService.translate(json["text"] as? String) else {
+            return nil
+        }
         self.id = id
-        self.text = localizationService.translate(json["text"] as? String)
+        self.text = text
     }
 }
 
-struct StepItemListItem: Identifiable {
+struct MWStackStepStepItemListItem: Identifiable {
     let id: String
     let title: String?
     let detailText: String?
@@ -129,5 +118,3 @@ struct StepItemListItem: Identifiable {
         }
     }
 }
-
-
