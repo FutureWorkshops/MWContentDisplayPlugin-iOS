@@ -10,9 +10,9 @@ import MobileWorkflowCore
 
 public class MWStackStep: ORKStep {
     
-    var contents: MWStackContents
+    var contents: MWStackStepContents
     
-    init(identifier: String, contents: MWStackContents) {
+    init(identifier: String, contents: MWStackStepContents) {
         self.contents = contents
         super.init(identifier: identifier)
     }
@@ -29,7 +29,7 @@ public class MWStackStep: ORKStep {
 extension MWStackStep: MobileWorkflowStep {
     public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
         
-        let contents = MWStackContents(json: stepInfo.data.content, localizationService: services.localizationService)
+        let contents = MWStackStepContents(json: stepInfo.data.content, localizationService: services.localizationService)
         
         if stepInfo.data.type == MWContentDisplayStepType.stack.typeName {
             return MWStackStep(identifier: stepInfo.data.identifier,

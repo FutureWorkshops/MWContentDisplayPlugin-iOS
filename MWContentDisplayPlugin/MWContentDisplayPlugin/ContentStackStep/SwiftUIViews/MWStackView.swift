@@ -12,7 +12,7 @@ import FancyScrollView
 
 struct MWStackView: View {
     
-    var contents: MWStackContents
+    var contents: MWStackStepContents
     
     var body: some View {
         self.makeScrollView()
@@ -54,7 +54,7 @@ struct MWStackView: View {
 
 fileprivate struct MWTitleView: View {
     
-    let item: StepItemTitle
+    let item: MWStackStepItemTitle
         
     var body: some View {
         Text(item.title).font(.largeTitle)
@@ -63,7 +63,7 @@ fileprivate struct MWTitleView: View {
 
 fileprivate struct MWTextView: View {
     
-    let item: StepItemText
+    let item: MWStackStepItemText
         
     var body: some View {
         Text(item.text)
@@ -72,7 +72,7 @@ fileprivate struct MWTextView: View {
 
 fileprivate struct MWListItemView: View {
     
-    let stepTypeListItem: StepItemListItem
+    let stepTypeListItem: MWStackStepStepItemListItem
     
     var body: some View {
         HStack {

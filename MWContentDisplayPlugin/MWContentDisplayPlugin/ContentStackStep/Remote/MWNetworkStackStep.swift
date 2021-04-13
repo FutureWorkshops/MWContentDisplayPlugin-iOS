@@ -11,7 +11,7 @@ import MobileWorkflowCore
 class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
     
     // Syncable Content
-    typealias ResponseType = MWStackContents
+    typealias ResponseType = MWStackStepContents
     var resolvedURL: URL?
     
     // Remote Content
@@ -20,7 +20,7 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
     var services: MobileWorkflowServices
     var contentURL: String?
     
-    init(identifier: String, contentURLString: String?, contents: MWStackContents, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
+    init(identifier: String, contentURLString: String?, contents: MWStackStepContents, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
         self.stepContext = stepContext
         self.session = session
         self.services = services
@@ -36,7 +36,7 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
         return MWNetworkStackViewController.self
     }
     
-    func loadContent(completion: @escaping (Result<MWStackContents, Error>) -> Void) {
+    func loadContent(completion: @escaping (Result<MWStackStepContents, Error>) -> Void) {
         
         guard let contentURL = self.contentURL else {
             return completion(.failure(URLError(.badURL)))
@@ -45,9 +45,9 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
             return completion(.failure(URLError(.badURL)))
         }
         
-        let task = URLAsyncTask<MWStackContents>.build(url: url, method: .GET, session: self.session) { data -> MWStackContents in
+        let task = URLAsyncTask<MWStackStepContents>.build(url: url, method: .GET, session: self.session) { data -> MWStackStepContents in
             let json = (try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]) ?? [:]
-            return MWStackContents(json: json, localizationService: self.services.localizationService)
+            return MWStackStepContents(json: json, localizationService: self.services.localizationService)
         }
         
         self.services.perform(task: task, session: self.session, completion: completion)

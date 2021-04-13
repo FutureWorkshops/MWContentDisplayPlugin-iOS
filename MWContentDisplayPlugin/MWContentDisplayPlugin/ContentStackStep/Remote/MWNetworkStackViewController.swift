@@ -42,7 +42,7 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
         }
     }
     
-    func update(content: MWStackContents) {
+    func update(content: MWStackStepContents) {
         self.remoteContentStep.contents = content
         self.addCovering(childViewController: UIHostingController(rootView: MWStackView(contents: self.remoteContentStep.contents)))
         

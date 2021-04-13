@@ -1,5 +1,5 @@
 //
-//  MWStackItem.swift
+//  MWStackStepContents.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 8/4/21.
@@ -9,28 +9,28 @@ import Foundation
 import MobileWorkflowCore
 
 /// Describes the data model for the vertical stack. It includes the header + items data
-struct MWStackContents {
+struct MWStackStepContents {
     let headerTitle: String?
     let headerImageURL: URL?
-    let items: [MWStackItem]
+    let items: [MWStackStepItem]
     
     init(json: [String:Any], localizationService: LocalizationService) {
         self.headerTitle = localizationService.translate(json["title"] as? String)
         self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
         
         let jsonItems = (json["items"] as? Array<[String:Any]>) ?? []
-        self.items = jsonItems.compactMap { MWStackItem(json: $0, localizationService: localizationService) }
+        self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }
     }
 }
 
 // Describes all the supported types of item that can be shown vertically stacked.
 // For now, just title, text and listItem
 // Every case includes the model that defines the concrete implementation as an associated type
-enum MWStackItem: Identifiable {
+enum MWStackStepItem: Identifiable {
     
-    case title(StepItemTitle)
-    case text(StepItemText)
-    case listItem(StepItemListItem)
+    case title(MWStackStepItemTitle)
+    case text(MWStackStepItemText)
+    case listItem(MWStackStepStepItemListItem)
     
     public var id: String {
         switch self {
@@ -41,11 +41,11 @@ enum MWStackItem: Identifiable {
     }
     
     init?(json: [String:Any], localizationService: LocalizationService) {
-        if let stepTypeTitle = StepItemTitle(json: json, localizationService: localizationService) {
+        if let stepTypeTitle = MWStackStepItemTitle(json: json, localizationService: localizationService) {
             self = .title(stepTypeTitle)
-        } else if let stepTypeText = StepItemText(json: json, localizationService: localizationService) {
+        } else if let stepTypeText = MWStackStepItemText(json: json, localizationService: localizationService) {
             self = .text(stepTypeText)
-        } else if let stepTypeListItem = StepItemListItem(json: json, localizationService: localizationService) {
+        } else if let stepTypeListItem = MWStackStepStepItemListItem(json: json, localizationService: localizationService) {
             self = .listItem(stepTypeListItem)
         } else {
             return nil
@@ -53,7 +53,7 @@ enum MWStackItem: Identifiable {
     }
 }
 
-struct StepItemTitle: Identifiable {
+struct MWStackStepItemTitle: Identifiable {
     let id: String
     let title: String
     
@@ -74,7 +74,7 @@ struct StepItemTitle: Identifiable {
     }
 }
 
-struct StepItemText: Identifiable {
+struct MWStackStepItemText: Identifiable {
     let id: String
     let text: String
     
@@ -94,7 +94,7 @@ struct StepItemText: Identifiable {
     }
 }
 
-struct StepItemListItem: Identifiable {
+struct MWStackStepStepItemListItem: Identifiable {
     let id: String
     let title: String?
     let detailText: String?
