@@ -8,13 +8,13 @@
 import Foundation
 import MobileWorkflowCore
 
-public struct MWContentDisplayPlugin: MobileWorkflowPlugin {
-    public static var allStepsTypes: [MobileWorkflowStepType] {
+public struct MWContentDisplayPlugin: Plugin {
+    public static var allStepsTypes: [StepType] {
         return MWContentDisplayStepType.allCases
     }
 }
 
-enum MWContentDisplayStepType: String, MobileWorkflowStepType, CaseIterable {
+enum MWContentDisplayStepType: String, StepType, CaseIterable {
     case grid = "videoGrid"
     case networkGrid = "networkVideoGrid"
     case stack = "io.mobileworkflow.ContentStack"

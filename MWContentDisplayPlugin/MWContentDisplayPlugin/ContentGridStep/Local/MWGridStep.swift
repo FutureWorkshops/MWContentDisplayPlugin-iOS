@@ -8,14 +8,14 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWGridStep: ORKStep, HasSecondaryWorkflows, MobileWorkflowStep {
+public class MWGridStep: ORKStep, HasSecondaryWorkflows {
     
     public let session: Session
-    public let services: MobileWorkflowServices
+    public let services: StepServices
     public let secondaryWorkflowIDs: [String]
     public var items: [MWGridStepItem] = []
     
-    init(identifier: String, session: Session, services: MobileWorkflowServices, secondaryWorkflowIDs: [String], items: [MWGridStepItem]) {
+    init(identifier: String, session: Session, services: StepServices, secondaryWorkflowIDs: [String], items: [MWGridStepItem]) {
         self.session = session
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
@@ -30,8 +30,11 @@ public class MWGridStep: ORKStep, HasSecondaryWorkflows, MobileWorkflowStep {
     public override func stepViewControllerClass() -> AnyClass {
         return MWGridViewController.self
     }
+}
+
+extension MWGridStep: MobileWorkflowStep {
     
-    public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
+    public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         
         let secondaryWorkflowIDs: [String] = (stepInfo.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
         

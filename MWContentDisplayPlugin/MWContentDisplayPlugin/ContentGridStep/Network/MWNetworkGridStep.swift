@@ -24,7 +24,7 @@ public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSo
     public var contentURL: String? { self.url }
     public var resolvedURL: URL?
     
-    init(identifier: String, stepInfo: StepInfo, services: MobileWorkflowServices, secondaryWorkflowIDs: [String], url: String? = nil, emptyText: String? = nil) {
+    init(identifier: String, stepInfo: StepInfo, services: StepServices, secondaryWorkflowIDs: [String], url: String? = nil, emptyText: String? = nil) {
         self.stepContext = stepInfo.context
         self.url = url
         self.emptyText = emptyText

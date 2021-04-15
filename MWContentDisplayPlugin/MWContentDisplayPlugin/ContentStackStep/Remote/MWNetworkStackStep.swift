@@ -17,10 +17,10 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
     // Remote Content
     var stepContext: StepContext
     var session: Session
-    var services: MobileWorkflowServices
+    var services: StepServices
     var contentURL: String?
     
-    init(identifier: String, contentURLString: String?, contents: MWStackStepContents, stepContext: StepContext, session: Session, services: MobileWorkflowServices) {
+    init(identifier: String, contentURLString: String?, contents: MWStackStepContents, stepContext: StepContext, session: Session, services: StepServices) {
         self.stepContext = stepContext
         self.session = session
         self.services = services
