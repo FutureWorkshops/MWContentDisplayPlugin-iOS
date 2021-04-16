@@ -32,7 +32,7 @@ public class MWGridStep: ORKStep, HasSecondaryWorkflows {
     }
 }
 
-extension MWGridStep: MobileWorkflowStep {
+extension MWGridStep: BuildableStep {
     
     public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         

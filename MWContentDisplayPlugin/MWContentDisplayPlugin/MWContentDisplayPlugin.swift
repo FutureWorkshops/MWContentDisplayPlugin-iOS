@@ -24,7 +24,7 @@ enum MWContentDisplayStepType: String, StepType, CaseIterable {
         return self.rawValue
     }
     
-    var stepClass: MobileWorkflowStep.Type {
+    var stepClass: BuildableStep.Type {
         switch self {
         case .grid: return MWGridStep.self
         case .networkGrid: return MWNetworkGridStep.self
