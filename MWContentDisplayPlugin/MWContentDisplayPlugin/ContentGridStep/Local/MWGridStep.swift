@@ -41,13 +41,7 @@ public class MWGridStep: ORKStep, HasSecondaryWorkflows, MobileWorkflowStep {
             let items: [MWGridStepItem] = try contentItems.compactMap {
                 guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
                 let detailText = services.localizationService.translate($0["detailText"] as? String)
-                let id: String
-                if let asInt = $0["id"] as? Int {
-                    // legacy
-                    id = String(asInt)
-                } else if let asString = $0["id"] as? String {
-                    id = asString
-                } else {
+                guard let id = $0.getString(key: "id") else {
                     throw ParseError.invalidStepData(cause: "Grid item has invalid id")
                 }
                 return MWGridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)

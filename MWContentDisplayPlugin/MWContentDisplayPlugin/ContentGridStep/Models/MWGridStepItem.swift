@@ -39,13 +39,7 @@ public class MWGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecureCod
     public let imageURL: String?
     
     public required convenience init?(coder: NSCoder) {
-        let id: String
-        if let asInt = coder.decodeObject(forKey: kId) as? Int {
-            // legacy
-            id = String(asInt)
-        } else if let asString = coder.decodeObject(of: NSString.self, forKey: kText) {
-            id = asString as String
-        } else {
+        guard let id = coder.decodeAsString(key: kId) else {
             return nil
         }
         guard let text = coder.decodeObject(of: NSString.self, forKey: kText) else {
@@ -60,12 +54,7 @@ public class MWGridStepItem: NSObject, Codable, NSCopying, NSCoding, NSSecureCod
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Self.CodingKeys.self)
-        if let asInt = try? container.decode(Int.self, forKey: .id) {
-            // legacy
-            self.id = String(asInt)
-        } else {
-            self.id = try container.decode(String.self, forKey: .id)
-        }
+        self.id = try container.decodeAsString(key: .id)
         self.text = try container.decode(String.self, forKey: .text)
         self.type = try container.decodeIfPresent(String.self, forKey: .type)
         self.detailText = try container.decodeIfPresent(String.self, forKey: .detailText)
