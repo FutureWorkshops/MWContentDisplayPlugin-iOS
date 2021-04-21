@@ -26,8 +26,8 @@ public class MWStackStep: ORKStep {
     }
 }
 
-extension MWStackStep: MobileWorkflowStep {
-    public static func build(stepInfo: StepInfo, services: MobileWorkflowServices) throws -> Step {
+extension MWStackStep: BuildableStep {
+    public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         
         let contents = MWStackStepContents(json: stepInfo.data.content, localizationService: services.localizationService)
         
