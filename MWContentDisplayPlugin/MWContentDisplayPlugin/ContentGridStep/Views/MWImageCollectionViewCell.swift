@@ -22,36 +22,30 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     var delegate: MWImageCollectionViewCellDelegate?
     
     //MARK: - UI
-    private let titleLabel: UILabel!
-    private let subtitleLabel: UILabel!
-    private let imageView: UIImageView!
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
+    private let imageView = UIImageView()
     
     private var imageLoadTask: AnyCancellable?
     
     override init(frame: CGRect) {
         
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
-        titleLabel.setContentHuggingPriority(.required, for: .vertical)
-        titleLabel.font = .preferredFont(forTextStyle: .body, weight: .regular)
-        titleLabel.textColor = .label
-        self.titleLabel = titleLabel
+        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        self.titleLabel.setContentHuggingPriority(.required, for: .vertical)
+        self.titleLabel.font = .systemFont(ofSize: 17, weight: .regular)
+        self.titleLabel.textColor = .label
         
-        let subtitleLabel = UILabel()
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        subtitleLabel.setContentCompressionResistancePriority(.required-1, for: .vertical)
-        subtitleLabel.setContentHuggingPriority(.required-1, for: .vertical)
-        subtitleLabel.font = .preferredFont(forTextStyle: .caption1, weight: .regular)
-        subtitleLabel.textColor = .secondaryLabel
-        self.subtitleLabel = subtitleLabel
+        self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.subtitleLabel.setContentCompressionResistancePriority(.required-1, for: .vertical)
+        self.subtitleLabel.setContentHuggingPriority(.required-1, for: .vertical)
+        self.subtitleLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        self.subtitleLabel.textColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.6)
         
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 10.0
-        imageView.layer.masksToBounds = true
-        self.imageView = imageView
+        self.imageView.translatesAutoresizingMaskIntoConstraints = false
+        self.imageView.contentMode = .scaleAspectFill
+        self.imageView.layer.cornerRadius = 16.0
+        self.imageView.layer.masksToBounds = true
         
         self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 9/16).isActive = true
         
@@ -60,14 +54,12 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         infoStack.distribution = .fill
         infoStack.alignment = .fill
         infoStack.spacing = 0
-        infoStack.isLayoutMarginsRelativeArrangement = true
-        infoStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         let mainStack = UIStackView(arrangedSubviews: [imageView, infoStack])
         mainStack.axis = .vertical
         mainStack.distribution = .fill
         mainStack.alignment = .fill
-        mainStack.spacing = 10
+        mainStack.spacing = 12
         
         super.init(frame: frame)
         
