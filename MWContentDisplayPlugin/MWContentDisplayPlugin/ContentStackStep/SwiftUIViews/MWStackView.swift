@@ -23,7 +23,7 @@ struct MWStackView: View {
         // work, but it doesn't. If you don't use the correct init (the one that doesn't expect a header), the offset
         // of the ScrollView is completely broken.
         if let headerImageURL = contents.headerImageURL {
-            return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 350.0, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
+            return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 280, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
                 KFImage(headerImageURL)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
