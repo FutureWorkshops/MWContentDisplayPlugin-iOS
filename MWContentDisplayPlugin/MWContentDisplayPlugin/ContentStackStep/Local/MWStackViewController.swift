@@ -20,5 +20,15 @@ public class MWStackViewController: ORKStepViewController {
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
     }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 }
 
