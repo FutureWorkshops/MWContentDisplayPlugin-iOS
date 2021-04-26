@@ -99,7 +99,7 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     }
     
     private func generateBigImageLayout(contentWidth: CGFloat) -> NSCollectionLayoutSection {
-        return self.generateImageLayout(itemWidth: contentWidth * 0.9)
+        return self.generateImageLayout(itemWidth: contentWidth * 0.9, orthogonalScrollingBehavior: .groupPagingCentered)
     }
     
     private func generateSmallImageLayout(contentWidth: CGFloat) -> NSCollectionLayoutSection {
@@ -119,11 +119,18 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
         // Header
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier, alignment: .top)
+        sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                              leading: orthogonalScrollingBehavior == .groupPagingCentered ? 8 : 0,
+                                                              bottom: 0,
+                                                              trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 8 : 0)
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 6
-        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 16, bottom: 24, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 12,
+                                                        leading: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : 16,
+                                                        bottom: 24,
+                                                        trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : 16)
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = orthogonalScrollingBehavior
         
