@@ -94,7 +94,7 @@ fileprivate struct MWListItemView: View {
                 if let detailText = stepTypeListItem.detailText {
                     Text(detailText)
                         .font(.system(size: 15, weight: .regular))
-                        .foregroundColor(Color(.displayP3, red: 60/255, green: 60/255, blue: 67/255, opacity: 0.6))
+                        .foregroundColor(Color(UIColor.secondaryLabel))
                 }
             }
         }

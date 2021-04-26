@@ -36,7 +36,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.subtitleLabel.setContentCompressionResistancePriority(.required-1, for: .vertical)
         self.subtitleLabel.setContentHuggingPriority(.required-1, for: .vertical)
         self.subtitleLabel.font = .systemFont(ofSize: 15, weight: .regular)
-        self.subtitleLabel.textColor = UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.6)
+        self.subtitleLabel.textColor = .secondaryLabel
         
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.contentMode = .scaleAspectFill
