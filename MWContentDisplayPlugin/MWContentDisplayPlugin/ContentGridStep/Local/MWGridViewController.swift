@@ -33,6 +33,7 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
         
         self.setupCollectionView()
         self.setupConstraints()
@@ -182,12 +183,12 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
             result = cell
             
         case .item: preconditionFailure("Not a section")

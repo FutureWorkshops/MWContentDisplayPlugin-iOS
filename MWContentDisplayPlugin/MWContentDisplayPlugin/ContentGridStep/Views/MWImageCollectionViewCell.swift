@@ -42,16 +42,15 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.imageView.contentMode = .scaleAspectFill
         self.imageView.layer.cornerRadius = 16.0
         self.imageView.layer.masksToBounds = true
-        
         self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 9/16).isActive = true
         
-        let infoStack = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+        let infoStack = UIStackView(arrangedSubviews: [self.titleLabel, self.subtitleLabel])
         infoStack.axis = .vertical
         infoStack.distribution = .fill
         infoStack.alignment = .fill
         infoStack.spacing = 0
         
-        let mainStack = UIStackView(arrangedSubviews: [imageView, infoStack])
+        let mainStack = UIStackView(arrangedSubviews: [self.imageView, infoStack])
         mainStack.axis = .vertical
         mainStack.distribution = .fill
         mainStack.alignment = .fill
@@ -60,21 +59,24 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         self.contentView.addPinnedSubview(mainStack)
-        
-        self.backgroundColor = .secondarySystemBackground
-        self.contentView.backgroundColor = .secondarySystemBackground
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: Configuration
     
-    func configure(viewData: ViewData, imageLoader: ImageLoadingService, session: Session) {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.clear()
+    }
+    
+    //MARK: Configuration
+    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, session: Session) {
         self.titleLabel.text = viewData.title
         self.subtitleLabel.text = viewData.subtitle
         
+        self.imageView.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
         self.imageLoadTask?.cancel()
         if let imageUrl = viewData.imageUrl {
             self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString, session: session) { [weak self] (image) in
@@ -84,16 +86,11 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        self.clear()
-    }
-    
     private func clear() {
-        self.imageLoadTask?.cancel()
-
-        self.imageView.image = nil
         self.titleLabel.text = nil
         self.subtitleLabel.text = nil
+        
+        self.imageLoadTask?.cancel()
+        self.imageView.image = nil
     }
 }
