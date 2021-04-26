@@ -202,7 +202,7 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
         case MWSimpleCollectionSectionHeader.defaultReuseIdentifier:
             let sectionTitle = self.sections[indexPath.section].title
             let header: MWSimpleCollectionSectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, forIndexPath: indexPath)
-            header.configure(viewData: MWSimpleCollectionSectionHeader.ViewData(title: sectionTitle))
+            header.configure(withTitle: sectionTitle)
             return header
             
         default: return UICollectionReusableView()
