@@ -63,10 +63,12 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = collectionView.contentInset
         
         self.view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
