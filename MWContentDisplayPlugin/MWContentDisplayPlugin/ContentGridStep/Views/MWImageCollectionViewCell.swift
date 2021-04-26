@@ -9,8 +9,6 @@ import Foundation
 import Combine
 import MobileWorkflowCore
 
-protocol MWImageCollectionViewCellDelegate: class {}
-
 class MWImageCollectionViewCell: UICollectionViewCell {
     
     struct ViewData {
@@ -19,15 +17,13 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         let imageUrl: URL?
     }
     
-    var delegate: MWImageCollectionViewCellDelegate?
-    
-    //MARK: - UI
+    //MARK: Class properties
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     private let imageView = UIImageView()
-    
     private var imageLoadTask: AnyCancellable?
     
+    //MARK: Lifecycle
     override init(frame: CGRect) {
         
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -73,22 +69,19 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Configuration
+    //MARK: Configuration
     
     func configure(viewData: ViewData, imageLoader: ImageLoadingService, session: Session) {
-        self.imageLoadTask?.cancel()
+        self.titleLabel.text = viewData.title
+        self.subtitleLabel.text = viewData.subtitle
         
+        self.imageLoadTask?.cancel()
         if let imageUrl = viewData.imageUrl {
-//            self.imageView.tag = imageUrl.hashValue
             self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString, session: session) { [weak self] (image) in
-                guard let strongSelf = self/*,
-                      strongSelf.imageView.tag == imageUrl.hashValue */ else { return }
+                guard let strongSelf = self else { return }
                 strongSelf.imageView.image = image
             }
         }
-
-        self.titleLabel.text = viewData.title
-        self.subtitleLabel.text = viewData.subtitle
     }
     
     override func prepareForReuse() {
