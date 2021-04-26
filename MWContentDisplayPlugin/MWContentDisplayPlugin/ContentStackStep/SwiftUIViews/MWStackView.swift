@@ -57,7 +57,7 @@ fileprivate struct MWTitleView: View {
     let item: MWStackStepItemTitle
         
     var body: some View {
-        Text(item.title).font(.system(size: 24, weight: .bold))
+        Text(item.title).font(.system(size: 20, weight: .bold))
     }
 }
 
