@@ -15,8 +15,8 @@ struct MWStackStepContents {
     let items: [MWStackStepItem]
     
     init(json: [String:Any], localizationService: LocalizationService) {
-        self.headerTitle = localizationService.translate((json["title"] ?? json["headerTitle"]) as? String)
-        self.headerImageURL = ((json["imageURL"] ?? json["headerImageURL"]) as? String).flatMap{ URL(string: $0) }
+        self.headerTitle = localizationService.translate(json["title"] as? String)
+        self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
         
         let jsonItems = (json["items"] as? Array<[String:Any]>) ?? []
         self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }
