@@ -23,7 +23,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FancyScrollView:
-    :commit: 9e7188919b86ce1ecccc13257ff9d91ed27455a3
+    :commit: d9fe7fe3d4e6edb23a986ad345bb8b51fa91af06
     :git: https://github.com/FutureWorkshops/FancyScrollView
 
 SPEC CHECKSUMS:
