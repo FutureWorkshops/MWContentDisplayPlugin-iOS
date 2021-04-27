@@ -40,7 +40,7 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.update(items: self.gridStep.items)
     }
     
