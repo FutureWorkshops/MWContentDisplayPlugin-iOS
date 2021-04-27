@@ -15,7 +15,7 @@ class MWSimpleCollectionSectionHeader: UICollectionReusableView, ReusableView {
     
     //MARK: Lifecycle
     override init(frame: CGRect) {
-        self.titleLabel.font = .systemFont(ofSize: 22, weight: .bold)
+        self.titleLabel.font = .preferredFont(forTextStyle: .title2, weight: .bold)
         super.init(frame: frame)
         self.addPinnedSubview(self.titleLabel)
     }

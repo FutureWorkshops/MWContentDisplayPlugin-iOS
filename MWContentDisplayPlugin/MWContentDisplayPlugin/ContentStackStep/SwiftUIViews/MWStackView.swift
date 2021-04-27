@@ -57,7 +57,7 @@ fileprivate struct MWTitleView: View {
     let item: MWStackStepItemTitle
         
     var body: some View {
-        Text(item.title).font(.system(size: 20, weight: .bold))
+        Text(item.title).font(Font(UIFont.preferredFont(forTextStyle: .title3, weight: .bold)))
     }
 }
 
@@ -66,7 +66,7 @@ fileprivate struct MWTextView: View {
     let item: MWStackStepItemText
         
     var body: some View {
-        Text(item.text).font(.system(size: 17, weight: .regular))
+        Text(item.text).font(.body)
     }
 }
 
@@ -89,11 +89,11 @@ fileprivate struct MWListItemView: View {
             VStack(alignment: .leading) {
                 if let title = stepTypeListItem.title {
                     Text(title)
-                        .font(.system(size: 17, weight: .regular))
+                        .font(.body)
                 }
                 if let detailText = stepTypeListItem.detailText {
                     Text(detailText)
-                        .font(.system(size: 15, weight: .regular))
+                        .font(.subheadline)
                         .foregroundColor(Color(UIColor.secondaryLabel))
                 }
             }

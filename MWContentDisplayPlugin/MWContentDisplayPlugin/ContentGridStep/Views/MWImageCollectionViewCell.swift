@@ -29,13 +29,13 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         self.titleLabel.setContentHuggingPriority(.required, for: .vertical)
-        self.titleLabel.font = .systemFont(ofSize: 17, weight: .regular)
+        self.titleLabel.font = .preferredFont(forTextStyle: .body)
         self.titleLabel.textColor = .label
         
         self.subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.subtitleLabel.setContentCompressionResistancePriority(.required-1, for: .vertical)
         self.subtitleLabel.setContentHuggingPriority(.required-1, for: .vertical)
-        self.subtitleLabel.font = .systemFont(ofSize: 15, weight: .regular)
+        self.subtitleLabel.font = .preferredFont(forTextStyle: .subheadline)
         self.subtitleLabel.textColor = .secondaryLabel
         
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
