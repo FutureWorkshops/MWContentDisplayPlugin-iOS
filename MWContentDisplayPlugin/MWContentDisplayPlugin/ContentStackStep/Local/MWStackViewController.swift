@@ -9,9 +9,9 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
-public class MWStackViewController: ORKStepViewController {
+public class MWStackViewController: MWStepViewController {
     
-    var contentStackStep: MWStackStep { self.step as! MWStackStep }
+    var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     
     public override func viewDidLoad() {

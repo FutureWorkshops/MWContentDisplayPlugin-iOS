@@ -16,7 +16,7 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     private let stateView = StateView(frame: .zero)
     
     //MARK: Properties
-    var remoteContentStep: MWNetworkStackStep! { self.step as? MWNetworkStackStep }
+    var remoteContentStep: MWNetworkStackStep! { self.mwStep as? MWNetworkStackStep }
     weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
 
     //MARK: Lifecycle
