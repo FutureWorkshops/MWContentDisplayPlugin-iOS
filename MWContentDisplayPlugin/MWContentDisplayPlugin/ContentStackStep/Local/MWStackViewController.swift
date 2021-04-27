@@ -24,14 +24,12 @@ public class MWStackViewController: MWStepViewController {
     }
     
     func handleBackButtonTapped() {
-        if let navController = self.navigationController {
-            if navController.viewControllers.count == 1 {
-                navController.dismiss(animated: true)
-            } else {
-                navController.popViewController(animated: true)
-            }
+        if let navController = self.navigationController, navController.viewControllers.count > 1 {
+            self.goBackward()
         } else {
-            self.dismiss(animated: true)
+            if let target = self.cancelButtonItem?.target, let action = self.cancelButtonItem?.action {
+                UIApplication.shared.sendAction(action, to: target, from: nil, for: nil)
+            }
         }
     }
 }
