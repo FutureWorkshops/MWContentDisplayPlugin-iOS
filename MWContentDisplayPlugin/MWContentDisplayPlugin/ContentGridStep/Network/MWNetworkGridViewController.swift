@@ -12,7 +12,7 @@ class MWNetworkGridViewController: MWGridViewController, RemoteContentStepViewCo
     
     weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
     
-    var remoteContentStep: MWNetworkGridStep! { self.step as? MWNetworkGridStep }
+    var remoteContentStep: MWNetworkGridStep! { self.gridStep as? MWNetworkGridStep }
     
     private lazy var stateView: StateView = {
         let stateView = StateView(frame: .zero)

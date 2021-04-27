@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWGridStep: ORKStep, HasSecondaryWorkflows {
+public class MWGridStep: MWStep, HasSecondaryWorkflows {
     
     public let session: Session
     public let services: StepServices
@@ -27,8 +27,8 @@ public class MWGridStep: ORKStep, HasSecondaryWorkflows {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func stepViewControllerClass() -> AnyClass {
-        return MWGridViewController.self
+    public override func instantiateViewController() -> StepViewController {
+        return MWGridViewController(step: self)
     }
 }
 

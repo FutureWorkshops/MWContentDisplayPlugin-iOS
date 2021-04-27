@@ -35,8 +35,8 @@ public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSo
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func stepViewControllerClass() -> AnyClass {
-        return MWNetworkGridViewController.self
+    public override func instantiateViewController() -> StepViewController {
+        return MWNetworkGridViewController(step: self)
     }
     
     public func loadContent(completion: @escaping (Result<[MWGridStepItem], Error>) -> Void) {

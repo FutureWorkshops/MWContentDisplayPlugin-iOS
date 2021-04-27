@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
+class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     
     struct Item {
         let id: String
@@ -28,7 +28,7 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     private (set) var collectionViewLayout: UICollectionViewLayout!
     private (set) var sections: [Section] = []
     
-    var gridStep: MWGridStep { self.step as! MWGridStep }
+    var gridStep: MWGridStep { self.mwStep as! MWGridStep }
     var secondaryWorkflowIDs: [String] { self.gridStep.secondaryWorkflowIDs }
     
     public override func viewDidLoad() {
@@ -187,18 +187,14 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        guard let identifier = self.step?.identifier else {
-            fatalError("Unable to get the identifier from the step. Something went really wrong")
-        }
-        
         guard self.hasNextStep() else {
             return
         }
         
         let item = self.sections[indexPath.section].items[indexPath.item]
         if let selected = self.gridStep.items.first(where: { item.id == $0.id }) {
-            let result = MWGridStepResult(identifier: identifier, selected: selected)
-            self.addResult(result)
+            let result = MWGridStepResult(identifier: self.gridStep.identifier, selected: selected)
+            self.addStepResult(result)
             self.goForward()
         }
     }
