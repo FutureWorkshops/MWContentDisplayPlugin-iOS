@@ -10,21 +10,14 @@ import MobileWorkflowCore
 
 class MWSimpleCollectionSectionHeader: UICollectionReusableView, ReusableView {
     
-    struct ViewData {
-        let title: String
-    }
+    //MARK: Properties
+    private let titleLabel = UILabel()
     
-    private let titleLabel: UILabel!
-    
+    //MARK: Lifecycle
     override init(frame: CGRect) {
-        
-        let titleLabel = UILabel()
-        titleLabel.font = .preferredFont(forTextStyle: .title2, weight: .bold)
-        self.titleLabel = titleLabel
-        
+        self.titleLabel.font = .preferredFont(forTextStyle: .title2, weight: .bold)
         super.init(frame: frame)
-        
-        self.addPinnedSubview(titleLabel, order: .top, insets: .init(top: 8, leading: 15, bottom: 8, trailing: 15))
+        self.addPinnedSubview(self.titleLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -33,18 +26,12 @@ class MWSimpleCollectionSectionHeader: UICollectionReusableView, ReusableView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
-        self.clear()
-    }
-    
-    //MARK: - Configuration
-    
-    func configure(viewData: ViewData) {
-        self.titleLabel.text = viewData.title
-    }
-    
-    func clear() {
         self.titleLabel.text = nil
+    }
+    
+    //MARK: Configuration
+    func configure(withTitle title: String) {
+        self.titleLabel.text = title
     }
     
 }

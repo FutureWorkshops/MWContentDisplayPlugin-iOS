@@ -32,8 +32,8 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func stepViewControllerClass() -> AnyClass {
-        return MWNetworkStackViewController.self
+    override func instantiateViewController() -> StepViewController {
+        return MWNetworkStackViewController(step: self)
     }
     
     func loadContent(completion: @escaping (Result<MWStackStepContents, Error>) -> Void) {

@@ -8,11 +8,11 @@
 import SwiftUI
 import Kingfisher
 import Foundation
-import FancyScrollView
 
 struct MWStackView: View {
     
     var contents: MWStackStepContents
+    var backButtonTapped: () -> Void
     
     var body: some View {
         self.makeScrollView()
@@ -23,17 +23,17 @@ struct MWStackView: View {
         // work, but it doesn't. If you don't use the correct init (the one that doesn't expect a header), the offset
         // of the ScrollView is completely broken.
         if let headerImageURL = contents.headerImageURL {
-            return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 350.0, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
+            return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 280, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
                 KFImage(headerImageURL)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             }, content: {
                 self.makeContentScrollView()
-            })
+            }, backButtonTapped: self.backButtonTapped)
         } else {
-            return FancyScrollView {
+            return FancyScrollView(content: {
                 self.makeContentScrollView()
-            }
+            }, backButtonTapped: self.backButtonTapped)
         }
     }
     
@@ -42,13 +42,13 @@ struct MWStackView: View {
             ForEach(contents.items) { item in
                 switch item {
                 case .title(let innerItem): MWTitleView(item: innerItem)
-                case .text(let innerItem): MWTextView(item: innerItem)
+                case .text(let innerItem): MWTextView(item: innerItem).padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
                 }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+        .padding(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
     }
 }
 
@@ -57,7 +57,7 @@ fileprivate struct MWTitleView: View {
     let item: MWStackStepItemTitle
         
     var body: some View {
-        Text(item.title).font(.largeTitle)
+        Text(item.title).font(Font(UIFont.preferredFont(forTextStyle: .title3, weight: .bold)))
     }
 }
 
@@ -66,7 +66,7 @@ fileprivate struct MWTextView: View {
     let item: MWStackStepItemText
         
     var body: some View {
-        Text(item.text)
+        Text(item.text).font(.body)
     }
 }
 
@@ -83,24 +83,26 @@ fileprivate struct MWListItemView: View {
                     }
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(width: 44, height: 44, alignment: .center)
-                    .cornerRadius(4.0)
+                    .frame(width: 48, height: 48, alignment: .center)
+                    .cornerRadius(8)
             }
             VStack(alignment: .leading) {
                 if let title = stepTypeListItem.title {
                     Text(title)
-                        .fontWeight(.semibold)
+                        .font(.body)
                 }
                 if let detailText = stepTypeListItem.detailText {
                     Text(detailText)
+                        .font(.subheadline)
+                        .foregroundColor(Color(UIColor.secondaryLabel))
                 }
             }
         }
     }
     
     func makeImagePlaceholder() -> some View {
-        RoundedRectangle(cornerRadius: 4.0)
+        RoundedRectangle(cornerRadius: 8)
             .fill(Color.gray)
-            .frame(width: 44, height: 44, alignment: .center)
+            .frame(width: 48, height: 48, alignment: .center)
     }
 }

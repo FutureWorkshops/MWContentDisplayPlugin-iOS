@@ -16,7 +16,7 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     private let stateView = StateView(frame: .zero)
     
     //MARK: Properties
-    var remoteContentStep: MWNetworkStackStep! { self.step as? MWNetworkStackStep }
+    var remoteContentStep: MWNetworkStackStep! { self.mwStep as? MWNetworkStackStep }
     weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
 
     //MARK: Lifecycle
@@ -49,7 +49,9 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
         
         self.remoteContentStep.contents = content
         
-        let swiftUIRootView = MWStackView(contents: self.remoteContentStep.contents)
+        let swiftUIRootView = MWStackView(contents: self.remoteContentStep.contents, backButtonTapped: { [weak self] in
+            self?.handleBackButtonTapped()
+        })
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
         

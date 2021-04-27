@@ -1,31 +1,29 @@
 {
     "gatherAnalytics": false,
-    "id": 910,
+    "id": 1200,
     "locales": [],
-    "name": "NetworkContentStackStep",
-    "navigationStyle": "list",
-    "networkService": {
-        "properties": {
-            "openApiSpecVersion": "0.0.1"
-        },
-        "type": "io.mobileworkflow.OAuthRestAsyncService"
-    },
-    "servers": [
-        {
-            "id": 418,
-            "url": "https://7f478bc9-9d95-406d-a8e8-555f5e882bf5.mock.pstmn.io"
-        }
-    ],
+    "name": "Xavi - ContentDisplayPlugin NEW UI",
+    "navigationStyle": "tab_bar",
+    "navigationWorkflow1Id": "0de2acc8-d6cf-41c7-937d-bd41730d5af2",
+    "servers": [],
     "systemTintColor": "blue",
     "workflows": [
         {
-            "id": "271087cc-5971-439b-b732-a07ded1d7ea3",
-            "identifier": "NetworkContentStackStep",
+            "id": "0de2acc8-d6cf-41c7-937d-bd41730d5af2",
+            "identifier": "ContentDisplayPlugin",
             "materialIconName": "",
-            "name": "NetworkContentStackStep",
+            "name": "ContentDisplayPlugin",
             "navigationRules": [
                 {
-                    "from": "network_test",
+                    "from": "workouts_grid",
+                    "rules": [
+                        {
+                            "to": "yoga_for_beginners"
+                        }
+                    ]
+                },
+                {
+                    "from": "yoga_for_beginners",
                     "rules": [
                         {
                             "to": "ORKNullStepIdentifier"
@@ -36,12 +34,127 @@
             "sfSymbolName": "",
             "steps": [
                 {
-                    "identifier": "network_test",
+                    "identifier": "workouts_grid",
+                    "items": [
+                        {
+                            "id": "1",
+                            "text": "Featured Workouts",
+                            "type": "largeSection"
+                        },
+                        {
+                            "detailText": "40 mins",
+                            "id": "2",
+                            "imageURL": "https://source.unsplash.com/cLWyv4YTbJw/800x600",
+                            "text": "Full Body Dumbbell Workout",
+                            "type": "item"
+                        },
+                        {
+                            "detailText": "10 mins",
+                            "id": "3",
+                            "imageURL": "https://source.unsplash.com/f2rbmtkCnAI/800x600",
+                            "text": "Short Dumbbell Workout",
+                            "type": "item"
+                        },
+                        {
+                            "id": "4",
+                            "text": "Low Impact",
+                            "type": "smallSection"
+                        },
+                        {
+                            "detailText": "30 mins",
+                            "id": "5",
+                            "imageURL": "https://source.unsplash.com/nqUHQkuVj3c/800x600",
+                            "text": "Yoga for Beginners",
+                            "type": "item"
+                        },
+                        {
+                            "detailText": "25 mins",
+                            "id": "6",
+                            "imageURL": "https://source.unsplash.com/gJtDg6WfMlQ/800x600",
+                            "text": "Stretching Workout",
+                            "type": "item"
+                        },
+                        {
+                            "id": "7",
+                            "text": "Ab Workouts",
+                            "type": "smallSection"
+                        },
+                        {
+                            "detailText": "15 mins",
+                            "id": "8",
+                            "imageURL": "https://source.unsplash.com/eoVdk1z4ihI/800x600",
+                            "text": "Hard Abs Workout",
+                            "type": "item"
+                        },
+                        {
+                            "detailText": "5 mins",
+                            "id": "9",
+                            "imageURL": "https://source.unsplash.com/DC5akQJyH4I/800x600",
+                            "text": "Quick Abs Workout",
+                            "type": "item"
+                        }
+                    ],
                     "optional": false,
-                    "title": "Network Test",
-                    "type": "io.mobileworkflow.NetworkStyledStack",
-                    "url": "/networkContentStack",
-                    "uuid": "b5aa5c45-76be-415a-a5f5-439343e28e7d"
+                    "title": "Workouts Grid",
+                    "type": "videoGrid",
+                    "uuid": "b946a2b0-b3a7-466b-bc57-4d70d9301862"
+                },
+                {
+                    "identifier": "yoga_for_beginners",
+                    "imageURL": "https://source.unsplash.com/nqUHQkuVj3c/800x600",
+                    "items": [
+                        {
+                            "id": "1",
+                            "title": "Session Description",
+                            "type": "title"
+                        },
+                        {
+                            "id": "2",
+                            "text": "Take the time to destress and unwind with our Yoga for Beginners. Suitable for everyone whether you’re a seasoned yogi or are looking to try yoga for the first time.",
+                            "type": "text"
+                        },
+                        {
+                            "id": "3",
+                            "title": "Instructor",
+                            "type": "title"
+                        },
+                        {
+                            "id": "4",
+                            "text": "Jacqueline Asong",
+                            "title": "Jacqueline Asong",
+                            "type": "text"
+                        },
+                        {
+                            "id": "5",
+                            "title": "You will need",
+                            "type": "title"
+                        },
+                        {
+                            "detailText": "To stay hydrated",
+                            "id": "6",
+                            "imageURL": "https://source.unsplash.com/4Kd3svPFuEI/800x600",
+                            "text": "Water bottle",
+                            "type": "listItem"
+                        },
+                        {
+                            "detailText": "To allow movement easily",
+                            "id": "7",
+                            "imageURL": "https://source.unsplash.com/E8N5sAI7Bpw/800x600",
+                            "text": "Comfy, stretchy clothes",
+                            "type": "listItem"
+                        },
+                        {
+                            "detailText": "To provide cushioning and prevent slipping",
+                            "id": "8",
+                            "imageURL": "https://source.unsplash.com/biX8sBfNcPc/800x600",
+                            "text": "Yoga Mat (optional)",
+                            "type": "listItem"
+                        }
+                    ],
+                    "optional": false,
+                    "title": "Yoga for Beginners",
+                    "type": "io.mobileworkflow.ContentStack",
+                    "uuid": "ec3f631b-70f1-4f52-8ff2-1d99cb930e96"
                 }
             ]
         }

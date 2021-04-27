@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
+class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     
     struct Item {
         let id: String
@@ -28,19 +28,19 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     private (set) var collectionViewLayout: UICollectionViewLayout!
     private (set) var sections: [Section] = []
     
-    var gridStep: MWGridStep { self.step as! MWGridStep }
+    var gridStep: MWGridStep { self.mwStep as! MWGridStep }
     var secondaryWorkflowIDs: [String] { self.gridStep.secondaryWorkflowIDs }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = .systemBackground
         
         self.setupCollectionView()
-        self.setupConstraints()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.update(items: self.gridStep.items)
     }
     
@@ -52,7 +52,10 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     // MARK: Configuration
     
     private func setupCollectionView() {
-        self.setupCollectionLayout()
+        // Generate the layout
+        self.collectionViewLayout = self.generateLayout()
+        
+        // Configure the collectionView
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(MWImageCollectionViewCell.self)
@@ -60,13 +63,18 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = collectionView.contentInset
         
         self.view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+        
         self.collectionView = collectionView
-    }
-    
-    private func setupCollectionLayout() {
-        self.collectionViewLayout = self.generateLayout()
     }
     
     //MARK: - Layout generation
@@ -91,75 +99,42 @@ class MWGridViewController: ORKStepViewController, HasSecondaryWorkflows {
     }
     
     private func generateBigImageLayout(contentWidth: CGFloat) -> NSCollectionLayoutSection {
-        return self.generateImageLayout(
-            itemWidth: contentWidth - 45, // space for margins and interGroupSpacing
-            sectionMargin: 0,
-            orthogonalScrollingBehavior: .groupPagingCentered
-        )
+        return self.generateImageLayout(itemWidth: contentWidth * 0.9, orthogonalScrollingBehavior: .groupPagingCentered)
     }
     
     private func generateSmallImageLayout(contentWidth: CGFloat) -> NSCollectionLayoutSection {
-        return self.generateImageLayout(
-            itemWidth: 160,
-            sectionMargin: 15,
-            orthogonalScrollingBehavior: .continuous
-        )
+        return self.generateImageLayout(itemWidth: contentWidth * 0.55)
     }
     
-    private func generateImageLayout(
-        itemWidth: CGFloat,
-        sectionMargin: CGFloat,
-        orthogonalScrollingBehavior: UICollectionLayoutSectionOrthogonalScrollingBehavior
-    ) -> NSCollectionLayoutSection {
+    private func generateImageLayout(itemWidth: CGFloat, orthogonalScrollingBehavior: UICollectionLayoutSectionOrthogonalScrollingBehavior = .continuous) -> NSCollectionLayoutSection {
         
+        // Items
         let itemEstimatedHeight = itemWidth * (9/16) + 50
-        
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(itemWidth),
-            heightDimension: .estimated(itemEstimatedHeight)
-        )
+        let itemSize = NSCollectionLayoutSize(widthDimension: .absolute(itemWidth), heightDimension: .estimated(itemEstimatedHeight) )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: itemSize,
-            subitem: item,
-            count: 1
-        )
+        // Groups
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitem: item, count: 1)
         
-        let headerSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(44)
-        )
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: headerSize,
-            elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier,
-            alignment: .top
-        )
+        // Header
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier, alignment: .top)
+        sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                              leading: orthogonalScrollingBehavior == .groupPagingCentered ? 8 : 0,
+                                                              bottom: 0,
+                                                              trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 8 : 0)
         
+        // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 15
-        section.contentInsets = NSDirectionalEdgeInsets(
-            top: 5,
-            leading: sectionMargin,
-            bottom: 5,
-            trailing: sectionMargin
-        )
+        section.interGroupSpacing = 6
+        section.contentInsets = NSDirectionalEdgeInsets(top: 12,
+                                                        leading: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : 16,
+                                                        bottom: 24,
+                                                        trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : 16)
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = orthogonalScrollingBehavior
         
         return section
-    }
-    
-    private func setupConstraints() {
-        guard let collectionView = self.collectionView else { return }
-        
-        let constraints = [
-            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-        ]
-        NSLayoutConstraint.activate(constraints)
     }
 }
 
@@ -182,12 +157,12 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session)
             result = cell
             
         case .item: preconditionFailure("Not a section")
@@ -202,7 +177,7 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
         case MWSimpleCollectionSectionHeader.defaultReuseIdentifier:
             let sectionTitle = self.sections[indexPath.section].title
             let header: MWSimpleCollectionSectionHeader = collectionView.dequeueReusableSupplementaryViewOfKind(kind, forIndexPath: indexPath)
-            header.configure(viewData: MWSimpleCollectionSectionHeader.ViewData(title: sectionTitle))
+            header.configure(withTitle: sectionTitle)
             return header
             
         default: return UICollectionReusableView()
@@ -212,18 +187,14 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         
-        guard let identifier = self.step?.identifier else {
-            fatalError("Unable to get the identifier from the step. Something went really wrong")
-        }
-        
         guard self.hasNextStep() else {
             return
         }
         
         let item = self.sections[indexPath.section].items[indexPath.item]
         if let selected = self.gridStep.items.first(where: { item.id == $0.id }) {
-            let result = MWGridStepResult(identifier: identifier, selected: selected)
-            self.addResult(result)
+            let result = MWGridStepResult(identifier: self.gridStep.identifier, selected: selected)
+            self.addStepResult(result)
             self.goForward()
         }
     }

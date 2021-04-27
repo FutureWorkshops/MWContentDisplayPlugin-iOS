@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWStackStep: ORKStep {
+public class MWStackStep: MWStep {
     
     var contents: MWStackStepContents
     
@@ -21,8 +21,8 @@ public class MWStackStep: ORKStep {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func stepViewControllerClass() -> AnyClass {
-        return MWStackViewController.self
+    public override func instantiateViewController() -> StepViewController {
+        MWStackViewController(step: self)
     }
 }
 
