@@ -1,12 +1,10 @@
 PODS:
-  - FancyScrollView (0.1.4)
   - Kingfisher (6.3.0)
   - MobileWorkflow (0.0.118):
     - MobileWorkflow/Core (= 0.0.118)
   - MobileWorkflow/Core (0.0.118)
 
 DEPENDENCIES:
-  - FancyScrollView (from `https://github.com/FutureWorkshops/FancyScrollView`, branch `develop`)
   - Kingfisher (~> 6.0)
   - MobileWorkflow
 
@@ -16,21 +14,10 @@ SPEC REPOS:
   trunk:
     - Kingfisher
 
-EXTERNAL SOURCES:
-  FancyScrollView:
-    :branch: develop
-    :git: https://github.com/FutureWorkshops/FancyScrollView
-
-CHECKOUT OPTIONS:
-  FancyScrollView:
-    :commit: d9fe7fe3d4e6edb23a986ad345bb8b51fa91af06
-    :git: https://github.com/FutureWorkshops/FancyScrollView
-
 SPEC CHECKSUMS:
-  FancyScrollView: e8d0ccd306bbbf0b7dba70cd06d14b5b16c71be8
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
   MobileWorkflow: eb663f87f22c201a150e1d624f3f1104ab40d6fe
 
-PODFILE CHECKSUM: 5137a0cd6f4411977ab4247bfb2bb2f81d80bfc8
+PODFILE CHECKSUM: 87a7f4373d76a8367b5ac9941974576a7b1ab6be
 
 COCOAPODS: 1.10.1

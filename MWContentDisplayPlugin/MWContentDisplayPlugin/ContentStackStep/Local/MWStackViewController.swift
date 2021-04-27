@@ -16,9 +16,23 @@ public class MWStackViewController: MWStepViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        let swiftUIRootView = MWStackView(contents: self.contentStackStep.contents)
+        let swiftUIRootView = MWStackView(contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
+            self?.handleBackButtonTapped()
+        })
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
+    }
+    
+    func handleBackButtonTapped() {
+        if let navController = self.navigationController {
+            if navController.viewControllers.count == 1 {
+                navController.dismiss(animated: true)
+            } else {
+                navController.popViewController(animated: true)
+            }
+        } else {
+            self.dismiss(animated: true)
+        }
     }
 }
 

@@ -8,11 +8,11 @@
 import SwiftUI
 import Kingfisher
 import Foundation
-import FancyScrollView
 
 struct MWStackView: View {
     
     var contents: MWStackStepContents
+    var backButtonTapped: () -> Void
     
     var body: some View {
         self.makeScrollView()
@@ -29,11 +29,11 @@ struct MWStackView: View {
                     .aspectRatio(contentMode: .fill)
             }, content: {
                 self.makeContentScrollView()
-            })
+            }, backButtonTapped: self.backButtonTapped)
         } else {
-            return FancyScrollView {
+            return FancyScrollView(content: {
                 self.makeContentScrollView()
-            }
+            }, backButtonTapped: self.backButtonTapped)
         }
     }
     

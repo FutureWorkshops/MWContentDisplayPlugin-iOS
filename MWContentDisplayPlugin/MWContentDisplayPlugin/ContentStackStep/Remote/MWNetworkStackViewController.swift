@@ -49,7 +49,9 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
         
         self.remoteContentStep.contents = content
         
-        let swiftUIRootView = MWStackView(contents: self.remoteContentStep.contents)
+        let swiftUIRootView = MWStackView(contents: self.remoteContentStep.contents, backButtonTapped: { [weak self] in
+            self?.handleBackButtonTapped()
+        })
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
         

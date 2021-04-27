@@ -13,7 +13,6 @@ project 'MWContentDisplayPlugin/MWContentDisplayPlugin.xcodeproj'
 abstract_target 'MobileWorkflowContentDisplay' do
   pod 'MobileWorkflow'
   pod 'Kingfisher', '~> 6.0'
-  pod 'FancyScrollView', :git => 'https://github.com/FutureWorkshops/FancyScrollView', :branch => 'develop'
 
   target 'MWContentDisplay' do
     project 'MWContentDisplay/MWContentDisplay.xcodeproj'
