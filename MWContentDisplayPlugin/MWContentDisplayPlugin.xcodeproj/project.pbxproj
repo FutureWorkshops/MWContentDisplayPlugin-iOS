@@ -263,11 +263,11 @@
 			isa = PBXGroup;
 			children = (
 				B1E25425263848400084A44D /* FancyScrollView.swift */,
+				B1E2542A263848400084A44D /* HeaderScrollView.swift */,
 				B1E2542B263848400084A44D /* AppleMusicStyleScrollView.swift */,
 				B1E25428263848400084A44D /* BackButton.swift */,
-				B1E25427263848400084A44D /* BlurView.swift */,
-				B1E2542A263848400084A44D /* HeaderScrollView.swift */,
 				B1E2542C263848400084A44D /* HeaderScrollViewTitle.swift */,
+				B1E25427263848400084A44D /* BlurView.swift */,
 				B1E25426263848400084A44D /* ScrollDownHeaderBehavior.swift */,
 				B1E2542D263848400084A44D /* ScrollUpHeaderBehavior.swift */,
 				B1E25429263848400084A44D /* View+hideNavigationBarWithoutLosingSwipeBack.swift */,

@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
     s.subspec 'Core' do |cs|
 	    cs.dependency            'MobileWorkflow'
         cs.dependency            'Kingfisher', '~> 6.0'
-        cs.dependency            'FancyScrollView', '0.1.3'
         cs.source_files          = 'MWContentDisplayPlugin/MWContentDisplayPlugin/**/*.swift'
     end
 end
