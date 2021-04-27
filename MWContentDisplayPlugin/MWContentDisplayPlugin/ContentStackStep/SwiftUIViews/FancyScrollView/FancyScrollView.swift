@@ -1,6 +1,6 @@
 import SwiftUI
 
-// Original code: https://github.com/FutureWorkshops/FancyScrollView
+// Original code: https://github.com/nerdsupremacist/FancyScrollView
 
 public struct FancyScrollView: View {
     let title: String
