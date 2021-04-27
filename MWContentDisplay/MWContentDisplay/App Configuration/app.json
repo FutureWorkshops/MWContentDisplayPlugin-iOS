@@ -3,7 +3,7 @@
     "id": 1200,
     "locales": [],
     "name": "Xavi - ContentDisplayPlugin NEW UI",
-    "navigationStyle": "primary_workflow",
+    "navigationStyle": "tab_bar",
     "navigationWorkflow1Id": "0de2acc8-d6cf-41c7-937d-bd41730d5af2",
     "servers": [],
     "systemTintColor": "blue",
