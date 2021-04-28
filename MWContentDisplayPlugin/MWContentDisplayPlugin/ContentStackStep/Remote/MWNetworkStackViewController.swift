@@ -43,17 +43,9 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     }
     
     func update(content: MWStackStepContents) {
-        if let previousHostingController = self.hostingController {
-            self.removeCovering(childViewController: previousHostingController)
-        }
-        
         self.remoteContentStep.contents = content
         
-        let swiftUIRootView = MWStackView(contents: self.remoteContentStep.contents, backButtonTapped: { [weak self] in
-            self?.handleBackButtonTapped()
-        })
-        self.hostingController = UIHostingController(rootView: swiftUIRootView)
-        self.addCovering(childViewController: self.hostingController!)
+        self.installSwiftUIView()
         
         if content.items.isEmpty {
             self.stateView.configure(isLoading: false, title: L10n.noContent, subtitle: nil, buttonConfig: nil)
