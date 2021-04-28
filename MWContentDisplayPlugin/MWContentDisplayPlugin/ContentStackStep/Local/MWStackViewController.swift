@@ -9,16 +9,19 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
-public class MWStackViewController: MWStepViewController {
+public class MWStackViewController: MWStepViewController, SuccessActionHandler {
     
+    //MARK: Properties
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     
+    //MARK: Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.installSwiftUIView()
     }
     
+    // MARK: Methods
     func installSwiftUIView() {
         if let previousHostingController = self.hostingController {
             self.removeCovering(childViewController: previousHostingController)
@@ -26,8 +29,8 @@ public class MWStackViewController: MWStepViewController {
         
         let swiftUIRootView = MWStackView(contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
             self?.handleBackButtonTapped()
-        }, buttonTapped: { buttonItem in
-            print("Tapped \(buttonItem.label)")
+        }, buttonTapped: { [weak self] item in
+            self?.handleButtonItemTapped(item)
         })
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
@@ -40,6 +43,27 @@ public class MWStackViewController: MWStepViewController {
             if let target = self.cancelButtonItem?.target, let action = self.cancelButtonItem?.action {
                 UIApplication.shared.sendAction(action, to: target, from: nil, for: nil)
             }
+        }
+    }
+    
+    func handleButtonItemTapped(_ item: MWStackStepItemButton) {
+        //TODO: Do something and then call handleSuccessAction
+        print("Tapped: \(item.label)")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.handleSuccessAction(item.sucessAction)
+        }
+    }
+    
+    //MARK: SuccessActionHandler
+    public func handleSuccessAction(_ action: SuccessAction) {
+        switch action {
+        case .none: break
+        case .forward: self.goForward()
+        case .backward: self.goBackward()
+        case .reload: self.installSwiftUIView()
+        @unknown default:
+            fatalError("Unhandled action: \(action.rawValue)")
         }
     }
 }

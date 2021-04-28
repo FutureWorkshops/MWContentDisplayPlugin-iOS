@@ -153,7 +153,8 @@
                         {
                             "id": "9",
                             "label": "Book Session",
-                            "type": "button"
+                            "type": "button",
+                            "onSuccess": "backward"
                         }
                     ],
                     "optional": false,
