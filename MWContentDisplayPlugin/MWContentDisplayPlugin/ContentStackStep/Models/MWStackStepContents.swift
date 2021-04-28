@@ -126,6 +126,7 @@ struct MWStackStepStepItemListItem: Identifiable {
 struct MWStackStepItemButton: Identifiable {
     let id: String
     let label: String
+    let remoteURL: URL?
     let sucessAction: SuccessAction
     
     init?(json: [String:Any], localizationService: LocalizationService) {
@@ -139,6 +140,7 @@ struct MWStackStepItemButton: Identifiable {
         
         self.id = id
         self.label = localizationService.translate(json["label"] as? String) ?? ""
+        self.remoteURL = (json["url"] as? String).flatMap{ URL(string: $0) }
         self.sucessAction = SuccessAction(rawValue: json["onSuccess"] as? String ?? "") ?? .none
     }
 }
