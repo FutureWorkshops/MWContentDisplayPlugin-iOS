@@ -9,7 +9,10 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
-public class MWStackViewController: MWStepViewController, SuccessActionHandler {
+public class MWStackViewController: MWStepViewController, WorkflowPresentationDelegator, SuccessActionHandler {
+    
+    //MARK: Public properties (WorkflowPresentationDelegator)
+    public weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
     
     //MARK: Properties
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
@@ -47,8 +50,16 @@ public class MWStackViewController: MWStepViewController, SuccessActionHandler {
     }
     
     func handleButtonItemTapped(_ item: MWStackStepItemButton) {
-        if let remoteURL = item.remoteURL {
+        if let modalWorkflow = item.modalWorkflow {
+            self.workflowPresentationDelegate?.presentWorkflowWithName(modalWorkflow, isDiscardable: true, animated: true) { [weak self] reason in
+                if reason == .completed {
+                    self?.handleSuccessAction(item.sucessAction)
+                }
+            }
+        } else if let remoteURL = item.remoteURL, let httpMethod = item.remoteURLMethod {
             //TODO: Perform the request and call success
+        } else if let systemURL = item.systemURL {
+            //TODO: Open the system URL
         } else {
             self.handleSuccessAction(item.sucessAction)
         }

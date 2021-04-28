@@ -17,7 +17,6 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     
     //MARK: Properties
     var remoteContentStep: MWNetworkStackStep! { self.mwStep as? MWNetworkStackStep }
-    weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
 
     //MARK: Lifecycle
     override func viewDidLoad() {
