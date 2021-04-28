@@ -59,7 +59,11 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         } else if let remoteURL = item.remoteURL, let httpMethod = item.remoteURLMethod {
             //TODO: Perform the request and call success
         } else if let systemURL = item.systemURL {
-            //TODO: Open the system URL
+            do {
+                try self.performSystemAction(systemURL.absoluteString)
+            } catch {
+                self.show(error)
+            }
         } else {
             self.handleSuccessAction(item.sucessAction)
         }
