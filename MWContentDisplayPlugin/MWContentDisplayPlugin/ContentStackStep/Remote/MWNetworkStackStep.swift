@@ -16,16 +16,12 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
     
     // Remote Content
     var stepContext: StepContext
-    var session: Session
-    var services: StepServices
     var contentURL: String?
     
     init(identifier: String, contentURLString: String?, contents: MWStackStepContents, stepContext: StepContext, session: Session, services: StepServices) {
         self.stepContext = stepContext
-        self.session = session
-        self.services = services
         self.contentURL = contentURLString
-        super.init(identifier: identifier, contents: contents)
+        super.init(identifier: identifier, contents: contents, session: session, services: services)
     }
     
     required init(coder aDecoder: NSCoder) {

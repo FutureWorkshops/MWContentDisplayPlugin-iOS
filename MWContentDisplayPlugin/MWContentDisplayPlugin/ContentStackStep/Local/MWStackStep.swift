@@ -11,9 +11,13 @@ import MobileWorkflowCore
 public class MWStackStep: MWStep {
     
     var contents: MWStackStepContents
+    let session: Session
+    let services: StepServices
     
-    init(identifier: String, contents: MWStackStepContents) {
+    init(identifier: String, contents: MWStackStepContents, session: Session, services: StepServices) {
         self.contents = contents
+        self.session = session
+        self.services = services
         super.init(identifier: identifier)
     }
     
@@ -33,7 +37,9 @@ extension MWStackStep: BuildableStep {
         
         if stepInfo.data.type == MWContentDisplayStepType.stack.typeName {
             return MWStackStep(identifier: stepInfo.data.identifier,
-                               contents: contents)
+                               contents: contents,
+                               session: stepInfo.session,
+                               services: services)
         } else if stepInfo.data.type == MWContentDisplayStepType.networkStack.typeName {
             return MWNetworkStackStep(identifier: stepInfo.data.identifier,
                                       contentURLString: stepInfo.data.content["url"] as? String,
