@@ -113,8 +113,15 @@ fileprivate struct MWButtonView: View {
     let item: MWStackStepItemButton
     
     var body: some View {
-        Button(item.title ?? "") {
+        Button {
             print("Tapped")
-        }
+        } label: {
+            Text(item.title ?? "")
+                .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
+                .frame(maxWidth: .infinity, idealHeight: 50, maxHeight: 50, alignment: .center)
+                .foregroundColor(.white)
+                .background(Color.blue)
+                .cornerRadius(16)
+        }.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
     }
 }
