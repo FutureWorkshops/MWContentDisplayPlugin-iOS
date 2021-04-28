@@ -31,12 +31,14 @@ enum MWStackStepItem: Identifiable {
     case title(MWStackStepItemTitle)
     case text(MWStackStepItemText)
     case listItem(MWStackStepStepItemListItem)
+    case button(MWStackStepItemButton)
     
     public var id: String {
         switch self {
         case .title(let item): return item.id
         case .text(let item): return item.id
         case .listItem(let item): return item.id
+        case .button(let item): return item.id
         }
     }
     
@@ -47,6 +49,8 @@ enum MWStackStepItem: Identifiable {
             self = .text(stepTypeText)
         } else if let stepTypeListItem = MWStackStepStepItemListItem(json: json, localizationService: localizationService) {
             self = .listItem(stepTypeListItem)
+        } else if let stepTypeButtom = MWStackStepItemButton(json: json, localizationService: localizationService) {
+            self = .button(stepTypeButtom)
         } else {
             return nil
         }
@@ -116,5 +120,23 @@ struct MWStackStepStepItemListItem: Identifiable {
         } else {
             self.imageURL = nil
         }
+    }
+}
+
+struct MWStackStepItemButton: Identifiable {
+    let id: String
+    let title: String?
+    
+    init?(json: [String:Any], localizationService: LocalizationService) {
+        guard (json["type"] as? String) == Optional("button") else {
+            return nil
+        }
+        guard let id = json["id"] as? String else {
+            assertionFailure("Missing id.")
+            return nil
+        }
+        
+        self.id = id
+        self.title = localizationService.translate(json["title"] as? String)
     }
 }

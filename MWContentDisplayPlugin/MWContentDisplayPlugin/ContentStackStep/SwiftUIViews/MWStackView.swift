@@ -44,6 +44,7 @@ struct MWStackView: View {
                 case .title(let innerItem): MWTitleView(item: innerItem)
                 case .text(let innerItem): MWTextView(item: innerItem).padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
+                case .button(let innerItem): MWButtonView(item: innerItem)
                 }
             }
         }
@@ -104,5 +105,16 @@ fileprivate struct MWListItemView: View {
         RoundedRectangle(cornerRadius: 8)
             .fill(Color.gray)
             .frame(width: 48, height: 48, alignment: .center)
+    }
+}
+
+fileprivate struct MWButtonView: View {
+    
+    let item: MWStackStepItemButton
+    
+    var body: some View {
+        Button(item.title ?? "") {
+            print("Tapped")
+        }
     }
 }

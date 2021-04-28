@@ -149,6 +149,11 @@
                             "imageURL": "https://source.unsplash.com/biX8sBfNcPc/800x600",
                             "text": "Yoga Mat (optional)",
                             "type": "listItem"
+                        },
+                        {
+                            "id": "9",
+                            "title": "Book Session",
+                            "type": "button"
                         }
                     ],
                     "optional": false,
