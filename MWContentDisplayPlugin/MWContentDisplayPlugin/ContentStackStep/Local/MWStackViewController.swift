@@ -47,10 +47,9 @@ public class MWStackViewController: MWStepViewController, SuccessActionHandler {
     }
     
     func handleButtonItemTapped(_ item: MWStackStepItemButton) {
-        //TODO: Do something and then call handleSuccessAction
-        print("Tapped: \(item.label)")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        if let remoteURL = item.remoteURL {
+            //TODO: Perform the request and call success
+        } else {
             self.handleSuccessAction(item.sucessAction)
         }
     }
