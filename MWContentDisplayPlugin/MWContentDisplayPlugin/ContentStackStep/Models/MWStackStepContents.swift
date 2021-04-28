@@ -126,7 +126,18 @@ struct MWStackStepStepItemListItem: Identifiable {
 struct MWStackStepItemButton: Identifiable {
     let id: String
     let label: String
+        
+    // Action: Open a modal workflow
+    let modalWorkflow: String?
+    
+    // Action: Perform a request to the given URL
     let remoteURL: URL?
+    let remoteURLMethod: String?
+    
+    // Action: Open the URL to the system
+    let systemURL: URL?
+    
+    // What to do after performing the action
     let sucessAction: SuccessAction
     
     init?(json: [String:Any], localizationService: LocalizationService) {
@@ -140,7 +151,10 @@ struct MWStackStepItemButton: Identifiable {
         
         self.id = id
         self.label = localizationService.translate(json["label"] as? String) ?? ""
+        self.modalWorkflow = json["modalWorkflow"] as? String
         self.remoteURL = (json["url"] as? String).flatMap{ URL(string: $0) }
+        self.remoteURLMethod = json["method"] as? String
+        self.systemURL = (json["appleSystemURL"] as? String).flatMap{ URL(string: $0) }
         self.sucessAction = SuccessAction(rawValue: json["onSuccess"] as? String ?? "") ?? .none
     }
 }
