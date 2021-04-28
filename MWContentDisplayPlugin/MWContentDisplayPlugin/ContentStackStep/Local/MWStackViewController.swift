@@ -27,7 +27,7 @@ public class MWStackViewController: MWStepViewController {
         let swiftUIRootView = MWStackView(contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
             self?.handleBackButtonTapped()
         }, buttonTapped: { buttonItem in
-            print("Tapped \(buttonItem.title ?? "")")
+            print("Tapped \(buttonItem.label)")
         })
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)

@@ -125,7 +125,8 @@ struct MWStackStepStepItemListItem: Identifiable {
 
 struct MWStackStepItemButton: Identifiable {
     let id: String
-    let title: String?
+    let label: String
+    let sucessAction: SuccessAction
     
     init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("button") else {
@@ -137,6 +138,7 @@ struct MWStackStepItemButton: Identifiable {
         }
         
         self.id = id
-        self.title = localizationService.translate(json["title"] as? String)
+        self.label = localizationService.translate(json["label"] as? String) ?? ""
+        self.sucessAction = SuccessAction(rawValue: json["onSuccess"] as? String ?? "") ?? .none
     }
 }

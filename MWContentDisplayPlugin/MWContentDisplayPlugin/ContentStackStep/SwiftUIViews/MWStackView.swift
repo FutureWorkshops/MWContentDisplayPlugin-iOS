@@ -118,7 +118,7 @@ fileprivate struct MWButtonView: View {
         Button {
             tapped(item)
         } label: {
-            Text(item.title ?? "")
+            Text(item.label)
                 .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
                 .frame(maxWidth: .infinity, idealHeight: 50, maxHeight: 50, alignment: .center)
                 .foregroundColor(.white)

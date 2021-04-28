@@ -152,7 +152,7 @@
                         },
                         {
                             "id": "9",
-                            "title": "Book Session",
+                            "label": "Book Session",
                             "type": "button"
                         }
                     ],
