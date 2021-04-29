@@ -56,11 +56,6 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
                     self?.handleSuccessAction(item.sucessAction)
                 }
             }
-        } else if let remoteURL = item.remoteURL, let httpMethod = item.remoteURLMethod {
-            self.performRequest(to: remoteURL, usingHTTPMethod: httpMethod) { result in
-                //TODO: Handle result
-                dump(result)
-            }
         } else if let systemURL = item.systemURL {
             do {
                 try self.performSystemAction(systemURL.absoluteString)
@@ -69,30 +64,6 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
             }
         } else {
             self.handleSuccessAction(item.sucessAction)
-        }
-    }
-    
-    func performRequest(to url: URL, usingHTTPMethod httpMethod: HTTPMethod, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = self.contentStackStep.session.resolve(url: url.absoluteString) else {
-            return completion(.failure(URLError(.badURL)))
-        }
-        do {
-            let credential = try self.contentStackStep.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
-            let task = URLAsyncTask<Data?>.build(url: url,
-                                          method: httpMethod,
-                                          body: nil,
-                                          session: self.contentStackStep.session,
-                                          credential: credential,
-                                          headers: [:]) { data in
-                //TODO: Parse the response
-                throw ParseError.invalidAppData(cause: "UNHANDLED")
-            }
-            self.contentStackStep.services.perform(task: task, session: self.contentStackStep.session) { result in
-                //TODO: Handle result
-                dump(result)
-            }
-        } catch (let error) {
-            completion(.failure(error))
         }
     }
     
