@@ -122,7 +122,7 @@ fileprivate struct MWButtonView: View {
                 .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
                 .frame(maxWidth: .infinity, idealHeight: 50, maxHeight: 50, alignment: .center)
                 .foregroundColor(.white)
-                .background(Color(UIColor.systemBlue))
+                .background(item.remoteURLMethod == Optional(.DELETE) ? Color(UIColor.systemRed) :Color(UIColor.systemBlue))
                 .cornerRadius(16)
         }.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
     }
