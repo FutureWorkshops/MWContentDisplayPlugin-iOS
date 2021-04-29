@@ -73,17 +73,24 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
         guard httpMethod == .PUT || httpMethod == .DELETE else { return }
         do {
             let credential = try self.remoteContentStep.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
-            let task = URLAsyncTask<MWStackStepContents>.build(url: url, method: httpMethod, session: self.remoteContentStep.session, credential: credential, headers: [:]) { data -> MWStackStepContents in
-                guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any] else {
-                    throw ParseError.invalidServerData(cause: "Unexpected JSON format.")
+            let task = URLAsyncTask<MWStackStepContents?>.build(url: url, method: httpMethod, session: self.remoteContentStep.session, credential: credential, headers: [:]) { data -> MWStackStepContents? in
+                if httpMethod == .PUT {
+                    guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any] else {
+                        throw ParseError.invalidServerData(cause: "Unexpected JSON format.")
+                    }
+                    return MWStackStepContents(json: json, localizationService: self.remoteContentStep.services.localizationService)
+                } else {
+                    // For delete we don't need to parse the JSON
+                    return nil
                 }
-                return MWStackStepContents(json: json, localizationService: self.remoteContentStep.services.localizationService)
             }
             self.remoteContentStep.services.perform(task: task, session: self.remoteContentStep.session) { [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let newContents):
-                    self.update(content: newContents)
+                    if let newContents = newContents {
+                        self.update(content: newContents)
+                    }
                     self.handleSuccessAction(successAction)
                 case .failure(let error):
                     self.show(error)
