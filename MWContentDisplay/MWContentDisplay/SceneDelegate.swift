@@ -24,7 +24,7 @@ class SceneDelegate: MWSceneDelegate {
     override func preferredConfigurations(urlContexts: Set<UIOpenURLContext>) -> [AppConfigurationContext] {
         var preferredConfigurations = [AppConfigurationContext]()
         if let filePath = Bundle.main.path(forResource: "app", ofType: "json") {
-            preferredConfigurations.append(.file(path: filePath, serverId: 418, workflowId: nil, sessionValues: nil))
+            preferredConfigurations.append(.file(path: filePath, serverId: 527, workflowId: nil, sessionValues: nil))
         }
         return preferredConfigurations
     }
