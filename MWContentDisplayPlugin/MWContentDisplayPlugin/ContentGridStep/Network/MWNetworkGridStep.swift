@@ -8,15 +8,15 @@
 import Foundation
 import MobileWorkflowCore
 
-public struct MWNetworkGridItemTask: CredentializedAsyncTask, URLAsyncTaskConvertible {
-    public typealias Response = [MWGridStepItem]
+public struct NetworkGridItemTask: CredentializedAsyncTask, URLAsyncTaskConvertible {
+    public typealias Response = [GridStepItem]
     public let input: URL
     public let credential: Credential?
 }
 
 public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSource {
     
-    public typealias ResponseType = [MWGridStepItem]
+    public typealias ResponseType = [GridStepItem]
     
     let url: String?
     let emptyText: String?
@@ -39,7 +39,7 @@ public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSo
         return MWNetworkGridViewController(step: self)
     }
     
-    public func loadContent(completion: @escaping (Result<[MWGridStepItem], Error>) -> Void) {
+    public func loadContent(completion: @escaping (Result<[GridStepItem], Error>) -> Void) {
         guard let contentURL = self.url else {
             return completion(.failure(URLError(.badURL)))
         }
@@ -48,7 +48,7 @@ public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSo
         }
         do {
             let credential = try self.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
-            let task = MWNetworkGridItemTask(input: url, credential: credential)
+            let task = NetworkGridItemTask(input: url, credential: credential)
             self.services.perform(task: task, session: self.session, completion: completion)
         } catch (let error) {
             completion(.failure(error))

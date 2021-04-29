@@ -39,7 +39,7 @@ class MWNetworkGridViewController: MWGridViewController, RemoteContentStepViewCo
         self.update(content: [])
     }
     
-    func update(content: [MWGridStepItem]) {
+    func update(content: [GridStepItem]) {
         self.remoteContentStep.items = content
         self.update(items: content)
         

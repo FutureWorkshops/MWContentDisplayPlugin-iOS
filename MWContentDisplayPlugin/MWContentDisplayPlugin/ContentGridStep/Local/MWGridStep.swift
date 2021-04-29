@@ -13,9 +13,9 @@ public class MWGridStep: MWStep, HasSecondaryWorkflows {
     public let session: Session
     public let services: StepServices
     public let secondaryWorkflowIDs: [String]
-    public var items: [MWGridStepItem] = []
+    public var items: [GridStepItem] = []
     
-    init(identifier: String, session: Session, services: StepServices, secondaryWorkflowIDs: [String], items: [MWGridStepItem]) {
+    init(identifier: String, session: Session, services: StepServices, secondaryWorkflowIDs: [String], items: [GridStepItem]) {
         self.session = session
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
@@ -41,13 +41,13 @@ extension MWGridStep: BuildableStep {
         if stepInfo.data.type == MWContentDisplayStepType.grid.typeName {
             // Local grid (coming from the app.json)
             let contentItems = stepInfo.data.content["items"] as? [[String: Any]] ?? []
-            let items: [MWGridStepItem] = try contentItems.compactMap {
+            let items: [GridStepItem] = try contentItems.compactMap {
                 guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
                 let detailText = services.localizationService.translate($0["detailText"] as? String)
                 guard let id = $0.getString(key: "id") else {
                     throw ParseError.invalidStepData(cause: "Grid item has invalid id")
                 }
-                return MWGridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)
+                return GridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)
             }
             return MWGridStep(identifier: stepInfo.data.identifier, session: stepInfo.session, services: services, secondaryWorkflowIDs: secondaryWorkflowIDs, items: items)
         } else if stepInfo.data.type == MWContentDisplayStepType.networkGrid.typeName {
@@ -66,8 +66,8 @@ extension MWGridStep {
         
         var vcSections = [MWGridViewController.Section]()
         
-        var currentSection: MWGridStepItem?
-        var currentItems = [MWGridStepItem]()
+        var currentSection: GridStepItem?
+        var currentItems = [GridStepItem]()
         
         self.items.forEach { item in
             switch item.itemType {
@@ -88,14 +88,14 @@ extension MWGridStep {
             vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
         } else if !currentItems.isEmpty {
             // no sections found, add all to single section
-            let section = MWGridStepItem(id: "DEFAULT_SECTION", type: MWGridItemType.carouselSmall.rawValue, text: L10n.defaultSectionTitle, detailText: "", imageURL: "")
+            let section = GridStepItem(id: "DEFAULT_SECTION", type: GridItemType.carouselSmall.rawValue, text: L10n.defaultSectionTitle, detailText: "", imageURL: "")
             vcSections.append(self.viewControllerSectionFromSection(section, items: currentItems))
         }
         
         return vcSections
     }
     
-    private func viewControllerSectionFromSection(_ section: MWGridStepItem, items: [MWGridStepItem]) -> MWGridViewController.Section {
+    private func viewControllerSectionFromSection(_ section: GridStepItem, items: [GridStepItem]) -> MWGridViewController.Section {
         
         let vcItems = items.map { MWGridViewController.Item(id: $0.id, title: $0.text, subtitle: $0.detailText, imageUrl: $0.imageURL.flatMap { URL(string: $0) }) }
         

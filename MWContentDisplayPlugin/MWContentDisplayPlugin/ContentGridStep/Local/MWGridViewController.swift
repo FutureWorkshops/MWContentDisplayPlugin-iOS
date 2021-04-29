@@ -19,7 +19,7 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     
     struct Section {
         let id: String
-        let type: MWGridItemType
+        let type: GridItemType
         let title: String
         let items: [Item]
     }
@@ -44,7 +44,7 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
         self.update(items: self.gridStep.items)
     }
     
-    func update(items: [MWGridStepItem]) {
+    func update(items: [GridStepItem]) {
         self.sections = self.gridStep.viewControllerSections()
         self.collectionView.reloadData()
     }
@@ -193,7 +193,7 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let item = self.sections[indexPath.section].items[indexPath.item]
         if let selected = self.gridStep.items.first(where: { item.id == $0.id }) {
-            let result = MWGridStepResult(identifier: self.gridStep.identifier, selected: selected)
+            let result = GridStepResult(identifier: self.gridStep.identifier, selected: selected)
             self.addStepResult(result)
             self.goForward()
         }
