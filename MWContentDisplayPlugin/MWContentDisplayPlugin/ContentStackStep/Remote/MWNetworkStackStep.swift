@@ -10,20 +10,21 @@ import MobileWorkflowCore
 
 class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
     
+    let session: Session
+    let services: StepServices
+    
     // Syncable Content
     typealias ResponseType = MWStackStepContents
     var resolvedURL: URL?
     
     // Remote Content
     var stepContext: StepContext
-    var session: Session
-    var services: StepServices
     var contentURL: String?
     
     init(identifier: String, contentURLString: String?, contents: MWStackStepContents, stepContext: StepContext, session: Session, services: StepServices) {
-        self.stepContext = stepContext
         self.session = session
         self.services = services
+        self.stepContext = stepContext
         self.contentURL = contentURLString
         super.init(identifier: identifier, contents: contents)
     }

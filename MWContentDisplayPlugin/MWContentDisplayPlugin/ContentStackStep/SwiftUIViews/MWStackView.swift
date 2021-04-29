@@ -13,6 +13,7 @@ struct MWStackView: View {
     
     var contents: MWStackStepContents
     var backButtonTapped: () -> Void
+    var buttonTapped: (MWStackStepItemButton) -> Void
     
     var body: some View {
         self.makeScrollView()
@@ -44,6 +45,7 @@ struct MWStackView: View {
                 case .title(let innerItem): MWTitleView(item: innerItem)
                 case .text(let innerItem): MWTextView(item: innerItem).padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
+                case .button(let innerItem): MWButtonView(item: innerItem, tapped: buttonTapped)
                 }
             }
         }
@@ -104,5 +106,24 @@ fileprivate struct MWListItemView: View {
         RoundedRectangle(cornerRadius: 8)
             .fill(Color.gray)
             .frame(width: 48, height: 48, alignment: .center)
+    }
+}
+
+fileprivate struct MWButtonView: View {
+    
+    let item: MWStackStepItemButton
+    var tapped: (MWStackStepItemButton) -> Void
+    
+    var body: some View {
+        Button {
+            tapped(item)
+        } label: {
+            Text(item.label)
+                .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
+                .frame(maxWidth: .infinity, idealHeight: 50, maxHeight: 50, alignment: .center)
+                .foregroundColor(.white)
+                .background(item.remoteURLMethod == Optional(.DELETE) ? Color(UIColor.systemRed) :Color(UIColor.systemBlue))
+                .cornerRadius(16)
+        }.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
     }
 }

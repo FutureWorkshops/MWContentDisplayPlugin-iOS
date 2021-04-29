@@ -5,7 +5,17 @@
     "name": "Xavi - ContentDisplayPlugin NEW UI",
     "navigationStyle": "tab_bar",
     "navigationWorkflow1Id": "0de2acc8-d6cf-41c7-937d-bd41730d5af2",
-    "servers": [],
+    "navigationWorkflow2Id": "606ae0ee-9629-4868-b54f-6a4161fdd8f3",
+    "networkService": {
+        "properties": {},
+        "type": "io.mobileworkflow.OAuthRestAsyncService"
+    },
+    "servers": [
+        {
+            "id": 527,
+            "url": "https://039ad388-6bfc-4673-9b17-93dc53b02e02.mock.pstmn.io"
+        }
+    ],
     "systemTintColor": "blue",
     "workflows": [
         {
@@ -155,6 +165,65 @@
                     "title": "Yoga for Beginners",
                     "type": "io.mobileworkflow.ContentStack",
                     "uuid": "ec3f631b-70f1-4f52-8ff2-1d99cb930e96"
+                }
+            ]
+        },
+        {
+            "id": "606ae0ee-9629-4868-b54f-6a4161fdd8f3",
+            "identifier": "From Network",
+            "materialIconName": "",
+            "name": "From Network",
+            "navigationRules": [
+                {
+                    "from": "test",
+                    "rules": [
+                        {
+                            "to": "from_network"
+                        }
+                    ]
+                },
+                {
+                    "from": "from_network",
+                    "rules": [
+                        {
+                            "to": "ORKNullStepIdentifier"
+                        }
+                    ]
+                }
+            ],
+            "sfSymbolName": "",
+            "steps": [
+                {
+                    "identifier": "test",
+                    "items": [
+                        {
+                            "id": "1",
+                            "text": "Tap anything",
+                            "type": "largeSection"
+                        },
+                        {
+                            "id": "2",
+                            "text": "First Item",
+                            "type": "item"
+                        },
+                        {
+                            "id": "3",
+                            "text": "Second Item",
+                            "type": "item"
+                        }
+                    ],
+                    "optional": false,
+                    "title": "Test",
+                    "type": "videoGrid",
+                    "uuid": "885cef5b-253e-49fa-bc4b-4a709268176f"
+                },
+                {
+                    "identifier": "from_network",
+                    "optional": false,
+                    "title": "From Network",
+                    "type": "io.mobileworkflow.NetworkStyledStack",
+                    "url": "/whatever/{test.selected.id}",
+                    "uuid": "5ddfda2d-8489-4fb0-afc3-bbb6b863073e"
                 }
             ]
         }

@@ -17,7 +17,6 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     
     //MARK: Properties
     var remoteContentStep: MWNetworkStackStep! { self.mwStep as? MWNetworkStackStep }
-    weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
 
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -43,17 +42,9 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     }
     
     func update(content: MWStackStepContents) {
-        if let previousHostingController = self.hostingController {
-            self.removeCovering(childViewController: previousHostingController)
-        }
-        
         self.remoteContentStep.contents = content
         
-        let swiftUIRootView = MWStackView(contents: self.remoteContentStep.contents, backButtonTapped: { [weak self] in
-            self?.handleBackButtonTapped()
-        })
-        self.hostingController = UIHostingController(rootView: swiftUIRootView)
-        self.addCovering(childViewController: self.hostingController!)
+        self.installSwiftUIView()
         
         if content.items.isEmpty {
             self.stateView.configure(isLoading: false, title: L10n.noContent, subtitle: nil, buttonConfig: nil)
@@ -66,6 +57,48 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     
     func hideLoading() {
         self.stateView.configure(isLoading: false, title: nil, subtitle: nil, buttonConfig: nil)
+    }
+    
+    override func handleButtonItemTapped(_ item: MWStackStepItemButton) {
+        if let remoteURL = item.remoteURL, let httpMethod = item.remoteURLMethod {
+            self.performButtonRemoteRequest(to: remoteURL, usingHTTPMethod: httpMethod, successAction: item.sucessAction)
+        } else {
+            super.handleButtonItemTapped(item)
+        }
+    }
+    
+    private func performButtonRemoteRequest(to url: URL, usingHTTPMethod httpMethod: HTTPMethod, successAction: SuccessAction) {
+        guard let url = self.remoteContentStep.session.resolve(url: url.absoluteString) else { return }
+        // Only PUT/DELETE are supported on buttons
+        guard httpMethod == .PUT || httpMethod == .DELETE else { return }
+        do {
+            let credential = try self.remoteContentStep.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
+            let task = URLAsyncTask<MWStackStepContents?>.build(url: url, method: httpMethod, session: self.remoteContentStep.session, credential: credential, headers: [:]) { data -> MWStackStepContents? in
+                if httpMethod == .PUT {
+                    guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any] else {
+                        throw ParseError.invalidServerData(cause: "Unexpected JSON format.")
+                    }
+                    return MWStackStepContents(json: json, localizationService: self.remoteContentStep.services.localizationService)
+                } else {
+                    // For delete we don't need to parse the JSON
+                    return nil
+                }
+            }
+            self.remoteContentStep.services.perform(task: task, session: self.remoteContentStep.session) { [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let newContents):
+                    if let newContents = newContents {
+                        self.update(content: newContents)
+                    }
+                    self.handleSuccessAction(successAction)
+                case .failure(let error):
+                    self.show(error)
+                }
+            }
+        } catch (let error) {
+            self.show(error)
+        }
     }
     
 }
