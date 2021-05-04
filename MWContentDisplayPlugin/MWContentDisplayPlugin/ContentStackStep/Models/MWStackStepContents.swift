@@ -140,6 +140,8 @@ struct MWStackStepItemButton: Identifiable {
     // What to do after performing the action
     let sucessAction: SuccessAction
     
+    let sfSymbolName: String?
+    
     init?(json: [String:Any], localizationService: LocalizationService) {
         guard (json["type"] as? String) == Optional("button") else {
             return nil
@@ -156,5 +158,6 @@ struct MWStackStepItemButton: Identifiable {
         self.remoteURLMethod = (json["method"] as? String).flatMap{HTTPMethod(rawValue: $0.uppercased())}
         self.systemURL = (json["appleSystemURL"] as? String).flatMap{ URL(string: $0) }
         self.sucessAction = SuccessAction(rawValue: json["onSuccess"] as? String ?? "") ?? .none
+        self.sfSymbolName = (json["sfSymbolName"] as? String)
     }
 }
