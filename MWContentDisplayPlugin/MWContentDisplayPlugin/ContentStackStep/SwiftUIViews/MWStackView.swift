@@ -118,12 +118,20 @@ fileprivate struct MWButtonView: View {
         Button {
             tapped(item)
         } label: {
-            Text(item.label)
-                .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
-                .frame(maxWidth: .infinity, idealHeight: 50, maxHeight: 50, alignment: .center)
+            GeometryReader { geometry in
+                HStack(spacing: 4) {
+                    if let systemName = item.sfSymbolName {
+                        Image(systemName: systemName)
+                    }
+                    Text(item.label)
+                        .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
+                        .lineLimit(1)
+                }
+                .frame(maxWidth: .infinity, maxHeight: geometry.size.height, alignment: .center)
                 .foregroundColor(.white)
                 .background(item.remoteURLMethod == Optional(.DELETE) ? Color(UIColor.systemRed) :Color(UIColor.systemBlue))
                 .cornerRadius(16)
+            }
         }.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
     }
 }
