@@ -109,6 +109,7 @@ fileprivate struct MWListItemView: View {
     }
 }
 
+#warning("Button height is currently set to 44pt to match RK Button. Once we get rid of Research Kit, we'll provide the same height (as per design guidelines 50pt) in both Core and Plugins.")
 fileprivate struct MWButtonView: View {
     
     let item: MWStackStepItemButton
@@ -118,12 +119,18 @@ fileprivate struct MWButtonView: View {
         Button {
             tapped(item)
         } label: {
-            Text(item.label)
-                .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
-                .frame(maxWidth: .infinity, idealHeight: 50, maxHeight: 50, alignment: .center)
-                .foregroundColor(.white)
-                .background(item.remoteURLMethod == Optional(.DELETE) ? Color(UIColor.systemRed) :Color(UIColor.systemBlue))
-                .cornerRadius(16)
+            HStack(spacing: 4) {
+                if let systemName = item.sfSymbolName {
+                    Image(systemName: systemName)
+                }
+                Text(item.label)
+                    .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
+                    .lineLimit(1)
+            }
+            .frame(maxWidth: .infinity, idealHeight: 44, maxHeight: 44, alignment: .center)
+            .foregroundColor(.white)
+            .background(item.remoteURLMethod == Optional(.DELETE) ? Color(UIColor.systemRed) :Color(UIColor.systemBlue))
+            .cornerRadius(16)
         }.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
     }
 }
