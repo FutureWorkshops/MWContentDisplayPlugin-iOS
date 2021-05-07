@@ -32,7 +32,7 @@ public class GridStepItem: Codable {
     public let imageURL: String?
     
     public required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: Self.CodingKeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeAsString(key: .id)
         self.text = try container.decode(String.self, forKey: .text)
         self.type = try container.decodeIfPresent(String.self, forKey: .type)
@@ -58,11 +58,11 @@ extension GridStepItem {
 
 extension GridStepItem: ValueProvider {
     public func fetchValue(for path: String) -> Any? {
-        if path == Self.CodingKeys.id.stringValue { return self.id }
-        if path == Self.CodingKeys.type.stringValue { return self.type }
-        if path == Self.CodingKeys.text.stringValue { return self.text }
-        if path == Self.CodingKeys.detailText.stringValue { return self.detailText }
-        if path == Self.CodingKeys.imageURL.stringValue { return self.imageURL }
+        if path == CodingKeys.id.stringValue { return self.id }
+        if path == CodingKeys.type.stringValue { return self.type }
+        if path == CodingKeys.text.stringValue { return self.text }
+        if path == CodingKeys.detailText.stringValue { return self.detailText }
+        if path == CodingKeys.imageURL.stringValue { return self.imageURL }
         return nil
     }
     
@@ -71,10 +71,10 @@ extension GridStepItem: ValueProvider {
     }
     
     public var content: [AnyHashable : Codable] {
-        return [Self.CodingKeys.id.stringValue: self.id,
-                Self.CodingKeys.type.stringValue: self.type,
-                Self.CodingKeys.text.stringValue: self.text,
-                Self.CodingKeys.detailText.stringValue: self.detailText,
-                Self.CodingKeys.imageURL.stringValue: self.imageURL]
+        return [CodingKeys.id.stringValue: self.id,
+                CodingKeys.type.stringValue: self.type,
+                CodingKeys.text.stringValue: self.text,
+                CodingKeys.detailText.stringValue: self.detailText,
+                CodingKeys.imageURL.stringValue: self.imageURL]
     }
 }
