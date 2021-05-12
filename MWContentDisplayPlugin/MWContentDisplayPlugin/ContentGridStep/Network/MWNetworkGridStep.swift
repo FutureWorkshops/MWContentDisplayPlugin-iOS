@@ -36,7 +36,7 @@ public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSo
     }
     
     public override func instantiateViewController() -> StepViewController {
-        return MWNetworkGridViewController(step: self)
+        return MWNetworkGridStepViewController(step: self)
     }
     
     public func loadContent(completion: @escaping (Result<[GridStepItem], Error>) -> Void) {

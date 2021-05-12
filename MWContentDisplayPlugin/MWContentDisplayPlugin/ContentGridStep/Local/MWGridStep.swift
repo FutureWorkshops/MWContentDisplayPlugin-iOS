@@ -28,7 +28,7 @@ public class MWGridStep: MWStep, HasSecondaryWorkflows {
     }
     
     public override func instantiateViewController() -> StepViewController {
-        return MWGridViewController(step: self)
+        return MWGridStepViewController(step: self)
     }
 }
 
@@ -62,9 +62,9 @@ extension MWGridStep: BuildableStep {
 }
 
 extension MWGridStep {
-    func viewControllerSections() -> [MWGridViewController.Section] {
+    func viewControllerSections() -> [MWGridStepViewController.Section] {
         
-        var vcSections = [MWGridViewController.Section]()
+        var vcSections = [MWGridStepViewController.Section]()
         
         var currentSection: GridStepItem?
         var currentItems = [GridStepItem]()
@@ -95,11 +95,11 @@ extension MWGridStep {
         return vcSections
     }
     
-    private func viewControllerSectionFromSection(_ section: GridStepItem, items: [GridStepItem]) -> MWGridViewController.Section {
+    private func viewControllerSectionFromSection(_ section: GridStepItem, items: [GridStepItem]) -> MWGridStepViewController.Section {
         
-        let vcItems = items.map { MWGridViewController.Item(id: $0.id, title: $0.text, subtitle: $0.detailText, imageUrl: $0.imageURL.flatMap { URL(string: $0) }) }
+        let vcItems = items.map { MWGridStepViewController.Item(id: $0.id, title: $0.text, subtitle: $0.detailText, imageUrl: $0.imageURL.flatMap { URL(string: $0) }) }
         
-        let vcSection = MWGridViewController.Section(id: section.id, type: section.itemType, title: section.text, items: vcItems)
+        let vcSection = MWGridStepViewController.Section(id: section.id, type: section.itemType, title: section.text, items: vcItems)
         
         return vcSection
     }

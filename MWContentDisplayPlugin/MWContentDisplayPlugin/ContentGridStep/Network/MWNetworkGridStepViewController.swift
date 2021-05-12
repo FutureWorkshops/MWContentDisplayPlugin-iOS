@@ -1,5 +1,5 @@
 //
-//  MWNetworkGridViewController.swift
+//  MWNetworkGridStepViewController.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Jonathan Flintham on 23/11/2020.
@@ -8,7 +8,7 @@
 import UIKit
 import MobileWorkflowCore
 
-class MWNetworkGridViewController: MWGridViewController, RemoteContentStepViewController, ContentClearable {
+class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentStepViewController, ContentClearable {
     
     weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
     
