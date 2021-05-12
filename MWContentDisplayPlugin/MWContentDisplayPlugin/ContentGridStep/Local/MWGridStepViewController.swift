@@ -1,5 +1,5 @@
 //
-//  MWGridViewController.swift
+//  MWGridStepViewController.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Roberto Arreaza on 27/10/2020.
@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
+class MWGridStepViewController: MWStepViewController, HasSecondaryWorkflows {
     
     struct Item {
         let id: String
@@ -19,7 +19,7 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     
     struct Section {
         let id: String
-        let type: MWGridItemType
+        let type: GridItemType
         let title: String
         let items: [Item]
     }
@@ -33,7 +33,7 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .secondarySystemBackground
         
         self.setupCollectionView()
     }
@@ -44,7 +44,7 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
         self.update(items: self.gridStep.items)
     }
     
-    func update(items: [MWGridStepItem]) {
+    func update(items: [GridStepItem]) {
         self.sections = self.gridStep.viewControllerSections()
         self.collectionView.reloadData()
     }
@@ -52,6 +52,8 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     // MARK: Configuration
     
     private func setupCollectionView() {
+        self.extendedLayoutIncludesOpaqueBars = true // fixes issues with refreshControls and largeTitles
+        
         // Generate the layout
         self.collectionViewLayout = self.generateLayout()
         
@@ -68,9 +70,9 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
         
         self.view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
         
@@ -138,7 +140,7 @@ class MWGridViewController: MWStepViewController, HasSecondaryWorkflows {
     }
 }
 
-extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MWGridStepViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.sections.count
@@ -193,7 +195,7 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
         
         let item = self.sections[indexPath.section].items[indexPath.item]
         if let selected = self.gridStep.items.first(where: { item.id == $0.id }) {
-            let result = MWGridStepResult(identifier: self.gridStep.identifier, selected: selected)
+            let result = GridStepResult(identifier: self.gridStep.identifier, selected: selected)
             self.addStepResult(result)
             self.goForward()
         }
@@ -202,7 +204,7 @@ extension MWGridViewController: UICollectionViewDataSource, UICollectionViewDele
 
 private extension MWImageCollectionViewCell.ViewData {
     
-    init(item: MWGridViewController.Item) {
+    init(item: MWGridStepViewController.Item) {
         self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl)
     }
 }
