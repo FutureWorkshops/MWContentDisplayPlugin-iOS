@@ -24,6 +24,11 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         self.installSwiftUIView()
     }
     
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     // MARK: Methods
     func installSwiftUIView() {
         if let previousHostingController = self.hostingController {
