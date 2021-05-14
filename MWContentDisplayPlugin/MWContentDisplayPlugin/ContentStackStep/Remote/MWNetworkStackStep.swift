@@ -26,7 +26,7 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
         self.services = services
         self.stepContext = stepContext
         self.contentURL = contentURLString
-        super.init(identifier: identifier, contents: contents)
+        super.init(identifier: identifier, contents: contents, tintColor: stepContext.systemTintColor)
     }
     
     required init(coder aDecoder: NSCoder) {

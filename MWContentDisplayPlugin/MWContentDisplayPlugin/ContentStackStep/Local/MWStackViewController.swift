@@ -24,6 +24,11 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         self.installSwiftUIView()
     }
     
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     // MARK: Methods
     func installSwiftUIView() {
         if let previousHostingController = self.hostingController {
@@ -34,7 +39,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
             self?.handleBackButtonTapped()
         }, buttonTapped: { [weak self] item in
             self?.handleButtonItemTapped(item)
-        })
+        }, tintColor: self.contentStackStep.tintColor)
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
     }
