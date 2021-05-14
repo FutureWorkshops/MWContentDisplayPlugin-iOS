@@ -146,12 +146,8 @@ struct MWStackStepItemButton: Identifiable {
         guard (json["type"] as? String) == Optional("button") else {
             return nil
         }
-        guard let id = json["id"] as? String else {
-            assertionFailure("Missing id.")
-            return nil
-        }
         
-        self.id = id
+        self.id = UUID().uuidString
         self.label = localizationService.translate(json["label"] as? String) ?? ""
         self.modalWorkflow = json["modalWorkflow"] as? String
         self.remoteURL = (json["url"] as? String).flatMap{ URL(string: $0) }
