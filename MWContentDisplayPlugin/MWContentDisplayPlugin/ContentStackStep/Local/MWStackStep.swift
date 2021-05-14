@@ -11,9 +11,11 @@ import MobileWorkflowCore
 public class MWStackStep: MWStep {
     
     var contents: MWStackStepContents
+    let tintColor: UIColor
     
-    init(identifier: String, contents: MWStackStepContents) {
+    init(identifier: String, contents: MWStackStepContents, tintColor: UIColor) {
         self.contents = contents
+        self.tintColor = tintColor
         super.init(identifier: identifier)
     }
     
@@ -33,7 +35,8 @@ extension MWStackStep: BuildableStep {
         
         if stepInfo.data.type == MWContentDisplayStepType.stack.typeName {
             return MWStackStep(identifier: stepInfo.data.identifier,
-                               contents: contents)
+                               contents: contents,
+                               tintColor: stepInfo.context.systemTintColor)
         } else if stepInfo.data.type == MWContentDisplayStepType.networkStack.typeName {
             return MWNetworkStackStep(identifier: stepInfo.data.identifier,
                                       contentURLString: stepInfo.data.content["url"] as? String,

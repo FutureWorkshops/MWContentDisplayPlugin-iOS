@@ -39,7 +39,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
             self?.handleBackButtonTapped()
         }, buttonTapped: { [weak self] item in
             self?.handleButtonItemTapped(item)
-        })
+        }, tintColor: self.contentStackStep.tintColor)
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
     }
