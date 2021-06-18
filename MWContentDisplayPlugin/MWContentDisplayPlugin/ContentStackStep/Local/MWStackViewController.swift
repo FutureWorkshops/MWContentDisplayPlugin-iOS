@@ -14,6 +14,10 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     //MARK: Public properties (WorkflowPresentationDelegator)
     public weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
     
+    public override var titleMode: StepViewControllerTitleMode {
+        .customOrNone
+    }
+    
     //MARK: Properties
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
@@ -35,7 +39,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
             self.removeCovering(childViewController: previousHostingController)
         }
         
-        let swiftUIRootView = MWStackView(contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
+        let swiftUIRootView = MWStackView(screenSize: self.view.frame.size, contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
             self?.handleBackButtonTapped()
         }, buttonTapped: { [weak self] item in
             self?.handleButtonItemTapped(item)

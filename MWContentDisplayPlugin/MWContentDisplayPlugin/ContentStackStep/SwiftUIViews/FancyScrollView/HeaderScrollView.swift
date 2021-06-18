@@ -37,11 +37,12 @@ struct HeaderScrollView: View {
                             ZStack {
                                 BlurView()
                                     .opacity(1 - sqrt(geometry.largeTitleWeight))
-                                    .offset(y: geometry.blurOffset)
+                                    .offset(y: geometry.blurOffset + 40)
 
                                 VStack {
                                     geometry.largeTitleWeight == 1 ? HStack {
                                         BackButton(color: .white, backButtonTapped: self.backButtonTapped)
+                                            .padding(.top, -40)
                                         Spacer()
                                     }.frame(width: geometry.width, height: navigationBarHeight) : nil
 
@@ -51,7 +52,7 @@ struct HeaderScrollView: View {
                                                           height: navigationBarHeight,
                                                           largeTitle: geometry.largeTitleWeight, backButtonTapped: self.backButtonTapped).layoutPriority(1000)
                                 }
-                                .padding(.top, globalGeometry.safeAreaInsets.top)
+                                .padding(.top, globalGeometry.safeAreaInsets.top + 80)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))
                                 .offset(y: geometry.elementsOffset)
                             }

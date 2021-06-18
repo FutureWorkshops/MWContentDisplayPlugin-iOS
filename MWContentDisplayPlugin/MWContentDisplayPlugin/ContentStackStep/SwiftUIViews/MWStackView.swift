@@ -11,6 +11,7 @@ import Foundation
 
 struct MWStackView: View {
     
+    var screenSize: CGSize
     var contents: MWStackStepContents
     var backButtonTapped: () -> Void
     var buttonTapped: (MWStackStepItemButton) -> Void
@@ -18,6 +19,7 @@ struct MWStackView: View {
     
     var body: some View {
         self.makeScrollView()
+            .frame(width: screenSize.width, height: screenSize.height + 70, alignment: .top)
     }
     
     private func makeScrollView() -> some View {
