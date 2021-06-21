@@ -13,6 +13,7 @@ struct HeaderScrollView: View {
     let header: AnyView
     let content: AnyView
     
+    let isBackButtonEnabled: Bool
     var backButtonTapped: () -> Void
 
     var body: some View {
@@ -40,17 +41,21 @@ struct HeaderScrollView: View {
                                     .offset(y: geometry.blurOffset + 40)
 
                                 VStack {
-                                    geometry.largeTitleWeight == 1 ? HStack {
-                                        BackButton(color: .white, backButtonTapped: self.backButtonTapped)
-                                            .padding(.top, -40)
-                                        Spacer()
-                                    }.frame(width: geometry.width, height: navigationBarHeight) : nil
-
+                                    if isBackButtonEnabled {
+                                        geometry.largeTitleWeight == 1 ? HStack {
+                                            BackButton(color: .white, backButtonTapped: self.backButtonTapped)
+                                                .padding(.top, -40)
+                                            Spacer()
+                                        }.frame(width: geometry.width, height: navigationBarHeight) : nil
+                                    }
                                     Spacer()
 
                                     HeaderScrollViewTitle(title: self.title,
                                                           height: navigationBarHeight,
-                                                          largeTitle: geometry.largeTitleWeight, backButtonTapped: self.backButtonTapped).layoutPriority(1000)
+                                                          largeTitle: geometry.largeTitleWeight,
+                                                          backButtonTapped: self.backButtonTapped,
+                                                          isBackButtonEnabled: isBackButtonEnabled)
+                                        .layoutPriority(1000)
                                 }
                                 .padding(.top, globalGeometry.safeAreaInsets.top + 80)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))

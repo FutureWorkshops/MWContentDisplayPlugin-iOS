@@ -10,6 +10,7 @@ public struct FancyScrollView: View {
     let header: AnyView?
     let content: AnyView
     
+    let isBackButtonEnabled: Bool
     var backButtonTapped: () -> Void
 
     public var body: some View {
@@ -21,6 +22,7 @@ public struct FancyScrollView: View {
                                  scrollDownBehavior: scrollDownHeaderBehavior,
                                  header: header,
                                  content: content,
+                                 isBackButtonEnabled: isBackButtonEnabled,
                                  backButtonTapped: self.backButtonTapped)
             )
         } else {
@@ -55,6 +57,7 @@ extension FancyScrollView {
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   header: () -> A?,
                                   content: () -> B,
+                                  isBackButtonEnabled: Bool,
                                   backButtonTapped: @escaping () -> Void) {
 
         self.init(title: title,
@@ -63,6 +66,7 @@ extension FancyScrollView {
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                   header: AnyView(header()),
                   content: AnyView(content()),
+                  isBackButtonEnabled: isBackButtonEnabled,
                   backButtonTapped: backButtonTapped)
     }
 
@@ -71,6 +75,7 @@ extension FancyScrollView {
                          scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                          scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                          content: () -> A,
+                         isBackButtonEnabled: Bool,
                          backButtonTapped: @escaping () -> Void) {
 
            self.init(title: title,
@@ -79,6 +84,7 @@ extension FancyScrollView {
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                      header: nil,
                      content: AnyView(content()),
+                     isBackButtonEnabled: isBackButtonEnabled,
                      backButtonTapped: backButtonTapped)
        }
 

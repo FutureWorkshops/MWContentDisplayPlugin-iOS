@@ -5,6 +5,8 @@ struct HeaderScrollViewTitle: View {
     let height: CGFloat
     let largeTitle: Double
     var backButtonTapped: () -> Void
+    
+    let isBackButtonEnabled: Bool
 
     var body: some View {
         let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
@@ -28,9 +30,11 @@ struct HeaderScrollViewTitle: View {
             .minimumScaleFactor(0.5)
 
             ZStack {
-                HStack {
-                    BackButton(color: .primary, backButtonTapped: self.backButtonTapped)
-                    Spacer()
+                if isBackButtonEnabled {
+                    HStack {
+                        BackButton(color: .primary, backButtonTapped: self.backButtonTapped)
+                        Spacer()
+                    }
                 }
                 HStack {
                     Text(title)

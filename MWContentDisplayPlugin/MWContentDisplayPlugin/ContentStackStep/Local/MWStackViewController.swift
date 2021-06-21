@@ -22,6 +22,14 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     
+    private var isBackButtonEnabled: Bool {
+        if let navController = self.navigationController {
+            return navController.viewControllers.count > 1
+        } else {
+            return false
+        }
+    }
+    
     //MARK: Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +51,8 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
             self?.handleBackButtonTapped()
         }, buttonTapped: { [weak self] item in
             self?.handleButtonItemTapped(item)
-        }, tintColor: self.contentStackStep.tintColor)
+        }, tintColor: self.contentStackStep.tintColor,
+        isBackButtonEnabled: self.isBackButtonEnabled)
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
     }
