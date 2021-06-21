@@ -7,6 +7,9 @@ struct HeaderScrollViewTitle: View {
     var backButtonTapped: () -> Void
     
     let isBackButtonEnabled: Bool
+    
+    @Environment(\.colorScheme)
+    private var colorScheme: ColorScheme
 
     var body: some View {
         let largeTitleOpacity = (max(largeTitle, 0.5) - 0.5) * 2
@@ -20,9 +23,9 @@ struct HeaderScrollViewTitle: View {
 
                 Spacer()
             }
-            .padding(.bottom, 8)
+            .padding(.bottom, 16)
             .background(
-                LinearGradient(gradient: Gradient(colors: [.clear, Color(UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 0.8))]), startPoint: .top, endPoint: .bottom)
+                self.makeLinearGradient()
                     .frame(height: 80)
                     .offset(y: -18)
             )
@@ -46,5 +49,13 @@ struct HeaderScrollViewTitle: View {
             .padding(.bottom, (height - 18) / 2)
             .opacity(sqrt(tinyTitleOpacity))
         }.frame(height: height)
+    }
+    
+    private func makeLinearGradient() -> LinearGradient {
+        if colorScheme == .dark {
+            return LinearGradient(gradient: Gradient(colors: [.clear, Color(UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 0.8))]), startPoint: .top, endPoint: .bottom)
+        } else {
+            return LinearGradient(gradient: Gradient(colors: [.clear, Color(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0))]), startPoint: .top, endPoint: .bottom)
+        }
     }
 }
