@@ -2,6 +2,11 @@ import SwiftUI
 
 private let navigationBarHeight: CGFloat = 44
 
+// NavigationBarHeight is also used to provide:
+// - offset BlurView
+// - padding for back button
+// - padding for title header
+
 struct HeaderScrollView: View {
     @Environment(\.colorScheme)
     private var colorScheme: ColorScheme
@@ -38,13 +43,13 @@ struct HeaderScrollView: View {
                             ZStack {
                                 BlurView()
                                     .opacity(1 - sqrt(geometry.largeTitleWeight))
-                                    .offset(y: geometry.blurOffset + 40)
+                                    .offset(y: geometry.blurOffset + navigationBarHeight)
 
                                 VStack {
                                     if isBackButtonEnabled {
                                         geometry.largeTitleWeight == 1 ? HStack {
                                             BackButton(color: .white, backButtonTapped: self.backButtonTapped)
-                                                .padding(.top, -40)
+                                                .padding(.top, -navigationBarHeight)
                                             Spacer()
                                         }.frame(width: geometry.width, height: navigationBarHeight) : nil
                                     }
@@ -57,7 +62,7 @@ struct HeaderScrollView: View {
                                                           isBackButtonEnabled: isBackButtonEnabled)
                                         .layoutPriority(1000)
                                 }
-                                .padding(.top, globalGeometry.safeAreaInsets.top + 80)
+                                .padding(.top, globalGeometry.safeAreaInsets.top + navigationBarHeight * 2)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))
                                 .offset(y: geometry.elementsOffset)
                             }
