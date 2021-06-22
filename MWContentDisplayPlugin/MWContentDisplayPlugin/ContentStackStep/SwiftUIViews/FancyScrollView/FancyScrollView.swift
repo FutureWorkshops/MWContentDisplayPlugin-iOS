@@ -10,6 +10,8 @@ public struct FancyScrollView: View {
     let header: AnyView?
     let content: AnyView
     
+    let isCloseButtonEnabled: Bool
+    let isBackButtonEnabled: Bool
     var backButtonTapped: () -> Void
 
     public var body: some View {
@@ -21,6 +23,8 @@ public struct FancyScrollView: View {
                                  scrollDownBehavior: scrollDownHeaderBehavior,
                                  header: header,
                                  content: content,
+                                 isBackButtonEnabled: isBackButtonEnabled,
+                                 isCloseButtonEnabled: isCloseButtonEnabled,
                                  backButtonTapped: self.backButtonTapped)
             )
         } else {
@@ -55,6 +59,8 @@ extension FancyScrollView {
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   header: () -> A?,
                                   content: () -> B,
+                                  isCloseButtonEnabled: Bool,
+                                  isBackButtonEnabled: Bool,
                                   backButtonTapped: @escaping () -> Void) {
 
         self.init(title: title,
@@ -63,6 +69,8 @@ extension FancyScrollView {
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                   header: AnyView(header()),
                   content: AnyView(content()),
+                  isCloseButtonEnabled: isCloseButtonEnabled,
+                  isBackButtonEnabled: isBackButtonEnabled,
                   backButtonTapped: backButtonTapped)
     }
 
@@ -71,6 +79,8 @@ extension FancyScrollView {
                          scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                          scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                          content: () -> A,
+                         isCloseButtonEnabled: Bool,
+                         isBackButtonEnabled: Bool,
                          backButtonTapped: @escaping () -> Void) {
 
            self.init(title: title,
@@ -79,6 +89,8 @@ extension FancyScrollView {
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                      header: nil,
                      content: AnyView(content()),
+                     isCloseButtonEnabled: isCloseButtonEnabled,
+                     isBackButtonEnabled: isBackButtonEnabled,
                      backButtonTapped: backButtonTapped)
        }
 

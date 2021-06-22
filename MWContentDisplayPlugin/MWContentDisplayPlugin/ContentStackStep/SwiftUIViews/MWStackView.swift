@@ -9,15 +9,23 @@ import SwiftUI
 import Kingfisher
 import Foundation
 
+// Without this padding, header will not expand to the top of the screen.
+private let topPadding: CGFloat = 100
+
 struct MWStackView: View {
     
+    var screenSize: CGSize
     var contents: MWStackStepContents
     var backButtonTapped: () -> Void
     var buttonTapped: (MWStackStepItemButton) -> Void
     var tintColor: UIColor
     
+    let isCloseButtonEnabled: Bool
+    let isBackButtonEnabled: Bool
+    
     var body: some View {
         self.makeScrollView()
+            .frame(width: screenSize.width, height: screenSize.height + topPadding, alignment: .top)
     }
     
     private func makeScrollView() -> some View {
@@ -31,11 +39,15 @@ struct MWStackView: View {
                     .aspectRatio(contentMode: .fill)
             }, content: {
                 self.makeContentScrollView()
-            }, backButtonTapped: self.backButtonTapped)
+            }, isCloseButtonEnabled: isCloseButtonEnabled,
+            isBackButtonEnabled: isBackButtonEnabled,
+            backButtonTapped: self.backButtonTapped)
         } else {
             return FancyScrollView(content: {
                 self.makeContentScrollView()
-            }, backButtonTapped: self.backButtonTapped)
+            }, isCloseButtonEnabled: isCloseButtonEnabled,
+            isBackButtonEnabled: isBackButtonEnabled,
+            backButtonTapped: self.backButtonTapped)
         }
     }
     

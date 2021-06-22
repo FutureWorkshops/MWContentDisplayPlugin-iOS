@@ -14,9 +14,26 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     //MARK: Public properties (WorkflowPresentationDelegator)
     public weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
     
+    public override var titleMode: StepViewControllerTitleMode {
+        .customOrNone
+    }
+    
     //MARK: Properties
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
+    
+    // Enable per default. Will only be shown if back button is disabled.
+    private var isCloseButtonEnabled: Bool {
+        return true
+    }
+    
+    private var isBackButtonEnabled: Bool {
+        if let navController = self.navigationController {
+            return navController.viewControllers.count > 1
+        } else {
+            return false
+        }
+    }
     
     //MARK: Lifecycle
     public override func viewDidLoad() {
@@ -35,11 +52,13 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
             self.removeCovering(childViewController: previousHostingController)
         }
         
-        let swiftUIRootView = MWStackView(contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
+        let swiftUIRootView = MWStackView(screenSize: self.view.frame.size, contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
             self?.handleBackButtonTapped()
         }, buttonTapped: { [weak self] item in
             self?.handleButtonItemTapped(item)
-        }, tintColor: self.contentStackStep.tintColor)
+        }, tintColor: self.contentStackStep.tintColor,
+        isCloseButtonEnabled: self.isCloseButtonEnabled,
+        isBackButtonEnabled: self.isBackButtonEnabled)
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)
     }

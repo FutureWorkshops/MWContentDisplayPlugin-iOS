@@ -2,6 +2,11 @@ import SwiftUI
 
 private let navigationBarHeight: CGFloat = 44
 
+// NavigationBarHeight is also used to provide:
+// - offset BlurView
+// - padding for back button
+// - padding for title header
+
 struct HeaderScrollView: View {
     @Environment(\.colorScheme)
     private var colorScheme: ColorScheme
@@ -13,6 +18,8 @@ struct HeaderScrollView: View {
     let header: AnyView
     let content: AnyView
     
+    let isBackButtonEnabled: Bool
+    let isCloseButtonEnabled: Bool
     var backButtonTapped: () -> Void
 
     var body: some View {
@@ -37,21 +44,33 @@ struct HeaderScrollView: View {
                             ZStack {
                                 BlurView()
                                     .opacity(1 - sqrt(geometry.largeTitleWeight))
-                                    .offset(y: geometry.blurOffset)
+                                    .offset(y: geometry.blurOffset + navigationBarHeight)
 
                                 VStack {
-                                    geometry.largeTitleWeight == 1 ? HStack {
-                                        BackButton(color: .white, backButtonTapped: self.backButtonTapped)
-                                        Spacer()
-                                    }.frame(width: geometry.width, height: navigationBarHeight) : nil
-
+                                    if isBackButtonEnabled {
+                                        geometry.largeTitleWeight == 1 ? HStack {
+                                            BackButton(color: .white, backButtonTapped: self.backButtonTapped)
+                                                .padding(.top, -navigationBarHeight)
+                                            Spacer()
+                                        }.frame(width: geometry.width, height: navigationBarHeight) : nil
+                                    } else if isCloseButtonEnabled {
+                                        geometry.largeTitleWeight == 1 ? HStack {
+                                            Spacer()
+                                            CloseButton(color: .white, closeButtonTapped: self.backButtonTapped)
+                                                .padding(.top, -navigationBarHeight)
+                                        }.frame(width: geometry.width, height: navigationBarHeight) : nil
+                                    }
                                     Spacer()
 
                                     HeaderScrollViewTitle(title: self.title,
                                                           height: navigationBarHeight,
-                                                          largeTitle: geometry.largeTitleWeight, backButtonTapped: self.backButtonTapped).layoutPriority(1000)
+                                                          largeTitle: geometry.largeTitleWeight,
+                                                          backButtonTapped: self.backButtonTapped,
+                                                          isCloseButtonEnabled: isCloseButtonEnabled,
+                                                          isBackButtonEnabled: isBackButtonEnabled)
+                                        .layoutPriority(1000)
                                 }
-                                .padding(.top, globalGeometry.safeAreaInsets.top)
+                                .padding(.top, globalGeometry.safeAreaInsets.top + navigationBarHeight * 2)
                                 .frame(width: geometry.width, height: max(geometry.elementsHeight, navigationBarHeight))
                                 .offset(y: geometry.elementsOffset)
                             }
