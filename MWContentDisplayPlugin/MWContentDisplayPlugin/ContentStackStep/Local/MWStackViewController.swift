@@ -22,6 +22,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     
+    // Enable per default. Will only be shown if back button is disabled.
     private var isCloseButtonEnabled: Bool {
         return true
     }

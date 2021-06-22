@@ -10,7 +10,7 @@ import Kingfisher
 import Foundation
 
 // Without this padding, header will not expand to the top of the screen.
-private let topPadding: CGFloat = 44
+private let topPadding: CGFloat = 100
 
 struct MWStackView: View {
     
