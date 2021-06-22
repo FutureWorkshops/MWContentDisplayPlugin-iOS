@@ -6,6 +6,7 @@ struct HeaderScrollViewTitle: View {
     let largeTitle: Double
     var backButtonTapped: () -> Void
     
+    let isCloseButtonEnabled: Bool
     let isBackButtonEnabled: Bool
     
     @Environment(\.colorScheme)
@@ -37,6 +38,11 @@ struct HeaderScrollViewTitle: View {
                     HStack {
                         BackButton(color: .primary, backButtonTapped: self.backButtonTapped)
                         Spacer()
+                    }
+                } else if isCloseButtonEnabled {
+                    HStack {
+                        Spacer()
+                        CloseButton(color: .primary, closeButtonTapped: self.backButtonTapped)
                     }
                 }
                 HStack {

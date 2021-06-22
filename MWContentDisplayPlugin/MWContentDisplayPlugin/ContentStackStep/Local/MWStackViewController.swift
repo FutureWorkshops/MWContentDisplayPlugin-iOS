@@ -22,6 +22,10 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     
+    private var isCloseButtonEnabled: Bool {
+        return true
+    }
+    
     private var isBackButtonEnabled: Bool {
         if let navController = self.navigationController {
             return navController.viewControllers.count > 1
@@ -52,6 +56,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         }, buttonTapped: { [weak self] item in
             self?.handleButtonItemTapped(item)
         }, tintColor: self.contentStackStep.tintColor,
+        isCloseButtonEnabled: self.isCloseButtonEnabled,
         isBackButtonEnabled: self.isBackButtonEnabled)
         self.hostingController = UIHostingController(rootView: swiftUIRootView)
         self.addCovering(childViewController: self.hostingController!)

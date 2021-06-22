@@ -19,6 +19,7 @@ struct HeaderScrollView: View {
     let content: AnyView
     
     let isBackButtonEnabled: Bool
+    let isCloseButtonEnabled: Bool
     var backButtonTapped: () -> Void
 
     var body: some View {
@@ -52,6 +53,12 @@ struct HeaderScrollView: View {
                                                 .padding(.top, -navigationBarHeight)
                                             Spacer()
                                         }.frame(width: geometry.width, height: navigationBarHeight) : nil
+                                    } else if isCloseButtonEnabled {
+                                        geometry.largeTitleWeight == 1 ? HStack {
+                                            Spacer()
+                                            CloseButton(color: .white, closeButtonTapped: self.backButtonTapped)
+                                                .padding(.top, -navigationBarHeight)
+                                        }.frame(width: geometry.width, height: navigationBarHeight) : nil
                                     }
                                     Spacer()
 
@@ -59,6 +66,7 @@ struct HeaderScrollView: View {
                                                           height: navigationBarHeight,
                                                           largeTitle: geometry.largeTitleWeight,
                                                           backButtonTapped: self.backButtonTapped,
+                                                          isCloseButtonEnabled: isCloseButtonEnabled,
                                                           isBackButtonEnabled: isBackButtonEnabled)
                                         .layoutPriority(1000)
                                 }

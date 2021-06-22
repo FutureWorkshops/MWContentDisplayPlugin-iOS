@@ -10,6 +10,7 @@ public struct FancyScrollView: View {
     let header: AnyView?
     let content: AnyView
     
+    let isCloseButtonEnabled: Bool
     let isBackButtonEnabled: Bool
     var backButtonTapped: () -> Void
 
@@ -23,6 +24,7 @@ public struct FancyScrollView: View {
                                  header: header,
                                  content: content,
                                  isBackButtonEnabled: isBackButtonEnabled,
+                                 isCloseButtonEnabled: isCloseButtonEnabled,
                                  backButtonTapped: self.backButtonTapped)
             )
         } else {
@@ -57,6 +59,7 @@ extension FancyScrollView {
                                   scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                                   header: () -> A?,
                                   content: () -> B,
+                                  isCloseButtonEnabled: Bool,
                                   isBackButtonEnabled: Bool,
                                   backButtonTapped: @escaping () -> Void) {
 
@@ -66,6 +69,7 @@ extension FancyScrollView {
                   scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                   header: AnyView(header()),
                   content: AnyView(content()),
+                  isCloseButtonEnabled: isCloseButtonEnabled,
                   isBackButtonEnabled: isBackButtonEnabled,
                   backButtonTapped: backButtonTapped)
     }
@@ -75,6 +79,7 @@ extension FancyScrollView {
                          scrollUpHeaderBehavior: ScrollUpHeaderBehavior = .parallax,
                          scrollDownHeaderBehavior: ScrollDownHeaderBehavior = .offset,
                          content: () -> A,
+                         isCloseButtonEnabled: Bool,
                          isBackButtonEnabled: Bool,
                          backButtonTapped: @escaping () -> Void) {
 
@@ -84,6 +89,7 @@ extension FancyScrollView {
                      scrollDownHeaderBehavior: scrollDownHeaderBehavior,
                      header: nil,
                      content: AnyView(content()),
+                     isCloseButtonEnabled: isCloseButtonEnabled,
                      isBackButtonEnabled: isBackButtonEnabled,
                      backButtonTapped: backButtonTapped)
        }

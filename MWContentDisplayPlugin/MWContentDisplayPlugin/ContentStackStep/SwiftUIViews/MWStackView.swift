@@ -20,6 +20,7 @@ struct MWStackView: View {
     var buttonTapped: (MWStackStepItemButton) -> Void
     var tintColor: UIColor
     
+    let isCloseButtonEnabled: Bool
     let isBackButtonEnabled: Bool
     
     var body: some View {
@@ -38,12 +39,14 @@ struct MWStackView: View {
                     .aspectRatio(contentMode: .fill)
             }, content: {
                 self.makeContentScrollView()
-            }, isBackButtonEnabled: isBackButtonEnabled,
+            }, isCloseButtonEnabled: isCloseButtonEnabled,
+            isBackButtonEnabled: isBackButtonEnabled,
             backButtonTapped: self.backButtonTapped)
         } else {
             return FancyScrollView(content: {
                 self.makeContentScrollView()
-            }, isBackButtonEnabled: isBackButtonEnabled,
+            }, isCloseButtonEnabled: isCloseButtonEnabled,
+            isBackButtonEnabled: isBackButtonEnabled,
             backButtonTapped: self.backButtonTapped)
         }
     }

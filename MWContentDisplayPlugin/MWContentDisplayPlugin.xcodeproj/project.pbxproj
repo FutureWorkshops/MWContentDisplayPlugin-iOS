@@ -18,6 +18,7 @@
 		628EC3A6255E9F7B00CD1992 /* MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */; };
 		628EC3AB255E9F7B00CD1992 /* MWVideoGridPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */; };
 		628EC3AD255E9F7B00CD1992 /* MWContentDisplayPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADE0F1172681CFE9000D6E9D /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0F1162681CFE9000D6E9D /* CloseButton.swift */; };
 		B10669EF261C5E21005878DB /* MWStackStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669EE261C5E21005878DB /* MWStackStep.swift */; };
 		B10669F3261C5EBA005878DB /* MWStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10669F2261C5EBA005878DB /* MWStackViewController.swift */; };
 		B10F833A261F569D005BAEC3 /* MWStackStepContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F8339261F569D005BAEC3 /* MWStackStepContents.swift */; };
@@ -68,6 +69,7 @@
 		628EC3AC255E9F7B00CD1992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWContentDisplayPluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		980A44E52379947BB8387DB1 /* Pods-MWVideoGridPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ADE0F1162681CFE9000D6E9D /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
 		B10669EE261C5E21005878DB /* MWStackStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWStackStep.swift; sourceTree = "<group>"; };
 		B10669F2261C5EBA005878DB /* MWStackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWStackViewController.swift; sourceTree = "<group>"; };
 		B10F8339261F569D005BAEC3 /* MWStackStepContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWStackStepContents.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 			children = (
 				B1E25425263848400084A44D /* FancyScrollView.swift */,
 				B1E2542A263848400084A44D /* HeaderScrollView.swift */,
+				ADE0F1162681CFE9000D6E9D /* CloseButton.swift */,
 				B1E2542B263848400084A44D /* AppleMusicStyleScrollView.swift */,
 				B1E25428263848400084A44D /* BackButton.swift */,
 				B1E2542C263848400084A44D /* HeaderScrollViewTitle.swift */,
@@ -458,6 +461,7 @@
 				367CB765264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift in Sources */,
 				B10F8342261F5C99005BAEC3 /* MWNetworkStackStep.swift in Sources */,
 				B1E25437263848400084A44D /* ScrollUpHeaderBehavior.swift in Sources */,
+				ADE0F1172681CFE9000D6E9D /* CloseButton.swift in Sources */,
 				B10F833A261F569D005BAEC3 /* MWStackStepContents.swift in Sources */,
 				B1E25431263848400084A44D /* BlurView.swift in Sources */,
 				B1E25438263848400084A44D /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */,
