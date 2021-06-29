@@ -58,7 +58,7 @@ struct MWStackView: View {
                 case .title(let innerItem): MWTitleView(item: innerItem)
                 case .text(let innerItem): MWTextView(item: innerItem).padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
-                case .button(let innerItem): MWButtonView(item: innerItem, tapped: buttonTapped, backgroundColor: Color(tintColor))
+                case .button(let innerItem): MWButtonView(item: innerItem, tapped: buttonTapped, systemTintColor: Color(tintColor))
                 }
             }
         }
@@ -127,7 +127,7 @@ fileprivate struct MWButtonView: View {
     
     let item: MWStackStepItemButton
     var tapped: (MWStackStepItemButton) -> Void
-    var backgroundColor: Color
+    var systemTintColor: Color
     
     var body: some View {
         Button {
@@ -142,9 +142,8 @@ fileprivate struct MWButtonView: View {
                     .lineLimit(1)
             }
             .frame(maxWidth: .infinity, idealHeight: 44, maxHeight: 44, alignment: .center)
-            .foregroundColor(.white)
-            .background(item.remoteURLMethod == Optional(.DELETE) ? Color(UIColor.systemRed) : backgroundColor)
-            .cornerRadius(16)
-        }.padding(EdgeInsets(top: 24, leading: 0, bottom: 24, trailing: 0))
+        }
+        .buttonStyle(MWButtonStyle(style: item.style, systemTintColor: systemTintColor))
+        .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
     }
 }
