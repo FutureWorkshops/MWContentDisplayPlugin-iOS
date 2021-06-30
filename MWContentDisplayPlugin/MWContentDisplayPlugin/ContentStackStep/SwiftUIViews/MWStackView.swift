@@ -63,7 +63,7 @@ struct MWStackView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
+        .padding(EdgeInsets(top: 24, leading: 16, bottom: 84, trailing: 16))
     }
 }
 
