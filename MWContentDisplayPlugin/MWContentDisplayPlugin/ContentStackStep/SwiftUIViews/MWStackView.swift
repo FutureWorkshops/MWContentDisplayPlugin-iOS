@@ -17,7 +17,7 @@ struct MWStackView: View {
     var screenSize: CGSize
     var contents: MWStackStepContents
     var backButtonTapped: () -> Void
-    var buttonTapped: (MWStackStepItemButton) -> Void
+    var buttonTapped: (MWStackStepItemButton, CGRect) -> Void
     var tintColor: UIColor
     
     let isCloseButtonEnabled: Bool
@@ -128,23 +128,27 @@ fileprivate struct MWListItemView: View {
 fileprivate struct MWButtonView: View {
     
     let item: MWStackStepItemButton
-    var tapped: (MWStackStepItemButton) -> Void
+    var tapped: (_ item: MWStackStepItemButton, _ rect: CGRect) -> Void
     var systemTintColor: Color
     
     var body: some View {
-        Button {
-            tapped(item)
-        } label: {
-            HStack(spacing: 4) {
-                if let systemName = item.sfSymbolName {
-                    Image(systemName: systemName)
+        // Needs GeometryReader to send back the frame of the button for popOver purposes
+        GeometryReader { geo in
+            Button {
+                tapped(item, geo.frame(in: .global))
+            } label: {
+                HStack(spacing: 4) {
+                    if let systemName = item.sfSymbolName {
+                        Image(systemName: systemName)
+                    }
+                    Text(item.label)
+                        .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
+                        .lineLimit(1)
                 }
-                Text(item.label)
-                    .font(Font(UIFont.preferredFont(forTextStyle: .body, weight: .bold)))
-                    .lineLimit(1)
+                .frame(maxWidth: .infinity, idealHeight: 44, maxHeight: 44, alignment: .center)
             }
-            .frame(maxWidth: .infinity, idealHeight: 44, maxHeight: 44, alignment: .center)
         }
+        .frame(maxWidth: .infinity, idealHeight: 44, maxHeight: 44, alignment: .center)
         .buttonStyle(MWButtonStyle(style: item.style, systemTintColor: systemTintColor))
         .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
     }

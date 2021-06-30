@@ -59,11 +59,11 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
         self.stateView.configure(isLoading: false, title: nil, subtitle: nil, buttonConfig: nil)
     }
     
-    override func handleButtonItemTapped(_ item: MWStackStepItemButton) {
+    override func handleButtonItemTapped(_ item: MWStackStepItemButton, in rect: CGRect) {
         if let remoteURL = item.remoteURL, let httpMethod = item.remoteURLMethod {
             self.performButtonRemoteRequest(to: remoteURL, usingHTTPMethod: httpMethod, successAction: item.sucessAction)
         } else {
-            super.handleButtonItemTapped(item)
+            super.handleButtonItemTapped(item, in: rect)
         }
     }
     
