@@ -73,6 +73,7 @@ fileprivate struct MWTitleView: View {
         
     var body: some View {
         Text(item.title).font(Font(UIFont.preferredFont(forTextStyle: .title3, weight: .bold)))
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
 
@@ -82,6 +83,7 @@ fileprivate struct MWTextView: View {
         
     var body: some View {
         Text(item.text).font(.body)
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
 
