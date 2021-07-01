@@ -54,8 +54,8 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         
         let swiftUIRootView = MWStackView(screenSize: self.view.frame.size, contents: self.contentStackStep.contents, backButtonTapped: { [weak self] in
             self?.handleBackButtonTapped()
-        }, buttonTapped: { [weak self] item in
-            self?.handleButtonItemTapped(item)
+        }, buttonTapped: { [weak self] item, rect in
+            self?.handleButtonItemTapped(item, in: rect)
         }, tintColor: self.contentStackStep.tintColor,
         isCloseButtonEnabled: self.isCloseButtonEnabled,
         isBackButtonEnabled: self.isBackButtonEnabled)
@@ -73,7 +73,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         }
     }
     
-    func handleButtonItemTapped(_ item: MWStackStepItemButton) {
+    func handleButtonItemTapped(_ item: MWStackStepItemButton, in rect: CGRect) {
         if let modalWorkflow = item.modalWorkflow {
             self.workflowPresentationDelegate?.presentWorkflowWithName(modalWorkflow, isDiscardable: true, animated: true) { [weak self] reason in
                 if reason == .completed {
@@ -86,7 +86,10 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
             } catch {
                 self.show(error)
             }
-        } else {
+        } else if let linkURL = item.linkURL {
+            self.presentActivitySheet(with: [linkURL], sourceRect: rect)
+        }
+        else {
             self.handleSuccessAction(item.sucessAction)
         }
     }

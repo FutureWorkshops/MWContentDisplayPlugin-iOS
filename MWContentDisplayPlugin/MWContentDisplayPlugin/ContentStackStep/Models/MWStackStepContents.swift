@@ -140,6 +140,9 @@ struct MWStackStepItemButton: Identifiable {
     // Action: Open the URL to the system
     let systemURL: URL?
     
+    // Sharable Link
+    let linkURL: URL?
+    
     // What to do after performing the action
     let sucessAction: SuccessAction
     
@@ -157,6 +160,7 @@ struct MWStackStepItemButton: Identifiable {
         self.remoteURL = (json["url"] as? String).flatMap{ URL(string: $0) }
         self.remoteURLMethod = (json["method"] as? String).flatMap{HTTPMethod(rawValue: $0.uppercased())}
         self.systemURL = (json["appleSystemURL"] as? String).flatMap{ URL(string: $0) }
+        self.linkURL = (json["linkURL"] as? String).flatMap{ URL(string: $0) }
         self.sucessAction = SuccessAction(rawValue: json["onSuccess"] as? String ?? "") ?? .none
         self.sfSymbolName = (json["sfSymbolName"] as? String)
     }
