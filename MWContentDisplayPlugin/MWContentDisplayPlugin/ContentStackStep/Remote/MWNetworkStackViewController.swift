@@ -61,7 +61,16 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
     
     override func handleButtonItemTapped(_ item: MWStackStepItemButton, in rect: CGRect) {
         if let remoteURL = item.remoteURL, let httpMethod = item.remoteURLMethod {
-            self.performButtonRemoteRequest(to: remoteURL, usingHTTPMethod: httpMethod, successAction: item.sucessAction)
+            // Show alert if confirmation title is present
+            if let title = item.confirmTitle {
+                self.showConfirmationAlert(title: title, message: item.confirmText, confirmTitle: item.confirmTitle, isDestructive: item.style == .danger) { [weak self] didConfirm in
+                    if didConfirm {
+                        self?.performButtonRemoteRequest(to: remoteURL, usingHTTPMethod: httpMethod, successAction: item.sucessAction)
+                    }
+                }
+            } else {
+                self.performButtonRemoteRequest(to: remoteURL, usingHTTPMethod: httpMethod, successAction: item.sucessAction)
+            }
         } else {
             super.handleButtonItemTapped(item, in: rect)
         }
