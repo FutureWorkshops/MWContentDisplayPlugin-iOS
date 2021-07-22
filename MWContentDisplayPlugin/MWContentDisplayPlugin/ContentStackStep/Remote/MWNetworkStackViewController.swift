@@ -110,4 +110,14 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
         }
     }
     
+    public override func handleSuccessAction(_ action: SuccessAction) {
+        switch action {
+        case .none: break
+        case .forward: self.goForward()
+        case .backward: self.goBackward()
+        case .reload: self.loadContent()
+        @unknown default:
+            fatalError("Unhandled action: \(action.rawValue)")
+        }
+    }
 }
