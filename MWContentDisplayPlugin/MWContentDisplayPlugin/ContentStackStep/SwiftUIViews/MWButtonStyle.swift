@@ -38,7 +38,7 @@ private extension MWButtonStyle {
                 return .red
             case .outline, .textOnly:
                 // Trick to have a view that can be tapped. If color is clear, only text is tappable.
-                return .white.opacity(0.01)
+                return Color.white.opacity(0.01)
             }
         }
         
