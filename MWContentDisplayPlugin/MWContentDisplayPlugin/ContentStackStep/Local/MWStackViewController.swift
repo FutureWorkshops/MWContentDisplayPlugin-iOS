@@ -9,6 +9,16 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
+// MARK: - MAGIC FOR SWIFTUI. Check if it doesn't collide with any other code in Core
+
+extension MWStackViewController: UINavigationControllerDelegate {
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController is MWStackViewController {
+            navigationController.isNavigationBarHidden = true
+        }
+    }
+}
+
 public class MWStackViewController: MWStepViewController, WorkflowPresentationDelegator, SuccessActionHandler {
     
     //MARK: Public properties (WorkflowPresentationDelegator)
@@ -48,6 +58,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     
     // MARK: Methods
     func installSwiftUIView() {
+        self.navigationController?.delegate = self
         if let previousHostingController = self.hostingController {
             self.removeCovering(childViewController: previousHostingController)
         }

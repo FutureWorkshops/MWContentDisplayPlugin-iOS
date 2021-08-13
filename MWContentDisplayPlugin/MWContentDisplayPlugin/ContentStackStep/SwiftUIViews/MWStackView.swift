@@ -9,9 +9,6 @@ import SwiftUI
 import Kingfisher
 import Foundation
 
-// Without this padding, header will not expand to the top of the screen.
-private let topPadding: CGFloat = 100
-
 struct MWStackView: View {
     
     var screenSize: CGSize
@@ -25,7 +22,6 @@ struct MWStackView: View {
     
     var body: some View {
         self.makeScrollView()
-            .frame(width: screenSize.width, height: screenSize.height + topPadding, alignment: .top)
     }
     
     private func makeScrollView() -> some View {
@@ -63,7 +59,7 @@ struct MWStackView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(EdgeInsets(top: 24, leading: 16, bottom: 84, trailing: 16))
+        .padding(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
     }
 }
 
