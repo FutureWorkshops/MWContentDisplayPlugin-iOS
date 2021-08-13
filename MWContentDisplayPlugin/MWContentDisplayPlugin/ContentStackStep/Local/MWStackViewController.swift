@@ -59,6 +59,12 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     // MARK: Methods
     func installSwiftUIView() {
         self.navigationController?.delegate = self
+        
+        // Enable swipe back if back button is enabled
+        if self.isBackButtonEnabled {
+            navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        }
+        
         if let previousHostingController = self.hostingController {
             self.removeCovering(childViewController: previousHostingController)
         }
