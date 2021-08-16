@@ -31,6 +31,9 @@ struct MWStackView: View {
         if let headerImageURL = contents.headerImageURL {
             return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 280, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
                 KFImage(headerImageURL)
+                    .placeholder {
+                        makeImagePlaceholder()
+                    }
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             }, content: {
@@ -46,6 +49,15 @@ struct MWStackView: View {
             backButtonTapped: self.backButtonTapped)
         }
     }
+    
+    private func makeImagePlaceholder() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.systemFill(.tertiary))
+            Image(systemName: "photo")
+                .foregroundColor(Color.label(.tertiary))
+                .font(.largeTitle)
+        }    }
     
     private func makeContentScrollView() -> some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -114,9 +126,13 @@ fileprivate struct MWListItemView: View {
     }
     
     func makeImagePlaceholder() -> some View {
-        RoundedRectangle(cornerRadius: 8)
-            .fill(Color.gray)
-            .frame(width: 48, height: 48, alignment: .center)
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.systemFill(.tertiary))
+                .frame(width: 48, height: 48, alignment: .center)
+            Image(systemName: "photo")
+                .foregroundColor(Color.label(.tertiary))
+        }
     }
 }
 
