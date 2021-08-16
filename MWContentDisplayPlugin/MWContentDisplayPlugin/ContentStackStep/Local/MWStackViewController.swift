@@ -9,16 +9,6 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
-// MARK: - MAGIC FOR SWIFTUI. Check if it doesn't collide with any other code in Core
-
-extension MWStackViewController: UINavigationControllerDelegate {
-    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController is MWStackViewController {
-            navigationController.isNavigationBarHidden = true
-        }
-    }
-}
-
 public class MWStackViewController: MWStepViewController, WorkflowPresentationDelegator, SuccessActionHandler {
     
     //MARK: Public properties (WorkflowPresentationDelegator)
@@ -26,6 +16,11 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     
     public override var titleMode: StepViewControllerTitleMode {
         .customOrNone
+    }
+    
+    // Hide Navigation Bar
+    public override func configureNavigationBar(_ navigationBar: UINavigationBar) {
+        navigationBar.isHidden = true
     }
     
     //MARK: Properties
@@ -58,8 +53,6 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     
     // MARK: Methods
     func installSwiftUIView() {
-        self.navigationController?.delegate = self
-        
         // Enable swipe back if back button is enabled
         if self.isBackButtonEnabled {
             navigationController?.interactivePopGestureRecognizer?.delegate = nil
