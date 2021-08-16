@@ -53,6 +53,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     
     // MARK: Methods
     func installSwiftUIView() {
+        #warning("This should not casue any issues with other gesture recognizers. Please bear in mind to check this code if future issues related to navigation gestures arise.")
         // Enable swipe back if back button is enabled
         if self.isBackButtonEnabled {
             navigationController?.interactivePopGestureRecognizer?.delegate = nil
