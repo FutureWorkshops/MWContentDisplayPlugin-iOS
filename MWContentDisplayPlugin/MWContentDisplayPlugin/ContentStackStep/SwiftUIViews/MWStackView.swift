@@ -9,9 +9,6 @@ import SwiftUI
 import Kingfisher
 import Foundation
 
-// Without this padding, header will not expand to the top of the screen.
-private let topPadding: CGFloat = 100
-
 struct MWStackView: View {
     
     var screenSize: CGSize
@@ -25,7 +22,6 @@ struct MWStackView: View {
     
     var body: some View {
         self.makeScrollView()
-            .frame(width: screenSize.width, height: screenSize.height + topPadding, alignment: .top)
     }
     
     private func makeScrollView() -> some View {
@@ -35,6 +31,9 @@ struct MWStackView: View {
         if let headerImageURL = contents.headerImageURL {
             return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 280, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
                 KFImage(headerImageURL)
+                    .placeholder {
+                        makeImagePlaceholder()
+                    }
                     .resizable()
                     .aspectRatio(contentMode: .fill)
             }, content: {
@@ -51,6 +50,15 @@ struct MWStackView: View {
         }
     }
     
+    private func makeImagePlaceholder() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.systemFill(.tertiary))
+            Image(systemName: "photo")
+                .foregroundColor(Color.label(.tertiary))
+                .font(.largeTitle)
+        }    }
+    
     private func makeContentScrollView() -> some View {
         VStack(alignment: .leading, spacing: 8) {
             ForEach(contents.items) { item in
@@ -63,7 +71,7 @@ struct MWStackView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(EdgeInsets(top: 24, leading: 16, bottom: 84, trailing: 16))
+        .padding(EdgeInsets(top: 24, leading: 16, bottom: 24, trailing: 16))
     }
 }
 
@@ -118,9 +126,13 @@ fileprivate struct MWListItemView: View {
     }
     
     func makeImagePlaceholder() -> some View {
-        RoundedRectangle(cornerRadius: 8)
-            .fill(Color.gray)
-            .frame(width: 48, height: 48, alignment: .center)
+        ZStack {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color.systemFill(.tertiary))
+                .frame(width: 48, height: 48, alignment: .center)
+            Image(systemName: "photo")
+                .foregroundColor(Color.label(.tertiary))
+        }
     }
 }
 

@@ -18,6 +18,11 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         .customOrNone
     }
     
+    // Hide Navigation Bar
+    public override func configureNavigationBar(_ navigationBar: UINavigationBar) {
+        navigationBar.isHidden = true
+    }
+    
     //MARK: Properties
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
@@ -48,6 +53,12 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     
     // MARK: Methods
     func installSwiftUIView() {
+        #warning("This should not casue any issues with other gesture recognizers. Please bear in mind to check this code if future issues related to navigation gestures arise.")
+        // Enable swipe back if back button is enabled
+        if self.isBackButtonEnabled {
+            navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        }
+        
         if let previousHostingController = self.hostingController {
             self.removeCovering(childViewController: previousHostingController)
         }
