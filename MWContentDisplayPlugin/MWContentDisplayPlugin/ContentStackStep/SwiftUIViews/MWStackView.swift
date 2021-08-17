@@ -11,7 +11,6 @@ import Foundation
 
 struct MWStackView: View {
     
-    var screenSize: CGSize
     var contents: MWStackStepContents
     var backButtonTapped: () -> Void
     var buttonTapped: (MWStackStepItemButton, CGRect) -> Void
