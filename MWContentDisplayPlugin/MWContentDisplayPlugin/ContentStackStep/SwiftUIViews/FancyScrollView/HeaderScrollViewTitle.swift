@@ -27,8 +27,8 @@ struct HeaderScrollViewTitle: View {
             .padding(.bottom, 16)
             .background(
                 self.makeLinearGradient()
-                    .frame(height: 80)
-                    .offset(y: -18)
+                    .frame(height: 90)
+                    .offset(y: -22)
             )
             .opacity(sqrt(largeTitleOpacity))
             .minimumScaleFactor(0.5)
