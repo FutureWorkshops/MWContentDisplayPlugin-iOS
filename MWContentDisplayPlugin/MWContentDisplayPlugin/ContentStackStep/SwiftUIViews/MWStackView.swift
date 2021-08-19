@@ -53,7 +53,7 @@ struct MWStackView: View {
     private func makeImagePlaceholder() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.systemFill(.tertiary))
+                .fill(Color.systemFill(.secondary))
             Image(systemName: "photo")
                 .foregroundColor(Color.label(.tertiary))
                 .font(.largeTitle)
@@ -128,7 +128,7 @@ fileprivate struct MWListItemView: View {
     func makeImagePlaceholder() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.systemFill(.tertiary))
+                .fill(Color.systemFill(.secondary))
                 .frame(width: 48, height: 48, alignment: .center)
             Image(systemName: "photo")
                 .foregroundColor(Color.label(.tertiary))
