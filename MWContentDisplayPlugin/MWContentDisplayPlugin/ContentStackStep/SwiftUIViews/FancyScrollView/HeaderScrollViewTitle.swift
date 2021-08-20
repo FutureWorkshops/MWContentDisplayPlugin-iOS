@@ -27,8 +27,8 @@ struct HeaderScrollViewTitle: View {
             .padding(.bottom, 16)
             .background(
                 self.makeLinearGradient()
-                    .frame(height: 80)
-                    .offset(y: -18)
+                    .frame(height: 90)
+                    .offset(y: -22)
             )
             .opacity(sqrt(largeTitleOpacity))
             .minimumScaleFactor(0.5)
@@ -58,10 +58,6 @@ struct HeaderScrollViewTitle: View {
     }
     
     private func makeLinearGradient() -> LinearGradient {
-        if colorScheme == .dark {
-            return LinearGradient(gradient: Gradient(colors: [.clear, Color(UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 0.8))]), startPoint: .top, endPoint: .bottom)
-        } else {
-            return LinearGradient(gradient: Gradient(colors: [.clear, Color(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0))]), startPoint: .top, endPoint: .bottom)
-        }
+        LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.4), Color.black.opacity(0)]), startPoint: .bottom, endPoint: .top)
     }
 }
