@@ -27,9 +27,13 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     
-    // Enable per default. Will only be shown if back button is disabled.
+    // Will only be shown if true and back button is disabled.
     private var isCloseButtonEnabled: Bool {
-        return true
+        guard let presentedWorkflow = self.parent as? PresentedWorkflow else {
+            return false
+        }
+        
+        return presentedWorkflow.shouldDismiss
     }
     
     private var isBackButtonEnabled: Bool {
@@ -80,6 +84,9 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
         } else {
             if let target = self.cancelButtonItem?.target, let action = self.cancelButtonItem?.action {
                 UIApplication.shared.sendAction(action, to: target, from: nil, for: nil)
+            } else if isCloseButtonEnabled {
+                // Dismiss Modal Workflow
+                self.goForward()
             }
         }
     }
