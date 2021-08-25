@@ -15,12 +15,12 @@ public class MWGridStep: MWStep, HasSecondaryWorkflows {
     public let secondaryWorkflowIDs: [String]
     public var items: [GridStepItem] = []
     
-    init(identifier: String, session: Session, services: StepServices, secondaryWorkflowIDs: [String], items: [GridStepItem]) {
+    init(identifier: String, session: Session, services: StepServices, theme: Theme, secondaryWorkflowIDs: [String], items: [GridStepItem]) {
         self.session = session
         self.services = services
         self.secondaryWorkflowIDs = secondaryWorkflowIDs
         self.items = items
-        super.init(identifier: identifier)
+        super.init(identifier: identifier, theme: theme)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -49,7 +49,7 @@ extension MWGridStep: BuildableStep {
                 }
                 return GridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)
             }
-            return MWGridStep(identifier: stepInfo.data.identifier, session: stepInfo.session, services: services, secondaryWorkflowIDs: secondaryWorkflowIDs, items: items)
+            return MWGridStep(identifier: stepInfo.data.identifier, session: stepInfo.session, services: services, theme: stepInfo.context.theme, secondaryWorkflowIDs: secondaryWorkflowIDs, items: items)
         } else if stepInfo.data.type == MWContentDisplayStepType.networkGrid.typeName {
             // Remote grid (coming from a network call)
             let emptyText = services.localizationService.translate(stepInfo.data.content["emptyText"] as? String)
