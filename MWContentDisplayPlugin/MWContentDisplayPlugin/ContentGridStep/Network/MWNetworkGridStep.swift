@@ -28,7 +28,7 @@ public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSo
         self.stepContext = stepInfo.context
         self.url = url
         self.emptyText = emptyText
-        super.init(identifier: identifier, session: stepInfo.session, services: services, secondaryWorkflowIDs: secondaryWorkflowIDs, items: [])
+        super.init(identifier: identifier, session: stepInfo.session, services: services, theme: stepInfo.context.theme, secondaryWorkflowIDs: secondaryWorkflowIDs, items: [])
     }
     
     required init(coder aDecoder: NSCoder) {

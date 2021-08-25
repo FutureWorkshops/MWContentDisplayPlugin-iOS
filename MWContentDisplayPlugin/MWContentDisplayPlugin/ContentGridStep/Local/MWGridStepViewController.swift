@@ -33,7 +33,7 @@ class MWGridStepViewController: MWStepViewController, HasSecondaryWorkflows {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .secondarySystemBackground
+        self.view.backgroundColor = self.gridStep.theme.primaryBackgroundColor
         
         self.setupCollectionView()
     }
