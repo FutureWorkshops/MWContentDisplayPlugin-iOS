@@ -23,6 +23,37 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     private let imageView = UIImageView()
     private var imageLoadTask: AnyCancellable?
     
+    private lazy var placeholderImage: UIImage? = {
+        let size = CGSize(width: 500, height: 500/2)
+        
+        UIGraphicsBeginImageContext(size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        context.translateBy(x: 0, y: size.height)
+        context.scaleBy(x: 1.0, y: -1.0);
+        context.setBlendMode(.normal)
+        
+        let imageConfig = UIImage.SymbolConfiguration(textStyle: .largeTitle)
+        guard let image = UIImage(systemName: "photo", withConfiguration: imageConfig) else {
+            return nil
+        }
+        
+        // Center image
+        let x = (size.width / 2) - (image.size.width / 2)
+        let y = (size.height / 2) - (image.size.height / 2)
+        
+        let rect = CGRect(x: x, y: y, width: image.size.width, height: image.size.height)
+        context.clip(to: rect, mask: image.cgImage!)
+        UIColor.systemGray2.setFill()
+        context.fill(rect)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }()
+    
     //MARK: Lifecycle
     override init(frame: CGRect) {
         
@@ -79,6 +110,8 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.imageView.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
         self.imageLoadTask?.cancel()
         if let imageUrl = viewData.imageUrl {
+            self.imageView.image = self.placeholderImage
+            self.imageView.backgroundColor = .tertiarySystemFill
             self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString, session: session) { [weak self] (image) in
                 guard let strongSelf = self else { return }
                 strongSelf.imageView.image = image
