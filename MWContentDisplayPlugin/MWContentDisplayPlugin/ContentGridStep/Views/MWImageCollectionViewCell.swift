@@ -103,7 +103,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: Configuration
-    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, session: Session) {
+    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, session: Session, theme: Theme) {
         self.titleLabel.text = viewData.title
         self.subtitleLabel.text = viewData.subtitle
         
@@ -111,7 +111,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.imageLoadTask?.cancel()
         if let imageUrl = viewData.imageUrl {
             self.imageView.image = self.placeholderImage
-            self.imageView.backgroundColor = .tertiarySystemFill
+            self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
             self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString, session: session) { [weak self] (image) in
                 guard let strongSelf = self else { return }
                 strongSelf.imageView.image = image
