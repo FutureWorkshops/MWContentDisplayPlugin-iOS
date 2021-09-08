@@ -36,7 +36,7 @@ class MWNetworkStackViewController: MWStackViewController, RemoteContentStepView
             self?.hideLoading()
             switch result {
             case .success(let items): self?.update(content: items)
-            case .failure(let error): self?.show(error)
+            case .failure(let error): self?.show(error) { [weak self] in self?.goBackward() }
             }
         }
     }
