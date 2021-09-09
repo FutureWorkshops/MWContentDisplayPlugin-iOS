@@ -1,5 +1,5 @@
 //
-//  MWNetworkStackStep.swift
+//  MWNetworkContentDisplayStackStep.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 8/4/21.
@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource {
+class MWNetworkContentDisplayStackStep: MWContentDisplayStackStep, RemoteContentStep, SyncableContentSource {
     
     let session: Session
     let services: StepServices
@@ -34,7 +34,7 @@ class MWNetworkStackStep: MWStackStep, RemoteContentStep, SyncableContentSource 
     }
     
     override func instantiateViewController() -> StepViewController {
-        return MWNetworkStackViewController(step: self)
+        return MWNetworkContentDisplayStackViewController(step: self)
     }
     
     func loadContent(completion: @escaping (Result<MWStackStepContents, Error>) -> Void) {

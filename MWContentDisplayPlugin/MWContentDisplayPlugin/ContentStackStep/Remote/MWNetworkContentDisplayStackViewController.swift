@@ -1,5 +1,5 @@
 //
-//  MWNetworkStackViewController.swift
+//  MWNetworkContentDisplayStackViewController.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 8/4/21.
@@ -10,13 +10,13 @@ import SwiftUI
 import Foundation
 import MobileWorkflowCore
 
-class MWNetworkStackViewController: MWStackViewController, RemoteContentStepViewController {
+class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewController, RemoteContentStepViewController {
     
     //MARK: Views
     private let stateView = StateView(frame: .zero)
     
     //MARK: Properties
-    var remoteContentStep: MWNetworkStackStep! { self.mwStep as? MWNetworkStackStep }
+    var remoteContentStep: MWNetworkContentDisplayStackStep! { self.mwStep as? MWNetworkContentDisplayStackStep }
 
     //MARK: Lifecycle
     override func viewDidLoad() {
