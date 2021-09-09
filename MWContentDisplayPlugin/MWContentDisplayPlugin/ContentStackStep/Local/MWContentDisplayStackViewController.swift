@@ -1,5 +1,5 @@
 //
-//  MWStackViewController.swift
+//  MWContentDisplayStackViewController.swift
 //  MWContentDisplayPlugin
 //
 //  Created by Xavi Moll on 6/4/21.
@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
-public class MWStackViewController: MWStepViewController, WorkflowPresentationDelegator, SuccessActionHandler {
+public class MWContentDisplayStackViewController: MWStepViewController, WorkflowPresentationDelegator, SuccessActionHandler {
     
     //MARK: Public properties (WorkflowPresentationDelegator)
     public weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
@@ -24,7 +24,7 @@ public class MWStackViewController: MWStepViewController, WorkflowPresentationDe
     }
     
     //MARK: Properties
-    var contentStackStep: MWStackStep { self.mwStep as! MWStackStep }
+    var contentStackStep: MWContentDisplayStackStep { self.mwStep as! MWContentDisplayStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     
     // Will only be shown if true and back button is disabled.

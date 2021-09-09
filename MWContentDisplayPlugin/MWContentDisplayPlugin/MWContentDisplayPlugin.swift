@@ -28,8 +28,8 @@ enum MWContentDisplayStepType: String, StepType, CaseIterable {
         switch self {
         case .grid: return MWGridStep.self
         case .networkGrid: return MWNetworkGridStep.self
-        case .stack: return MWStackStep.self
-        case .networkStack: return MWNetworkStackStep.self
+        case .stack: return MWContentDisplayStackStep.self
+        case .networkStack: return MWNetworkContentDisplayStackStep.self
         }
     }
 }
