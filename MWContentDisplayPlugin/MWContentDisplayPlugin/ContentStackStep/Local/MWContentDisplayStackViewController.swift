@@ -20,7 +20,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
     
     // Hide Navigation Bar
     public override func configureNavigationBar(_ navigationBar: UINavigationBar) {
-        navigationBar.isHidden = true
+        navigationBar.isHidden = true // navBars are now re-shown by default, so we shouldn't need to worry about subsequent steps
     }
     
     //MARK: Properties
@@ -37,22 +37,14 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
     }
     
     private var isBackButtonEnabled: Bool {
-        if let navController = self.navigationController {
-            return navController.viewControllers.count > 1
-        } else {
-            return false
-        }
+        let shouldHideBackButton = self.mwDelegate?.mwStepViewControllerShouldHideBackButton(self) ?? false
+        return !shouldHideBackButton
     }
     
     //MARK: Lifecycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.installSwiftUIView()
-    }
-    
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: Methods
