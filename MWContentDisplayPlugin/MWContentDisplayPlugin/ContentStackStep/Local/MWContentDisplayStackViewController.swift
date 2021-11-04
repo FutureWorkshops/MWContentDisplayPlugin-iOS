@@ -30,7 +30,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
     
     // Will only be shown if true and back button is disabled.
     private var isCloseButtonEnabled: Bool {
-        guard let nc = self.parent as? LinksNavigationViewController else {
+        guard let nc = self.parent as? StepNavigationViewController else {
             return false
         }
         
