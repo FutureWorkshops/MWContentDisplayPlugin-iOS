@@ -66,6 +66,7 @@ struct MWStackView: View {
                 case .text(let innerItem): MWTextView(item: innerItem).padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
                 case .button(let innerItem): MWButtonView(item: innerItem, tapped: buttonTapped, systemTintColor: Color(tintColor))
+                case .space(let spaceItem): MWSpaceView(item: spaceItem)
                 }
             }
         }
@@ -162,5 +163,14 @@ fileprivate struct MWButtonView: View {
         .frame(maxWidth: .infinity, idealHeight: 44, maxHeight: 44, alignment: .center)
         .buttonStyle(MWButtonStyle(style: item.style, systemTintColor: systemTintColor))
         .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+    }
+}
+
+fileprivate struct MWSpaceView: View {
+    
+    let item: MWStackStepItemSpace
+    
+    var body: some View {
+        Spacer(minLength: item.height ?? 44.0)
     }
 }

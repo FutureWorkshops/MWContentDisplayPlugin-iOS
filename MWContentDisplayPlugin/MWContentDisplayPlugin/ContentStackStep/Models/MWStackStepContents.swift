@@ -32,6 +32,7 @@ enum MWStackStepItem: Identifiable {
     case text(MWStackStepItemText)
     case listItem(MWStackStepStepItemListItem)
     case button(MWStackStepItemButton)
+    case space(MWStackStepItemSpace)
     
     public var id: String {
         switch self {
@@ -39,6 +40,7 @@ enum MWStackStepItem: Identifiable {
         case .text(let item): return item.id
         case .listItem(let item): return item.id
         case .button(let item): return item.id
+        case .space(let item): return item.id
         }
     }
     
@@ -51,6 +53,8 @@ enum MWStackStepItem: Identifiable {
             self = .listItem(stepTypeListItem)
         } else if let stepTypeButtom = MWStackStepItemButton(json: json, localizationService: localizationService) {
             self = .button(stepTypeButtom)
+        } else if let stepTypeButtom = MWStackStepItemSpace(json: json, localizationService: localizationService) {
+            self = .space(stepTypeButtom)
         } else {
             return nil
         }
@@ -167,5 +171,22 @@ struct MWStackStepItemButton: Identifiable {
         self.linkURL = (json["linkURL"] as? String).flatMap{ URL(string: $0) }
         self.sucessAction = SuccessAction(rawValue: json["onSuccess"] as? String ?? "") ?? .none
         self.sfSymbolName = (json["sfSymbolName"] as? String)
+    }
+}
+
+struct MWStackStepItemSpace: Identifiable {
+    let id: String
+    let height: CGFloat?
+    
+    init?(json: [String:Any], localizationService: LocalizationService) {
+        guard (json["type"] as? String) == Optional("space") else {
+            return nil
+        }
+        guard let id = json["id"] as? String else {
+            assertionFailure("Missing id.")
+            return nil
+        }
+        self.id = id
+        self.height = json["height"] as? CGFloat
     }
 }
