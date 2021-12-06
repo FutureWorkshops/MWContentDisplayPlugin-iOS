@@ -36,7 +36,7 @@ class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewContr
             self?.hideLoading()
             switch result {
             case .success(let items): self?.update(content: items)
-            case .failure(let error): self?.show(error) { [weak self] in self?.goBackward() }
+            case .failure(let error): self?.handleError(error) { [weak self] in self?.goBackward() }
             }
         }
     }
