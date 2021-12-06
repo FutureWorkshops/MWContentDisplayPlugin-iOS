@@ -30,16 +30,6 @@ class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewContr
     }
     
     // MARK: RemoteContentStepViewController
-    func loadContent() {
-        self.showLoading()
-        self.remoteContentStep.loadContent { [weak self] result in
-            self?.hideLoading()
-            switch result {
-            case .success(let items): self?.update(content: items)
-            case .failure(let error): self?.show(error) { [weak self] in self?.goBackward() }
-            }
-        }
-    }
     
     func update(content: MWStackStepContents) {
         self.remoteContentStep.contents = content
