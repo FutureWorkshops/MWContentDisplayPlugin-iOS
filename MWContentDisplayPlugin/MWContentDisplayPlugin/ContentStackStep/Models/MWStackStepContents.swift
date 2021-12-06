@@ -14,6 +14,12 @@ struct MWStackStepContents {
     let headerImageURL: URL?
     let items: [MWStackStepItem]
     
+    init(headerTitle: String? = nil, headerImageURL: URL? = nil, items: [MWStackStepItem]){
+        self.headerTitle = headerTitle
+        self.headerImageURL = headerImageURL
+        self.items = items
+    }
+    
     init(json: [String:Any], localizationService: LocalizationService) {
         self.headerTitle = localizationService.translate(json["title"] as? String)
         self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
