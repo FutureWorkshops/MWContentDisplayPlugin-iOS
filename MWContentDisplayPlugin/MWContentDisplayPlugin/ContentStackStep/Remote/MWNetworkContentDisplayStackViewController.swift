@@ -10,7 +10,7 @@ import SwiftUI
 import Foundation
 import MobileWorkflowCore
 
-class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewController, RemoteContentStepViewController {
+class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewController, RemoteContentStepViewController, ContentClearable {
     
     //MARK: Views
     private let stateView = StateView(frame: .zero)
@@ -25,8 +25,19 @@ class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewContr
         self.view.addSubview(self.stateView)
         self.stateView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.stateView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.resyncContent()
+    }
+
+    @objc func reloadContent() {
         self.loadContent()
+    }
+
+    func clearContent() {
+        self.update(content: MWStackStepContents(items: []))
     }
     
     // MARK: RemoteContentStepViewController
@@ -36,7 +47,7 @@ class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewContr
             self?.hideLoading()
             switch result {
             case .success(let items): self?.update(content: items)
-            case .failure(let error): self?.show(error) { [weak self] in self?.goBackward() }
+            case .failure(let error): self?.handleError(error) { [weak self] in self?.goBackward() }
             }
         }
     }
