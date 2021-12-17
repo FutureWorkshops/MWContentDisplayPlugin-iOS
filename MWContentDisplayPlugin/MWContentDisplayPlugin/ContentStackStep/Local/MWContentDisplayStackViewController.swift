@@ -84,7 +84,12 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
     }
     
     func handleButtonItemTapped(_ item: MWStackStepItemButton, in rect: CGRect) {
-        if let modalWorkflow = item.modalWorkflow {
+        
+        if let actionSheetButtons = item.actionSheetButtons {
+        
+            self.presentActionSheet(actionSheetButtons, from: item, rect: rect)
+        
+        } else if let modalWorkflow = item.modalWorkflow {
             self.workflowPresentationDelegate?.presentWorkflowWithName(modalWorkflow, isDiscardable: true, animated: true) { [weak self] reason in
                 if reason == .completed {
                     self?.handleSuccessAction(item.sucessAction)
@@ -102,6 +107,25 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
         else {
             self.handleSuccessAction(item.sucessAction)
         }
+    }
+    
+    private func presentActionSheet(_ buttons: [MWStackStepItemButton], from buttonItem: MWStackStepItemButton, rect: CGRect) {
+        
+        let controller = UIAlertController(title: buttonItem.label, message: nil, preferredStyle: .actionSheet)
+        
+        buttons.forEach { button in
+            let style : UIAlertAction.Style = button.style == .danger ? .destructive : .default
+            let buttonAction = UIAlertAction(title: button.label, style: style, handler: { [weak self] _ in
+                                                  self?.handleButtonItemTapped(button, in: rect)
+                                             })
+            controller.addAction(buttonAction)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        controller.addAction(cancelAction)
+        
+        self.present(controller, animated: true, completion: nil)
+        
     }
     
     //MARK: SuccessActionHandler
