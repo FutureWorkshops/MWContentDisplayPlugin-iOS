@@ -25,8 +25,41 @@ struct MWStackStepContents {
         self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
         
         let jsonItems = (json["items"] as? Array<[String:Any]>) ?? []
-        self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }
+        self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }.resolvingActionSheetButtons()
     }
+}
+
+extension Sequence where Iterator.Element == MWStackStepItem {
+    
+    fileprivate func resolvingActionSheetButtons() -> [MWStackStepItem] {
+        var items : [MWStackStepItem] = []
+        var presentingButton: MWStackStepItemButton?
+        
+        func update(presentingButton button: MWStackStepItemButton?){
+            if let presentingButton = presentingButton {
+                items.append(.button(presentingButton))
+            }
+            presentingButton = button
+            presentingButton?.actionSheetButtons = []
+        }
+        
+        for item in self {
+            
+            switch item {
+            case .button(let buttonItem) where buttonItem.showSubsequentButtonsGrouped == true:
+                update(presentingButton: buttonItem)
+            case .button(let buttonItem) where buttonItem.showSubsequentButtonsGrouped == false && presentingButton != nil:
+                presentingButton?.actionSheetButtons?.append(buttonItem)
+            default:
+                update(presentingButton: nil)
+                items.append(item)
+            }
+            
+        }
+        
+        return items
+    }
+    
 }
 
 // Describes all the supported types of item that can be shown vertically stacked.
@@ -158,6 +191,11 @@ struct MWStackStepItemButton: Identifiable {
     // What to do after performing the action
     let sucessAction: SuccessAction
     
+    // When true, following buttons in the stack are added in actionSheetButtons and not in the view and displayed in an action sheet on tap.
+    let showSubsequentButtonsGrouped: Bool
+    
+    var actionSheetButtons: [MWStackStepItemButton]?
+    
     let sfSymbolName: String?
     
     init?(json: [String:Any], localizationService: LocalizationService) {
@@ -177,6 +215,7 @@ struct MWStackStepItemButton: Identifiable {
         self.linkURL = (json["linkURL"] as? String).flatMap{ URL(string: $0) }
         self.sucessAction = SuccessAction(rawValue: json["onSuccess"] as? String ?? "") ?? .none
         self.sfSymbolName = (json["sfSymbolName"] as? String)
+        self.showSubsequentButtonsGrouped = (json["showSubsequentButtonsGrouped"] as? Bool) ?? false
     }
 }
 
