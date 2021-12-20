@@ -56,7 +56,8 @@ struct MWStackView: View {
             Image(systemName: "photo")
                 .foregroundColor(Color.label(.tertiary))
                 .font(.largeTitle)
-        }    }
+        }
+    }
     
     private func makeContentScrollView() -> some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -67,6 +68,7 @@ struct MWStackView: View {
                 case .listItem(let innerItem): MWListItemView(stepTypeListItem: innerItem)
                 case .button(let innerItem): MWButtonView(item: innerItem, tapped: buttonTapped, systemTintColor: Color(tintColor))
                 case .space(let spaceItem): MWSpaceView(item: spaceItem)
+                case .image(let imageItem): MWImageView(item: imageItem, systemTintColor: Color(tintColor))
                 }
             }
         }
@@ -173,4 +175,53 @@ fileprivate struct MWSpaceView: View {
     var body: some View {
         Spacer(minLength: item.height ?? 44.0)
     }
+}
+
+fileprivate struct MWImageView: View {
+    
+    let item: MWStackStepItemImage
+    let systemTintColor: Color
+    
+    private let profileImageSize : CGFloat = 132.0
+    private let profileImagePadding : CGFloat = 10.0
+    
+    
+    var body: some View {
+        
+        let kfImage = KFImage(self.item.imageURL).resizable()
+        
+        switch self.item.imageStyle {
+        case .fullWidth:
+            kfImage
+                .placeholder {
+                    makeImagePlaceholder()
+                }
+                .aspectRatio(contentMode: .fit)
+        case .profile:
+            HStack() {
+                Spacer()
+                kfImage
+                    .placeholder {
+                        makeImagePlaceholder(cornerRadius: .infinity)
+                    }
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: profileImageSize, height: profileImageSize, alignment: .center)
+                    .cornerRadius(.infinity)
+                    .padding(profileImagePadding)
+                Spacer()
+            }
+        }
+        
+    }
+    
+    private func makeImagePlaceholder(cornerRadius: CGFloat = 0) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(Color.systemFill(.secondary))
+            Image(systemName: "photo")
+                .foregroundColor(systemTintColor)
+                .font(.largeTitle)
+        }
+    }
+        
 }

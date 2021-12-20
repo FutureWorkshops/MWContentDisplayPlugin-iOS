@@ -25,11 +25,69 @@ struct MWStackStepContents {
         self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
         
         let jsonItems = (json["items"] as? Array<[String:Any]>) ?? []
-        self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }.resolvingActionSheetButtons()
+        self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }.resolvingActionSheetButtons().debug(localizationService)
     }
 }
 
 extension Sequence where Iterator.Element == MWStackStepItem {
+    
+    fileprivate func debug(_ localizationService: LocalizationService) -> [MWStackStepItem] {
+        var items : [MWStackStepItem] = self as! [MWStackStepItem]
+        
+        let image1 = MWStackStepItemImage(json: ["type":"image",
+                                                 "id": "1000",
+                                                 "previewURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "imageURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "contentMode" : "scaleAspectFit",
+                                                 "imageStyle": "fullWidth"],
+                                          localizationService: localizationService)
+        
+        items.insert(MWStackStepItem.image(image1!), at: 0)
+        
+        let image2 = MWStackStepItemImage(json: ["type":"image",
+                                                 "id": "1001",
+                                                 "previewURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "imageURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "contentMode" : "scaleAspectFit",
+                                                 "imageStyle": "profile"],
+                                          localizationService: localizationService)
+        
+        items.insert(MWStackStepItem.image(image2!), at: 1)
+        
+        let image3 = MWStackStepItemImage(json: ["type":"image",
+                                                 "id": "1002",
+                                                 "previewURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "imageURL" : "",
+                                                 "contentMode" : "scaleAspectFit",
+                                                 "imageStyle": "fullWidth"],
+                                          localizationService: localizationService)
+        
+        items.insert(MWStackStepItem.image(image3!), at: 2)
+        
+        let image4 = MWStackStepItemImage(json: ["type":"image",
+                                                 "id": "1003",
+                                                 "previewURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "imageURL" : "",
+                                                 "contentMode" : "scaleAspectFit",
+                                                 "imageStyle": "profile"],
+                                          localizationService: localizationService)
+        
+        items.insert(MWStackStepItem.image(image4!), at: 3)
+        
+        let image5 = MWStackStepItemImage(json: ["type":"image",
+                                                 "id": "1004",
+                                                 "previewURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "imageURL" : "https://source.unsplash.com/C5yKSWNeEuc/800x600",
+                                                 "contentMode" : "scaleAspectFill",
+                                                 "imageStyle": "fullWidth"],
+                                          localizationService: localizationService)
+        
+        items.insert(MWStackStepItem.image(image5!), at: 4)
+        
+        
+        
+        return items
+    }
     
     fileprivate func resolvingActionSheetButtons() -> [MWStackStepItem] {
         var items : [MWStackStepItem] = []
@@ -72,6 +130,7 @@ enum MWStackStepItem: Identifiable {
     case listItem(MWStackStepStepItemListItem)
     case button(MWStackStepItemButton)
     case space(MWStackStepItemSpace)
+    case image(MWStackStepItemImage)
     
     public var id: String {
         switch self {
@@ -80,6 +139,7 @@ enum MWStackStepItem: Identifiable {
         case .listItem(let item): return item.id
         case .button(let item): return item.id
         case .space(let item): return item.id
+        case .image(let item): return item.id
         }
     }
     
@@ -90,10 +150,12 @@ enum MWStackStepItem: Identifiable {
             self = .text(stepTypeText)
         } else if let stepTypeListItem = MWStackStepStepItemListItem(json: json, localizationService: localizationService) {
             self = .listItem(stepTypeListItem)
-        } else if let stepTypeButtom = MWStackStepItemButton(json: json, localizationService: localizationService) {
-            self = .button(stepTypeButtom)
-        } else if let stepTypeButtom = MWStackStepItemSpace(json: json, localizationService: localizationService) {
-            self = .space(stepTypeButtom)
+        } else if let stepTypeButton = MWStackStepItemButton(json: json, localizationService: localizationService) {
+            self = .button(stepTypeButton)
+        } else if let stepTypeSpace = MWStackStepItemSpace(json: json, localizationService: localizationService) {
+            self = .space(stepTypeSpace)
+        } else if let stepTypeImage = MWStackStepItemImage(json: json, localizationService: localizationService) {
+            self = .image(stepTypeImage)
         } else {
             return nil
         }
@@ -233,5 +295,43 @@ struct MWStackStepItemSpace: Identifiable {
         }
         self.id = id
         self.height = json["height"] as? CGFloat
+    }
+}
+
+struct MWStackStepItemImage: Identifiable {
+    let id: String
+    let previewURL: String?
+    let imageURL: URL?
+    let contentMode: ContentMode?
+    let imageStyle: ImageStyle
+    
+    init?(json: [String:Any], localizationService: LocalizationService) {
+        guard (json["type"] as? String) == Optional("image") else {
+            return nil
+        }
+        guard let id = json["id"] as? String else {
+            assertionFailure("Missing id.")
+            return nil
+        }
+        self.id = id
+        self.previewURL = json["previewURL"] as? String
+        
+        if let imageURLString = json["imageURL"] as? String {
+            self.imageURL = URL(string: imageURLString)
+        } else {
+            self.imageURL = nil
+        }
+        
+        var contentMode: ContentMode?
+        if let contentModeAsString = json["contentMode"] as? String {
+            contentMode = ContentMode(rawValue: contentModeAsString)
+        }
+        self.contentMode = contentMode
+        
+        var imageStyle: ImageStyle?
+        if let imageStyleAsString = json["imageStyle"] as? String {
+            imageStyle = ImageStyle(rawValue: imageStyleAsString)
+        }
+        self.imageStyle = imageStyle ?? .fullWidth
     }
 }
