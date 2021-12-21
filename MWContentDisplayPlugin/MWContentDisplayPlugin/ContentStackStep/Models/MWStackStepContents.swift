@@ -10,19 +10,28 @@ import MobileWorkflowCore
 
 /// Describes the data model for the vertical stack. It includes the header + items data
 struct MWStackStepContents {
+    
+    enum HeaderStyle: String, Codable {
+        case fullWidth
+        case profile
+    }
+    
     let headerTitle: String?
     let headerImageURL: URL?
+    let headerStyle: HeaderStyle
     let items: [MWStackStepItem]
     
-    init(headerTitle: String? = nil, headerImageURL: URL? = nil, items: [MWStackStepItem]){
+    init(headerTitle: String? = nil, headerImageURL: URL? = nil, headerStyle: HeaderStyle = .fullWidth, items: [MWStackStepItem]){
         self.headerTitle = headerTitle
         self.headerImageURL = headerImageURL
+        self.headerStyle = headerStyle
         self.items = items
     }
     
     init(json: [String:Any], localizationService: LocalizationService) {
         self.headerTitle = localizationService.translate(json["title"] as? String)
         self.headerImageURL = (json["imageURL"] as? String).flatMap{ URL(string: $0) }
+        self.headerStyle = (json["headerStyle"] as? String).flatMap{ HeaderStyle(rawValue: $0) } ?? .fullWidth
         
         let jsonItems = (json["items"] as? Array<[String:Any]>) ?? []
         self.items = jsonItems.compactMap { MWStackStepItem(json: $0, localizationService: localizationService) }.resolvingActionSheetButtons()

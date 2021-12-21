@@ -27,26 +27,55 @@ struct MWStackView: View {
         // You'd think that setting the `headerHeight` to 0.0 and return nil on the header if there's no `headerImageURL` would
         // work, but it doesn't. If you don't use the correct init (the one that doesn't expect a header), the offset
         // of the ScrollView is completely broken.
-        if let headerImageURL = contents.headerImageURL {
-            return FancyScrollView(title: contents.headerTitle ?? "", headerHeight: 280, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
-                KFImage(headerImageURL)
-                    .placeholder {
-                        makeImagePlaceholder()
-                    }
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            }, content: {
-                self.makeContentScrollView()
-            }, isCloseButtonEnabled: isCloseButtonEnabled,
-            isBackButtonEnabled: isBackButtonEnabled,
-            backButtonTapped: self.backButtonTapped)
-        } else {
-            return FancyScrollView(content: {
-                self.makeContentScrollView()
-            }, isCloseButtonEnabled: isCloseButtonEnabled,
-            isBackButtonEnabled: isBackButtonEnabled,
-            backButtonTapped: self.backButtonTapped)
+        GeometryReader { geometry in
+            let headerHeight: CGFloat = 280.0
+            if let headerImageURL = contents.headerImageURL {
+                FancyScrollView(title: contents.headerTitle ?? "", headerHeight: headerHeight, scrollUpHeaderBehavior: .parallax, scrollDownHeaderBehavior: .sticky, header: {
+                    self.makeHeaderImageView(headerImageURL,
+                                             headerHeight: headerHeight,
+                                             safeAreaInsets: geometry.safeAreaInsets,
+                                             headerStyle: contents.headerStyle)
+                }, content: {
+                    self.makeContentScrollView()
+                }, isCloseButtonEnabled: isCloseButtonEnabled,
+                                isBackButtonEnabled: isBackButtonEnabled,
+                                backButtonTapped: self.backButtonTapped)
+            } else {
+                FancyScrollView(content: {
+                    self.makeContentScrollView()
+                }, isCloseButtonEnabled: isCloseButtonEnabled,
+                isBackButtonEnabled: isBackButtonEnabled,
+                backButtonTapped: self.backButtonTapped)
+            }
         }
+        
+    }
+    
+    @ViewBuilder
+    private func makeHeaderImageView(_ headerImageURL: URL,
+                                     headerHeight: CGFloat,
+                                     safeAreaInsets: EdgeInsets,
+                                     headerStyle: MWStackStepContents.HeaderStyle) -> some View {
+        
+        let kfImage = KFImage(headerImageURL)
+                        .placeholder {
+                            makeImagePlaceholder()
+                        }
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+        
+        switch headerStyle {
+        case .fullWidth:
+            kfImage
+        case .profile:
+            let edgeInsets = EdgeInsets(top: safeAreaInsets.top, leading: 0, bottom: 70.0, trailing: 0)
+            let imageSize = headerHeight - edgeInsets.top - edgeInsets.bottom
+            kfImage
+                .frame(width: imageSize, height: imageSize, alignment: .center)
+                .cornerRadius(.infinity)
+                .padding(edgeInsets)
+        }
+        
     }
     
     private func makeImagePlaceholder() -> some View {
