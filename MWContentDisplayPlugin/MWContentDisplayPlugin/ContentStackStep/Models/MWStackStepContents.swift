@@ -185,7 +185,7 @@ struct MWStackStepItemButton: Identifiable {
     let style: Style
         
     // Action: Open a modal workflow
-    let modalWorkflow: String?
+    let linkId: String?
     
     // Action: Perform a request to the given URL
     let remoteURL: URL?
@@ -219,7 +219,7 @@ struct MWStackStepItemButton: Identifiable {
         self.id = UUID().uuidString
         self.label = localizationService.translate(json["label"] as? String) ?? ""
         self.style = (json["style"] as? String).flatMap { Style(rawValue: $0) } ?? .primary
-        self.modalWorkflow = json["modalWorkflow"] as? String
+        self.linkId = json["linkId"] as? String
         self.remoteURL = (json["url"] as? String).flatMap{ URL(string: $0) }
         self.remoteURLMethod = (json["method"] as? String).flatMap{HTTPMethod(rawValue: $0.uppercased())}
         self.confirmTitle = json["confirmTitle"] as? String

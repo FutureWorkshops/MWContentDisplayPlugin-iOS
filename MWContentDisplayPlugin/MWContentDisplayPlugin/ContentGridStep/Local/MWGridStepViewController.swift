@@ -8,7 +8,7 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWGridStepViewController: MWStepViewController, HasSecondaryWorkflows {
+class MWGridStepViewController: MWStepViewController {
     
     struct Item {
         let id: String
@@ -29,7 +29,6 @@ class MWGridStepViewController: MWStepViewController, HasSecondaryWorkflows {
     private (set) var sections: [Section] = []
     
     var gridStep: MWGridStep { self.mwStep as! MWGridStep }
-    var secondaryWorkflowIDs: [String] { self.gridStep.secondaryWorkflowIDs }
     
     public override func viewDidLoad() {
         super.viewDidLoad()

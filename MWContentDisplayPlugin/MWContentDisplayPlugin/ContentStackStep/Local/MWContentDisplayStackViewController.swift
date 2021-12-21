@@ -9,10 +9,10 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
-public class MWContentDisplayStackViewController: MWStepViewController, WorkflowPresentationDelegator, SuccessActionHandler {
+public class MWContentDisplayStackViewController: MWStepViewController, PresentationDelegator, SuccessActionHandler {
     
-    //MARK: Public properties (WorkflowPresentationDelegator)
-    public weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
+    //MARK: Public properties (PresentationDelegator)
+    public weak var presentationDelegate: PresentationDelegate?
     
     public override var titleMode: StepViewControllerTitleMode {
         .customOrNone
@@ -90,8 +90,8 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
         
             self.presentActionSheet(actionSheetButtons, from: item, rect: rect)
         
-        } else if let modalWorkflow = item.modalWorkflow {
-            self.workflowPresentationDelegate?.presentWorkflowWithName(modalWorkflow, isDiscardable: true, animated: true) { [weak self] reason in
+        } else if let linkId = item.linkId {
+            self.presentationDelegate?.presentStepForLinkId(linkId, isDiscardable: true, animated: true, willDismiss: nil) { [weak self] reason in
                 if reason == .completed {
                     self?.handleSuccessAction(item.sucessAction)
                 }
