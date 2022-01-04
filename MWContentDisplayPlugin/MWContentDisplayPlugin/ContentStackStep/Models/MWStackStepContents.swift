@@ -66,6 +66,8 @@ extension Sequence where Iterator.Element == MWStackStepItem {
             
         }
         
+        update(presentingButton: nil)
+        
         return items
     }
     
