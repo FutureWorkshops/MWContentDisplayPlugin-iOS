@@ -69,12 +69,4 @@ extension GridStepItem: ValueProvider {
     public func fetchProvider(for path: String) -> ValueProvider? {
         return nil
     }
-    
-    public var content: [AnyHashable : Codable] {
-        return [CodingKeys.id.stringValue: self.id,
-                CodingKeys.type.stringValue: self.type,
-                CodingKeys.text.stringValue: self.text,
-                CodingKeys.detailText.stringValue: self.detailText,
-                CodingKeys.imageURL.stringValue: self.imageURL]
-    }
 }
