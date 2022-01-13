@@ -72,7 +72,7 @@ struct MWStackView: View {
             let imageSize = headerHeight - edgeInsets.top - edgeInsets.bottom
             kfImage
                 .frame(width: imageSize, height: imageSize, alignment: .center)
-                .cornerRadius(.infinity)
+                .cornerRadius(imageSize/2)
                 .padding(edgeInsets)
         }
         
