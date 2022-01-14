@@ -162,7 +162,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Presenta
             controller.addAction(buttonAction)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: MobileWorkflowCore.L10n.Alert.cancelTitle, style: .cancel)
         controller.addAction(cancelAction)
         
         self.present(controller, animated: true, completion: nil)
