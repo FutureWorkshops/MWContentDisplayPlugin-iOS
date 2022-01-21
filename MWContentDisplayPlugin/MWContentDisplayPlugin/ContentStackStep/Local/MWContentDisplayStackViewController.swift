@@ -101,8 +101,36 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
             } catch {
                 self.show(error)
             }
-        } else if let linkURL = item.linkURL {
-            self.presentActivitySheet(with: [linkURL], sourceRect: rect)
+        } else if (item.linkURL != nil || item.shareText != nil || item.shareImageURL != nil) {
+            // Collect everything on a background queue (including downloading the image)
+            DispatchQueue.global(qos: .userInitiated).async {
+                var itemsToShare: [Any] = []
+                
+                if let imageURL = item.shareImageURL {
+                    do {
+                        let data = try Data(contentsOf: imageURL)
+                        let image = UIImage(data: data)
+                        if let image = image {
+                            itemsToShare.append(image)
+                        }
+                    } catch {
+                        self.show(error)
+                    }
+                }
+                
+                if let text = item.shareText {
+                    itemsToShare.append(text)
+                }
+                
+                if let link = item.linkURL {
+                    itemsToShare.append(link)
+                }
+                
+                // Present the share sheet when everything is ready
+                DispatchQueue.main.async {
+                    self.presentActivitySheet(with: itemsToShare, sourceRect: rect)
+                }
+            }
         }
         else {
             self.handleSuccessAction(item.sucessAction)
