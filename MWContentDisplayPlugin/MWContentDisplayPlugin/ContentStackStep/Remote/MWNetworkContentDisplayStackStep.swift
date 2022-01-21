@@ -10,9 +10,6 @@ import MobileWorkflowCore
 
 class MWNetworkContentDisplayStackStep: MWContentDisplayStackStep, RemoteContentStep, SyncableContentSource {
     
-    let session: Session
-    let services: StepServices
-    
     // Syncable Content
     typealias ResponseType = MWStackStepContents
     var resolvedURL: URL?
@@ -22,11 +19,9 @@ class MWNetworkContentDisplayStackStep: MWContentDisplayStackStep, RemoteContent
     var contentURL: String?
     
     init(identifier: String, contentURLString: String?, contents: MWStackStepContents, stepContext: StepContext, session: Session, services: StepServices) {
-        self.session = session
-        self.services = services
         self.stepContext = stepContext
         self.contentURL = contentURLString
-        super.init(identifier: identifier, contents: contents, tintColor: stepContext.systemTintColor)
+        super.init(identifier: identifier, contents: contents, tintColor: stepContext.systemTintColor, session: session, services: services)
     }
     
     required init(coder aDecoder: NSCoder) {

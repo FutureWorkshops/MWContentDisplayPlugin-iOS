@@ -102,44 +102,44 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
                 self.show(error)
             }
         } else if (item.linkURL != nil || item.shareText != nil || item.shareImageURL != nil) {
-            // Collect everything on a background queue (including downloading the image)
-            DispatchQueue.global(qos: .userInitiated).async {
-                var itemsToShare: [Any] = []
-                
-                if let imageURL = item.shareImageURL {
-                    do {
-                        let data = try Data(contentsOf: imageURL)
-                        let image = UIImage(data: data)
-                        if let image = image {
-                            itemsToShare.append(image)
-                        } else {
-                            DispatchQueue.main.async {
-                                self.show(ParseError.invalidServerData(cause: "Failed to download the image to share."))
-                            }
-                        }
-                    } catch {
-                        DispatchQueue.main.async {
+            
+            // Block that can be called from multiple places due to the async nature of downloading the image (if present)
+            let triggerShareSheet: (([Any]) -> Void) = { [weak self] itemsToShare in
+                // Present the share sheet when everything is ready
+                guard let self = self, !itemsToShare.isEmpty else { return }
+                UIPasteboard.general.string = itemsToShare.compactMap{ $0 as? String }.joined(separator: " ")
+                self.presentActivitySheet(with: itemsToShare, sourceRect: rect)
+            }
+            
+            // Collect all the shareable items
+            var itemsToShare: [Any] = []
+            
+            if let text = item.shareText {
+                itemsToShare.append(text)
+            }
+            
+            if let link = item.linkURL {
+                // We need to share the link as a String, otherwise lots of apps that can't handle URLs (Instagram for example)
+                // don't appear on the share sheet. If we share it as text, they do appear because they know how to handle it.
+                itemsToShare.append(link.absoluteString)
+            }
+            
+            if let imageURL = item.shareImageURL {
+                self.contentStackStep.downloadShareableImage(from: imageURL) { [weak self] result in
+                    guard let self = self else { return }
+                    DispatchQueue.main.async {
+                        switch result {
+                        case .success(let image):
+                            // Always add it as the first element
+                            itemsToShare.insert(image, at: 0)
+                        case .failure(let error):
                             self.show(error)
                         }
+                        triggerShareSheet(itemsToShare)
                     }
                 }
-                
-                if let text = item.shareText {
-                    itemsToShare.append(text)
-                }
-                
-                if let link = item.linkURL {
-                    // We need to share the link as a String, otherwise lots of apps that can't handle URLs (Instagram for example)
-                    // don't appear on the share sheet. If we share it as text, they do appear because they know how to handle it.
-                    itemsToShare.append(link.absoluteString)
-                }
-                
-                // Present the share sheet when everything is ready
-                guard !itemsToShare.isEmpty else { return }
-                DispatchQueue.main.async {
-                    UIPasteboard.general.string = itemsToShare.compactMap{ $0 as? String }.joined(separator: " ")
-                    self.presentActivitySheet(with: itemsToShare, sourceRect: rect)
-                }
+            } else {
+                triggerShareSheet(itemsToShare)
             }
         }
         else {
