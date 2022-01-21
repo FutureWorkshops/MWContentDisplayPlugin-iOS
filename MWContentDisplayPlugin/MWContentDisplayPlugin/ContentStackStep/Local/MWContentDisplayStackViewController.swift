@@ -137,6 +137,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
                 // Present the share sheet when everything is ready
                 guard !itemsToShare.isEmpty else { return }
                 DispatchQueue.main.async {
+                    UIPasteboard.general.string = itemsToShare.compactMap{ $0 as? String }.joined(separator: " ")
                     self.presentActivitySheet(with: itemsToShare, sourceRect: rect)
                 }
             }
