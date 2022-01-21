@@ -112,9 +112,15 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
                         let image = UIImage(data: data)
                         if let image = image {
                             itemsToShare.append(image)
+                        } else {
+                            DispatchQueue.main.async {
+                                self.show(ParseError.invalidServerData(cause: "Failed to download the image to share."))
+                            }
                         }
                     } catch {
-                        self.show(error)
+                        DispatchQueue.main.async {
+                            self.show(error)
+                        }
                     }
                 }
                 
@@ -129,6 +135,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
                 }
                 
                 // Present the share sheet when everything is ready
+                guard !itemsToShare.isEmpty else { return }
                 DispatchQueue.main.async {
                     self.presentActivitySheet(with: itemsToShare, sourceRect: rect)
                 }
