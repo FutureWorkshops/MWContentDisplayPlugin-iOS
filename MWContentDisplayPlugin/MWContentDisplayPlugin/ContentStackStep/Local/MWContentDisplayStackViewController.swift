@@ -123,7 +123,9 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
                 }
                 
                 if let link = item.linkURL {
-                    itemsToShare.append(link)
+                    // We need to share the link as a String, otherwise lots of apps that can't handle URLs (Instagram for example)
+                    // don't appear on the share sheet. If we share it as text, they do appear because they know how to handle it.
+                    itemsToShare.append(link.absoluteString)
                 }
                 
                 // Present the share sheet when everything is ready
