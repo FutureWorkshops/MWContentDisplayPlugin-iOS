@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = 'MWContentDisplayPlugin'
-    s.version               = '1.2.2'
+    s.version               = '1.3.0'
     s.summary               = 'A content display plugin for MobileWorkflow on iOS.'
     s.description           = <<-DESC
     Grid step for MobileWorkflow on iOS, using UICollectionView compositional layout.
