@@ -38,7 +38,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Presenta
     }
     
     private var isBackButtonEnabled: Bool {
-        let shouldHideBackButton = self.mwDelegate?.mwStepViewControllerShouldHideBackButton(self) ?? false
+        let shouldHideBackButton = self.delegate?.stepViewControllerShouldHideBackButton(self) ?? false
         return !shouldHideBackButton
     }
     
