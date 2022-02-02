@@ -38,4 +38,5 @@ enum L10n {
     static let defaultSectionTitle = "Items"
     static let noContent = "No Content"
     static let `continue` = "Continue"
+    static let loading = "Loading..."
 }

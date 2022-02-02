@@ -188,7 +188,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
 
         let label = UILabel()
         label.textAlignment = .center
-        label.text = "Loading..."
+        label.text = L10n.loading
         label.translatesAutoresizingMaskIntoConstraints = false
         
         let VStack = UIStackView(arrangedSubviews: [activityIndicator, label])
