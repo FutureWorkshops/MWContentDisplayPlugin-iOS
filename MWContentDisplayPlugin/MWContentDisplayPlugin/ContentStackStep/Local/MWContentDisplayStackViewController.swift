@@ -26,6 +26,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
     //MARK: Properties
     var contentStackStep: MWContentDisplayStackStep { self.mwStep as! MWContentDisplayStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
+    private var blurView: UIView?
     
     // Will only be shown if true and back button is disabled.
     private var isCloseButtonEnabled: Bool {
@@ -105,6 +106,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
             
             // Block that can be called from multiple places due to the async nature of downloading the image (if present)
             let triggerShareSheet: (([Any]) -> Void) = { [weak self] itemsToShare in
+                self?.hideLoadingIndicator()
                 // Present the share sheet when everything is ready
                 guard let self = self, !itemsToShare.isEmpty else { return }
                 UIPasteboard.general.string = itemsToShare.compactMap{ $0 as? String }.joined(separator: " ")
@@ -112,6 +114,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
             }
             
             // Collect all the shareable items
+            self.showLoadingIndicator()
             var itemsToShare: [Any] = []
             
             if let text = item.shareText {
@@ -176,5 +179,51 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
         @unknown default:
             fatalError("Unhandled action: \(action.rawValue)")
         }
+    }
+    
+    private func showLoadingIndicator() {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.startAnimating()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
+        let label = UILabel()
+        label.textAlignment = .center
+        label.text = "Loading..."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        let VStack = UIStackView(arrangedSubviews: [activityIndicator, label])
+        VStack.distribution = .fill
+        VStack.alignment = .center
+        VStack.axis = .vertical
+        VStack.spacing = 8
+        VStack.translatesAutoresizingMaskIntoConstraints = false
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.layer.cornerRadius = 12
+        blurView.layer.masksToBounds = true
+        blurView.translatesAutoresizingMaskIntoConstraints = false
+        
+        blurView.contentView.addSubview(VStack)
+        NSLayoutConstraint.activate([
+            VStack.leadingAnchor.constraint(equalTo: blurView.contentView.leadingAnchor),
+            VStack.trailingAnchor.constraint(equalTo: blurView.contentView.trailingAnchor),
+            VStack.centerYAnchor.constraint(equalTo: blurView.contentView.centerYAnchor)
+        ])
+        
+        self.view.addSubview(blurView)
+        self.view.bringSubviewToFront(blurView)
+        NSLayoutConstraint.activate([
+            blurView.heightAnchor.constraint(equalToConstant: 180),
+            blurView.widthAnchor.constraint(equalToConstant: 180),
+            blurView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            blurView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        ])
+        self.blurView = blurView
+    }
+    
+    private func hideLoadingIndicator() {
+        self.blurView?.removeFromSuperview()
+        self.blurView = nil
     }
 }
