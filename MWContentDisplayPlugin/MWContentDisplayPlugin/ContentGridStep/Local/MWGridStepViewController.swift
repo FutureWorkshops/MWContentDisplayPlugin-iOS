@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import MobileWorkflowCore
 
 class MWGridStepViewController: MWStepViewController {

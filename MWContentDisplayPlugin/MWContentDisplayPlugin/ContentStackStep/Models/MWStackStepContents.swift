@@ -7,6 +7,7 @@
 
 import Foundation
 import MobileWorkflowCore
+import UIKit
 
 /// Describes the data model for the vertical stack. It includes the header + items data
 struct MWStackStepContents {
