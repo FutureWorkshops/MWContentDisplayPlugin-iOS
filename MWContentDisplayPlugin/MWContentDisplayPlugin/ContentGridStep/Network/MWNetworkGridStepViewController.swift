@@ -10,7 +10,7 @@ import MobileWorkflowCore
 
 class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentStepViewController, ContentClearable {
     
-    weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
+    weak var presentationDelegate: PresentationDelegate?
     
     var remoteContentStep: MWNetworkGridStep! { self.gridStep as? MWNetworkGridStep }
     

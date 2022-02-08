@@ -8,17 +8,15 @@
 import Foundation
 import MobileWorkflowCore
 
-public class MWGridStep: MWStep, HasSecondaryWorkflows {
+public class MWGridStep: MWStep {
     
     public let session: Session
     public let services: StepServices
-    public let secondaryWorkflowIDs: [String]
     public var items: [GridStepItem] = []
     
-    init(identifier: String, session: Session, services: StepServices, theme: Theme, secondaryWorkflowIDs: [String], items: [GridStepItem]) {
+    init(identifier: String, session: Session, services: StepServices, theme: Theme, items: [GridStepItem]) {
         self.session = session
         self.services = services
-        self.secondaryWorkflowIDs = secondaryWorkflowIDs
         self.items = items
         super.init(identifier: identifier, theme: theme)
     }
@@ -36,8 +34,6 @@ extension MWGridStep: BuildableStep {
     
     public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         
-        let secondaryWorkflowIDs: [String] = (stepInfo.data.content["workflows"] as? [[String: Any]])?.compactMap({ $0.getString(key: "id") }) ?? []
-        
         if stepInfo.data.type == MWContentDisplayStepType.grid.typeName {
             // Local grid (coming from the app.json)
             let contentItems = stepInfo.data.content["items"] as? [[String: Any]] ?? []
@@ -49,12 +45,12 @@ extension MWGridStep: BuildableStep {
                 }
                 return GridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)
             }
-            return MWGridStep(identifier: stepInfo.data.identifier, session: stepInfo.session, services: services, theme: stepInfo.context.theme, secondaryWorkflowIDs: secondaryWorkflowIDs, items: items)
+            return MWGridStep(identifier: stepInfo.data.identifier, session: stepInfo.session, services: services, theme: stepInfo.context.theme, items: items)
         } else if stepInfo.data.type == MWContentDisplayStepType.networkGrid.typeName {
             // Remote grid (coming from a network call)
             let emptyText = services.localizationService.translate(stepInfo.data.content["emptyText"] as? String)
             let remoteURLString = stepInfo.data.content["url"] as? String
-            return MWNetworkGridStep(identifier: stepInfo.data.identifier, stepInfo: stepInfo, services: services, secondaryWorkflowIDs: secondaryWorkflowIDs, url: remoteURLString, emptyText: emptyText)
+            return MWNetworkGridStep(identifier: stepInfo.data.identifier, stepInfo: stepInfo, services: services, url: remoteURLString, emptyText: emptyText)
         } else {
             throw ParseError.invalidStepData(cause: "Tried to create a grid that's not local nor remote.")
         }

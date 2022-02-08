@@ -9,10 +9,10 @@ import UIKit
 import SwiftUI
 import MobileWorkflowCore
 
-public class MWContentDisplayStackViewController: MWStepViewController, WorkflowPresentationDelegator, SuccessActionHandler {
+public class MWContentDisplayStackViewController: MWStepViewController, PresentationDelegator, SuccessActionHandler {
     
-    //MARK: Public properties (WorkflowPresentationDelegator)
-    public weak var workflowPresentationDelegate: WorkflowPresentationDelegate?
+    //MARK: Public properties (PresentationDelegator)
+    public weak var presentationDelegate: PresentationDelegate?
     
     public override var titleMode: StepViewControllerTitleMode {
         .customOrNone
@@ -30,15 +30,15 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
     
     // Will only be shown if true and back button is disabled.
     private var isCloseButtonEnabled: Bool {
-        guard let presentedWorkflow = self.parent as? PresentedWorkflow else {
+        guard let nc = self.parent as? StepNavigationViewController else {
             return false
         }
         
-        return presentedWorkflow.shouldDismiss
+        return nc.isDiscardable
     }
     
     private var isBackButtonEnabled: Bool {
-        let shouldHideBackButton = self.mwDelegate?.mwStepViewControllerShouldHideBackButton(self) ?? false
+        let shouldHideBackButton = self.delegate?.stepViewControllerShouldHideBackButton(self) ?? false
         return !shouldHideBackButton
     }
     
@@ -90,8 +90,8 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
         
             self.presentActionSheet(actionSheetButtons, from: item, rect: rect)
         
-        } else if let modalWorkflow = item.modalWorkflow {
-            self.workflowPresentationDelegate?.presentWorkflowWithName(modalWorkflow, isDiscardable: true, animated: true) { [weak self] reason in
+        } else if let linkId = item.linkId {
+            self.presentationDelegate?.presentStepForLinkId(linkId, isDiscardable: true, animated: true, willDismiss: nil) { [weak self] reason in
                 if reason == .completed {
                     self?.handleSuccessAction(item.sucessAction)
                 }
@@ -162,7 +162,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
             controller.addAction(buttonAction)
         }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: MobileWorkflowCore.L10n.Alert.cancelTitle, style: .cancel)
         controller.addAction(cancelAction)
         
         self.present(controller, animated: true, completion: nil)
