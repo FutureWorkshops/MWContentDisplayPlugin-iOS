@@ -72,7 +72,12 @@ public class MWContentDisplayStackViewController: MWStepViewController, Workflow
     }
     
     func handleBackButtonTapped() {
-        if let navController = self.navigationController, navController.viewControllers.count > 1 {
+        if !isBackButtonEnabled {
+            // This is just for WELBA, the correct implementation should allow the app-builder to
+            // define what the close button does in each flow (currently unsupported). For the welba use-case, tapping close
+            // means moving forward because this UIViewController is shown as the last one in a modal flow (and therefore gets dismissed)
+            self.goForward()
+        } else if let navController = self.navigationController, navController.viewControllers.count > 1 {
             self.goBackward()
         } else {
             if let target = self.cancelButtonItem?.target, let action = self.cancelButtonItem?.action {
