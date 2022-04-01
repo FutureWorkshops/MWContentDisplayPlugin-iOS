@@ -24,7 +24,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Presenta
     }
     
     //MARK: Properties
-    var contentStackStep: MWContentDisplayStackStep { self.mwStep as! MWContentDisplayStackStep }
+    var contentStackStep: ContentDisplayStackStep { self.mwStep as! ContentDisplayStackStep }
     var hostingController: UIHostingController<MWStackView>? = nil
     private var blurView: UIView?
     
@@ -64,7 +64,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Presenta
             self?.handleBackButtonTapped()
         }, buttonTapped: { [weak self] item, rect in
             self?.handleButtonItemTapped(item, in: rect)
-        }, tintColor: self.contentStackStep.tintColor,
+        }, tintColor: self.step.theme.primaryTintColor,
         isCloseButtonEnabled: self.isCloseButtonEnabled,
         isBackButtonEnabled: self.isBackButtonEnabled)
         self.hostingController = UIHostingController(rootView: swiftUIRootView)

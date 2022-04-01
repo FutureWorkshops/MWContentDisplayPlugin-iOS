@@ -8,20 +8,27 @@
 import Foundation
 import MobileWorkflowCore
 
-class MWNetworkContentDisplayStackStep: MWContentDisplayStackStep, RemoteContentStep, SyncableContentSource {
+class MWNetworkContentDisplayStackStep: MWStep, ContentDisplayStackStep, RemoteContentStep, SyncableContentSource {
     
     // Syncable Content
     typealias ResponseType = MWStackStepContents
     var resolvedURL: URL?
     
     // Remote Content
-    var stepContext: StepContext
+    let stepContext: StepContext
+    let session: Session
+    let services: StepServices
     var contentURL: String?
     
-    init(identifier: String, contentURLString: String?, contents: MWStackStepContents, stepContext: StepContext, session: Session, services: StepServices) {
+    var contents: MWStackStepContents
+    
+    init(identifier: String, contentURLString: String?, contents: MWStackStepContents, theme: Theme, stepContext: StepContext, session: Session, services: StepServices) {
         self.stepContext = stepContext
+        self.session = session
+        self.services = services
         self.contentURL = contentURLString
-        super.init(identifier: identifier, contents: contents, tintColor: stepContext.systemTintColor, session: session, services: services)
+        self.contents = contents
+        super.init(identifier: identifier, theme: theme)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -47,5 +54,27 @@ class MWNetworkContentDisplayStackStep: MWContentDisplayStackStep, RemoteContent
         }
         
         self.services.perform(task: task, session: self.session, completion: completion)
+    }
+}
+
+extension MWNetworkContentDisplayStackStep: BuildableStep {
+    
+    public static var mandatoryCodingPaths: [CodingKey] {
+        ["url"] // see 'loadContent'
+    }
+    
+    public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
+        
+        let contents = MWStackStepContents(json: stepInfo.data.content, localizationService: services.localizationService)
+        
+        return MWNetworkContentDisplayStackStep(
+            identifier: stepInfo.data.identifier,
+            contentURLString: stepInfo.data.content["url"] as? String,
+            contents: contents,
+            theme: stepInfo.context.theme,
+            stepContext: stepInfo.context,
+            session: stepInfo.session,
+            services: services
+        )
     }
 }
