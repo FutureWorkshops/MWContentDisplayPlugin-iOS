@@ -32,6 +32,10 @@ public class MWGridStep: MWStep {
 
 extension MWGridStep: BuildableStep {
     
+    public static var mandatoryCodingPaths: [CodingKey] {
+        [["items": ["id"]]] // items not provided for network step, so this validation shouldn't occur/fail
+    }
+    
     public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         
         if stepInfo.data.type == MWContentDisplayStepType.grid.typeName {
