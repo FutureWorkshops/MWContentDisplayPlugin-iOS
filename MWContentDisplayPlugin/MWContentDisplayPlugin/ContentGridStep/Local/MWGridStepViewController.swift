@@ -29,11 +29,11 @@ class MWGridStepViewController: MWStepViewController {
     private (set) var collectionViewLayout: UICollectionViewLayout!
     private (set) var sections: [Section] = []
     
-    var gridStep: MWGridStep { self.mwStep as! MWGridStep }
+    var gridStep: GridStep { self.mwStep as! GridStep }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = self.gridStep.theme.primaryBackgroundColor
+        self.view.backgroundColor = self.step.theme.primaryBackgroundColor
         
         self.setupCollectionView()
     }
@@ -158,12 +158,12 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session, theme: self.gridStep.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session, theme: self.step.theme)
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session, theme: self.gridStep.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session, theme: self.step.theme)
             result = cell
             
         case .item: preconditionFailure("Not a section")
@@ -194,7 +194,7 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
         
         let item = self.sections[indexPath.section].items[indexPath.item]
         if let selected = self.gridStep.items.first(where: { item.id == $0.id }) {
-            let result = GridStepResult(identifier: self.gridStep.identifier, selected: selected)
+            let result = GridStepResult(identifier: self.step.identifier, selected: selected)
             self.addStepResult(result)
             self.goForward()
         }

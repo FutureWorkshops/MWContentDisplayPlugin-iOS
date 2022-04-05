@@ -14,21 +14,26 @@ public struct NetworkGridStepItemTask: CredentializedAsyncTask, URLAsyncTaskConv
     public let credential: Credential?
 }
 
-public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSource {
+public class MWNetworkGridStep: MWStep, GridStep, RemoteContentStep, SyncableContentSource {
     
     public typealias ResponseType = [GridStepItem]
     
     let url: String?
     let emptyText: String?
     public let stepContext: StepContext
+    public let session: Session
+    public let services: StepServices
+    public var items: [GridStepItem] = []
     public var contentURL: String? { self.url }
     public var resolvedURL: URL?
     
     init(identifier: String, stepInfo: StepInfo, services: StepServices, url: String? = nil, emptyText: String? = nil) {
         self.stepContext = stepInfo.context
+        self.session = stepInfo.session
+        self.services = services
         self.url = url
         self.emptyText = emptyText
-        super.init(identifier: identifier, session: stepInfo.session, services: services, theme: stepInfo.context.theme, items: [])
+        super.init(identifier: identifier, theme: stepInfo.context.theme)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -53,5 +58,18 @@ public class MWNetworkGridStep: MWGridStep, RemoteContentStep, SyncableContentSo
         } catch (let error) {
             completion(.failure(error))
         }
+    }
+}
+
+extension MWNetworkGridStep: BuildableStep {
+    
+    public static var mandatoryCodingPaths: [CodingKey] {
+        ["url"] // see 'loadContent'
+    }
+    
+    public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
+        let emptyText = services.localizationService.translate(stepInfo.data.content["emptyText"] as? String)
+        let remoteURLString = stepInfo.data.content["url"] as? String
+        return MWNetworkGridStep(identifier: stepInfo.data.identifier, stepInfo: stepInfo, services: services, url: remoteURLString, emptyText: emptyText)
     }
 }
