@@ -121,9 +121,9 @@ class MWGridStepViewController: MWStepViewController {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier, alignment: .top)
         sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                              leading: orthogonalScrollingBehavior == .groupPagingCentered ? 8 : 0,
+                                                              leading: orthogonalScrollingBehavior == .groupPagingCentered ? 16 : 0,
                                                               bottom: 0,
-                                                              trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 8 : 0)
+                                                              trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 16 : 0)
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
