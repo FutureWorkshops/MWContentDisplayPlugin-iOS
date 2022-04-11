@@ -115,7 +115,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
             self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
             self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString, session: session) { [weak self] (image) in
                 guard let strongSelf = self else { return }
-                strongSelf.imageView.image = image ?? strongSelf.placeholderImage
+                strongSelf.imageView.transition(to: image ?? strongSelf.placeholderImage, animated: true)
             }
         }
     }
