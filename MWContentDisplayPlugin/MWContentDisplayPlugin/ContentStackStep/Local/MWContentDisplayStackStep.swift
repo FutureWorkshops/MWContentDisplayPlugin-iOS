@@ -9,19 +9,23 @@ import Foundation
 import UIKit
 import MobileWorkflowCore
 
-public class MWContentDisplayStackStep: MWStep {
+protocol ContentDisplayStackStep {
+    var contents: MWStackStepContents { get set }
+    var session: Session { get }
+    var services: StepServices { get }
+}
+
+public class MWContentDisplayStackStep: MWStep, ContentDisplayStackStep {
     
     var contents: MWStackStepContents
-    let tintColor: UIColor
     let session: Session
     let services: StepServices
     
-    init(identifier: String, contents: MWStackStepContents, tintColor: UIColor, session: Session, services: StepServices) {
+    init(identifier: String, contents: MWStackStepContents, theme: Theme, session: Session, services: StepServices) {
         self.contents = contents
-        self.tintColor = tintColor
         self.session = session
         self.services = services
-        super.init(identifier: identifier)
+        super.init(identifier: identifier, theme: theme)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -34,30 +38,24 @@ public class MWContentDisplayStackStep: MWStep {
 }
 
 extension MWContentDisplayStackStep: BuildableStep {
+    
+    public static var mandatoryCodingPaths: [CodingKey] { [] }
+    
     public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         
         let contents = MWStackStepContents(json: stepInfo.data.content, localizationService: services.localizationService)
         
-        if stepInfo.data.type == MWContentDisplayStepType.stack.typeName {
-            return MWContentDisplayStackStep(identifier: stepInfo.data.identifier,
-                                             contents: contents,
-                                             tintColor: stepInfo.context.systemTintColor,
-                                             session: stepInfo.session,
-                                             services: services)
-        } else if stepInfo.data.type == MWContentDisplayStepType.networkStack.typeName {
-            return MWNetworkContentDisplayStackStep(identifier: stepInfo.data.identifier,
-                                      contentURLString: stepInfo.data.content["url"] as? String,
-                                      contents: contents,
-                                      stepContext: stepInfo.context,
-                                      session: stepInfo.session,
-                                      services: services)
-        } else {
-            throw ParseError.invalidStepData(cause: "Tried to create a stack that's not local nor remote.")
-        }
+        return MWContentDisplayStackStep(
+            identifier: stepInfo.data.identifier,
+            contents: contents,
+            theme: stepInfo.context.theme,
+            session: stepInfo.session,
+            services: services
+        )
     }
 }
 
-extension MWContentDisplayStackStep {
+extension ContentDisplayStackStep {
     func downloadShareableImage(from url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
         guard let finalURL = self.session.resolve(url: url.absoluteString) else {
             return completion(.failure(URLError(.badURL)))
