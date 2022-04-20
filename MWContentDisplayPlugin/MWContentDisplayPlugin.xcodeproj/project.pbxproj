@@ -11,6 +11,7 @@
 		367CB763264E933B00ADFC79 /* GridStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CB761264E933B00ADFC79 /* GridStepItem.swift */; };
 		367CB765264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CB764264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift */; };
 		367CB767264E944400ADFC79 /* MWGridStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CB766264E944400ADFC79 /* MWGridStepViewController.swift */; };
+		36838691281048C400E1959C /* MWContentDisplayPluginStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36838690281048C400E1959C /* MWContentDisplayPluginStruct.swift */; };
 		36C18243256BDE0D0044A74B /* MWNetworkGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */; };
 		62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */; };
 		62003DE325629BDE003BC820 /* MWImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */; };
@@ -27,7 +28,6 @@
 		ADFCCB52268B748400C77FF5 /* MWButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCCB51268B748400C77FF5 /* MWButtonStyle.swift */; };
 		B10F833A261F569D005BAEC3 /* MWStackStepContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F8339261F569D005BAEC3 /* MWStackStepContents.swift */; };
 		B10F833E261F574D005BAEC3 /* MWStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F833D261F574D005BAEC3 /* MWStackView.swift */; };
-		B1C850C2261DEA5D00899738 /* MWContentDisplayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */; };
 		B1E2542F263848400084A44D /* FancyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25425263848400084A44D /* FancyScrollView.swift */; };
 		B1E25430263848400084A44D /* ScrollDownHeaderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25426263848400084A44D /* ScrollDownHeaderBehavior.swift */; };
 		B1E25431263848400084A44D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25427263848400084A44D /* BlurView.swift */; };
@@ -58,6 +58,7 @@
 		367CB761264E933B00ADFC79 /* GridStepItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStepItem.swift; sourceTree = "<group>"; };
 		367CB764264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStepViewController.swift; sourceTree = "<group>"; };
 		367CB766264E944400ADFC79 /* MWGridStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStepViewController.swift; sourceTree = "<group>"; };
+		36838690281048C400E1959C /* MWContentDisplayPluginStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWContentDisplayPluginStruct.swift; sourceTree = "<group>"; };
 		36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStep.swift; sourceTree = "<group>"; };
 		40D7DC85E1FBA0F6EB98F438 /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; sourceTree = "<group>"; };
 		62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
@@ -80,7 +81,6 @@
 		ADFCCB51268B748400C77FF5 /* MWButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWButtonStyle.swift; sourceTree = "<group>"; };
 		B10F8339261F569D005BAEC3 /* MWStackStepContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWStackStepContents.swift; sourceTree = "<group>"; };
 		B10F833D261F574D005BAEC3 /* MWStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWStackView.swift; sourceTree = "<group>"; };
-		B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWContentDisplayPlugin.swift; sourceTree = "<group>"; };
 		B1E25425263848400084A44D /* FancyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyScrollView.swift; sourceTree = "<group>"; };
 		B1E25426263848400084A44D /* ScrollDownHeaderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollDownHeaderBehavior.swift; sourceTree = "<group>"; };
 		B1E25427263848400084A44D /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		628EC39E255E9F7A00CD1992 /* MWContentDisplayPlugin */ = {
 			isa = PBXGroup;
 			children = (
-				B1C850C1261DEA5D00899738 /* MWContentDisplayPlugin.swift */,
+				36838690281048C400E1959C /* MWContentDisplayPluginStruct.swift */,
 				62BA560B255EA0530089B034 /* ContentGridStep */,
 				B10A69BE261CA27E0096AE0D /* ContentStackStep */,
 				628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */,
@@ -481,7 +481,6 @@
 				B1E25434263848400084A44D /* HeaderScrollView.swift in Sources */,
 				ADE2FB0326EA1B0400468D1F /* MWContentDisplayStackViewController.swift in Sources */,
 				62003DE525629BDE003BC820 /* MWGridStep.swift in Sources */,
-				B1C850C2261DEA5D00899738 /* MWContentDisplayPlugin.swift in Sources */,
 				B1E25435263848400084A44D /* AppleMusicStyleScrollView.swift in Sources */,
 				367CB762264E933B00ADFC79 /* GridStepResult.swift in Sources */,
 				B1E2542F263848400084A44D /* FancyScrollView.swift in Sources */,
@@ -489,6 +488,7 @@
 				B1E25433263848400084A44D /* View+hideNavigationBarWithoutLosingSwipeBack.swift in Sources */,
 				36C18243256BDE0D0044A74B /* MWNetworkGridStep.swift in Sources */,
 				62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */,
+				36838691281048C400E1959C /* MWContentDisplayPluginStruct.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
