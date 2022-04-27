@@ -113,9 +113,9 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         if let imageUrl = viewData.imageUrl {
             self.imageView.image = self.placeholderImage
             self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
-            self.imageLoadTask = imageLoader.asyncLoad(image: imageUrl.absoluteString, session: session) { [weak self] (image) in
+            self.imageLoadTask = imageLoader.load(image: imageUrl.absoluteString, session: session) { [weak self] result in
                 guard let strongSelf = self else { return }
-                strongSelf.imageView.image = image ?? strongSelf.placeholderImage
+                strongSelf.imageView.transition(to: result.image ?? strongSelf.placeholderImage, animated: result.wasLoadedRemotely)
             }
         }
     }
