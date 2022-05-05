@@ -8,12 +8,14 @@
 import Foundation
 import SwiftUI
 import Kingfisher
+import MobileWorkflowCore
 
 struct MWStackHeaderImageView: View {
     let headerImageURL: URL
     let headerHeight: CGFloat
     let safeAreaInsets: EdgeInsets
     let headerStyle: MWStackStepContents.HeaderStyle
+    let theme: Theme
     
     var body: some View {
         let kfImage = KFImage(self.headerImageURL)
@@ -39,9 +41,9 @@ struct MWStackHeaderImageView: View {
     private func makeImagePlaceholder() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.systemFill(.secondary))
+                .fill(Color(self.theme.imagePlaceholderBackgroundColor))
             Image(systemName: "photo")
-                .foregroundColor(Color.label(.tertiary))
+                .foregroundColor(Color(self.theme.secondaryTextColor))
                 .font(.largeTitle)
         }
     }

@@ -7,11 +7,12 @@
 
 import Foundation
 import SwiftUI
+import MobileWorkflowCore
 
 struct MWStackContentScrollView: View {
-    var contents: MWStackStepContents
-    var buttonTapped: (MWStackStepItemButton, CGRect) -> Void
-    var tintColor: UIColor
+    let contents: MWStackStepContents
+    let buttonTapped: (MWStackStepItemButton, CGRect) -> Void
+    let theme: Theme
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -19,8 +20,8 @@ struct MWStackContentScrollView: View {
                 switch item {
                 case .title(let innerItem): MWTitleView(item: innerItem)
                 case .text(let innerItem): MWTextView(item: innerItem).padding(EdgeInsets(top: 0, leading: 0, bottom: 24, trailing: 0))
-                case .listItem(let innerItem): MWListItemView(item: innerItem)
-                case .button(let innerItem): MWButtonView(item: innerItem, tapped: buttonTapped, systemTintColor: Color(tintColor))
+                case .listItem(let innerItem): MWListItemView(item: innerItem, theme: self.theme)
+                case .button(let innerItem): MWButtonView(item: innerItem, tapped: buttonTapped, theme: self.theme)
                 case .space(let spaceItem): MWSpaceView(item: spaceItem)
                 }
             }

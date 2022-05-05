@@ -64,7 +64,7 @@ public class MWContentDisplayStackViewController: MWStepViewController, Presenta
             self?.handleBackButtonTapped()
         }, buttonTapped: { [weak self] item, rect in
             self?.handleButtonItemTapped(item, in: rect)
-        }, tintColor: self.step.theme.primaryTintColor,
+        }, theme: self.step.theme,
         isCloseButtonEnabled: self.isCloseButtonEnabled,
         isBackButtonEnabled: self.isBackButtonEnabled)
         self.hostingController = UIHostingController(rootView: swiftUIRootView)

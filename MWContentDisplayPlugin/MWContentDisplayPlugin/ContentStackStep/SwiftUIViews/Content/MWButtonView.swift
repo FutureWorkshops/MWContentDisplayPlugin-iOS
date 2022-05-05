@@ -7,12 +7,13 @@
 
 import Foundation
 import SwiftUI
+import MobileWorkflowCore
 
 struct MWButtonView: View {
     
     let item: MWStackStepItemButton
     var tapped: (_ item: MWStackStepItemButton, _ rect: CGRect) -> Void
-    var systemTintColor: Color
+    var theme: Theme
     
     var body: some View {
         // Needs GeometryReader to send back the frame of the button for popOver purposes
@@ -32,7 +33,7 @@ struct MWButtonView: View {
             }
         }
         .frame(maxWidth: .infinity, idealHeight: 50, maxHeight: 50, alignment: .center)
-        .buttonStyle(MWButtonStyle(style: self.item.style, systemTintColor: self.systemTintColor))
+        .buttonStyle(MWButtonStyle(style: self.item.style, systemTintColor: Color(self.theme.primaryTintColor)))
         .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
     }
 }

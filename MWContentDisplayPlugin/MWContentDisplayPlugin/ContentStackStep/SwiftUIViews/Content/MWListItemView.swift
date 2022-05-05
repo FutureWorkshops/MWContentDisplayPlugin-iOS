@@ -8,10 +8,12 @@
 import Foundation
 import SwiftUI
 import Kingfisher
+import MobileWorkflowCore
 
 struct MWListItemView: View {
     
     let item: MWStackStepItemListItem
+    let theme: Theme
     
     var body: some View {
         HStack {
@@ -42,10 +44,10 @@ struct MWListItemView: View {
     func makeImagePlaceholder() -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(Color.systemFill(.secondary))
+                .fill(Color(self.theme.imagePlaceholderBackgroundColor))
                 .frame(width: 48, height: 48, alignment: .center)
             Image(systemName: "photo")
-                .foregroundColor(Color.label(.tertiary))
+                .foregroundColor(Color(self.theme.secondaryTextColor))
         }
     }
 }

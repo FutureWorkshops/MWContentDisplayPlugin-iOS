@@ -8,13 +8,14 @@
 import SwiftUI
 import Kingfisher
 import Foundation
+import MobileWorkflowCore
 
 struct MWStackView: View {
     
-    var contents: MWStackStepContents
-    var backButtonTapped: () -> Void
-    var buttonTapped: (MWStackStepItemButton, CGRect) -> Void
-    var tintColor: UIColor
+    let contents: MWStackStepContents
+    let backButtonTapped: () -> Void
+    let buttonTapped: (MWStackStepItemButton, CGRect) -> Void
+    let theme: Theme
     
     let isCloseButtonEnabled: Bool
     let isBackButtonEnabled: Bool
@@ -23,7 +24,7 @@ struct MWStackView: View {
         let content = MWStackContentScrollView(
             contents: self.contents,
             buttonTapped: self.buttonTapped,
-            tintColor: self.tintColor
+            theme: self.theme
         )
         
         GeometryReader { geometry in
@@ -39,7 +40,8 @@ struct MWStackView: View {
                             headerImageURL: headerImageURL,
                             headerHeight: headerHeight,
                             safeAreaInsets: geometry.safeAreaInsets,
-                            headerStyle: contents.headerStyle
+                            headerStyle: contents.headerStyle,
+                            theme: self.theme
                         )
                     },
                     content: { content },
