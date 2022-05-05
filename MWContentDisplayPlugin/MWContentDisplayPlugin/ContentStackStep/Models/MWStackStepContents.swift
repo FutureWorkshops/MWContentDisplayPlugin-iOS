@@ -81,7 +81,7 @@ enum MWStackStepItem: Identifiable {
     
     case title(MWStackStepItemTitle)
     case text(MWStackStepItemText)
-    case listItem(MWStackStepStepItemListItem)
+    case listItem(MWStackStepItemListItem)
     case button(MWStackStepItemButton)
     case space(MWStackStepItemSpace)
     
@@ -100,7 +100,7 @@ enum MWStackStepItem: Identifiable {
             self = .title(stepTypeTitle)
         } else if let stepTypeText = MWStackStepItemText(json: json, localizationService: localizationService) {
             self = .text(stepTypeText)
-        } else if let stepTypeListItem = MWStackStepStepItemListItem(json: json, localizationService: localizationService) {
+        } else if let stepTypeListItem = MWStackStepItemListItem(json: json, localizationService: localizationService) {
             self = .listItem(stepTypeListItem)
         } else if let stepTypeButtom = MWStackStepItemButton(json: json, localizationService: localizationService) {
             self = .button(stepTypeButtom)
@@ -153,7 +153,7 @@ struct MWStackStepItemText: Identifiable {
     }
 }
 
-struct MWStackStepStepItemListItem: Identifiable {
+struct MWStackStepItemListItem: Identifiable {
     let id: String
     let title: String?
     let detailText: String?
