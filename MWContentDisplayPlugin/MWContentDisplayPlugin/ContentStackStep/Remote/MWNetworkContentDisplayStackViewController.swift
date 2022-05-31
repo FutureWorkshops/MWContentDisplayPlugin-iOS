@@ -89,7 +89,7 @@ class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewContr
     
     private func performButtonRemoteRequest(to url: URL, usingHTTPMethod httpMethod: HTTPMethod, successAction: SuccessAction) {
         guard let url = self.remoteContentStep.session.resolve(url: url.absoluteString) else { return }
-        // Only PUT/DELETE are supported on buttons
+        // Only these methods currently supported for buttons
         guard [.PUT, .PATCH, .DELETE].contains(httpMethod) else { return }
         do {
             let credential = try self.remoteContentStep.services.credentialStore.retrieveCredential(.token, isRequired: false).get()
