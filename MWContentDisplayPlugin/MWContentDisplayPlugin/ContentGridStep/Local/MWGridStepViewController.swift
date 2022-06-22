@@ -26,7 +26,6 @@ class MWGridStepViewController: MWStepViewController {
     }
     
     private (set) var collectionView: UICollectionView!
-    private (set) var collectionViewLayout: UICollectionViewLayout!
     private (set) var sections: [Section] = []
     
     var gridStep: GridStep { self.mwStep as! GridStep }
@@ -43,6 +42,11 @@ class MWGridStepViewController: MWStepViewController {
         self.update(items: self.gridStep.items)
     }
     
+    override func viewLayoutMarginsDidChange() {
+        super.viewLayoutMarginsDidChange()
+        self.collectionView.collectionViewLayout = self.generateLayout()
+    }
+    
     func update(items: [GridStepItem]) {
         self.sections = self.gridStep.viewControllerSections()
         self.collectionView.reloadData()
@@ -53,11 +57,8 @@ class MWGridStepViewController: MWStepViewController {
     private func setupCollectionView() {
         self.extendedLayoutIncludesOpaqueBars = true // fixes issues with refreshControls and largeTitles
         
-        // Generate the layout
-        self.collectionViewLayout = self.generateLayout()
-        
         // Configure the collectionView
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.collectionViewLayout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.generateLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(MWImageCollectionViewCell.self)
         collectionView.register(MWSimpleCollectionSectionHeader.self, forSupplementaryViewOfKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier)
@@ -121,17 +122,17 @@ class MWGridStepViewController: MWStepViewController {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: MWSimpleCollectionSectionHeader.defaultReuseIdentifier, alignment: .top)
         sectionHeader.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                              leading: orthogonalScrollingBehavior == .groupPagingCentered ? 16 : 0,
+                                                              leading: orthogonalScrollingBehavior == .groupPagingCentered ? self.view.directionalLayoutMargins.leading : 0,
                                                               bottom: 0,
-                                                              trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 16 : 0)
+                                                              trailing: orthogonalScrollingBehavior == .groupPagingCentered ? self.view.directionalLayoutMargins.trailing : 0)
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 6
         section.contentInsets = NSDirectionalEdgeInsets(top: 12,
-                                                        leading: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : 16,
+                                                        leading: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : self.view.directionalLayoutMargins.leading,
                                                         bottom: 24,
-                                                        trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : 16)
+                                                        trailing: orthogonalScrollingBehavior == .groupPagingCentered ? 0 : self.view.directionalLayoutMargins.trailing)
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = orthogonalScrollingBehavior
         
