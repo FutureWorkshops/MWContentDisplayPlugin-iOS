@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import UIKit
 import MobileWorkflowCore
 
@@ -21,8 +20,8 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     //MARK: Class properties
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
-    private let imageView = UIImageView()
-    private var imageLoadTask: AnyCancellable?
+    @MainActor private let imageView = UIImageView()
+    private var imageLoadTask: Task<(), Never>?
     
     private lazy var placeholderImage: UIImage? = {
         let size = CGSize(width: 500, height: 500/2)
@@ -113,9 +112,9 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         if let imageUrl = viewData.imageUrl {
             self.imageView.image = self.placeholderImage
             self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
-            self.imageLoadTask = imageLoader.load(image: imageUrl.absoluteString, session: session) { [weak self] result in
-                guard let strongSelf = self else { return }
-                strongSelf.imageView.transition(to: result.image ?? strongSelf.placeholderImage, animated: result.wasLoadedRemotely)
+            self.imageLoadTask = Task {
+                let result = await imageLoader.load(image: imageUrl.absoluteString, session: session)
+                self.imageView.transition(to: result.image ?? self.placeholderImage, animated: result.wasLoadedRemotely)
             }
         }
     }
