@@ -58,9 +58,6 @@ struct MWStackView: View {
                                      headerStyle: MWStackStepContents.HeaderStyle) -> some View {
         
         let kfImage = KFImage(headerImageURL)
-                        .placeholder {
-                            makeImagePlaceholder()
-                        }
                         .resizable()
                         .aspectRatio(contentMode: .fill)
         
@@ -77,15 +74,6 @@ struct MWStackView: View {
         }
         
     }
-    
-    private func makeImagePlaceholder() -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.systemFill(.secondary))
-            Image(systemName: "photo")
-                .foregroundColor(Color.label(.tertiary))
-                .font(.largeTitle)
-        }    }
     
     private func makeContentScrollView() -> some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -132,9 +120,6 @@ fileprivate struct MWListItemView: View {
         HStack {
             if let imageURL = stepTypeListItem.imageURL {
                 KFImage(imageURL)
-                    .placeholder {
-                        makeImagePlaceholder()
-                    }
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 48, height: 48, alignment: .center)
@@ -151,16 +136,6 @@ fileprivate struct MWListItemView: View {
                         .foregroundColor(Color(UIColor.secondaryLabel))
                 }
             }
-        }
-    }
-    
-    func makeImagePlaceholder() -> some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.systemFill(.secondary))
-                .frame(width: 48, height: 48, alignment: .center)
-            Image(systemName: "photo")
-                .foregroundColor(Color.label(.tertiary))
         }
     }
 }
