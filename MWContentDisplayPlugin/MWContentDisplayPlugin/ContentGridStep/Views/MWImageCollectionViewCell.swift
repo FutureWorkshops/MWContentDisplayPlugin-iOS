@@ -65,25 +65,33 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.clear()
     }
     
     //MARK: Configuration
-    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, session: Session, theme: Theme) {
+    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, imageCache: RemoteImageCaching, session: Session, theme: Theme) {
         self.titleLabel.text = viewData.title
         self.subtitleLabel.text = viewData.subtitle
         
         self.imageView.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
         self.imageLoadTask?.cancel()
-        if let imageUrl = viewData.imageUrl {
-            self.imageView.image = nil
-            self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
-            self.imageLoadTask = Task {
-                let result = await imageLoader.load(image: imageUrl.absoluteString, session: session)
-                self.imageView.transition(to: result.image, animated: result.wasLoadedRemotely)
+        
+        guard let imageUrl = viewData.imageUrl?.absoluteString else { return }
+        
+        self.imageView.image = nil
+        self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
+        
+        if let image = imageCache.imageForURL(imageUrl) {
+            self.imageView.transition(to: image, animated: false)
+            return
+        }
+        self.imageLoadTask = Task { [weak self] in
+            let result = await imageLoader.load(image: imageUrl, session: session)
+            if let image = result.image {
+                imageCache.storeImage(image, forUrl: imageUrl)
+                self?.imageView.transition(to: result.image, animated: true)
             }
         }
     }

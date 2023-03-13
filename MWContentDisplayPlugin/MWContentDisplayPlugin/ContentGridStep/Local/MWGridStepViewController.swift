@@ -30,6 +30,8 @@ class MWGridStepViewController: MWStepViewController {
     
     var gridStep: GridStep { self.mwStep as! GridStep }
     
+    private lazy var remoteImageCache: RemoteImageCache = { RemoteImageCache() }()
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = self.step.theme.primaryBackgroundColor
@@ -159,12 +161,12 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session, theme: self.step.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme)
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, session: self.gridStep.session, theme: self.step.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme)
             result = cell
             
         case .item: preconditionFailure("Not a section")
