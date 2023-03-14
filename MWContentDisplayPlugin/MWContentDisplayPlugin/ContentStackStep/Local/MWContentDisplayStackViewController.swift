@@ -108,9 +108,9 @@ public class MWContentDisplayStackViewController: MWStepViewController, Presenta
             let triggerShareSheet: (([Any]) -> Void) = { [weak self] itemsToShare in
                 self?.hideLoadingIndicator()
                 // Present the share sheet when everything is ready
-                guard let self = self, !itemsToShare.isEmpty else { return }
+                guard let strongSelf = self, !itemsToShare.isEmpty else { return }
                 UIPasteboard.general.string = itemsToShare.compactMap{ $0 as? String }.joined(separator: " ")
-                self.presentActivitySheet(with: itemsToShare, sourceRect: rect)
+                strongSelf.presentActivitySheet(with: itemsToShare, sourceRect: rect)
             }
             
             // Collect all the shareable items
@@ -129,14 +129,14 @@ public class MWContentDisplayStackViewController: MWStepViewController, Presenta
             
             if let imageURL = item.shareImageURL {
                 self.contentStackStep.downloadShareableImage(from: imageURL) { [weak self] result in
-                    guard let self = self else { return }
+                    guard let strongSelf = self else { return }
                     DispatchQueue.main.async {
                         switch result {
                         case .success(let image):
                             // Always add it as the first element
                             itemsToShare.insert(image, at: 0)
                         case .failure(let error):
-                            self.show(error)
+                            strongSelf.show(error)
                         }
                         triggerShareSheet(itemsToShare)
                     }

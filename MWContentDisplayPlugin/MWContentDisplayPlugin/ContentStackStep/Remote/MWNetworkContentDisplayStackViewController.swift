@@ -105,15 +105,15 @@ class MWNetworkContentDisplayStackViewController: MWContentDisplayStackViewContr
                 }
             }
             self.remoteContentStep.services.perform(task: task, session: self.remoteContentStep.session) { [weak self] result in
-                guard let self = self else { return }
+                guard let strongSelf = self else { return }
                 switch result {
                 case .success(let newContents):
                     if let newContents = newContents {
-                        self.update(content: newContents)
+                        strongSelf.update(content: newContents)
                     }
-                    self.handleSuccessAction(successAction)
+                    strongSelf.handleSuccessAction(successAction)
                 case .failure(let error):
-                    self.show(error)
+                    strongSelf.show(error)
                 }
             }
         } catch (let error) {
