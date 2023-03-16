@@ -39,7 +39,7 @@ public class MWGridStep: MWStep, GridStep {
 extension MWGridStep: BuildableStep {
     
     public static var mandatoryCodingPaths: [CodingKey] {
-        [["items": ["id"]]]
+        [["items": ["listItemId"]]]
     }
     
     public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
@@ -47,7 +47,7 @@ extension MWGridStep: BuildableStep {
         let items: [GridStepItem] = try contentItems.compactMap {
             guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
             let detailText = services.localizationService.translate($0["detailText"] as? String)
-            guard let id = $0.getString(key: "id") else {
+            guard let id = $0.getString(key: "listItemId") ?? $0.getString(key: "id") else {
                 throw ParseError.invalidStepData(cause: "Grid item has invalid id")
             }
             return GridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)
