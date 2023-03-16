@@ -100,3 +100,64 @@ extension GridStep {
     }
     
 }
+
+public struct GridGridItem: Codable {
+    let listItemId: Float
+    let detailText: String?
+    let imageURL: String?
+    let text: String?
+    let type: String?
+    
+    public static func gridGridItem(
+        listItemId: Float,
+        detailText: String? = nil,
+        imageURL: String? = nil,
+        text: String? = nil,
+        type: String? = nil
+    ) -> GridGridItem {
+        GridGridItem(listItemId: listItemId, detailText: detailText, imageURL: imageURL, text: text, type: type)
+    }
+}
+
+public class GridGridMetadata: StepMetadata {
+    enum CodingKeys: String, CodingKey {
+        case items
+        case navigationItems = "_navigationItems"
+    }
+    
+    let items: [GridGridItem]
+    let navigationItems: [NavigationItemMetadata]?
+    
+    init(id: String, title: String, items: [GridGridItem], navigationItems: [NavigationItemMetadata]?, next: PushLinkMetadata?, links: [LinkMetadata]) {
+        self.items = items
+        self.navigationItems = navigationItems
+        super.init(id: id, type: "videoGrid", title: title, next: next, links: links)
+    }
+    
+    public required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.items = try container.decode([GridGridItem].self, forKey: .items)
+        self.navigationItems = try container.decodeIfPresent([NavigationItemMetadata].self, forKey: .navigationItems)
+        try super.init(from: decoder)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.items, forKey: .items)
+        try container.encodeIfPresent(self.navigationItems, forKey: .navigationItems)
+        try super.encode(to: encoder)
+    }
+}
+
+public extension StepMetadata {
+    static func gridGrid(
+        id: String,
+        title: String,
+        items: [GridGridItem],
+        navigationItems: [NavigationItemMetadata]? = nil,
+        next: PushLinkMetadata? = nil,
+        links: [LinkMetadata] = []
+    ) -> GridGridMetadata {
+        GridGridMetadata(id: id, title: title, items: items, navigationItems: navigationItems, next: next, links: links)
+    }
+}
