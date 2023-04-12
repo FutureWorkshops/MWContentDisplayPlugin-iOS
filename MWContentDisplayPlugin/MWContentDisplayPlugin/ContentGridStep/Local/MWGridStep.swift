@@ -83,7 +83,7 @@ extension GridStep {
             vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
         } else if !currentItems.isEmpty {
             // no sections found, add all to single section
-            let section = GridStepItem(id: "DEFAULT_SECTION", type: GridItemType.carouselSmall.rawValue, text: L10n.defaultSectionTitle, detailText: "", imageURL: "")
+            let section = GridStepItem(id: "DEFAULT_SECTION", type: GridItemType.carouselSmall.rawValue, text: nil, detailText: "", imageURL: "")
             vcSections.append(self.viewControllerSectionFromSection(section, items: currentItems))
         }
         
