@@ -48,7 +48,7 @@ jobs:
           GIT_TAG: ${{ steps.tag.outputs.name }}
           ORIGIN_URL: ${{ steps.origin.outputs.url }}
           WORKFLOW_ID: preview
-          APP_ID: 4816f8230a7bb838
+          APP_ID: ${{ secrets.BITRISE_AR_PLUGIN_BUILD_ID }}
           TRIGGER_TOKEN: ${{ secrets.BITRISE_BUILD_TRIGGER_TOKEN }}
         run: |
           set -e
@@ -86,8 +86,5 @@ jobs:
               },
               \"triggered_by\": \"${COMMIT_MESSAGE}\"
           }"
-
-          echo "Request: https://app.bitrise.io/app/${APP_ID}/build/start.json"
-          echo "Data: ${PAYLOAD}"
 
           curl --fail -X POST "https://app.bitrise.io/app/${APP_ID}/build/start.json" --data "${PAYLOAD}"
