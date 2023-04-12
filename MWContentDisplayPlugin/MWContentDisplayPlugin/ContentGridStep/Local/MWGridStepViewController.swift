@@ -13,7 +13,7 @@ class MWGridStepViewController: MWStepViewController {
     
     struct Item {
         let id: String
-        let title: String
+        let title: String?
         let subtitle: String?
         let imageUrl: URL?
     }
@@ -21,7 +21,7 @@ class MWGridStepViewController: MWStepViewController {
     struct Section {
         let id: String
         let type: GridItemType
-        let title: String
+        let title: String?
         let items: [Item]
     }
     

@@ -45,7 +45,7 @@ extension MWGridStep: BuildableStep {
     public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         let contentItems = stepInfo.data.content["items"] as? [[String: Any]] ?? []
         let items: [GridStepItem] = try contentItems.compactMap {
-            guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
+            let text = services.localizationService.translate($0["text"] as? String)
             let detailText = services.localizationService.translate($0["detailText"] as? String)
             guard let id = $0.getString(key: "listItemId") ?? $0.getString(key: "id") else {
                 throw ParseError.invalidStepData(cause: "Grid item has invalid id")

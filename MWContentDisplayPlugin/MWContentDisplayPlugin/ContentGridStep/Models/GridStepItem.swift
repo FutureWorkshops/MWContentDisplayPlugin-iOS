@@ -27,20 +27,20 @@ public class GridStepItem: Codable {
 
     public let id: String
     public let type: String?
-    public let text: String
+    public let text: String?
     public let detailText: String?
     public let imageURL: String?
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeAsString(key: .id)
-        self.text = try container.decode(String.self, forKey: .text)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
         self.type = try container.decodeIfPresent(String.self, forKey: .type)
         self.detailText = try container.decodeIfPresent(String.self, forKey: .detailText)
         self.imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL)
     }
     
-    public init(id: String, type: String?, text: String, detailText: String?, imageURL: String?) {
+    public init(id: String, type: String?, text: String?, detailText: String?, imageURL: String?) {
         self.id = id
         self.type = type
         self.text = text
