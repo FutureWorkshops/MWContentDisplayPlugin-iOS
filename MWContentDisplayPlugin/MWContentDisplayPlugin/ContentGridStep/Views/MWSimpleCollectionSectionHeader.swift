@@ -30,7 +30,7 @@ class MWSimpleCollectionSectionHeader: UICollectionReusableView, ReusableView {
     }
     
     //MARK: Configuration
-    func configure(withTitle title: String) {
+    func configure(withTitle title: String?) {
         self.titleLabel.text = title
     }
     

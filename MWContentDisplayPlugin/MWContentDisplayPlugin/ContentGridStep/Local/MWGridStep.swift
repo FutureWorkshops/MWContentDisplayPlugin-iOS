@@ -45,7 +45,7 @@ extension MWGridStep: BuildableStep {
     public static func build(stepInfo: StepInfo, services: StepServices) throws -> Step {
         let contentItems = stepInfo.data.content["items"] as? [[String: Any]] ?? []
         let items: [GridStepItem] = try contentItems.compactMap {
-            guard let text = services.localizationService.translate($0["text"] as? String) else { return nil }
+            let text = services.localizationService.translate($0["text"] as? String)
             let detailText = services.localizationService.translate($0["detailText"] as? String)
             guard let id = $0.getString(key: "listItemId") ?? $0.getString(key: "id") else {
                 throw ParseError.invalidStepData(cause: "Grid item has invalid id")
@@ -83,7 +83,7 @@ extension GridStep {
             vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
         } else if !currentItems.isEmpty {
             // no sections found, add all to single section
-            let section = GridStepItem(id: "DEFAULT_SECTION", type: GridItemType.carouselSmall.rawValue, text: L10n.defaultSectionTitle, detailText: "", imageURL: "")
+            let section = GridStepItem(id: "DEFAULT_SECTION", type: GridItemType.carouselSmall.rawValue, text: nil, detailText: nil, imageURL: nil)
             vcSections.append(self.viewControllerSectionFromSection(section, items: currentItems))
         }
         
