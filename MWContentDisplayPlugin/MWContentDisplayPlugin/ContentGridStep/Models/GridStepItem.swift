@@ -30,6 +30,8 @@ public class GridStepItem: Codable {
     public let text: String?
     public let detailText: String?
     public let imageURL: String?
+    public let favorite: Bool?
+    public let favoriteURL: String?
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -38,14 +40,18 @@ public class GridStepItem: Codable {
         self.type = try container.decodeIfPresent(String.self, forKey: .type)
         self.detailText = try container.decodeIfPresent(String.self, forKey: .detailText)
         self.imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL)
+        self.favorite = try container.decodeIfPresent(Bool.self, forKey: .favorite)
+        self.favoriteURL = try container.decodeIfPresent(String.self, forKey: .favoriteURL)
     }
     
-    public init(id: String, type: String?, text: String?, detailText: String?, imageURL: String?) {
+    public init(id: String, type: String?, text: String?, detailText: String?, imageURL: String?, favorite: Bool?, favoriteURL: String?) {
         self.id = id
         self.type = type
         self.text = text
         self.detailText = detailText
         self.imageURL = imageURL
+        self.favorite = favorite
+        self.favoriteURL = favoriteURL
     }
 }
 

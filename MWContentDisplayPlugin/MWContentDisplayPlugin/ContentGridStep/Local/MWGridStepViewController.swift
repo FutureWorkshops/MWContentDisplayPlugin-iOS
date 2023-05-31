@@ -16,6 +16,10 @@ class MWGridStepViewController: MWStepViewController {
         let title: String?
         let subtitle: String?
         let imageUrl: URL?
+        let favorite: Bool?
+        let favoriteURL: String?
+        
+        var hasFavoriteSupport: Bool { self.favorite != nil && !(self.favoriteURL?.isEmpty ?? true) }
     }
     
     struct Section {

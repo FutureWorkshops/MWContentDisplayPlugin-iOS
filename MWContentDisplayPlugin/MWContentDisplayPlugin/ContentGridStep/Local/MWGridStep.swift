@@ -50,7 +50,7 @@ extension MWGridStep: BuildableStep {
             guard let id = $0.getString(key: "listItemId") ?? $0.getString(key: "id") else {
                 throw ParseError.invalidStepData(cause: "Grid item has invalid id")
             }
-            return GridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String)
+            return GridStepItem(id: id, type: $0["type"] as? String, text: text, detailText: detailText, imageURL: $0["imageURL"] as? String, favorite: $0["favorite"] as? Bool, favoriteURL: $0["favoriteURL"] as? String)
         }
         return MWGridStep(identifier: stepInfo.data.identifier, session: stepInfo.session, services: services, theme: stepInfo.context.theme, items: items)
     }
@@ -83,7 +83,7 @@ extension GridStep {
             vcSections.append(self.viewControllerSectionFromSection(currentSection, items: currentItems))
         } else if !currentItems.isEmpty {
             // no sections found, add all to single section
-            let section = GridStepItem(id: "DEFAULT_SECTION", type: GridItemType.carouselSmall.rawValue, text: nil, detailText: nil, imageURL: nil)
+            let section = GridStepItem(id: "DEFAULT_SECTION", type: GridItemType.carouselSmall.rawValue, text: nil, detailText: nil, imageURL: nil, favorite: nil, favoriteURL: nil)
             vcSections.append(self.viewControllerSectionFromSection(section, items: currentItems))
         }
         
@@ -92,7 +92,7 @@ extension GridStep {
     
     private func viewControllerSectionFromSection(_ section: GridStepItem, items: [GridStepItem]) -> MWGridStepViewController.Section {
         
-        let vcItems = items.map { MWGridStepViewController.Item(id: $0.id, title: $0.text, subtitle: $0.detailText, imageUrl: $0.imageURL.flatMap { URL(string: $0) }) }
+        let vcItems = items.map { MWGridStepViewController.Item(id: $0.id, title: $0.text, subtitle: $0.detailText, imageUrl: $0.imageURL.flatMap { URL(string: $0) }, favorite: $0.favorite, favoriteURL: $0.favoriteURL) }
         
         let vcSection = MWGridStepViewController.Section(id: section.id, type: section.itemType, title: section.text, items: vcItems)
         
@@ -107,15 +107,19 @@ public struct GridGridItem: Codable {
     let imageURL: String?
     let text: String?
     let type: String?
+    let favorite: Bool?
+    let favoriteURL: String?
     
     public static func gridGridItem(
         listItemId: Float,
         detailText: String? = nil,
+        favorite: Bool? = nil,
+        favoriteURL: String? = nil,
         imageURL: String? = nil,
         text: String? = nil,
         type: String? = nil
     ) -> GridGridItem {
-        GridGridItem(listItemId: listItemId, detailText: detailText, imageURL: imageURL, text: text, type: type)
+        GridGridItem(listItemId: listItemId, detailText: detailText, imageURL: imageURL, text: text, type: type, favorite: favorite, favoriteURL: favoriteURL)
     }
 }
 
