@@ -58,6 +58,10 @@ class MWGridStepViewController: MWStepViewController {
         self.collectionView.reloadData()
     }
     
+    open func favorite(item: GridStepItem) {
+        //Favorite toggle is not done for static items
+    }
+    
     // MARK: Configuration
     
     private func setupCollectionView() {

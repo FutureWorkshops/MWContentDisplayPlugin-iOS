@@ -53,6 +53,10 @@ public class GridStepItem: Codable {
         self.favorite = favorite
         self.favoriteURL = favoriteURL
     }
+    
+    public func updating(favorite: Bool?) -> GridStepItem {
+        GridStepItem(id: id, type: type, text: text, detailText: detailText, imageURL: imageURL, favorite: favorite, favoriteURL: favoriteURL)
+    }
 }
 
 extension GridStepItem {
