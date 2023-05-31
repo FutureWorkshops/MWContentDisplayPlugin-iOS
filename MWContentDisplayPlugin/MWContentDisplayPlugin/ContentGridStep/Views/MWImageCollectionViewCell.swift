@@ -33,6 +33,13 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         return button
     }()
     private var favoriteAction: () async -> Bool = { false }
+    private let favoriteLoadingIndicator = {
+        let progress = UIActivityIndicatorView(style: .white)
+        progress.hidesWhenStopped = true
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
+    private var isFavorited: Bool = false
     
     //MARK: Lifecycle
     override init(frame: CGRect) {
@@ -60,11 +67,14 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         
         containerView.addPinnedSubview(self.imageView)
         containerView.addSubview(self.favoriteButton)
+        containerView.addSubview(self.favoriteLoadingIndicator)
         NSLayoutConstraint.activate([
             self.favoriteButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10.0),
             self.favoriteButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10.0),
             self.favoriteButton.heightAnchor.constraint(equalToConstant: 30.0),
             self.favoriteButton.widthAnchor.constraint(equalToConstant: 30.0),
+            self.favoriteLoadingIndicator.centerXAnchor.constraint(equalTo: self.favoriteButton.centerXAnchor),
+            self.favoriteLoadingIndicator.centerYAnchor.constraint(equalTo: self.favoriteButton.centerYAnchor)
         ])
         
         let infoStack = UIStackView(arrangedSubviews: [self.titleLabel, self.subtitleLabel])
@@ -130,6 +140,8 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.favoriteButton.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
         self.updateState(for: self.favoriteButton, asFavorite: viewData.isFavorite)
         
+        self.favoriteLoadingIndicator.color = theme.primaryNavBarTintColor
+        
         if let image = imageCache.imageForURL(imageUrl) {
             self.imageView.transition(to: image, animated: false)
             return
@@ -144,13 +156,32 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     }
     
     @objc private func favoriteButtonAction() {
-        Task { await self.favoriteAction() }
+        Task {
+            await self.showProgress()
+            if await self.favoriteAction() {
+                self.isFavorited.toggle()
+            }
+            await self.hideProgress(isFavorited: self.isFavorited)
+        }
+    }
+    
+    @MainActor
+    private func showProgress() {
+        self.favoriteButton.setImage(nil, for: .normal)
+        self.favoriteLoadingIndicator.startAnimating()
+    }
+    
+    @MainActor
+    private func hideProgress(isFavorited: Bool) {
+        self.favoriteLoadingIndicator.stopAnimating()
+        self.updateState(for: self.favoriteButton, asFavorite: isFavorited)
     }
     
     private func clear() {
         self.favoriteAction = { false }
         self.titleLabel.text = nil
         self.subtitleLabel.text = nil
+        self.isFavorited = false
         
         self.imageLoadTask?.cancel()
         self.imageView.image = nil
