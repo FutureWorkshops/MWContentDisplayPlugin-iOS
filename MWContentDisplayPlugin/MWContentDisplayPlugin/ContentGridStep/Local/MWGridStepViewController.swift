@@ -58,8 +58,9 @@ class MWGridStepViewController: MWStepViewController {
         self.collectionView.reloadData()
     }
     
-    open func toggleFavorite(item: Item) async {
+    open func toggleFavorite(item: Item) async -> Bool {
         //Favorite toggle is not done for static items
+        false
     }
     
     // MARK: Configuration
@@ -169,12 +170,16 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme) { [weak self] in
+                return await self?.toggleFavorite(item: item) ?? false
+            }
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme) { [weak self] in
+                return await self?.toggleFavorite(item: item) ?? false
+            }
             result = cell
             
         case .item: preconditionFailure("Not a section")
@@ -215,6 +220,6 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
 private extension MWImageCollectionViewCell.ViewData {
     
     init(item: MWGridStepViewController.Item) {
-        self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl)
+        self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl, showFavorite: item.hasFavoriteSupport, isFavorite: item.favorite ?? false)
     }
 }

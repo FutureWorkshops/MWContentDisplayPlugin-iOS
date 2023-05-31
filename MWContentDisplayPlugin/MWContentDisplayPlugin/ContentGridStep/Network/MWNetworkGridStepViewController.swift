@@ -39,11 +39,11 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
         self.update(content: [])
     }
     
-    override func toggleFavorite(item: Item) async {
+    override func toggleFavorite(item: Item) async -> Bool {
         guard let favorite = item.favorite,
               let favoriteURL = item.favoriteURL,
               let resolvedURL = self.gridStep.session.resolve(url: favoriteURL) else {
-            return
+            return false
         }
         
         do {
@@ -55,8 +55,10 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
             )
             try await self.gridStep.services.perform(task: task, session: self.gridStep.session)
             self.loadContent()
+            return true
         } catch {
             await self.show(error)
+            return false
         }
     }
     
