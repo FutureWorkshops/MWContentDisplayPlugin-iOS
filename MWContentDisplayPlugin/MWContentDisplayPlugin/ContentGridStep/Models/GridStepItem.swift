@@ -30,6 +30,9 @@ public class GridStepItem: Codable {
     public let text: String?
     public let detailText: String?
     public let imageURL: String?
+    public let actionURL: String?
+    public let actionSFSymbolName: String?
+    public let actionMethod: HTTPMethod?
     
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -38,14 +41,24 @@ public class GridStepItem: Codable {
         self.type = try container.decodeIfPresent(String.self, forKey: .type)
         self.detailText = try container.decodeIfPresent(String.self, forKey: .detailText)
         self.imageURL = try container.decodeIfPresent(String.self, forKey: .imageURL)
+        self.actionURL = try container.decodeIfPresent(String.self, forKey: .actionURL)
+        self.actionSFSymbolName = try container.decodeIfPresent(String.self, forKey: .actionSFSymbolName)
+        if let stored = try container.decodeIfPresent(String.self, forKey: .actionMethod) {
+            self.actionMethod = HTTPMethod(rawValue: stored)
+        } else {
+            self.actionMethod = nil
+        }
     }
     
-    public init(id: String, type: String?, text: String?, detailText: String?, imageURL: String?) {
+    public init(id: String, type: String?, text: String?, detailText: String?, imageURL: String?, actionURL: String?, actionSFSymbolName: String?, actionMethod: HTTPMethod?) {
         self.id = id
         self.type = type
         self.text = text
         self.detailText = detailText
         self.imageURL = imageURL
+        self.actionURL = actionURL
+        self.actionSFSymbolName = actionSFSymbolName
+        self.actionMethod = actionMethod
     }
 }
 

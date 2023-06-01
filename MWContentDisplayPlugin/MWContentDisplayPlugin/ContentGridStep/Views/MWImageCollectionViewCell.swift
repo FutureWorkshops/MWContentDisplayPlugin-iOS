@@ -15,6 +15,8 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         let title: String?
         let subtitle: String?
         let imageUrl: URL?
+        let showAction: Bool
+        let actionSymbol: String
     }
     
     //MARK: Class properties
@@ -22,6 +24,21 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     private let subtitleLabel = UILabel()
     @MainActor private let imageView = UIImageView()
     private var imageLoadTask: Task<(), Never>?
+    private let actionButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .lightGray
+        button.layer.cornerRadius = 16.0
+        button.layer.masksToBounds = true
+        return button
+    }()
+    private var remoteAction: () async -> Void = {}
+    private let remoteActionIndicator = {
+        let progress = UIActivityIndicatorView(style: .white)
+        progress.hidesWhenStopped = true
+        progress.translatesAutoresizingMaskIntoConstraints = false
+        return progress
+    }()
     
     //MARK: Lifecycle
     override init(frame: CGRect) {
@@ -38,11 +55,26 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.subtitleLabel.font = .preferredFont(forTextStyle: .subheadline)
         self.subtitleLabel.textColor = .secondaryLabel
         
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.heightAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 9/16).isActive = true
+        
         self.imageView.translatesAutoresizingMaskIntoConstraints = false
         self.imageView.contentMode = .scaleAspectFill
         self.imageView.layer.cornerRadius = 16.0
         self.imageView.layer.masksToBounds = true
-        self.imageView.heightAnchor.constraint(equalTo: self.imageView.widthAnchor, multiplier: 9/16).isActive = true
+        
+        containerView.addPinnedSubview(self.imageView)
+        containerView.addSubview(self.actionButton)
+        containerView.addSubview(self.remoteActionIndicator)
+        NSLayoutConstraint.activate([
+            self.actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10.0),
+            self.actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10.0),
+            self.actionButton.heightAnchor.constraint(equalToConstant: 30.0),
+            self.actionButton.widthAnchor.constraint(equalToConstant: 30.0),
+            self.remoteActionIndicator.centerXAnchor.constraint(equalTo: self.actionButton.centerXAnchor),
+            self.remoteActionIndicator.centerYAnchor.constraint(equalTo: self.actionButton.centerYAnchor)
+        ])
         
         let infoStack = UIStackView(arrangedSubviews: [self.titleLabel, self.subtitleLabel])
         infoStack.axis = .vertical
@@ -50,7 +82,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         infoStack.alignment = .fill
         infoStack.spacing = 0
         
-        let mainStack = UIStackView(arrangedSubviews: [self.imageView, infoStack])
+        let mainStack = UIStackView(arrangedSubviews: [containerView, infoStack])
         mainStack.axis = .vertical
         mainStack.distribution = .fill
         mainStack.alignment = .fill
@@ -58,6 +90,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         
         super.init(frame: frame)
         
+        self.actionButton.addTarget(self, action: #selector(self.remoteActionButtonTouchUpInside), for: .touchUpInside)
         self.contentView.addPinnedSubview(mainStack)
     }
     
@@ -71,7 +104,8 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     }
     
     //MARK: Configuration
-    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, imageCache: RemoteImageCaching, session: Session, theme: Theme) {
+    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, imageCache: RemoteImageCaching, session: Session, theme: Theme, remoteAction: @escaping () async -> Void) {
+        self.remoteAction = remoteAction
         self.titleLabel.text = viewData.title
         self.subtitleLabel.text = viewData.subtitle
         
@@ -82,6 +116,14 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         
         self.imageView.image = nil
         self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
+        
+        self.actionButton.tintColor = theme.primaryNavBarTintColor
+        self.actionButton.backgroundColor = theme.primaryNavBarBackgroundColor
+        self.actionButton.isHidden = !viewData.showAction
+        self.actionButton.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
+        self.actionButton.setImage(UIImage(systemName: viewData.actionSymbol), for: .normal)
+        
+        self.remoteActionIndicator.color = theme.primaryNavBarTintColor
         
         if let image = imageCache.imageForURL(imageUrl) {
             self.imageView.transition(to: image, animated: false)
@@ -96,7 +138,21 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    @objc private func remoteActionButtonTouchUpInside() {
+        Task {
+            await self.showProgress()
+            await self.remoteAction()
+        }
+    }
+    
+    @MainActor
+    private func showProgress() {
+        self.actionButton.setImage(nil, for: .normal)
+        self.remoteActionIndicator.startAnimating()
+    }
+    
     private func clear() {
+        self.remoteAction = {}
         self.titleLabel.text = nil
         self.subtitleLabel.text = nil
         

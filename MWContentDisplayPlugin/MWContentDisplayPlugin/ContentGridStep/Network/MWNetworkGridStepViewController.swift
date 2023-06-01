@@ -28,7 +28,7 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.resyncContent()
+        self.reloadContent()
     }
     
     @objc func reloadContent() {
@@ -37,6 +37,30 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
     
     func clearContent() {
         self.update(content: [])
+    }
+    
+    override func performRemoteAction(item: MWGridStepViewController.Item) async -> Void {
+        guard let actionURL = item.actionURL,
+              let actionMethod = item.actionMethod,
+              let resolvedURL = self.gridStep.session.resolve(url: actionURL) else {
+            return
+        }
+        
+        let currentState = self.remoteContentStep.items
+        
+        do {
+            let task: URLAsyncTask<Void> = URLAsyncTask<Void>.build(
+                url: resolvedURL,
+                method: actionMethod,
+                session: self.gridStep.session,
+                parser: { _ in () }
+            )
+            try await self.gridStep.services.perform(task: task, session: self.gridStep.session)
+            self.loadContent()
+        } catch {
+            self.update(content: currentState)
+            await self.show(error)
+        }
     }
     
     func update(content: [GridStepItem]) {
@@ -49,6 +73,7 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
         }
     }
     
+    @MainActor
     func showLoading() {
         if self.refreshControl.isRefreshing == false,
             self.sections.isEmpty {
@@ -58,6 +83,7 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
         }
     }
     
+    @MainActor
     func hideLoading() {
         self.collectionView.backgroundView = nil
         self.refreshControl.endRefreshing()

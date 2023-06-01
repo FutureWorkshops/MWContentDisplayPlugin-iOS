@@ -16,6 +16,15 @@ class MWGridStepViewController: MWStepViewController {
         let title: String?
         let subtitle: String?
         let imageUrl: URL?
+        let actionURL: String?
+        let actionMethod: HTTPMethod?
+        let actionSymbol: String?
+        
+        var canPerformRemoteAction: Bool {
+            !(self.actionSymbol?.isEmpty ?? true)
+            && !(self.actionURL?.isEmpty ?? true)
+            && self.actionMethod != nil
+        }
     }
     
     struct Section {
@@ -52,6 +61,10 @@ class MWGridStepViewController: MWStepViewController {
     func update(items: [GridStepItem]) {
         self.sections = self.gridStep.viewControllerSections()
         self.collectionView.reloadData()
+    }
+    
+    open func performRemoteAction(item: Item) async -> Void {
+        //Favorite toggle is not done for static items
     }
     
     // MARK: Configuration
@@ -161,12 +174,16 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
         switch section.type {
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme) { [weak self] in
+                await self?.performRemoteAction(item: item)
+            }
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme)
+            cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme) { [weak self] in
+                await self?.performRemoteAction(item: item)
+            }
             result = cell
             
         case .item: preconditionFailure("Not a section")
@@ -207,6 +224,6 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
 private extension MWImageCollectionViewCell.ViewData {
     
     init(item: MWGridStepViewController.Item) {
-        self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl)
+        self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl, showAction: item.canPerformRemoteAction, actionSymbol: item.actionSymbol ?? "")
     }
 }
