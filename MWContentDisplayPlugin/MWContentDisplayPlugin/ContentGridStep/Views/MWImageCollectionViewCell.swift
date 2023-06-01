@@ -15,8 +15,8 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         let title: String?
         let subtitle: String?
         let imageUrl: URL?
-        let showFavorite: Bool
-        let isFavorite: Bool
+        let showAction: Bool
+        let actionSymbol: String
     }
     
     //MARK: Class properties
@@ -24,7 +24,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     private let subtitleLabel = UILabel()
     @MainActor private let imageView = UIImageView()
     private var imageLoadTask: Task<(), Never>?
-    private let favoriteButton = {
+    private let actionButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .lightGray
@@ -32,14 +32,13 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         button.layer.masksToBounds = true
         return button
     }()
-    private var favoriteAction: () async -> Bool = { false }
-    private let favoriteLoadingIndicator = {
+    private var remoteAction: () async -> Void = {}
+    private let remoteActionIndicator = {
         let progress = UIActivityIndicatorView(style: .white)
         progress.hidesWhenStopped = true
         progress.translatesAutoresizingMaskIntoConstraints = false
         return progress
     }()
-    private var isFavorited: Bool = false
     
     //MARK: Lifecycle
     override init(frame: CGRect) {
@@ -66,15 +65,15 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.imageView.layer.masksToBounds = true
         
         containerView.addPinnedSubview(self.imageView)
-        containerView.addSubview(self.favoriteButton)
-        containerView.addSubview(self.favoriteLoadingIndicator)
+        containerView.addSubview(self.actionButton)
+        containerView.addSubview(self.remoteActionIndicator)
         NSLayoutConstraint.activate([
-            self.favoriteButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10.0),
-            self.favoriteButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10.0),
-            self.favoriteButton.heightAnchor.constraint(equalToConstant: 30.0),
-            self.favoriteButton.widthAnchor.constraint(equalToConstant: 30.0),
-            self.favoriteLoadingIndicator.centerXAnchor.constraint(equalTo: self.favoriteButton.centerXAnchor),
-            self.favoriteLoadingIndicator.centerYAnchor.constraint(equalTo: self.favoriteButton.centerYAnchor)
+            self.actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10.0),
+            self.actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10.0),
+            self.actionButton.heightAnchor.constraint(equalToConstant: 30.0),
+            self.actionButton.widthAnchor.constraint(equalToConstant: 30.0),
+            self.remoteActionIndicator.centerXAnchor.constraint(equalTo: self.actionButton.centerXAnchor),
+            self.remoteActionIndicator.centerYAnchor.constraint(equalTo: self.actionButton.centerYAnchor)
         ])
         
         let infoStack = UIStackView(arrangedSubviews: [self.titleLabel, self.subtitleLabel])
@@ -91,7 +90,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         
         super.init(frame: frame)
         
-        self.favoriteButton.addTarget(self, action: #selector(self.favoriteButtonAction), for: .touchUpInside)
+        self.actionButton.addTarget(self, action: #selector(self.remoteActionButtonTouchUpInside), for: .touchUpInside)
         self.contentView.addPinnedSubview(mainStack)
     }
     
@@ -104,25 +103,9 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.clear()
     }
     
-    
-    private func updateState(for button: UIButton, asFavorite favorite: Bool) {
-        let fillImage = UIImage(systemName: "heart.fill")?.withRenderingMode(.alwaysTemplate)
-        let normalImage = UIImage(systemName: "heart")?.withRenderingMode(.alwaysTemplate)
-        
-        if favorite {
-            button.setImage(fillImage, for: .normal)
-            button.setImage(normalImage, for: .selected)
-            button.setImage(normalImage, for: .highlighted)
-        } else {
-            button.setImage(normalImage, for: .normal)
-            button.setImage(fillImage, for: .selected)
-            button.setImage(fillImage, for: .highlighted)
-        }
-    }
-    
     //MARK: Configuration
-    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, imageCache: RemoteImageCaching, session: Session, theme: Theme, favoriteAction: @escaping () async -> Bool) {
-        self.favoriteAction = favoriteAction
+    func configure(viewData: ViewData, isLargeSection: Bool, imageLoader: ImageLoadingService, imageCache: RemoteImageCaching, session: Session, theme: Theme, remoteAction: @escaping () async -> Void) {
+        self.remoteAction = remoteAction
         self.titleLabel.text = viewData.title
         self.subtitleLabel.text = viewData.subtitle
         
@@ -134,13 +117,13 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.imageView.image = nil
         self.imageView.backgroundColor = theme.imagePlaceholderBackgroundColor
         
-        self.favoriteButton.tintColor = theme.primaryNavBarTintColor
-        self.favoriteButton.backgroundColor = theme.primaryNavBarBackgroundColor
-        self.favoriteButton.isHidden = !viewData.showFavorite
-        self.favoriteButton.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
-        self.updateState(for: self.favoriteButton, asFavorite: viewData.isFavorite)
+        self.actionButton.tintColor = theme.primaryNavBarTintColor
+        self.actionButton.backgroundColor = theme.primaryNavBarBackgroundColor
+        self.actionButton.isHidden = !viewData.showAction
+        self.actionButton.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
+        self.actionButton.setImage(UIImage(systemName: viewData.actionSymbol), for: .normal)
         
-        self.favoriteLoadingIndicator.color = theme.primaryNavBarTintColor
+        self.remoteActionIndicator.color = theme.primaryNavBarTintColor
         
         if let image = imageCache.imageForURL(imageUrl) {
             self.imageView.transition(to: image, animated: false)
@@ -155,33 +138,23 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    @objc private func favoriteButtonAction() {
+    @objc private func remoteActionButtonTouchUpInside() {
         Task {
             await self.showProgress()
-            if await self.favoriteAction() {
-                self.isFavorited.toggle()
-            }
-            await self.hideProgress(isFavorited: self.isFavorited)
+            await self.remoteAction()
         }
     }
     
     @MainActor
     private func showProgress() {
-        self.favoriteButton.setImage(nil, for: .normal)
-        self.favoriteLoadingIndicator.startAnimating()
-    }
-    
-    @MainActor
-    private func hideProgress(isFavorited: Bool) {
-        self.favoriteLoadingIndicator.stopAnimating()
-        self.updateState(for: self.favoriteButton, asFavorite: isFavorited)
+        self.actionButton.setImage(nil, for: .normal)
+        self.remoteActionIndicator.startAnimating()
     }
     
     private func clear() {
-        self.favoriteAction = { false }
+        self.remoteAction = {}
         self.titleLabel.text = nil
         self.subtitleLabel.text = nil
-        self.isFavorited = false
         
         self.imageLoadTask?.cancel()
         self.imageView.image = nil

@@ -16,10 +16,15 @@ class MWGridStepViewController: MWStepViewController {
         let title: String?
         let subtitle: String?
         let imageUrl: URL?
-        let favorite: Bool?
-        let favoriteURL: String?
+        let actionURL: String?
+        let actionMethod: HTTPMethod?
+        let actionSymbol: String?
         
-        var hasFavoriteSupport: Bool { self.favorite != nil && !(self.favoriteURL?.isEmpty ?? true) }
+        var canPerformRemoteAction: Bool {
+            !(self.actionSymbol?.isEmpty ?? true)
+            && !(self.actionURL?.isEmpty ?? true)
+            && self.actionMethod != nil
+        }
     }
     
     struct Section {
@@ -58,9 +63,8 @@ class MWGridStepViewController: MWStepViewController {
         self.collectionView.reloadData()
     }
     
-    open func toggleFavorite(item: Item) async -> Bool {
+    open func performRemoteAction(item: Item) async -> Void {
         //Favorite toggle is not done for static items
-        false
     }
     
     // MARK: Configuration
@@ -171,14 +175,14 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
         case .carouselLarge:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: true, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme) { [weak self] in
-                return await self?.toggleFavorite(item: item) ?? false
+                await self?.performRemoteAction(item: item)
             }
             result = cell
             
         case .carouselSmall:
             let cell: MWImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(viewData: MWImageCollectionViewCell.ViewData(item: item), isLargeSection: false, imageLoader: self.gridStep.services.imageLoadingService, imageCache: self.remoteImageCache, session: self.gridStep.session, theme: self.step.theme) { [weak self] in
-                return await self?.toggleFavorite(item: item) ?? false
+                await self?.performRemoteAction(item: item)
             }
             result = cell
             
@@ -220,6 +224,6 @@ extension MWGridStepViewController: UICollectionViewDataSource, UICollectionView
 private extension MWImageCollectionViewCell.ViewData {
     
     init(item: MWGridStepViewController.Item) {
-        self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl, showFavorite: item.hasFavoriteSupport, isFavorite: item.favorite ?? false)
+        self.init(title: item.title, subtitle: item.subtitle, imageUrl: item.imageUrl, showAction: item.canPerformRemoteAction, actionSymbol: item.actionSymbol ?? "")
     }
 }
