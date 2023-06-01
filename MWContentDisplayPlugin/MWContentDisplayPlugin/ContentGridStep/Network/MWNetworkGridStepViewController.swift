@@ -46,6 +46,8 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
             return
         }
         
+        let currentState = self.remoteContentStep.items
+        
         do {
             let task: URLAsyncTask<Void> = URLAsyncTask<Void>.build(
                 url: resolvedURL,
@@ -56,6 +58,7 @@ class MWNetworkGridStepViewController: MWGridStepViewController, RemoteContentSt
             try await self.gridStep.services.perform(task: task, session: self.gridStep.session)
             self.loadContent()
         } catch {
+            self.update(content: currentState)
             await self.show(error)
         }
     }
