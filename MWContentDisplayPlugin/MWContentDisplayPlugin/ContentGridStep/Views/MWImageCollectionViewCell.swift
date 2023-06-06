@@ -30,9 +30,9 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         button.backgroundColor = .lightGray
         button.layer.cornerRadius = 16.0
         button.layer.masksToBounds = true
-        //We are applying a small edge insets to compensate for empty text
-        //margin added by the UIButton class, in an attempt to center the icon.
-        button.imageEdgeInsets = .init(top: 0.4, left: 0.4, bottom: 0.0, right: 0.0)
+        button.contentVerticalAlignment = .center
+        button.contentHorizontalAlignment = .center
+        button.titleLabel?.textAlignment = .center
         return button
     }()
     private var remoteAction: () async -> Void = {}
@@ -124,7 +124,14 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         self.actionButton.backgroundColor = theme.primaryNavBarBackgroundColor
         self.actionButton.isHidden = !viewData.showAction
         self.actionButton.layer.cornerRadius = isLargeSection ? 16.0 : 12.0
-        self.actionButton.setImage(UIImage(systemName: viewData.actionSymbol), for: .normal)
+        
+        self.actionButton.titleLabel?.textColor = theme.primaryNavBarTintColor
+        if let symbol = UIImage(systemName: viewData.actionSymbol) {
+            let imageText = NSAttributedString(attachment: NSTextAttachment(image: symbol))
+            self.actionButton.setAttributedTitle(imageText, for: .normal)
+        } else {
+            self.actionButton.setAttributedTitle(nil, for: .normal)
+        }
         
         self.remoteActionIndicator.color = theme.primaryNavBarTintColor
         
@@ -150,7 +157,7 @@ class MWImageCollectionViewCell: UICollectionViewCell {
     
     @MainActor
     private func showProgress() {
-        self.actionButton.setImage(nil, for: .normal)
+        self.actionButton.setAttributedTitle(nil, for: .normal)
         self.remoteActionIndicator.startAnimating()
     }
     
