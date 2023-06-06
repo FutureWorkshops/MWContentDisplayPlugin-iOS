@@ -30,6 +30,9 @@ class MWImageCollectionViewCell: UICollectionViewCell {
         button.backgroundColor = .lightGray
         button.layer.cornerRadius = 16.0
         button.layer.masksToBounds = true
+        //We are applying a small edge insets to compensate for empty text
+        //margin added by the UIButton class, in an attempt to center the icon.
+        button.imageEdgeInsets = .init(top: 0.4, left: 0.4, bottom: 0.0, right: 0.0)
         return button
     }()
     private var remoteAction: () async -> Void = {}
