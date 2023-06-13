@@ -1,12 +1,12 @@
 PODS:
   - Kingfisher (6.3.1)
-  - MobileWorkflow (2.1.1):
-    - MobileWorkflow/Core (= 2.1.1)
-  - MobileWorkflow/Core (2.1.1)
+  - MobileWorkflow (2.1.21):
+    - MobileWorkflow/Core (= 2.1.21)
+  - MobileWorkflow/Core (2.1.21)
 
 DEPENDENCIES:
-  - Kingfisher (~> 6.0)
-  - MobileWorkflow
+  - Kingfisher (~> 6.3.1)
+  - MobileWorkflow (~> 2.1.12)
 
 SPEC REPOS:
   https://github.com/FutureWorkshops/MWPodspecs.git:
@@ -16,8 +16,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
-  MobileWorkflow: 6d847cb8e553969e3147d96abb2c308fc9c7d717
+  MobileWorkflow: 14ef663d7348dee12b5b435c755055ad6020c8f9
 
-PODFILE CHECKSUM: da74bf68da2da526c50d029617d758cdf9c668c7
+PODFILE CHECKSUM: d80debdafdff44b48cb4e697d89c12d973eae10c
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
