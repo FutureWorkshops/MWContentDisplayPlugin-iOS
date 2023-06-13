@@ -7,39 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		367CB762264E933B00ADFC79 /* GridStepResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CB760264E933B00ADFC79 /* GridStepResult.swift */; };
-		367CB763264E933B00ADFC79 /* GridStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CB761264E933B00ADFC79 /* GridStepItem.swift */; };
-		367CB765264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CB764264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift */; };
-		367CB767264E944400ADFC79 /* MWGridStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CB766264E944400ADFC79 /* MWGridStepViewController.swift */; };
-		36838691281048C400E1959C /* MWContentDisplayPluginStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36838690281048C400E1959C /* MWContentDisplayPluginStruct.swift */; };
-		36C18243256BDE0D0044A74B /* MWNetworkGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */; };
-		62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */; };
-		62003DE325629BDE003BC820 /* MWImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */; };
-		62003DE525629BDE003BC820 /* MWGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62003DDD25629BDD003BC820 /* MWGridStep.swift */; };
+		02C2DA09D58894AEA0435364 /* MWGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFDD96AC63A1DF014DF0468 /* MWGridStep.swift */; };
 		628EC3A6255E9F7B00CD1992 /* MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */; };
 		628EC3AB255E9F7B00CD1992 /* MWVideoGridPluginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */; };
-		628EC3AD255E9F7B00CD1992 /* MWContentDisplayPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AD10808C26CB95B9001F14F4 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD10808B26CB95B9001F14F4 /* Color+Extensions.swift */; };
-		ADE0F1172681CFE9000D6E9D /* CloseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE0F1162681CFE9000D6E9D /* CloseButton.swift */; };
-		ADE2FB0326EA1B0400468D1F /* MWContentDisplayStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE2FB0126EA1B0400468D1F /* MWContentDisplayStackViewController.swift */; };
-		ADE2FB0426EA1B0400468D1F /* MWContentDisplayStackStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE2FB0226EA1B0400468D1F /* MWContentDisplayStackStep.swift */; };
-		ADE2FB0726EA1B1800468D1F /* MWNetworkContentDisplayStackStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE2FB0526EA1B1800468D1F /* MWNetworkContentDisplayStackStep.swift */; };
-		ADE2FB0826EA1B1800468D1F /* MWNetworkContentDisplayStackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE2FB0626EA1B1800468D1F /* MWNetworkContentDisplayStackViewController.swift */; };
-		ADFCCB52268B748400C77FF5 /* MWButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFCCB51268B748400C77FF5 /* MWButtonStyle.swift */; };
-		B10F833A261F569D005BAEC3 /* MWStackStepContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F8339261F569D005BAEC3 /* MWStackStepContents.swift */; };
-		B10F833E261F574D005BAEC3 /* MWStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B10F833D261F574D005BAEC3 /* MWStackView.swift */; };
-		B1E2542F263848400084A44D /* FancyScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25425263848400084A44D /* FancyScrollView.swift */; };
-		B1E25430263848400084A44D /* ScrollDownHeaderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25426263848400084A44D /* ScrollDownHeaderBehavior.swift */; };
-		B1E25431263848400084A44D /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25427263848400084A44D /* BlurView.swift */; };
-		B1E25432263848400084A44D /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25428263848400084A44D /* BackButton.swift */; };
-		B1E25433263848400084A44D /* View+hideNavigationBarWithoutLosingSwipeBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E25429263848400084A44D /* View+hideNavigationBarWithoutLosingSwipeBack.swift */; };
-		B1E25434263848400084A44D /* HeaderScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2542A263848400084A44D /* HeaderScrollView.swift */; };
-		B1E25435263848400084A44D /* AppleMusicStyleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2542B263848400084A44D /* AppleMusicStyleScrollView.swift */; };
-		B1E25436263848400084A44D /* HeaderScrollViewTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2542C263848400084A44D /* HeaderScrollViewTitle.swift */; };
-		B1E25437263848400084A44D /* ScrollUpHeaderBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2542D263848400084A44D /* ScrollUpHeaderBehavior.swift */; };
-		B1E25438263848400084A44D /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1E2542E263848400084A44D /* View+navigationAllowSpipeBackWhenHidden.swift */; };
+		70709AB3EBEDE6894B39B837 /* MWSimpleCollectionSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6995019BAA2C171E50C50 /* MWSimpleCollectionSectionHeader.swift */; };
+		78273713B132763FAF0E067C /* GridStepResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C00E3A20E61FF9742F6A93C /* GridStepResult.swift */; };
+		79384EC376AD2BE08F2E655A /* GridStepItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB1E68DC03DCA337876732A /* GridStepItem.swift */; };
+		8A4768F6E00531F6CFB97BFA /* MWGridStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413FD087E45D0DD4E68EC277 /* MWGridStepViewController.swift */; };
+		AE3F62E1BE28837B7A0B54B9 /* MWNetworkGridStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC2E95ECFC79ABDD59C03E8 /* MWNetworkGridStepViewController.swift */; };
+		AE8FFE045FD888CB607E597C /* MWNetworkGridStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086DCB0FF2E8EF8131AA0362 /* MWNetworkGridStep.swift */; };
 		C819277BF5CA3BC1E734F9E1 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */; };
 		CBD85AE42EEDF7025A9AD978 /* Pods_MWContentDisplayPluginTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */; };
+		D6EC02020483F5E7B04EA4EA /* MWImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0345E3AFA958769BCC91CD /* MWImageCollectionViewCell.swift */; };
+		EE1E7BEE07562D116127947B /* MWContentDisplayPluginStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 390E2711001EC2DC8AFC207E /* MWContentDisplayPluginStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,24 +33,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		086DCB0FF2E8EF8131AA0362 /* MWNetworkGridStep.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStep.swift; sourceTree = "<group>"; };
+		0C00E3A20E61FF9742F6A93C /* GridStepResult.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GridStepResult.swift; sourceTree = "<group>"; };
 		185C23C35E70FFCF2AD272BF /* Pods-MWVideoGridPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.release.xcconfig"; sourceTree = "<group>"; };
+		22CCF4EE45928DD78BCDE6A1 /* MWContentDisplayPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MWContentDisplayPlugin.h; sourceTree = "<group>"; };
+		265837722F9335776F69B7BD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		367CB760264E933B00ADFC79 /* GridStepResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStepResult.swift; sourceTree = "<group>"; };
 		367CB761264E933B00ADFC79 /* GridStepItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStepItem.swift; sourceTree = "<group>"; };
 		367CB764264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStepViewController.swift; sourceTree = "<group>"; };
 		367CB766264E944400ADFC79 /* MWGridStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStepViewController.swift; sourceTree = "<group>"; };
-		36838690281048C400E1959C /* MWContentDisplayPluginStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWContentDisplayPluginStruct.swift; sourceTree = "<group>"; };
 		36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStep.swift; sourceTree = "<group>"; };
+		390E2711001EC2DC8AFC207E /* MWContentDisplayPluginStruct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWContentDisplayPluginStruct.swift; sourceTree = "<group>"; };
 		40D7DC85E1FBA0F6EB98F438 /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; sourceTree = "<group>"; };
+		413FD087E45D0DD4E68EC277 /* MWGridStepViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWGridStepViewController.swift; sourceTree = "<group>"; };
+		5CB1E68DC03DCA337876732A /* GridStepItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GridStepItem.swift; sourceTree = "<group>"; };
 		62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
 		62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		62003DDD25629BDD003BC820 /* MWGridStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStep.swift; sourceTree = "<group>"; };
 		628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MWContentDisplayPlugin.h; sourceTree = "<group>"; };
-		628EC3A0255E9F7A00CD1992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		628EC3A5255E9F7B00CD1992 /* MWContentDisplayPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWContentDisplayPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVideoGridPluginTests.swift; sourceTree = "<group>"; };
 		628EC3AC255E9F7B00CD1992 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B0345E3AFA958769BCC91CD /* MWImageCollectionViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		8A600D4D57ADA58E1BC5B629 /* Pods_MWContentDisplayPluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MWContentDisplayPluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FD6995019BAA2C171E50C50 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
+		8FFDD96AC63A1DF014DF0468 /* MWGridStep.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWGridStep.swift; sourceTree = "<group>"; };
 		980A44E52379947BB8387DB1 /* Pods-MWVideoGridPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AD10808B26CB95B9001F14F4 /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		ADE0F1162681CFE9000D6E9D /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
@@ -98,6 +85,7 @@
 		C71D10543438C1AACD23646C /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.debug.xcconfig"; sourceTree = "<group>"; };
 		D8BAE530258F7B52290CD8FE /* Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin/Pods-MobileWorkflowVideoGrid-MWVideoGridPlugin.release.xcconfig"; sourceTree = "<group>"; };
 		EBA1C3F9D7D53984AB360748 /* Pods-MWContentDisplayPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWContentDisplayPluginTests.release.xcconfig"; path = "Target Support Files/Pods-MWContentDisplayPluginTests/Pods-MWContentDisplayPluginTests.release.xcconfig"; sourceTree = "<group>"; };
+		FBC2E95ECFC79ABDD59C03E8 /* MWNetworkGridStepViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStepViewController.swift; sourceTree = "<group>"; };
 		FCFFEC54A5B514A4CCC6455B /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,13 +110,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		62003DD825629BDD003BC820 /* Views */ = {
+		3454A86EAD1EB80397356177 /* ContentGridStep */ = {
 			isa = PBXGroup;
 			children = (
-				62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */,
-				62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */,
+				CD1700F131BBDC61B7F69FEE /* Network */,
+				C5FC8867499A19705058E4F0 /* Models */,
+				66593A944535E6FF77B09550 /* Local */,
+				BB9803BB9B800C8D33C9C178 /* Views */,
 			);
-			path = Views;
+			name = ContentGridStep;
+			path = ContentGridStep;
 			sourceTree = "<group>";
 		};
 		628EC392255E9F7A00CD1992 = {
@@ -154,11 +145,10 @@
 		628EC39E255E9F7A00CD1992 /* MWContentDisplayPlugin */ = {
 			isa = PBXGroup;
 			children = (
-				36838690281048C400E1959C /* MWContentDisplayPluginStruct.swift */,
-				62BA560B255EA0530089B034 /* ContentGridStep */,
-				B10A69BE261CA27E0096AE0D /* ContentStackStep */,
-				628EC39F255E9F7A00CD1992 /* MWContentDisplayPlugin.h */,
-				628EC3A0255E9F7A00CD1992 /* Info.plist */,
+				22CCF4EE45928DD78BCDE6A1 /* MWContentDisplayPlugin.h */,
+				390E2711001EC2DC8AFC207E /* MWContentDisplayPluginStruct.swift */,
+				265837722F9335776F69B7BD /* Info.plist */,
+				3454A86EAD1EB80397356177 /* ContentGridStep */,
 			);
 			path = MWContentDisplayPlugin;
 			sourceTree = "<group>";
@@ -172,15 +162,14 @@
 			path = MWContentDisplayPluginTests;
 			sourceTree = "<group>";
 		};
-		62BA560B255EA0530089B034 /* ContentGridStep */ = {
+		66593A944535E6FF77B09550 /* Local */ = {
 			isa = PBXGroup;
 			children = (
-				B123DC07261DF3020017FC5C /* Local */,
-				B123DC08261DF3070017FC5C /* Network */,
-				B1ECCF5A261E01AD00D8F903 /* Models */,
-				62003DD825629BDD003BC820 /* Views */,
+				8FFDD96AC63A1DF014DF0468 /* MWGridStep.swift */,
+				413FD087E45D0DD4E68EC277 /* MWGridStepViewController.swift */,
 			);
-			path = ContentGridStep;
+			name = Local;
+			path = Local;
 			sourceTree = "<group>";
 		};
 		85F22C63F811567087D74381 /* Pods */ = {
@@ -201,72 +190,6 @@
 			path = ../Pods;
 			sourceTree = "<group>";
 		};
-		B10A69BE261CA27E0096AE0D /* ContentStackStep */ = {
-			isa = PBXGroup;
-			children = (
-				B10F8333261F54BF005BAEC3 /* Local */,
-				B10F8336261F54E7005BAEC3 /* Remote */,
-				B10F8338261F550F005BAEC3 /* Models */,
-				B10F8337261F54FE005BAEC3 /* SwiftUIViews */,
-			);
-			path = ContentStackStep;
-			sourceTree = "<group>";
-		};
-		B10F8333261F54BF005BAEC3 /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				ADE2FB0226EA1B0400468D1F /* MWContentDisplayStackStep.swift */,
-				ADE2FB0126EA1B0400468D1F /* MWContentDisplayStackViewController.swift */,
-			);
-			path = Local;
-			sourceTree = "<group>";
-		};
-		B10F8336261F54E7005BAEC3 /* Remote */ = {
-			isa = PBXGroup;
-			children = (
-				ADE2FB0526EA1B1800468D1F /* MWNetworkContentDisplayStackStep.swift */,
-				ADE2FB0626EA1B1800468D1F /* MWNetworkContentDisplayStackViewController.swift */,
-			);
-			path = Remote;
-			sourceTree = "<group>";
-		};
-		B10F8337261F54FE005BAEC3 /* SwiftUIViews */ = {
-			isa = PBXGroup;
-			children = (
-				AD10808B26CB95B9001F14F4 /* Color+Extensions.swift */,
-				B10F833D261F574D005BAEC3 /* MWStackView.swift */,
-				ADFCCB51268B748400C77FF5 /* MWButtonStyle.swift */,
-				B1E25410263847FE0084A44D /* FancyScrollView */,
-			);
-			path = SwiftUIViews;
-			sourceTree = "<group>";
-		};
-		B10F8338261F550F005BAEC3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B10F8339261F569D005BAEC3 /* MWStackStepContents.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		B123DC07261DF3020017FC5C /* Local */ = {
-			isa = PBXGroup;
-			children = (
-				62003DDD25629BDD003BC820 /* MWGridStep.swift */,
-				367CB766264E944400ADFC79 /* MWGridStepViewController.swift */,
-			);
-			path = Local;
-			sourceTree = "<group>";
-		};
-		B123DC08261DF3070017FC5C /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */,
-				367CB764264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
 		B1E25410263847FE0084A44D /* FancyScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,15 +208,6 @@
 			path = FancyScrollView;
 			sourceTree = "<group>";
 		};
-		B1ECCF5A261E01AD00D8F903 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				367CB761264E933B00ADFC79 /* GridStepItem.swift */,
-				367CB760264E933B00ADFC79 /* GridStepResult.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		B952388A181F1A0DD0FFD4BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +217,36 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BB9803BB9B800C8D33C9C178 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8FD6995019BAA2C171E50C50 /* MWSimpleCollectionSectionHeader.swift */,
+				7B0345E3AFA958769BCC91CD /* MWImageCollectionViewCell.swift */,
+			);
+			name = Views;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C5FC8867499A19705058E4F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0C00E3A20E61FF9742F6A93C /* GridStepResult.swift */,
+				5CB1E68DC03DCA337876732A /* GridStepItem.swift */,
+			);
+			name = Models;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CD1700F131BBDC61B7F69FEE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				FBC2E95ECFC79ABDD59C03E8 /* MWNetworkGridStepViewController.swift */,
+				086DCB0FF2E8EF8131AA0362 /* MWNetworkGridStep.swift */,
+			);
+			name = Network;
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -310,7 +254,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				628EC3AD255E9F7B00CD1992 /* MWContentDisplayPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,34 +404,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				367CB767264E944400ADFC79 /* MWGridStepViewController.swift in Sources */,
-				B1E25432263848400084A44D /* BackButton.swift in Sources */,
-				62003DE325629BDE003BC820 /* MWImageCollectionViewCell.swift in Sources */,
-				ADE2FB0826EA1B1800468D1F /* MWNetworkContentDisplayStackViewController.swift in Sources */,
-				367CB765264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift in Sources */,
-				B1E25437263848400084A44D /* ScrollUpHeaderBehavior.swift in Sources */,
-				ADE0F1172681CFE9000D6E9D /* CloseButton.swift in Sources */,
-				B10F833A261F569D005BAEC3 /* MWStackStepContents.swift in Sources */,
-				ADFCCB52268B748400C77FF5 /* MWButtonStyle.swift in Sources */,
-				B1E25431263848400084A44D /* BlurView.swift in Sources */,
-				B1E25438263848400084A44D /* View+navigationAllowSpipeBackWhenHidden.swift in Sources */,
-				AD10808C26CB95B9001F14F4 /* Color+Extensions.swift in Sources */,
-				B1E25436263848400084A44D /* HeaderScrollViewTitle.swift in Sources */,
-				ADE2FB0726EA1B1800468D1F /* MWNetworkContentDisplayStackStep.swift in Sources */,
-				ADE2FB0426EA1B0400468D1F /* MWContentDisplayStackStep.swift in Sources */,
-				B10F833E261F574D005BAEC3 /* MWStackView.swift in Sources */,
-				367CB763264E933B00ADFC79 /* GridStepItem.swift in Sources */,
-				B1E25434263848400084A44D /* HeaderScrollView.swift in Sources */,
-				ADE2FB0326EA1B0400468D1F /* MWContentDisplayStackViewController.swift in Sources */,
-				62003DE525629BDE003BC820 /* MWGridStep.swift in Sources */,
-				B1E25435263848400084A44D /* AppleMusicStyleScrollView.swift in Sources */,
-				367CB762264E933B00ADFC79 /* GridStepResult.swift in Sources */,
-				B1E2542F263848400084A44D /* FancyScrollView.swift in Sources */,
-				B1E25430263848400084A44D /* ScrollDownHeaderBehavior.swift in Sources */,
-				B1E25433263848400084A44D /* View+hideNavigationBarWithoutLosingSwipeBack.swift in Sources */,
-				36C18243256BDE0D0044A74B /* MWNetworkGridStep.swift in Sources */,
-				62003DE125629BDE003BC820 /* MWSimpleCollectionSectionHeader.swift in Sources */,
-				36838691281048C400E1959C /* MWContentDisplayPluginStruct.swift in Sources */,
+				EE1E7BEE07562D116127947B /* MWContentDisplayPluginStruct.swift in Sources */,
+				AE3F62E1BE28837B7A0B54B9 /* MWNetworkGridStepViewController.swift in Sources */,
+				AE8FFE045FD888CB607E597C /* MWNetworkGridStep.swift in Sources */,
+				78273713B132763FAF0E067C /* GridStepResult.swift in Sources */,
+				79384EC376AD2BE08F2E655A /* GridStepItem.swift in Sources */,
+				02C2DA09D58894AEA0435364 /* MWGridStep.swift in Sources */,
+				8A4768F6E00531F6CFB97BFA /* MWGridStepViewController.swift in Sources */,
+				70709AB3EBEDE6894B39B837 /* MWSimpleCollectionSectionHeader.swift in Sources */,
+				D6EC02020483F5E7B04EA4EA /* MWImageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

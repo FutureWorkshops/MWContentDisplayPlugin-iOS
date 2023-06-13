@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = 'MWContentDisplayPlugin'
-    s.version               = '1.8.0'
+    s.version               = '1.8.1'
     s.summary               = 'A content display plugin for MobileWorkflow on iOS.'
     s.description           = <<-DESC
     Grid step for MobileWorkflow on iOS, using UICollectionView compositional layout.
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 	
     s.subspec 'Core' do |cs|
         cs.dependency            'MobileWorkflow', '~> 2.1.12'
-        cs.dependency            'Kingfisher', '~> 6.0'
+        cs.dependency            'Kingfisher', '~> 6.3.1'
         cs.source_files          = 'MWContentDisplayPlugin/MWContentDisplayPlugin/**/*.swift'
     end
 end
