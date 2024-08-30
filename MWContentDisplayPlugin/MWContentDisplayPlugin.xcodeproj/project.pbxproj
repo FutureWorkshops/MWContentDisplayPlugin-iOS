@@ -38,18 +38,10 @@
 		185C23C35E70FFCF2AD272BF /* Pods-MWVideoGridPluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.release.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.release.xcconfig"; sourceTree = "<group>"; };
 		22CCF4EE45928DD78BCDE6A1 /* MWContentDisplayPlugin.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = MWContentDisplayPlugin.h; sourceTree = "<group>"; };
 		265837722F9335776F69B7BD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		367CB760264E933B00ADFC79 /* GridStepResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStepResult.swift; sourceTree = "<group>"; };
-		367CB761264E933B00ADFC79 /* GridStepItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridStepItem.swift; sourceTree = "<group>"; };
-		367CB764264E93DF00ADFC79 /* MWNetworkGridStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStepViewController.swift; sourceTree = "<group>"; };
-		367CB766264E944400ADFC79 /* MWGridStepViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStepViewController.swift; sourceTree = "<group>"; };
-		36C18242256BDE0D0044A74B /* MWNetworkGridStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWNetworkGridStep.swift; sourceTree = "<group>"; };
 		390E2711001EC2DC8AFC207E /* MWContentDisplayPluginStruct.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWContentDisplayPluginStruct.swift; sourceTree = "<group>"; };
 		40D7DC85E1FBA0F6EB98F438 /* Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin/Pods-MobileWorkflowVideoGrid-MWContentDisplayPlugin.release.xcconfig"; sourceTree = "<group>"; };
 		413FD087E45D0DD4E68EC277 /* MWGridStepViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWGridStepViewController.swift; sourceTree = "<group>"; };
 		5CB1E68DC03DCA337876732A /* GridStepItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GridStepItem.swift; sourceTree = "<group>"; };
-		62003DD925629BDD003BC820 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
-		62003DDB25629BDD003BC820 /* MWImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWImageCollectionViewCell.swift; sourceTree = "<group>"; };
-		62003DDD25629BDD003BC820 /* MWGridStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWGridStep.swift; sourceTree = "<group>"; };
 		628EC39C255E9F7A00CD1992 /* MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		628EC3A5255E9F7B00CD1992 /* MWContentDisplayPluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MWContentDisplayPluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		628EC3AA255E9F7B00CD1992 /* MWVideoGridPluginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVideoGridPluginTests.swift; sourceTree = "<group>"; };
@@ -59,25 +51,6 @@
 		8FD6995019BAA2C171E50C50 /* MWSimpleCollectionSectionHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWSimpleCollectionSectionHeader.swift; sourceTree = "<group>"; };
 		8FFDD96AC63A1DF014DF0468 /* MWGridStep.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MWGridStep.swift; sourceTree = "<group>"; };
 		980A44E52379947BB8387DB1 /* Pods-MWVideoGridPluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MWVideoGridPluginTests.debug.xcconfig"; path = "Target Support Files/Pods-MWVideoGridPluginTests/Pods-MWVideoGridPluginTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AD10808B26CB95B9001F14F4 /* Color+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
-		ADE0F1162681CFE9000D6E9D /* CloseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseButton.swift; sourceTree = "<group>"; };
-		ADE2FB0126EA1B0400468D1F /* MWContentDisplayStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWContentDisplayStackViewController.swift; sourceTree = "<group>"; };
-		ADE2FB0226EA1B0400468D1F /* MWContentDisplayStackStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWContentDisplayStackStep.swift; sourceTree = "<group>"; };
-		ADE2FB0526EA1B1800468D1F /* MWNetworkContentDisplayStackStep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWNetworkContentDisplayStackStep.swift; sourceTree = "<group>"; };
-		ADE2FB0626EA1B1800468D1F /* MWNetworkContentDisplayStackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWNetworkContentDisplayStackViewController.swift; sourceTree = "<group>"; };
-		ADFCCB51268B748400C77FF5 /* MWButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWButtonStyle.swift; sourceTree = "<group>"; };
-		B10F8339261F569D005BAEC3 /* MWStackStepContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWStackStepContents.swift; sourceTree = "<group>"; };
-		B10F833D261F574D005BAEC3 /* MWStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWStackView.swift; sourceTree = "<group>"; };
-		B1E25425263848400084A44D /* FancyScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyScrollView.swift; sourceTree = "<group>"; };
-		B1E25426263848400084A44D /* ScrollDownHeaderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollDownHeaderBehavior.swift; sourceTree = "<group>"; };
-		B1E25427263848400084A44D /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
-		B1E25428263848400084A44D /* BackButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
-		B1E25429263848400084A44D /* View+hideNavigationBarWithoutLosingSwipeBack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+hideNavigationBarWithoutLosingSwipeBack.swift"; sourceTree = "<group>"; };
-		B1E2542A263848400084A44D /* HeaderScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderScrollView.swift; sourceTree = "<group>"; };
-		B1E2542B263848400084A44D /* AppleMusicStyleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleMusicStyleScrollView.swift; sourceTree = "<group>"; };
-		B1E2542C263848400084A44D /* HeaderScrollViewTitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderScrollViewTitle.swift; sourceTree = "<group>"; };
-		B1E2542D263848400084A44D /* ScrollUpHeaderBehavior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollUpHeaderBehavior.swift; sourceTree = "<group>"; };
-		B1E2542E263848400084A44D /* View+navigationAllowSpipeBackWhenHidden.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+navigationAllowSpipeBackWhenHidden.swift"; sourceTree = "<group>"; };
 		BE3145F6D0AF87E7D3564C64 /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.debug.xcconfig"; sourceTree = "<group>"; };
 		BF9C2C094C9B53F55607259D /* Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig"; path = "Target Support Files/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin/Pods-MobileWorkflowContentDisplay-MWContentDisplayPlugin.release.xcconfig"; sourceTree = "<group>"; };
 		BFD69425E2A83C0D79005345 /* Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobileWorkflowContentDisplay_MWContentDisplayPlugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,24 +161,6 @@
 			);
 			name = Pods;
 			path = ../Pods;
-			sourceTree = "<group>";
-		};
-		B1E25410263847FE0084A44D /* FancyScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				B1E25425263848400084A44D /* FancyScrollView.swift */,
-				B1E2542A263848400084A44D /* HeaderScrollView.swift */,
-				ADE0F1162681CFE9000D6E9D /* CloseButton.swift */,
-				B1E2542B263848400084A44D /* AppleMusicStyleScrollView.swift */,
-				B1E25428263848400084A44D /* BackButton.swift */,
-				B1E2542C263848400084A44D /* HeaderScrollViewTitle.swift */,
-				B1E25427263848400084A44D /* BlurView.swift */,
-				B1E25426263848400084A44D /* ScrollDownHeaderBehavior.swift */,
-				B1E2542D263848400084A44D /* ScrollUpHeaderBehavior.swift */,
-				B1E25429263848400084A44D /* View+hideNavigationBarWithoutLosingSwipeBack.swift */,
-				B1E2542E263848400084A44D /* View+navigationAllowSpipeBackWhenHidden.swift */,
-			);
-			path = FancyScrollView;
 			sourceTree = "<group>";
 		};
 		B952388A181F1A0DD0FFD4BF /* Frameworks */ = {
@@ -487,7 +442,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -545,7 +500,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
