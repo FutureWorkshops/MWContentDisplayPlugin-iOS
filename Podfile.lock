@@ -1,8 +1,8 @@
 PODS:
   - Kingfisher (6.3.1)
-  - MobileWorkflow (2.1.21):
-    - MobileWorkflow/Core (= 2.1.21)
-  - MobileWorkflow/Core (2.1.21)
+  - MobileWorkflow (2.1.29):
+    - MobileWorkflow/Core (= 2.1.29)
+  - MobileWorkflow/Core (2.1.29)
 
 DEPENDENCIES:
   - Kingfisher (~> 6.3.1)
@@ -16,7 +16,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
-  MobileWorkflow: 14ef663d7348dee12b5b435c755055ad6020c8f9
+  MobileWorkflow: 95ae9b93675fd092a4974787948b83899844354d
 
 PODFILE CHECKSUM: 592e527280c75f7bc331eabddfca327978ed38b2
 
